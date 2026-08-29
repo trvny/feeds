@@ -24,11 +24,9 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
 
     def test_agent_zero_articles_use_sitemap_discovery(self):
         """Agent Zero articles should reuse the generic dated-sitemap path."""
-        source = [
-            source
-            for source in skillsllm.SOURCES
-            if source["label"] == "Agent Zero Articles"
-        ][0]
+        sources = {source["label"]: source for source in skillsllm.SOURCES}
+        self.assertIn("Agent Zero Articles", sources)
+        source = sources["Agent Zero Articles"]
         self.assertEqual(source["sitemap"], "https://www.agent-zero.ai/sitemap.xml")
         self.assertTrue(source["use_lastmod"])
         self.assertTrue(source["include"]("https://www.agent-zero.ai/p/articles/a-zero2"))
