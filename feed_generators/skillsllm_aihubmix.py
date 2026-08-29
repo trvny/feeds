@@ -53,6 +53,6 @@ def collect_aihubmix_blog(known_links, ledger, fetch_url, fetch_detail):
                 entries.append(entry)
             else:
                 ledger.failed(label, link)
-        except Exception:
+        except Exception:  # skipcq: PYL-W0703 - isolate one broken article from the feed run
             ledger.failed(label, link)
     return entries
