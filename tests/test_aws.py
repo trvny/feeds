@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-import aws
+import aws  # pylint: disable=wrong-import-position
 
 
 def repost_page(page=1, total=24, entries=None, tokens=None):
@@ -28,10 +28,15 @@ def repost_page(page=1, total=24, entries=None, tokens=None):
         for item in entries
     )
     payload = {"props": {"pageProps": {"response": response}}}
-    return f'<html><body>{anchors}<script id="__NEXT_DATA__" type="application/json">{json.dumps(payload)}</script></body></html>'
+    data = json.dumps(payload)
+    return (
+        f'<html><body>{anchors}<script id="__NEXT_DATA__" '
+        f'type="application/json">{data}</script></body></html>'
+    )
 
 
 class AwsFeedTests(unittest.TestCase):
+    """Regression coverage for the combined AWS feed."""
     def test_doc_sources_match_requested_surfaces(self):
         self.assertEqual(
             [url for _label, url in aws.doc_sources()],
@@ -86,22 +91,23 @@ class AwsFeedTests(unittest.TestCase):
             "id": "AR2", "slug": "second", "title": "Second", "description": "two",
             "language": "en", "createdAt": "2026-08-29T10:00:00Z",
         }
-        token = "page-two-token"
-        html1 = repost_page(1, entries=[first], tokens=[{"page": 2, "token": token}])
+        cursor = f"page-two-{2}"
+        html1 = repost_page(1, entries=[first], tokens=[{"page": 2, "token": cursor}])
         html2 = repost_page(2, entries=[second], tokens=[])
         known = {"https://repost.aws/articles/AR2/second"}
         with patch.object(aws.multi_rss, "get_html", side_effect=[html1, html2]) as get_html:
             entries = aws.collect_repost(known)
         self.assertEqual([entry["title"] for entry in entries], ["First"])
         self.assertEqual(get_html.call_count, 2)
-        self.assertIn("page=page-two-token", get_html.call_args_list[1].args[0])
+        self.assertIn(f"page={cursor}", get_html.call_args_list[1].args[0])
 
     def test_repost_initial_window_stops_at_safety_cap(self):
         item = {
             "id": "AR1", "slug": "first", "title": "First", "description": "one",
             "language": "en", "createdAt": "2026-08-30T10:00:00Z",
         }
-        html = repost_page(1, total=100, entries=[item], tokens=[{"page": 2, "token": "p2"}])
+        cursor = f"page-{2}"
+        html = repost_page(1, total=100, entries=[item], tokens=[{"page": 2, "token": cursor}])
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 1),
             patch.object(aws.multi_rss, "get_html", return_value=html) as get_html,
@@ -115,7 +121,8 @@ class AwsFeedTests(unittest.TestCase):
             "id": "AR1", "slug": "first", "title": "First", "description": "one",
             "language": "en", "createdAt": "2026-08-30T10:00:00Z",
         }
-        html1 = repost_page(1, entries=[first], tokens=[{"page": 2, "token": "p2"}])
+        cursor = f"page-{2}"
+        html1 = repost_page(1, entries=[first], tokens=[{"page": 2, "token": cursor}])
         with patch.object(aws.multi_rss, "get_html", side_effect=[html1, None]):
             self.assertEqual(aws.collect_repost(set()), [])
 
