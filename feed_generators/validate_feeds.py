@@ -159,6 +159,55 @@ def validate_feed(feed_path: Path) -> dict:
     )
 
 
+def _json_error(path: Path, message: str, *, count: int = 0) -> dict:
+    return _result(path.name, "JSON_ERROR", message, count=count)
+
+
+def _validate_json_items(path: Path, items: list) -> dict | None:
+    """Return the first universal item-contract violation, if any."""
+    seen_ids: set[str] = set()
+    for index, item in enumerate(items, start=1):
+        if not isinstance(item, dict):
+            return _json_error(path, f"item {index} is not an object")
+        item_id = item.get("id")
+        if not isinstance(item_id, str) or not item_id.strip():
+            return _json_error(path, f"item {index} has no non-empty id")
+        if item_id in seen_ids:
+            return _json_error(path, f"duplicate item id: {item_id}")
+        seen_ids.add(item_id)
+        content_fields = ("content_html", "content_text")
+        if not any(isinstance(item.get(key), str) for key in content_fields if key in item):
+            return _json_error(path, f"item {index} has no content_html/content_text")
+    return None
+
+
+def _validate_json_document(
+    path: Path, doc: object, *, expected_count: int | None
+) -> dict:
+    """Validate structure after JSON parsing has succeeded."""
+    if not isinstance(doc, dict):
+        return _json_error(path, "top level is not an object")
+    if doc.get("version") != JSON_FEED_VERSION:
+        return _json_error(path, "missing or unsupported JSON Feed 1.1 version")
+    if not isinstance(doc.get("title"), str) or not doc["title"].strip():
+        return _json_error(path, "missing non-empty title")
+
+    items = doc.get("items")
+    if not isinstance(items, list):
+        return _json_error(path, "missing top-level items array")
+    if expected_count is not None and len(items) != expected_count:
+        return _json_error(
+            path,
+            f"item count differs from XML ({len(items)} != {expected_count})",
+            count=len(items),
+        )
+
+    item_error = _validate_json_items(path, items)
+    if item_error is not None:
+        return item_error
+    return _result(path.name, "OK", f"{len(items)} items", count=len(items))
+
+
 def validate_json_sidecar(path: Path, *, expected_count: int | None = None) -> dict:
     """Validate the universal JSON Feed 1.1 publication contract."""
     if not path.exists():
@@ -166,42 +215,8 @@ def validate_json_sidecar(path: Path, *, expected_count: int | None = None) -> d
     try:
         doc = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
-        return _result(path.name, "JSON_ERROR", f"JSON parse/read error: {exc}")
-    if not isinstance(doc, dict):
-        return _result(path.name, "JSON_ERROR", "top level is not an object")
-    if doc.get("version") != JSON_FEED_VERSION:
-        return _result(path.name, "JSON_ERROR", "missing or unsupported JSON Feed 1.1 version")
-    if not isinstance(doc.get("title"), str) or not doc["title"].strip():
-        return _result(path.name, "JSON_ERROR", "missing non-empty title")
-
-    items = doc.get("items")
-    if not isinstance(items, list):
-        return _result(path.name, "JSON_ERROR", "missing top-level items array")
-    if expected_count is not None and len(items) != expected_count:
-        return _result(
-            path.name,
-            "JSON_ERROR",
-            f"item count differs from XML ({len(items)} != {expected_count})",
-            count=len(items),
-        )
-
-    seen_ids: set[str] = set()
-    for index, item in enumerate(items, start=1):
-        if not isinstance(item, dict):
-            return _result(path.name, "JSON_ERROR", f"item {index} is not an object")
-        item_id = item.get("id")
-        if not isinstance(item_id, str) or not item_id.strip():
-            return _result(path.name, "JSON_ERROR", f"item {index} has no non-empty id")
-        if item_id in seen_ids:
-            return _result(path.name, "JSON_ERROR", f"duplicate item id: {item_id}")
-        seen_ids.add(item_id)
-        has_content = any(
-            isinstance(item.get(key), str) for key in ("content_html", "content_text") if key in item
-        )
-        if not has_content:
-            return _result(path.name, "JSON_ERROR", f"item {index} has no content_html/content_text")
-
-    return _result(path.name, "OK", f"{len(items)} items", count=len(items))
+        return _json_error(path, f"JSON parse/read error: {exc}")
+    return _validate_json_document(path, doc, expected_count=expected_count)
 
 
 def _registry_coverage() -> tuple[list[dict], set[Path]]:

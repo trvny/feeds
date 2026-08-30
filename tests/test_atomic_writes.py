@@ -72,7 +72,8 @@ class WriteAtomicallyTests(unittest.TestCase):
 
 
 class FeedPairTests(unittest.TestCase):
-    def feed(self):
+    @staticmethod
+    def feed():
         from feedgen.feed import FeedGenerator
 
         fg = FeedGenerator()

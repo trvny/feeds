@@ -85,32 +85,72 @@ def normalize_generated_feeds() -> bool:
     return True
 
 
-def run_all_feeds(
-    feed: str | None = None,
-    full: bool = False,
+def _run_named_feed(
+    feed: str,
+    registry: dict[str, FeedConfig],
+    skipped_configs: list[str],
+    *,
+    full: bool,
 ) -> int:
-    """Run generators from the registry and return a truthful process status."""
-    registry, skipped_configs = load_feed_registry(return_skipped=True)
+    """Run one named feed after resolving registry state."""
+    if feed not in registry:
+        if feed in skipped_configs:
+            logger.error("Feed '%s' has an invalid config in feeds.yaml", feed)
+        else:
+            logger.error(
+                "Feed '%s' not found in registry. Available: %s",
+                feed,
+                ", ".join(sorted(registry)),
+            )
+        return 1
 
-    if feed:
-        if feed not in registry:
-            if feed in skipped_configs:
-                logger.error("Feed '%s' has an invalid config in feeds.yaml", feed)
-            else:
-                logger.error(
-                    "Feed '%s' not found in registry. Available: %s",
-                    feed,
-                    ", ".join(sorted(registry)),
-                )
-            return 1
-        config = registry[feed]
-        if not config.enabled:
-            logger.warning("Feed '%s' is disabled in feeds.yaml", feed)
-            return 1
-        run_ok = run_feed(feed, config, full=full)
-        normalize_ok = normalize_generated_feeds()
-        return 0 if run_ok and normalize_ok else 1
+    config = registry[feed]
+    if not config.enabled:
+        logger.warning("Feed '%s' is disabled in feeds.yaml", feed)
+        return 1
 
+    run_ok = run_feed(feed, config, full=full)
+    normalize_ok = normalize_generated_feeds()
+    return 0 if run_ok and normalize_ok else 1
+
+
+def _log_generation_summary(
+    successful_scripts: list[str],
+    failed_scripts: list[str],
+    skipped_scripts: list[str],
+    skipped_configs: list[str],
+    *,
+    normalization_ok: bool,
+) -> None:
+    """Log the batch outcome without adding branching to the runner."""
+    logger.info("\n%s", "=" * 60)
+    logger.info("Feed Generation Summary:")
+    logger.info("  Successful: %d", len(successful_scripts))
+    logger.info("  Failed: %d", len(failed_scripts))
+    logger.info("  Skipped (disabled/filtered): %d", len(skipped_scripts))
+    logger.info("  Invalid configs (skipped): %d", len(skipped_configs))
+    logger.info("  Metadata normalization: %s", "ok" if normalization_ok else "failed")
+
+    for heading, names, level, marker in (
+        ("Failed feeds", failed_scripts, logger.error, "✗"),
+        ("Invalid feed configs in feeds.yaml", skipped_configs, logger.error, "⚠"),
+        ("Skipped feeds", skipped_scripts, logger.info, "○"),
+    ):
+        if not names:
+            continue
+        level("\n%s:", heading)
+        for name in names:
+            level("  %s %s", marker, name)
+    logger.info("%s\n", "=" * 60)
+
+
+def _run_registry(
+    registry: dict[str, FeedConfig],
+    skipped_configs: list[str],
+    *,
+    full: bool,
+) -> int:
+    """Run every enabled registry entry and report the aggregate status."""
     failed_scripts: list[str] = []
     successful_scripts: list[str] = []
     skipped_scripts: list[str] = []
@@ -120,38 +160,29 @@ def run_all_feeds(
             logger.info("Skipping disabled feed: %s", name)
             skipped_scripts.append(name)
             continue
-
-
-        if run_feed(name, config, full=full):
-            successful_scripts.append(name)
-        else:
-            failed_scripts.append(name)
+        target = successful_scripts if run_feed(name, config, full=full) else failed_scripts
+        target.append(name)
 
     normalization_ok = normalize_generated_feeds()
-
-    logger.info("\n%s", "=" * 60)
-    logger.info("Feed Generation Summary:")
-    logger.info("  Successful: %d", len(successful_scripts))
-    logger.info("  Failed: %d", len(failed_scripts))
-    logger.info("  Skipped (disabled/filtered): %d", len(skipped_scripts))
-    logger.info("  Invalid configs (skipped): %d", len(skipped_configs))
-    logger.info("  Metadata normalization: %s", "ok" if normalization_ok else "failed")
-
-    if failed_scripts:
-        logger.error("\nFailed feeds:")
-        for name in failed_scripts:
-            logger.error("  ✗ %s", name)
-    if skipped_configs:
-        logger.error("\nInvalid feed configs in feeds.yaml:")
-        for name in skipped_configs:
-            logger.error("  ⚠ %s", name)
-    if skipped_scripts:
-        logger.info("\nSkipped feeds:")
-        for name in skipped_scripts:
-            logger.info("  ○ %s", name)
-    logger.info("%s\n", "=" * 60)
-
+    _log_generation_summary(
+        successful_scripts,
+        failed_scripts,
+        skipped_scripts,
+        skipped_configs,
+        normalization_ok=normalization_ok,
+    )
     return 1 if failed_scripts or skipped_configs or not normalization_ok else 0
+
+
+def run_all_feeds(
+    feed: str | None = None,
+    full: bool = False,
+) -> int:
+    """Run generators from the registry and return a truthful process status."""
+    registry, skipped_configs = load_feed_registry(return_skipped=True)
+    if feed:
+        return _run_named_feed(feed, registry, skipped_configs, full=full)
+    return _run_registry(registry, skipped_configs, full=full)
 
 
 if __name__ == "__main__":

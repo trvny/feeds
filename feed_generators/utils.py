@@ -841,7 +841,7 @@ def sort_posts_for_feed(posts: list[dict[str, Any]], date_field: str = "date") -
     return with_date + without_date
 
 
-def _save_feed_pair(fg: FeedGenerator, feed_name: str, *, format: str) -> Path:
+def _save_feed_pair(fg: FeedGenerator, feed_name: str, *, feed_format: str) -> Path:
     """Publish XML + JSON Feed as one logical last-known-good pair.
 
     The XML writer is atomic on its own. Keep the previous XML bytes as a small
@@ -850,9 +850,9 @@ def _save_feed_pair(fg: FeedGenerator, feed_name: str, *, format: str) -> Path:
     """
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
     previous_xml = output_file.read_bytes() if output_file.exists() else None
-    writer = fg.atom_file if format == "atom" else fg.rss_file
+    writer = fg.atom_file if feed_format == "atom" else fg.rss_file
     writer(str(output_file), pretty=True)
-    logger.info("Saved %s feed to %s", format.upper(), output_file)
+    logger.info("Saved %s feed to %s", feed_format.upper(), output_file)
     try:
         _write_json_sidecar(output_file, feed_name)
     except Exception:
@@ -867,12 +867,12 @@ def _save_feed_pair(fg: FeedGenerator, feed_name: str, *, format: str) -> Path:
 
 def save_atom_feed(fg: FeedGenerator, feed_name: str) -> Path:
     """Write the first-class Atom + JSON Feed pair for ``feed_name``."""
-    return _save_feed_pair(fg, feed_name, format="atom")
+    return _save_feed_pair(fg, feed_name, feed_format="atom")
 
 
 def save_rss_feed(fg: FeedGenerator, feed_name: str) -> Path:
     """Write the first-class RSS + JSON Feed pair for ``feed_name``."""
-    return _save_feed_pair(fg, feed_name, format="rss")
+    return _save_feed_pair(fg, feed_name, feed_format="rss")
 
 
 def _write_json_sidecar(xml_path: Path, feed_name: str) -> None:
@@ -880,7 +880,7 @@ def _write_json_sidecar(xml_path: Path, feed_name: str) -> None:
     from jsonfeed import write_json_feed
 
     write_json_feed(xml_path, feed_name, entry_image=feedparser_entry_image)
-    logger.info(f"Saved JSON feed to {xml_path.with_suffix('.json')}")
+    logger.info("Saved JSON feed to %s", xml_path.with_suffix(".json"))
 
 
 # ---------------------------------------------------------------------------

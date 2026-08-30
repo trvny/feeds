@@ -42,7 +42,8 @@ class JsonFeedContractTests(unittest.TestCase):
         path.write_text(json.dumps(doc), encoding="utf-8")
         return path
 
-    def valid_doc(self):
+    @staticmethod
+    def valid_doc():
         return {
             "version": JSON_FEED_VERSION,
             "title": "Demo",
