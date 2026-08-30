@@ -119,9 +119,12 @@ class AwsFeedTests(unittest.TestCase):
         html1 = repost_page(1, entries=[first], tokens=[{"page": 2, "token": cursor}])
         html2 = repost_page(2, entries=[second], tokens=[])
         known = {"https://repost.aws/articles/AR2/second"}
-        with patch.object(
-            aws.multi_rss, "get_html", side_effect=[html1, html2]
-        ) as get_html:
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 1),
+            patch.object(
+                aws.multi_rss, "get_html", side_effect=[html1, html2]
+            ) as get_html,
+        ):
             entries = aws.collect_repost(known)
         self.assertEqual([entry["title"] for entry in entries], ["First"])
         self.assertEqual(get_html.call_count, 2)

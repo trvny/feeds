@@ -189,31 +189,19 @@ def _append_repost_entries(
     return reached_known
 
 
-def _repost_page_complete(page_no: int, parsed: dict, reached_known: bool) -> bool:
+def _repost_page_complete(
+    page_no: int, parsed: dict, reached_known: bool, *, has_history: bool
+) -> bool:
     """Return whether pagination can stop safely after this page."""
-    return (
-        reached_known
-        or page_no * parsed["page_size"] >= parsed["total"]
-        or page_no >= MAX_REPOST_PAGES
-    )
+    if reached_known or page_no * parsed["page_size"] >= parsed["total"]:
+        return True
+    return not has_history and page_no >= MAX_REPOST_PAGES
 
 
 def _next_repost_url(parsed: dict, page_no: int) -> str | None:
     """Return the tokenized next-page URL, or None if the token is missing."""
     token = parsed["tokens"].get(page_no + 1)
     return _repost_page_url(token) if token else None
-
-
-def _repost_history_incomplete(
-    known_links: set[str], reached_known: bool, page_no: int, latest_meta: dict | None
-) -> bool:
-    """Detect a capped incremental run that failed to reach cached history."""
-    return bool(
-        known_links
-        and not reached_known
-        and latest_meta is not None
-        and page_no * latest_meta["page_size"] < latest_meta["total"]
-    )
 
 
 def collect_repost(known_links: set[str]) -> list[dict]:
@@ -226,9 +214,8 @@ def collect_repost(known_links: set[str]) -> list[dict]:
     url = REPOST_URL
     page_no = 1
     reached_known = False
-    latest_meta = None
 
-    while page_no <= MAX_REPOST_PAGES:
+    while True:
         html = multi_rss.get_html(url)
         if not html:
             multi_rss.logger.warning(
@@ -243,14 +230,15 @@ def collect_repost(known_links: set[str]) -> list[dict]:
                 page_no,
             )
             return []
-        latest_meta = parsed
         reached_known = _append_repost_entries(
             parsed["entries"],
             known_links=known_repost_links,
             seen=seen,
             collected=collected,
         )
-        if _repost_page_complete(page_no, parsed, reached_known):
+        if _repost_page_complete(
+            page_no, parsed, reached_known, has_history=bool(known_repost_links)
+        ):
             break
         next_url = _next_repost_url(parsed, page_no)
         if next_url is None:
@@ -262,13 +250,6 @@ def collect_repost(known_links: set[str]) -> list[dict]:
         page_no += 1
         url = next_url
 
-    if _repost_history_incomplete(
-        known_repost_links, reached_known, page_no, latest_meta
-    ):
-        multi_rss.logger.warning(
-            "[AWS re:Post Articles] history boundary exceeded safety cap; discarding partial batch"
-        )
-        return []
     multi_rss.logger.info(
         "[AWS re:Post Articles] collected %d fresh entries across %d page(s)",
         len(collected),
