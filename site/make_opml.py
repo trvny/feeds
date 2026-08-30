@@ -12,40 +12,14 @@ gets the pinned interpreter rather than whatever ``python3`` resolves to.
 """
 from __future__ import annotations
 
-import html
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 SITE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SITE_DIR))
-from build_site import collect_feeds, site_base_url  # noqa: E402
+from build_site import build_opml, collect_feeds, site_base_url  # noqa: E402
 
 OUT_DIR = SITE_DIR.parent / "public"
-
-
-def build_opml(feeds: list[dict], base: str) -> str:
-    stamp = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
-    lines = [
-        "<?xml version='1.0' encoding='utf-8'?>",
-        '<opml version="2.0">',
-        "  <head>",
-        "    <title>trvny subscriptions</title>",
-        f"    <dateModified>{stamp}</dateModified>",
-        "  </head>",
-        "  <body>",
-    ]
-    for f in feeds:
-        text = html.escape(f["title"], quote=True)
-        attrs = (
-            f'type="rss" text="{text}" title="{text}" '
-            f'xmlUrl="{html.escape(base + f["filename"], quote=True)}"'
-        )
-        if f["source"]:
-            attrs += f' htmlUrl="{html.escape(f["source"], quote=True)}"'
-        lines.append(f"    <outline {attrs} />")
-    lines += ["  </body>", "</opml>"]
-    return "\n".join(lines) + "\n"
 
 
 def main() -> None:
