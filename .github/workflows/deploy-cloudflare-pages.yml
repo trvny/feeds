@@ -63,7 +63,9 @@ jobs:
 
       - name: Build site
         working-directory: .
-        run: uv run --locked site/build_site.py
+        run: |
+          uv run --locked site/build_site.py
+          uv run --locked site/make_favicon.py
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4
