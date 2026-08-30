@@ -573,6 +573,26 @@ def _mcpso_description(card, clamp_class):
     return sanitize_xml(paragraph.get_text(" ", strip=True)) if paragraph else ""
 
 
+def _mcpso_card_metadata(card, path_re, known_links, seen):
+    """Return normalized link/title/image for one eligible MCP.so card."""
+    href = card.get("href", "").split("?", 1)[0].split("#", 1)[0]
+    if not path_re.match(href):
+        return None
+    link = f"{MCPSO_BASE}{href}"
+    if link in known_links or link in seen:
+        return None
+    heading = card.find("h3")
+    title = sanitize_xml(heading.get_text(" ", strip=True)) if heading else ""
+    if not title:
+        return None
+    image = card.find("img", src=True)
+    image_url = image.get("src") if image else None
+    if image_url and image_url.startswith("/"):
+        image_url = f"{MCPSO_BASE}{image_url}"
+    seen.add(link)
+    return link, title, image_url
+
+
 def parse_mcpso_feed(html, known_links=None, now=None):
     """Parse the user-submitted MCP.so feed listing."""
     soup = BeautifulSoup(html, "html.parser")
@@ -581,24 +601,16 @@ def parse_mcpso_feed(html, known_links=None, now=None):
     entries = []
     seen = set()
     for card in soup.find_all("a", href=True):
-        href = card.get("href", "").split("?", 1)[0].split("#", 1)[0]
-        if not _MCPSO_FEED_PATH_RE.match(href):
+        metadata = _mcpso_card_metadata(
+            card, _MCPSO_FEED_PATH_RE, known_links, seen
+        )
+        if metadata is None:
             continue
-        link = f"{MCPSO_BASE}{href}"
-        if link in known_links or link in seen:
-            continue
-        heading = card.find("h3")
-        title = sanitize_xml(heading.get_text(" ", strip=True)) if heading else ""
-        if not title:
-            continue
+        link, title, image_url = metadata
         date_span = card.find("span", attrs={"title": True})
         date = parse_date(date_span.get("title")) if date_span else None
         if date and date > now:
             date = now
-        image = card.find("img", src=True)
-        image_url = image.get("src") if image else None
-        if image_url and image_url.startswith("/"):
-            image_url = f"{MCPSO_BASE}{image_url}"
         entries.append(
             {
                 "title": title,
@@ -610,7 +622,6 @@ def parse_mcpso_feed(html, known_links=None, now=None):
                 "image": image_url,
             }
         )
-        seen.add(link)
     return entries
 
 
@@ -621,23 +632,14 @@ def parse_mcpso_blog(html, known_links=None):
     entries = []
     seen = set()
     for card in soup.find_all("a", href=True):
-        href = card.get("href", "").split("?", 1)[0].split("#", 1)[0]
-        if not _MCPSO_BLOG_PATH_RE.match(href):
+        metadata = _mcpso_card_metadata(
+            card, _MCPSO_BLOG_PATH_RE, known_links, seen
+        )
+        if metadata is None:
             continue
-        link = f"{MCPSO_BASE}{href}"
-        if link in known_links or link in seen:
-            continue
-        heading = card.find("h3")
-        title = sanitize_xml(heading.get_text(" ", strip=True)) if heading else ""
-        if not title:
-            continue
-        text = card.get_text(" ", strip=True)
-        date_match = _MCPSO_BLOG_DATE_RE.search(text)
+        link, title, image_url = metadata
+        date_match = _MCPSO_BLOG_DATE_RE.search(card.get_text(" ", strip=True))
         date = parse_date(date_match.group(0)) if date_match else None
-        image = card.find("img", src=True)
-        image_url = image.get("src") if image else None
-        if image_url and image_url.startswith("/"):
-            image_url = f"{MCPSO_BASE}{image_url}"
         entries.append(
             {
                 "title": title,
@@ -649,24 +651,68 @@ def parse_mcpso_blog(html, known_links=None):
                 "image": image_url,
             }
         )
-        seen.add(link)
     return entries
 
 
 def collect_mcpso(known_links):
     """Collect MCP.so directory and blog pages independently."""
     entries = []
-    for label, url, parser in (
+    for label, url, parse_listing in (
         ("MCP.so Feed", MCPSO_FEED_URL, parse_mcpso_feed),
         ("MCP.so Blog", MCPSO_BLOG_URL, parse_mcpso_blog),
     ):
         raw = fetch_url(url)
         if raw is None:
-            logger.warning(f"[{label}] listing unavailable; continuing")
+            logger.warning("[%s] listing unavailable; continuing", label)
             continue
-        parsed = parser(raw, known_links)
+        parsed = parse_listing(raw, known_links)
         entries.extend(parsed)
-        logger.info(f"[{label}] parsed {len(parsed)} entries")
+        logger.info("[%s] parsed %d entries", label, len(parsed))
+    return entries
+
+
+def _native_entry_date(entry):
+    """Return a native feed entry's published/updated timestamp when present."""
+    for key in ("published_parsed", "updated_parsed"):
+        struct = entry.get(key)
+        if struct:
+            return datetime(*struct[:6], tzinfo=pytz.UTC)
+    return None
+
+
+def _native_feed_entry(entry, label, category):
+    """Normalize one feedparser entry into the SkillsLLM entry shape."""
+    link = (entry.get("link") or "").strip()
+    title = sanitize_xml((entry.get("title") or "").strip())
+    if not link or not title:
+        return None
+    return {
+        "title": title,
+        "link": link,
+        "date": _native_entry_date(entry) or stable_fallback_date(link),
+        "description": sanitize_xml(entry.get("summary") or "") or title,
+        "source": label,
+        "category": category,
+        "image": feedparser_entry_image(entry),
+    }
+
+
+def _parse_native_feed(raw, label, category, cap):
+    """Parse and normalize one native feed, isolating malformed entries."""
+    cleaned = sanitize_xml(raw)
+    if cleaned != raw:
+        logger.warning("[%s] removed XML-invalid control character(s)", label)
+    parsed = feedparser.parse(cleaned)
+    items = parsed.entries[:cap] if cap else parsed.entries
+    entries = []
+    for item in items:
+        try:
+            entry = _native_feed_entry(item, label, category)
+            if entry is not None:
+                entries.append(entry)
+        except Exception as exc:  # one bad item never kills the feed
+            logger.warning("[%s] skipping an entry: %s", label, exc)
+    logger.info("[%s] parsed %d entries", label, len(entries))
     return entries
 
 
@@ -678,41 +724,9 @@ def collect_native_feeds():
         cap = feed[3] if len(feed) > 3 else None
         raw = fetch_url(url)
         if raw is None:
-            logger.warning(f"[{label}] feed unavailable; continuing")
+            logger.warning("[%s] feed unavailable; continuing", label)
             continue
-        cleaned = sanitize_xml(raw)
-        if cleaned != raw:
-            logger.warning(f"[{label}] removed XML-invalid control character(s)")
-        parsed = feedparser.parse(cleaned)
-        count = 0
-        items = parsed.entries[:cap] if cap else parsed.entries
-        for e in items:
-            try:
-                link = (e.get("link") or "").strip()
-                title = sanitize_xml((e.get("title") or "").strip())
-                if not link or not title:
-                    continue
-                date = None
-                for key in ("published_parsed", "updated_parsed"):
-                    struct = e.get(key)
-                    if struct:
-                        date = datetime(*struct[:6], tzinfo=pytz.UTC)
-                        break
-                entries.append(
-                    {
-                        "title": title,
-                        "link": link,
-                        "date": date or stable_fallback_date(link),
-                        "description": sanitize_xml(e.get("summary") or "") or title,
-                        "source": label,
-                        "category": category,
-                        "image": feedparser_entry_image(e),
-                    }
-                )
-                count += 1
-            except Exception as exc:  # one bad item never kills the feed
-                logger.warning(f"[{label}] skipping an entry: {exc}")
-        logger.info(f"[{label}] parsed {count} entries")
+        entries.extend(_parse_native_feed(raw, label, category, cap))
     return entries
 
 
