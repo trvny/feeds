@@ -33,7 +33,7 @@ No database, queue or event bus is present in the repository.
 - Feed/API secrets currently referenced by the scheduled workflow include `OPENWEATHER_API_KEY`, `VISUALCROSSING_API_KEY`, `UNSPLASH_ACCESS_KEY`, `THEYSAIDSO_API_KEY` and `ANYCRAP_API_KEY`.
 - R2 access uses `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
 - Hardcoding check: no secret value was identified in the inspected maintained configuration. `google_news.py` contains a fixed consent-state cookie, documented as non-personalized rather than an account credential.
-- Rotation/lifecycle: `[TODO]` no repository policy documents rotation intervals for third-party API credentials.
+- Rotation/lifecycle: no repository policy documents rotation intervals for third-party API credentials.
 
 ### 4) Reliability and Failure Behavior
 

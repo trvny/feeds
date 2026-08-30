@@ -841,34 +841,46 @@ def sort_posts_for_feed(posts: list[dict[str, Any]], date_field: str = "date") -
     return with_date + without_date
 
 
-def save_atom_feed(fg: FeedGenerator, feed_name: str) -> Path:
-    """Write an Atom feed to feeds/feed_<n>.xml (project default format)."""
+def _save_feed_pair(fg: FeedGenerator, feed_name: str, *, format: str) -> Path:
+    """Publish XML + JSON Feed as one logical last-known-good pair.
+
+    The XML writer is atomic on its own. Keep the previous XML bytes as a small
+    rollback journal so a JSON serialization failure cannot leave a fresh XML
+    artifact paired with stale JSON that the scheduled workflow would commit.
+    """
     output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.atom_file(str(output_file), pretty=True)
-    logger.info(f"Saved Atom feed to {output_file}")
-    _write_json_sidecar(output_file, feed_name)
+    previous_xml = output_file.read_bytes() if output_file.exists() else None
+    writer = fg.atom_file if format == "atom" else fg.rss_file
+    writer(str(output_file), pretty=True)
+    logger.info("Saved %s feed to %s", format.upper(), output_file)
+    try:
+        _write_json_sidecar(output_file, feed_name)
+    except Exception:
+        if previous_xml is None:
+            output_file.unlink(missing_ok=True)
+        else:
+            write_atomically(output_file, lambda target: target.write_bytes(previous_xml))
+        logger.exception("JSON Feed sidecar failed for %s; restored previous XML", feed_name)
+        raise
     return output_file
+
+
+def save_atom_feed(fg: FeedGenerator, feed_name: str) -> Path:
+    """Write the first-class Atom + JSON Feed pair for ``feed_name``."""
+    return _save_feed_pair(fg, feed_name, format="atom")
 
 
 def save_rss_feed(fg: FeedGenerator, feed_name: str) -> Path:
-    """Write an RSS 2.0 feed to feeds/feed_<n>.xml (for future RSS feeds)."""
-    output_file = get_feeds_dir() / f"feed_{feed_name}.xml"
-    fg.rss_file(str(output_file), pretty=True)
-    logger.info(f"Saved RSS feed to {output_file}")
-    _write_json_sidecar(output_file, feed_name)
-    return output_file
+    """Write the first-class RSS + JSON Feed pair for ``feed_name``."""
+    return _save_feed_pair(fg, feed_name, format="rss")
 
 
 def _write_json_sidecar(xml_path: Path, feed_name: str) -> None:
-    """Write a JSON Feed 1.1 sibling next to the XML. Never fails the run:
-    the XML is the published artifact; a JSON hiccup must not blank a feed."""
-    try:
-        from jsonfeed import write_json_feed
+    """Write the required JSON Feed 1.1 sibling next to the XML."""
+    from jsonfeed import write_json_feed
 
-        write_json_feed(xml_path, feed_name, entry_image=feedparser_entry_image)
-        logger.info(f"Saved JSON feed to {xml_path.with_suffix('.json')}")
-    except Exception as exc:  # per-item isolation philosophy: log, don't abort
-        logger.warning(f"JSON Feed sidecar failed for {feed_name}: {exc}")
+    write_json_feed(xml_path, feed_name, entry_image=feedparser_entry_image)
+    logger.info(f"Saved JSON feed to {xml_path.with_suffix('.json')}")
 
 
 # ---------------------------------------------------------------------------

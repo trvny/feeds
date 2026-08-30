@@ -52,7 +52,7 @@ feeds.yaml -> models.py -> run_all_feeds.py -> invoke_generator.py -> source gen
 
 - `feed_generators/utils.py` is a 958-line shared module and monkey-patches Feedgen file writers. Its blast radius is high even though tests cover many invariants.
 - Source adapters are not uniformly migrated to the shared `multi_rss` path, so behavior can differ across historical generators.
-- JSON Feed sidecars exist for every currently enabled feed, but `validate_feeds.py` still treats missing/malformed JSON as advisory rather than a publication gate.
+- The universal quality gate is deliberately structural. Rich metadata remains source-dependent, so quality beyond XML/JSON validity must be improved without turning optional upstream fields into fake hard requirements.
 
 ### 6) Evidence
 

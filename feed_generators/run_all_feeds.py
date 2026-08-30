@@ -14,7 +14,7 @@ import os
 import subprocess
 import sys
 
-from models import FeedConfig, FeedType, load_feed_registry
+from models import FeedConfig, load_feed_registry
 from normalize_feed_self_links import normalize_feed_self_links
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -86,8 +86,6 @@ def normalize_generated_feeds() -> bool:
 
 
 def run_all_feeds(
-    skip_selenium: bool = False,
-    selenium_only: bool = False,
     feed: str | None = None,
     full: bool = False,
 ) -> int:
@@ -123,15 +121,6 @@ def run_all_feeds(
             skipped_scripts.append(name)
             continue
 
-        is_selenium = config.type == FeedType.SELENIUM
-        if skip_selenium and is_selenium:
-            logger.info("Skipping Selenium generator: %s", name)
-            skipped_scripts.append(name)
-            continue
-        if selenium_only and not is_selenium:
-            logger.info("Skipping non-Selenium generator: %s", name)
-            skipped_scripts.append(name)
-            continue
 
         if run_feed(name, config, full=full):
             successful_scripts.append(name)
@@ -167,16 +156,6 @@ def run_all_feeds(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run RSS feed generators")
-    parser.add_argument(
-        "--skip-selenium",
-        action="store_true",
-        help="Skip Selenium-based generators",
-    )
-    parser.add_argument(
-        "--selenium-only",
-        action="store_true",
-        help="Run only Selenium-based generators",
-    )
     parser.add_argument("--feed", type=str, help="Run one feed by registry name")
     parser.add_argument(
         "--full",
@@ -185,15 +164,4 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    if args.skip_selenium and args.selenium_only:
-        logger.error("Cannot use both --skip-selenium and --selenium-only")
-        sys.exit(1)
-
-    sys.exit(
-        run_all_feeds(
-            skip_selenium=args.skip_selenium,
-            selenium_only=args.selenium_only,
-            feed=args.feed,
-            full=args.full,
-        )
-    )
+    sys.exit(run_all_feeds(feed=args.feed, full=args.full))

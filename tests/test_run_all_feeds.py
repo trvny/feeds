@@ -19,7 +19,7 @@ from models import FeedConfig  # noqa: E402
 
 class GeneratorTimeoutTests(unittest.TestCase):
     def config(self):
-        return FeedConfig(script="reuters.py", type="requests", blog_url="https://example.test/")
+        return FeedConfig(script="reuters.py", blog_url="https://example.test/")
 
     def test_a_hung_generator_is_reported_as_failed_not_raised(self):
         expired = subprocess.TimeoutExpired(cmd=["python"], timeout=1)

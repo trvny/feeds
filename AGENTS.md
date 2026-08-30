@@ -12,6 +12,7 @@
 - A native feed is an upstream source, not automatically the final product. Reuse it when reliable, then normalize, enrich, or repair it when Feedseek can produce more complete, stable, expressive, or interoperable output.
 - Prefer protocol-native semantics over ad-hoc payloads: durable entry identity, canonical links, truthful publication/update dates, useful metadata, provenance/categories, content/media, and equivalent JSON Feed sidecars where supported.
 - Preserve upstream meaning. Improvements should add fidelity and interoperability, not invent editorial content or silently rewrite source facts.
+- Keep the hard quality contract universal and structural; source-dependent richness such as images, authors, categories or dates is best-effort when the upstream data supports it.
 
 ## Repository conventions
 

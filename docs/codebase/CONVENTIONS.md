@@ -8,7 +8,7 @@
 |------|------|---------|----------|
 | Files | `snake_case.py` for Python; hyphenated config/workflow names where conventional | `entry_identity.py`, `update-feeds.yml` | `feed_generators/`, `.github/workflows/` |
 | Functions/methods | `snake_case`; private helpers use leading `_` | `normalize_link()`, `_item_date()` | `feed_generators/utils.py`, `feed_generators/multi_rss.py` |
-| Types/interfaces | `PascalCase` Python classes/enums | `FeedConfig`, `FeedType` | `feed_generators/models.py` |
+| Types/interfaces | `PascalCase` Python classes | `FeedConfig` | `feed_generators/models.py` |
 | Constants/env vars | `UPPER_SNAKE_CASE` | `GENERATOR_TIMEOUT`, `FEEDSEEK_IMAGE_LOOKUPS` | `feed_generators/run_all_feeds.py`, `feed_generators/article_image.py` |
 
 ### 2) Formatting and Linting
@@ -36,7 +36,7 @@
 
 - Python tests live in `tests/test_*.py` and use standard-library `unittest` plus `unittest.mock` where external/process behavior needs isolation.
 - Reader and Worker tests use Node's built-in `node:test` under component-local `test/` directories.
-- Coverage expectation: `[TODO]` no coverage tool or threshold is configured in the repository.
+- Coverage expectation: no coverage tool or threshold is configured in the repository.
 
 ### 6) Evidence
 

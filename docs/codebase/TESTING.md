@@ -42,11 +42,11 @@ No coverage command is configured.
 
 ### 5) Coverage and Quality Signals
 
-- Coverage tool + threshold: `[TODO]` none configured.
-- Current reported coverage: `[TODO]` not measured by repository CI.
+- Coverage tool + threshold: none configured.
+- Current reported coverage: not measured by repository CI.
 - Quality signals: 55 Python test files, dedicated reader/Worker tests, Ruff/MegaLinter and CodeQL workflows, plus feed artifact validation after generation.
 - Known gap: not every one of the 98 registered source adapters has a dedicated source-specific test file; shared invariants carry much of the regression protection.
-- JSON Feed validation is currently advisory even though all 96 enabled feeds have a sidecar in the inspected checkout.
+- XML and JSON Feed 1.1 are both publication-gated; source-dependent richness remains intentionally outside the universal validator.
 
 ### 6) Evidence
 

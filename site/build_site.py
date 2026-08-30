@@ -365,6 +365,12 @@ def render_autodiscovery(feeds: list[dict], base: str) -> str:
             f'  <link rel="alternate" type="{mime}" '
             f'title="{title}" href="{href}">'
         )
+        json_name = str(f["filename"]).rsplit(".", 1)[0] + ".json"
+        json_href = html.escape(base + json_name, quote=True)
+        lines.append(
+            '  <link rel="alternate" type="application/feed+json" '
+            f'title="{title} (JSON Feed)" href="{json_href}">'
+        )
     return "\n".join(lines)
 
 

@@ -99,6 +99,17 @@ class SiteFaviconTests(unittest.TestCase):
         self.assertIn("https://example.com/favicon.ico", fallbacks)
         self.assertEqual(fallbacks[-1], build_site.FAVICON_SVG)
 
+    def test_autodiscovery_advertises_xml_and_json_feed(self):
+        links = build_site.render_autodiscovery(
+            [{"filename": "feed_test.xml", "title": "Test", "format": "atom"}],
+            "https://feeds.example/",
+        )
+
+        self.assertIn('type="application/atom+xml"', links)
+        self.assertIn('href="https://feeds.example/feed_test.xml"', links)
+        self.assertIn('type="application/feed+json"', links)
+        self.assertIn('href="https://feeds.example/feed_test.json"', links)
+
 
 if __name__ == "__main__":
     unittest.main()
