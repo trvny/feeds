@@ -50,7 +50,7 @@ The raw scan's churn table is dominated by generated `feeds/` and `cache/` artif
 
 ### 6) `[ASK USER]` Questions
 
-No unresolved intent-dependent questions from this scan. On 2026-08-31 the project direction was clarified and implemented: JSON Feed 1.1 is first-class, dormant Selenium support was removed, and the quality contract enforces universal structural invariants while leaving source-dependent richness adaptive.
+No unresolved intent-dependent questions from this scan. The project direction is clarified and implemented: JSON Feed 1.1 is first-class, dormant Selenium support was removed, and the quality contract enforces universal structural invariants while leaving source-dependent richness adaptive.
 
 ### 7) Evidence
 
