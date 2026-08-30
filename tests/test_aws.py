@@ -359,6 +359,174 @@ class AwsFeedTests(unittest.TestCase):
         self.assertNotIn(aws.REPOST_CURSOR_KEY, state)
         self.assertEqual(get_html.call_count, 4)
 
+    def test_repost_later_failure_tracks_the_page_that_failed(self):
+        head = {
+            "id": "ARH",
+            "slug": "head",
+            "title": "Known head",
+            "description": "known",
+            "language": "en",
+            "createdAt": "2026-08-30T12:00:00Z",
+        }
+        archived = {
+            "id": "AR5",
+            "slug": "five",
+            "title": "Archive five",
+            "description": "five",
+            "language": "en",
+            "createdAt": "2026-08-25T10:00:00Z",
+        }
+        known = {"https://repost.aws/articles/ARH/head"}
+        state = {aws.REPOST_CURSOR_KEY: {"page": 5, "token": "archive-5"}}
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 4),
+            patch.object(
+                aws.multi_rss,
+                "get_html",
+                side_effect=[
+                    repost_page(1, total=120, entries=[head]),
+                    repost_page(
+                        5,
+                        total=120,
+                        entries=[archived],
+                        tokens=[{"page": 6, "token": "archive-6"}],
+                    ),
+                    None,
+                ],
+            ),
+        ):
+            self.assertEqual(aws.collect_repost(known, state), [])
+        self.assertEqual(
+            state[aws.REPOST_CURSOR_KEY],
+            {"page": 6, "token": "archive-6", "failures": 1},
+        )
+
+    def test_repost_scans_all_fresh_pages_before_archive_resume(self):
+        fresh1 = {
+            "id": "AR1",
+            "slug": "fresh-one",
+            "title": "Fresh one",
+            "description": "one",
+            "language": "en",
+            "createdAt": "2026-08-30T12:00:00Z",
+        }
+        fresh2 = {
+            "id": "AR2",
+            "slug": "fresh-two",
+            "title": "Fresh two",
+            "description": "two",
+            "language": "en",
+            "createdAt": "2026-08-30T11:00:00Z",
+        }
+        known3 = {
+            "id": "AR3",
+            "slug": "known-three",
+            "title": "Known three",
+            "description": "three",
+            "language": "en",
+            "createdAt": "2026-08-29T10:00:00Z",
+        }
+        archived = {
+            "id": "AR8",
+            "slug": "archive-eight",
+            "title": "Archive eight",
+            "description": "eight",
+            "language": "en",
+            "createdAt": "2026-08-20T10:00:00Z",
+        }
+        known = {"https://repost.aws/articles/AR3/known-three"}
+        state = {aws.REPOST_CURSOR_KEY: {"page": 8, "token": "archive-8"}}
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 4),
+            patch.object(
+                aws.multi_rss,
+                "get_html",
+                side_effect=[
+                    repost_page(
+                        1,
+                        total=120,
+                        entries=[fresh1],
+                        tokens=[{"page": 2, "token": "fresh-2"}],
+                    ),
+                    repost_page(
+                        2,
+                        total=120,
+                        entries=[fresh2],
+                        tokens=[{"page": 3, "token": "fresh-3"}],
+                    ),
+                    repost_page(3, total=120, entries=[known3]),
+                    repost_page(
+                        8,
+                        total=120,
+                        entries=[archived],
+                        tokens=[{"page": 9, "token": "archive-9"}],
+                    ),
+                ],
+            ) as get_html,
+        ):
+            entries = aws.collect_repost(known, state)
+        self.assertEqual(
+            [entry["title"] for entry in entries],
+            ["Fresh one", "Fresh two", "Archive eight"],
+        )
+        self.assertEqual(get_html.call_count, 4)
+        self.assertNotIn(aws.REPOST_FRESH_CURSOR_KEY, state)
+        self.assertEqual(
+            state[aws.REPOST_CURSOR_KEY], {"page": 9, "token": "archive-9"}
+        )
+
+    def test_repost_fresh_checkpoint_preserves_archive_cursor(self):
+        fresh1 = {
+            "id": "AR1",
+            "slug": "fresh-one",
+            "title": "Fresh one",
+            "description": "one",
+            "language": "en",
+            "createdAt": "2026-08-30T12:00:00Z",
+        }
+        fresh2 = {
+            "id": "AR2",
+            "slug": "fresh-two",
+            "title": "Fresh two",
+            "description": "two",
+            "language": "en",
+            "createdAt": "2026-08-30T11:00:00Z",
+        }
+        state = {aws.REPOST_CURSOR_KEY: {"page": 8, "token": "archive-8"}}
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 2),
+            patch.object(
+                aws.multi_rss,
+                "get_html",
+                side_effect=[
+                    repost_page(
+                        1,
+                        total=120,
+                        entries=[fresh1],
+                        tokens=[{"page": 2, "token": "fresh-2"}],
+                    ),
+                    repost_page(
+                        2,
+                        total=120,
+                        entries=[fresh2],
+                        tokens=[{"page": 3, "token": "fresh-3"}],
+                    ),
+                ],
+            ),
+        ):
+            entries = aws.collect_repost(
+                {"https://repost.aws/articles/AR3/known-three"}, state
+            )
+        self.assertEqual(
+            [entry["title"] for entry in entries], ["Fresh one", "Fresh two"]
+        )
+        self.assertEqual(
+            state[aws.REPOST_FRESH_CURSOR_KEY], {"page": 3, "token": "fresh-3"}
+        )
+        self.assertEqual(
+            state[aws.REPOST_CURSOR_KEY], {"page": 8, "token": "archive-8"}
+        )
+
     def test_multi_rss_round_trips_cache_state_for_repost_cursor(self):
         link = "https://example.com/cached"
         cache = {
