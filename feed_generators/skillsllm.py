@@ -318,12 +318,16 @@ _LOBEHUB_LEGACY_PREFIXES = (
 
 
 def _active_cached_entries(entries):
-    """Exclude cached rows retired by source migrations."""
-    return [
-        entry
-        for entry in entries
-        if not (entry.get("link") or "").startswith(_LOBEHUB_LEGACY_PREFIXES)
-    ]
+    """Exclude invalid or retired cached rows before source migrations."""
+    kept = []
+    for entry in entries:
+        link = entry.get("link")
+        if not isinstance(link, str) or not link:
+            continue
+        if link.startswith(_LOBEHUB_LEGACY_PREFIXES):
+            continue
+        kept.append(entry)
+    return kept
 
 
 # Cap the merged feed so the committed XML stays a reasonable size.

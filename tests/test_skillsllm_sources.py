@@ -69,6 +69,9 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
 
     def test_legacy_lobehub_locale_cache_rows_are_retired(self):
         entries = [
+            {"link": 123, "source": "Broken"},
+            {"link": None, "source": "Broken"},
+            {"source": "Broken"},
             {"link": "https://lobehub.com/pl/blog/old-post", "source": "LobeHub Blog"},
             {
                 "link": "https://lobehub.com/pl/changelog/versions/v1#1.142.0",
