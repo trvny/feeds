@@ -126,15 +126,13 @@ class AwsFeedTests(unittest.TestCase):
         </feed>"""
         releases = aws.parse_cli_release_dates(atom)
         self.assertEqual(list(releases), ["2.36.34"])
-        changelog = """2.36.34
-=======
-* api-change:``ec2``: New thing
-* enhancement:CLI: Better output
-
-2.36.33
-=======
-* api-change:``s3``: Older thing
-"""
+        changelog = (
+            "2.36.34\n" + "=" * 7 + "\n"
+            "* api-change:``ec2``: New thing\n"
+            "* enhancement:CLI: Better output\n\n"
+            "2.36.33\n" + "=" * 7 + "\n"
+            "* api-change:``s3``: Older thing\n"
+        )
         entries = aws.parse_cli_changelog(changelog, releases)
         self.assertEqual(len(entries), 1)
         self.assertEqual(entries[0]["title"], "AWS CLI 2.36.34")
@@ -144,7 +142,7 @@ class AwsFeedTests(unittest.TestCase):
     def test_cli_changelog_skips_known_release(self):
         link = "https://github.com/aws/aws-cli/releases/tag/2.36.34"
         releases = {"2.36.34": (aws.multi_rss.parse_date("2026-08-28T18:18:17Z"), link)}
-        changelog = "2.36.34\n=======\n* fix: something\n"
+        changelog = "2.36.34\n" + "=" * 7 + "\n* fix: something\n"
         self.assertEqual(aws.parse_cli_changelog(changelog, releases, {link}), [])
 
 
