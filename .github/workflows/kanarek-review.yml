@@ -2,7 +2,7 @@ name: Kanarek free review
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
   workflow_dispatch:
     inputs:
       pr_number:
@@ -34,7 +34,8 @@ jobs:
   openrouter:
     if: >-
       ${{
-        (github.event_name != 'workflow_dispatch' || inputs.provider == 'openrouter') &&
+        ((github.event_name == 'workflow_dispatch' && inputs.provider == 'openrouter') ||
+          (github.event_name == 'pull_request' && github.event.action == 'opened')) &&
         (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft) &&
         (github.event_name == 'workflow_dispatch' ||
           github.event.pull_request.head.repo.full_name == github.repository)
@@ -64,4 +65,24 @@ jobs:
       base_sha: ${{ inputs.base_sha }}
     secrets:
       ORCAROUTER_API_KEY: ${{ secrets.ORCAROUTER_API_KEY }}
+      COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  aihubmix-glm:
+    if: >-
+      ${{
+        github.event_name == 'pull_request' && github.event.action == 'synchronize' &&
+        !github.event.pull_request.draft &&
+        github.event.pull_request.head.repo.full_name == github.repository
+      }}
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: write
+    # Keep this on the squash-merged commit so branch cleanup cannot break resolution.
+    uses: trvny/trvny/.github/workflows/kanarek-review-aihubmix-worker.lock.yml@e38e4bbc69f5fa175ebacfbffcd16859fc16c0c1
+    with:
+      pr_number: ${{ format('{0}', github.event.pull_request.number) }}
+      head_sha: ${{ github.event.pull_request.head.sha }}
+      base_sha: ${{ github.event.pull_request.base.sha }}
+    secrets:
+      AIHUBMIX_API_KEY: ${{ secrets.AIHUBMIX_API_KEY }}
       COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
