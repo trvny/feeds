@@ -18,8 +18,9 @@ Native RSS/Atom feeds (feedparser):
   * Glama (blog)            https://glama.ai/blog/rss.xml
   * Glama MCP Servers       https://glama.ai/mcp/servers/feeds/recent-servers.xml
                             (recently-registered MCP servers; high-churn, capped)
-  * LobeHub (changelog)     https://lobehub.com/pl/changelog/feed
-  * LobeHub (blog)          https://lobehub.com/pl/blog/feed
+  * Upstash Blog            https://upstash.com/blog/feed.xml
+  * LobeHub (changelog)     https://lobehub.com/changelog/feed
+  * LobeHub (blog)          https://lobehub.com/blog/feed
   * AI Skill Market         https://aiskill.market/rss.xml
   * Devin Desktop           https://docs.devin.ai/desktop/changelog/rss.xml
   * Hugging Face Blog       https://huggingface.co/blog/feed.xml
@@ -33,6 +34,10 @@ real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time
                         no <lastmod>, per-page article:published_time)
   * Mem0 Research       https://mem0.ai/research     (benchmark/research landing page)
   * Claude Skills Hub   https://claudeskills.info    (/blog posts via sitemap_blog.xml)
+
+Server-rendered listing scrape (no native feed):
+  * MCP.so Feed         https://mcp.so/feed
+  * MCP.so Blog         https://mcp.so/blog
 
 Index asset-slug discovery + detail fetch (no feed, no sitemap):
   * MCP Servers Blog    https://blog.mcpservers.org  (/posts/<slug>, slugs from
@@ -231,6 +236,7 @@ NATIVE_FEEDS = [
     # releases, so the dated releases.atom is used for those instead. Optional
     # 4th tuple element caps how many of the newest entries are taken.
     ("OpenRouter", "https://openrouter.ai/blog/feed.xml", "openrouter", 30),
+    ("Upstash Blog", "https://upstash.com/blog/feed.xml", "upstash", 30),
     ("x-cmd Blog", "https://www.x-cmd.com/feed.xml", "x-cmd", 40),
     ("Graphify Blog", "https://graphify.com/feed.xml", "graphify-blog", 40),
     (
@@ -257,15 +263,15 @@ NATIVE_FEEDS = [
         "glama-mcp",
         20,
     ),
-    # LobeHub's changelog/blog feeds (URL is the /pl/ locale variant that was
-    # requested; content isn't Polish-exclusive).
+    # LobeHub exposes locale-neutral feed endpoints. The blog currently includes
+    # one XML-invalid control character, cleaned in collect_native_feeds().
     (
         "LobeHub Changelog",
-        "https://lobehub.com/pl/changelog/feed",
+        "https://lobehub.com/changelog/feed",
         "lobehub-changelog",
         30,
     ),
-    ("LobeHub Blog", "https://lobehub.com/pl/blog/feed", "lobehub-blog", 30),
+    ("LobeHub Blog", "https://lobehub.com/blog/feed", "lobehub-blog", 30),
     ("AI Skill Market", "https://aiskill.market/rss.xml", "aiskill-market", 40),
 ]
 
@@ -276,6 +282,8 @@ def doc_sources():
         ("Cognition Blog", COGNITION_BLOG_URL),
         ("Cognition Research", COGNITION_RESEARCH_URL),
         ("Devin Release Notes", DEVIN_RELEASE_NOTES_URL),
+        ("MCP.so Feed", MCPSO_FEED_URL),
+        ("MCP.so Blog", MCPSO_BLOG_URL),
     ] + list(AIHUBMIX_DOC_SOURCES)
 
 
@@ -292,6 +300,13 @@ MCPSERVERS_BLOG_SOURCE = {
 }
 _MCPSERVERS_SLUG_RE = re.compile(r"/assets/blog/([a-z0-9][a-z0-9-]*)/")
 
+MCPSO_BASE = "https://mcp.so"
+MCPSO_FEED_URL = f"{MCPSO_BASE}/feed"
+MCPSO_BLOG_URL = f"{MCPSO_BASE}/blog"
+_MCPSO_FEED_PATH_RE = re.compile(r"^/(?:servers|remote-servers|clients)/[^/?#]+$")
+_MCPSO_BLOG_PATH_RE = re.compile(r"^/blog/[^/?#]+$")
+_MCPSO_BLOG_DATE_RE = re.compile(r"\b[A-Z][a-z]{2} \d{1,2}, \d{4}\b")
+
 
 # Cap the merged feed so the committed XML stays a reasonable size.
 MAX_ENTRIES = 400
@@ -304,6 +319,7 @@ PER_SOURCE_CAP = {
     "": 30,
     "ClaudePluginHub": 10,
     "Glama MCP Servers": 10,
+    "MCP.so Feed": 10,
     "AI Skill Market": 10,
 }
 
@@ -547,6 +563,113 @@ def collect_entries(known_links, ledger):
     return entries
 
 
+def _mcpso_description(card, clamp_class):
+    """Return the descriptive paragraph from one MCP.so card."""
+    paragraph = card.find(
+        "p",
+        class_=lambda value: value
+        and clamp_class in " ".join(value if isinstance(value, list) else [value]),
+    )
+    return sanitize_xml(paragraph.get_text(" ", strip=True)) if paragraph else ""
+
+
+def parse_mcpso_feed(html, known_links=None, now=None):
+    """Parse the user-submitted MCP.so feed listing."""
+    soup = BeautifulSoup(html, "html.parser")
+    known_links = known_links or set()
+    now = now or datetime.now(pytz.UTC)
+    entries = []
+    seen = set()
+    for card in soup.find_all("a", href=True):
+        href = card.get("href", "").split("?", 1)[0].split("#", 1)[0]
+        if not _MCPSO_FEED_PATH_RE.match(href):
+            continue
+        link = f"{MCPSO_BASE}{href}"
+        if link in known_links or link in seen:
+            continue
+        heading = card.find("h3")
+        title = sanitize_xml(heading.get_text(" ", strip=True)) if heading else ""
+        if not title:
+            continue
+        date_span = card.find("span", attrs={"title": True})
+        date = parse_date(date_span.get("title")) if date_span else None
+        if date and date > now:
+            date = now
+        image = card.find("img", src=True)
+        image_url = image.get("src") if image else None
+        if image_url and image_url.startswith("/"):
+            image_url = f"{MCPSO_BASE}{image_url}"
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date or stable_fallback_date(link),
+                "description": _mcpso_description(card, "line-clamp-2") or title,
+                "source": "MCP.so Feed",
+                "category": "mcp-so-feed",
+                "image": image_url,
+            }
+        )
+        seen.add(link)
+    return entries
+
+
+def parse_mcpso_blog(html, known_links=None):
+    """Parse MCP.so editorial blog cards."""
+    soup = BeautifulSoup(html, "html.parser")
+    known_links = known_links or set()
+    entries = []
+    seen = set()
+    for card in soup.find_all("a", href=True):
+        href = card.get("href", "").split("?", 1)[0].split("#", 1)[0]
+        if not _MCPSO_BLOG_PATH_RE.match(href):
+            continue
+        link = f"{MCPSO_BASE}{href}"
+        if link in known_links or link in seen:
+            continue
+        heading = card.find("h3")
+        title = sanitize_xml(heading.get_text(" ", strip=True)) if heading else ""
+        if not title:
+            continue
+        text = card.get_text(" ", strip=True)
+        date_match = _MCPSO_BLOG_DATE_RE.search(text)
+        date = parse_date(date_match.group(0)) if date_match else None
+        image = card.find("img", src=True)
+        image_url = image.get("src") if image else None
+        if image_url and image_url.startswith("/"):
+            image_url = f"{MCPSO_BASE}{image_url}"
+        entries.append(
+            {
+                "title": title,
+                "link": link,
+                "date": date or stable_fallback_date(link),
+                "description": _mcpso_description(card, "line-clamp-3") or title,
+                "source": "MCP.so Blog",
+                "category": "mcp-so-blog",
+                "image": image_url,
+            }
+        )
+        seen.add(link)
+    return entries
+
+
+def collect_mcpso(known_links):
+    """Collect MCP.so directory and blog pages independently."""
+    entries = []
+    for label, url, parser in (
+        ("MCP.so Feed", MCPSO_FEED_URL, parse_mcpso_feed),
+        ("MCP.so Blog", MCPSO_BLOG_URL, parse_mcpso_blog),
+    ):
+        raw = fetch_url(url)
+        if raw is None:
+            logger.warning(f"[{label}] listing unavailable; continuing")
+            continue
+        parsed = parser(raw, known_links)
+        entries.extend(parsed)
+        logger.info(f"[{label}] parsed {len(parsed)} entries")
+    return entries
+
+
 def collect_native_feeds():
     """Fetch the native RSS/Atom feeds with feedparser. Per-feed isolated."""
     entries = []
@@ -557,7 +680,10 @@ def collect_native_feeds():
         if raw is None:
             logger.warning(f"[{label}] feed unavailable; continuing")
             continue
-        parsed = feedparser.parse(raw)
+        cleaned = sanitize_xml(raw)
+        if cleaned != raw:
+            logger.warning(f"[{label}] removed XML-invalid control character(s)")
+        parsed = feedparser.parse(cleaned)
         count = 0
         items = parsed.entries[:cap] if cap else parsed.entries
         for e in items:
@@ -747,7 +873,8 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
         "Servers blog, Claude Skills Hub, Agent Zero, Hugging Face, MindStudio, "
-        "OpenRouter, x-cmd, Graphify (blog + changelog), AIHubMix (blog + docs + "
+        "OpenRouter, Upstash, x-cmd, Graphify (blog + changelog), MCP.so (feed + blog), "
+        "AIHubMix (blog + docs + "
         "changelog), LiteLLM (blog + releases), Glama "
         "(blog, MCP servers, release notes), "
         "LobeHub (changelog + blog), AI Skill Market, Mem0 (blog + research + changelog), "
@@ -791,6 +918,7 @@ def main(full=False):
     known_links = {e["link"] for e in cached}
     sitemap_entries = collect_entries(known_links, ledger)
     native_entries = collect_native_feeds()
+    mcpso_entries = collect_mcpso(known_links)
     mcpblog_entries = collect_mcpservers_blog(known_links, ledger)
     aihubmix_entries = collect_aihubmix_blog(
         known_links, ledger, fetch_url, fetch_detail
@@ -805,6 +933,7 @@ def main(full=False):
     if (
         sitemap_entries is None
         and not native_entries
+        and not mcpso_entries
         and not mcpblog_entries
         and not aihubmix_entries
         and not glama_rn_entries
@@ -820,6 +949,7 @@ def main(full=False):
     new_entries = (
         (sitemap_entries or [])
         + native_entries
+        + mcpso_entries
         + mcpblog_entries
         + aihubmix_entries
         + glama_rn_entries

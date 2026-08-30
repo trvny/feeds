@@ -14,7 +14,7 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - Fastly            blog (native RSS)
     - Exa               changelog (native RSS) + blog (sitemap + per-post fetch)
     - Home Assistant    blog (native Atom)
-    - Upstash           blog (native RSS) + Workflow changelog (native RSS)
+    - Upstash           Workflow changelog (native RSS; blog lives in SkillsLLM)
     - Xweather          blog (scraped index) + weather-api changelog (scraped)
                         + mcp-server changelog (scraped)
     - Cursor            changelog (native RSS) + blog (scraped dated anchors)
@@ -84,7 +84,7 @@ FEED_SUBTITLE = (
     "Vercel (blog + changelog + SDK docs), Apify, Zapier, Fastly, "
     "Postman (blog + press), "
     "Exa (blog + changelog), Home Assistant, "
-    "Upstash (blog + Workflow changelog), "
+    "Upstash Workflow changelog, "
     "Xweather (blog + API + MCP changelogs), "
     "Cursor (blog + changelog), NeuralTrust, "
     "Abnormal (blog + newsroom), Character.AI, "
@@ -175,7 +175,6 @@ NATIVE_FEEDS = [
     ("Postman", "https://blog.postman.com/feed/", 40),
     ("Exa Changelog", "https://exa.ai/docs/changelog/rss.xml", 40),
     ("Home Assistant", "https://www.home-assistant.io/atom.xml", 40),
-    ("Upstash Blog", "https://upstash.com/blog/feed.xml", 40),
     ("Upstash Workflow Changelog", "https://upstash.com/docs/workflow/changelog/rss.xml", None),
     ("Cursor Changelog", "https://cursor.com/changelog/rss.xml", 40),
     ("CodeRabbit Blog", "https://www.coderabbit.ai/feed", 50),
