@@ -67,6 +67,25 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
         )
         self.assertEqual([entry["source"] for entry in kept], ["Cursor Changelog"])
 
+    def test_legacy_lobehub_locale_cache_rows_are_retired(self):
+        entries = [
+            {"link": "https://lobehub.com/pl/blog/old-post", "source": "LobeHub Blog"},
+            {
+                "link": "https://lobehub.com/pl/changelog/versions/v1#1.142.0",
+                "source": "LobeHub Changelog",
+            },
+            {"link": "https://lobehub.com/blog/current-post", "source": "LobeHub Blog"},
+            {"link": "https://example.com/pl/blog/keep", "source": "Other"},
+        ]
+        kept = skillsllm._active_cached_entries(entries)
+        self.assertEqual(
+            [entry["link"] for entry in kept],
+            [
+                "https://lobehub.com/blog/current-post",
+                "https://example.com/pl/blog/keep",
+            ],
+        )
+
     def test_mcpso_surfaces_are_documented(self):
         """MCP.so's directory feed and editorial blog should both be visible."""
         sources = dict(skillsllm.doc_sources())

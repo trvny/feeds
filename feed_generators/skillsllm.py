@@ -308,6 +308,24 @@ _MCPSO_BLOG_PATH_RE = re.compile(r"^/blog/[^/?#]+$")
 _MCPSO_BLOG_DATE_RE = re.compile(r"\b[A-Z][a-z]{2} \d{1,2}, \d{4}\b")
 
 
+# Locale-neutral LobeHub feeds replaced the former /pl/ endpoints. Drop only
+# those legacy cached rows so the native feeds can repopulate canonical links
+# and titles on the next healthy run.
+_LOBEHUB_LEGACY_PREFIXES = (
+    "https://lobehub.com/pl/blog/",
+    "https://lobehub.com/pl/changelog/",
+)
+
+
+def _active_cached_entries(entries):
+    """Exclude cached rows retired by source migrations."""
+    return [
+        entry
+        for entry in entries
+        if not (entry.get("link") or "").startswith(_LOBEHUB_LEGACY_PREFIXES)
+    ]
+
+
 # Cap the merged feed so the committed XML stays a reasonable size.
 MAX_ENTRIES = 400
 # Directory feeds (ClaudePluginHub, Glama MCP Servers, AI Skill Market) publish
@@ -932,7 +950,9 @@ def main(full=False):
         ledger = AttemptLedger()
     else:
         cache = load_cache(FEED_NAME)
-        cached = deserialize_entries(cache.get("entries", []), date_field="date")
+        cached = _active_cached_entries(
+            deserialize_entries(cache.get("entries", []), date_field="date")
+        )
         ledger = AttemptLedger(cache.get("unresolvable"))
 
     known_links = {e["link"] for e in cached}
