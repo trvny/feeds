@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-08-30T14:10:26.586220+00:00</updated>
+  <updated>2026-08-30T18:19:58.930326+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,131 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/968ae0b8b736bf61</id>
+    <title>分享下最近 vibe 的大模型 API 测试工具，一套 Rust+vue 同时支持服务器部署和 tauri 桌面端</title>
+    <updated>2026-08-30T18:03:58+00:00</updated>
+    <content>最近在 M2 上折腾了一圈，Qwen 从小到大跑了一遍，但总感觉缺一个趁手的快速测试工具。用常规的对话工具感觉有点重，或者看 token/s 费劲，索性自己 vibe 了一个，还能当个 apikey 存储器，分享下 ModelApiTester — 填地址、发消息、看结果，支持是否开启上下文 核心功能： 支持 OpenAI / Anthropic / Gemini 三种 API 格式，自动适配 流式输出 + 完成后 Markdown 渲染（公式、视频都能渲染） 每条回复能看到 prefill 耗时、decode 耗时、生成速度 tok/s 、总 token 数 ，对比模型性能很直观 多模态图片上传，文件附件 内置 32 条预设提示词，8 个维度（推理/代码/数学/指令遵循/创意写作/多语言/常识/安全）快速测模型能力，点一下就填进输入框，不用每次自己想 prompt 会话和配置存 SQLite ，刷新不丢 架构上：Rust 写了一层共享 core （业务逻辑 + SQLite ），上层接两个壳 —— axum HTTP 服务器和 Tauri 桌面应用，前端是同一套 Vue 3 。所以一</content>
+    <link href="https://www.v2ex.com/t/1238249#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-30T18:03:58+00:00</published>
+    <media:group>
+      <media:content url="https://raw.githubusercontent.com/yachen4ever/ModelApiTester/main/docs/screenshot.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://raw.githubusercontent.com/yachen4ever/ModelApiTester/main/docs/screenshot.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://raw.githubusercontent.com/yachen4ever/ModelApiTester/main/docs/screenshot.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/48480ff56d653d40</id>
+    <title>IPv6 有效期只有 1h</title>
+    <updated>2026-08-30T17:08:51+00:00</updated>
+    <content>坐标深圳联通，桥接拨号，系统是 OpenWRT 24.10.8 协议: DHCPv6 客户端 分发前缀: 2408:8256:****:**69::/64 地址: 2408:8256:****:****:****:****:****:****/64 剩余有效期: 0h 36m 53s 已连接: 6h 53m 9s 每次获得的 IPv6 有效期都只有 1h ，重新拨号会换 IP 但是有效期也只有 1h ，但是实际观察 1h 后并不会变化（观察期 8h ） 所以这是是 OpenWRT 的显示问题还是联通捣的鬼？</content>
+    <link href="https://www.v2ex.com/t/1238245#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-08-30T17:08:51+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/cb45/af13/502761_xlarge.png?m=1761147475" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/cb45/af13/502761_xlarge.png?m=1761147475"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/cb45/af13/502761_xlarge.png?m=1761147475" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/6a33dd45237a15fa</id>
+    <title>抛砖引玉 开源一个 codex 使用的键盘硬件及其桥接项目</title>
+    <updated>2026-08-30T17:07:16+00:00</updated>
+    <content>项目地址 https://github.com/Rladmsrl/codex-mk10-bridge 正文 因为前一段时间 codex 出了个键盘，溢价很严重，所以就在网上找了很多适合 codex 开发的小键盘，最后选了这个微雪的 mk10 ，然后写了这个项目用于把它变成 codex 的键盘，全程 vibecoding 的就不发 ai 生成的 readme 了，感兴趣的大佬直接去项目看吧，只当用于抛砖引玉，这个键盘接别的 agent 也很简单主要是实现了设备侧的渲染和交互。 最后说一下为什么选择这个设备，首先不贵（ 400 ），其次机械键盘（手感不错），全按键带屏幕（可扩展性高）。有帮助麻烦 star 谢谢</content>
+    <link href="https://www.v2ex.com/t/1238244#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-30T17:07:16+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/d470/2f37/102538_large.png?m=1788109509" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/d470/2f37/102538_large.png?m=1788109509"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/d470/2f37/102538_large.png?m=1788109509" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d48d078b31aedf83</id>
+    <title>[开源]T-Sub : 便捷式代理节点部署脚本生成与管理,节点订阅聚合管理与转换。</title>
+    <updated>2026-08-30T16:46:55+00:00</updated>
+    <content>T-Sub 可以在自己所有服务器容器一键安装代理协议和订阅聚合生成管理，并在主控统一管理更新。 *管理 HTTP 订阅源、手动节点和可公开分享的 Profile 。
+*输出 Base64 、Clash/Mihomo 、sing-box 、Surge 、Loon 、Quantumult X 等格式。
+*使用操作符链、规则模板、节点筛选、排序、去重和名称处理构建订阅。
+*使用 TSub Proxy 在低内存服务器部署 Xray 或 sing-box ，不保存 SSH 账号或私钥。
+*通过一次性 Bootstrap 、加密部署配置、主动推送和 HTTPS 镜像同步节点及总流量。 Cloudflare 支持 KV 基础模式与 D1 完整模式； 服务器支持 SQLite WAL 单机模式与 PostgreSQL 多实例模式。
+*提供中英文界面、桌面和移动端布局，以及完全隔离的只读演示数据。 Github： https://github.com/btjidi/Tsub</content>
+    <link href="https://www.v2ex.com/t/1238243#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-30T16:46:55+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.nodeimage.com/i/s8pP4JWtNhoVSS8P6lEpdao7nIEN6cYO.jpeg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.nodeimage.com/i/s8pP4JWtNhoVSS8P6lEpdao7nIEN6cYO.jpeg"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.nodeimage.com/i/s8pP4JWtNhoVSS8P6lEpdao7nIEN6cYO.jpeg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a5c74b2baeb8ba6a</id>
+    <title>[更新] Mktero v0.3.4：在 Zotero 中进行可回溯 PDF 原文的 Markdown 阅读</title>
+    <updated>2026-08-30T15:20:41+00:00</updated>
+    <content>之前我在 V2EX 分享过 Mktero v0.2.3 。最近更新到了 v0.3.4 ，功能和使用方式都有了比较大的变化，所以再汇报一次进展。 上一次的分享帖： https://www.v2ex.com/t/1231436 Mktero 是一个开源 Zotero 插件，通过 MinerU 将本地 PDF 转换成结构化 Markdown ，并在 Zotero 标签页中阅读。它的重点不是单纯转换格式，而是让 Markdown 内容继续与 PDF 原文位置保持关联，方便阅读后返回原文核对。 v0.3.4 目前包含： PDF 转 Markdown ，并生成文章目录 从 Markdown 段落跳转到 PDF 对应位置 原文、简体中文和双语对照阅读 选区翻译、Markdown 批注与内容修正 图片大图预览 Markdown 表格阅读、引用预览和原文跳转 文献引用预览、引用跳转和引用关系图谱 Markdown 与相关资源导出 支持 Zotero 7–10 完整演示视频： https://youtu.be/lMDnPXK4n8I 项目地址： https://github.com/tenglvjun/m</content>
+    <link href="https://www.v2ex.com/t/1238234#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-30T15:20:41+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/a01c/fb48/35328_xlarge.png?m=1788095186" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/a01c/fb48/35328_xlarge.png?m=1788095186"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/a01c/fb48/35328_xlarge.png?m=1788095186" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/ee39933631dd8e80</id>
+    <title>做了个离线的班级宠物养成，给班主任上课大屏用</title>
+    <updated>2026-08-30T14:55:40+00:00</updated>
+    <content>开学了，给自己班做了个教室大屏：座位加减分，全班养一只宠物。打开网页就能投屏，离线也能用，不用装 App ，班级数据留在本机。 网页演示： https://yewse.github.io/class-pet-mvp/ 介绍页： https://yewse.github.io/banchong-offer/ 源码： https://github.com/yewse/class-pet-mvp 一学期 99 元/班。想试用直接打开演示。欢迎拍砖。</content>
+    <link href="https://www.v2ex.com/t/1238229#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-30T14:55:40+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/3883be7a516cd54a1eceed43dfae3f6c?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/3883be7a516cd54a1eceed43dfae3f6c?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/3883be7a516cd54a1eceed43dfae3f6c?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/416b7e1d8235ee5e</id>
+    <title>时隔 7 年，总算把 Touch Bar 用上了</title>
+    <updated>2026-08-30T14:21:26+00:00</updated>
+    <content>做了个在 Mac Touch Bar 和菜单栏展示 codex 用量的小工具 图片可以在这里看 https://www.reddit.com/r/codex/comments/1w2c529/ 仓库在这儿 https://github.com/yizhigou/codex-usage-bar</content>
+    <link href="https://www.v2ex.com/t/1238225#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-30T14:21:26+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/6a55/7d1f/21531_xlarge.png?m=1708676156" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/6a55/7d1f/21531_xlarge.png?m=1708676156"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/6a55/7d1f/21531_xlarge.png?m=1708676156" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/d32f699eac0ec91f</id>
+    <title>嫌市面上的六爻排盘网站太丑，我自己做了一个</title>
+    <updated>2026-08-30T14:17:04+00:00</updated>
+    <content>起因是最近刷到了一个在美国给路人免费算卦的 up, 对六爻起了兴趣, 开始自学 (自学几个小时后放弃了, 挑了个课程蒸馏成了 skill) 但排盘的时候发现, 现有的六爻排盘网站的风格都像停留在 2008 年, 停留在 IE 时代, 看着糟心, 用自己的审美狠狠搓了一个新的出来 (特别鸣谢 OxAlpha 、5.6 Sol Ultra) 欢迎大家来玩玩看！ 地址： liuyao.lemontea.xyz GitHub: github.com/lemonteaau/binary-liuyao 还有蒸出来的六爻 skill ，我是用 5.6 Sol High 调用的，找了几个朋友测试，效果不错，也一并附上 github.com/lemonteaau/liuyao-eight-lesson-interpreter</content>
+    <link href="https://www.v2ex.com/t/1238224#reply4" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-08-30T14:17:04+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/e950/2bb2/765002_xlarge.png?m=1788099263" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/e950/2bb2/765002_xlarge.png?m=1788099263"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/e950/2bb2/765002_xlarge.png?m=1788099263" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/579dd56ae62c7bc9</id>
     <title>独立开发的开源的 Windows 水杉输入法被小红书博主推荐后流量直接爆了</title>
@@ -343,97 +468,6 @@ PS：只有矮轴，但是可以选择红轴，茶轴，青轴；
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/26f5/0936/699413_xlarge.png?m=1788071457" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3094672df45801a7</id>
-    <title>DouyinSpider &amp; KuaiShou-Spider 开源仓库更新｜纯接口，扫码/手机登录、图文/视频发布、图片/视频/卡片私信与直播监听</title>
-    <updated>2026-08-30T06:21:09+00:00</updated>
-    <content>DouyinSpider 更新 本次更新采用纯接口实现，非模拟操作。 仓库地址： DouYin_Spider 更新内容 新增扫码登录、手机号登录，支持获取 Cookie 及相关登录参数。 新增创作者中心发布功能： 支持多图片上传发布 支持视频上传发布 全流程通过纯接口实现 完善私信功能并更新加密参数： 支持发送文本 支持发送图片、视频、文件、表情、语音及卡片 更新抖音最新签名、设备指纹及部分风控参数。 统一爬虫、直播、私信和 Creator 的登录会话。 KuaiShou-Spider 发布 同样采用纯接口实现，非模拟操作。 仓库地址： KuaiShou-Spider demo 效果 功能介绍 新增扫码、手机号及 Cookie 登录，自动获取登录态、Cookie 和设备指纹。 支持创作者发布： 多图片图文发布 视频上传发布 通过程序直接调用接口完成发布 支持作品详情、作品列表、用户主页、搜索、评论等基础详情页及爬虫接口。 支持直播间监听，可实时接收： 弹幕 礼物 点赞 系统通知 欢迎大家 Star 、Follow ，欢迎交流使用～ 作者主页： cv-cat</content>
-    <link href="https://www.v2ex.com/t/1238155#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-30T06:21:09+00:00</published>
-    <media:group>
-      <media:content url="https://github.com/user-attachments/assets/f57df582-34e0-40c7-a034-c526ac1ff832" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://github.com/user-attachments/assets/f57df582-34e0-40c7-a034-c526ac1ff832"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://github.com/user-attachments/assets/f57df582-34e0-40c7-a034-c526ac1ff832" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c1865fcb0a9f7f31</id>
-    <title>[开源自荐] 写了个纯静态的工具站：全在浏览器里跑，没有后端，可以自己部署</title>
-    <updated>2026-08-30T05:34:33+00:00</updated>
-    <content>最近要将多张图片转视频，网上搜了一圈都是要上传图片的，虽有 FFMEPEG 一行代码就可以搞定，但文件名要求特定格式，来回修改很是麻烦。 于是就用 Claude 机搓了一个工具： https://abox.tools/zh/images-to-video/ 本着做都做了精神，一口气让 AI 干到底，把平时日常自己可能用到的工具都集合起来，分享给大家： https://abox.tools/zh/ 欢迎番茄鸡蛋，大饼卷葱！</content>
-    <link href="https://www.v2ex.com/t/1238149#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-30T05:34:33+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/0c22/0800/194593_large.png?m=1475604437" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/0c22/0800/194593_large.png?m=1475604437"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/0c22/0800/194593_large.png?m=1475604437" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/45ca3901a35c5d5b</id>
-    <title>novocab: 一个精确的 token 预估器，在多语言单段语料里偏移仅有 5%， 4K 只偏 3%，没有词表，全仓库就一个代码文件，连算法一起开源</title>
-    <updated>2026-08-30T05:26:09+00:00</updated>
-    <content>如题。no vocab ，足够精确地预估一个 tokenizer 从来都不需要搞一个大词表。 因为最近在搞自己的 harness orchestration 的时候受不了 char / 4 的巨大偏移，然后 char / 3.5 也罢，CJK 拿出来单独数也罢，依然和真的 tokenizer 差很多，并且它根本不是文本越大越准，本来就不是一个像样的估算。 那它差多少？大概能差 30% - 50%，单独数 CJK 的话距离真正的预估也差接近 40%。 但是频繁去调那个 Tokenizer API 也烦人，每次都真拖一个 Tokenizer 出来测一遍更像是在白烧 CPU ，所以就搓了这个小东西出来。 没什么花活，就是先按 unicode 分桶，配一个非常简单的计数器去按词长一类的小特征去进一步分桶，然后暴力跑语料跑到每个桶的系数收敛。O(n) 时间，O(1) 空间，纯粹的系数拟合。 跑完之后，这个暴力小玩具惊人地准，达到了 5% 的平均偏移，而且文本越大，估算越准，200 字符的时候偏移 5% 左右，4000 的时候收敛到 3%，64K 收敛到 1%，1M 的时候 0.5%，一套算法通杀</content>
-    <link href="https://www.v2ex.com/t/1238147#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-30T05:26:09+00:00</published>
-    <media:group>
-      <media:content url="https://i.imgur.com/1Dk6VQv.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.imgur.com/1Dk6VQv.png"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://i.imgur.com/1Dk6VQv.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6c0ac31211331b3d</id>
-    <title>Chrome 翻译和写作润色插件</title>
-    <updated>2026-08-30T03:55:13+00:00</updated>
-    <content>现有的用着都不顺手，功能太多，说是免费，但是却想尽一切办法卖订阅。
-需求其实非常简单： 划词/选词 英文翻译成中文 选中编辑框内的中文，翻译成英文（回复邮件和发英文社媒） 英文润色。 https://gitlab.com/hunter-xue/chrome-lingo-craft 顺带来一个新的协议：手工 AI 糟粕许可证（ Artisanal AI Slop License, AASL ）</content>
-    <link href="https://www.v2ex.com/t/1238134#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-30T03:55:13+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/ebb0f1f218e0560dd718e1c7e211b10f?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/ebb0f1f218e0560dd718e1c7e211b10f?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/ebb0f1f218e0560dd718e1c7e211b10f?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3de0c50a928fac37</id>
-    <title>SceneMint Pro - 做了个 AI 出图网站，便宜大碗！</title>
-    <updated>2026-08-30T03:11:51+00:00</updated>
-    <content>支持文生图和参考图修改，使用的模型是 gpt-image-2 效果还是不错的 现在注册送 10 次生成额度，原图会保留 7 天，然后会压缩归档 还在持续优化，后面会加入提示词库，多参考图等，欢迎体验 地址： images.sunls.de 备用 (CF)： image.sunls.de 评论区回复注册邮箱会再送 50 次生成额度，看到会处理</content>
-    <link href="https://www.v2ex.com/t/1238126#reply10" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-30T03:11:51+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/5ff4/3b93/510417_large.png?m=1788021951" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/5ff4/3b93/510417_large.png?m=1788021951"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/5ff4/3b93/510417_large.png?m=1788021951" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/3a6af87cdf174d5c</id>
-    <title>[创意笔记软件] 在 markdown 中直接跑代码、操作小工具</title>
-    <updated>2026-08-30T03:00:51+00:00</updated>
-    <content>做了一个十分有创意的 markdown 笔记 Idea Note 除了普通的 markdown 所见即所得的编辑器外，我做了以下创意，笔记本秒变小工具管理器 代码块直接一键执行。 可交互组件：在 markdown 中直接跑小工具，直接在里面交互组件。 ▶️ 可直接运行代码块 在代码块右上角点击运行图标，程序在本机执行，输出实时显示在独立的"运行输出"面板里。面板按当前文件显示运行记录，可停止、重跑、跳回代码块，或把结果作为 ```output 块插入笔记。 支持 Python 、JavaScript/Node 、Ruby 、Perl 、Bash 、PowerShell 以及自定义执行器 🕹️ 可交互组件 在运行代码块之上再加一层：给代码块配一个参数块，笔记就变成了一个小工具。读者拖滑块、改数字、选日期，脚本就在本机重跑一遍，结果直接渲染回笔记里——不用打开终端，也不用改代码。 以下是两个例子 这个可交互组件的语法是不是有学习成本呢？本软件直接集成了 AI 笔记助手，一句话创建小工具，零学习成本。 普通的笔记本只能保存文字和图片，而本笔记本有了这些创意功能，从此无需保存脚本在各个零散的角</content>
-    <link href="https://www.v2ex.com/t/1238125#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-30T03:00:51+00:00</published>
-    <media:group>
-      <media:content url="https://raw.githubusercontent.com/Liubsyy/water-merges-river/main/assets/images/run_code.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://raw.githubusercontent.com/Liubsyy/water-merges-river/main/assets/images/run_code.png"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://raw.githubusercontent.com/Liubsyy/water-merges-river/main/assets/images/run_code.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/01926e239a94d6f5</id>
     <title>NAT4444 新证据？</title>
     <updated>2026-08-30T01:07:37+00:00</updated>
@@ -447,21 +481,6 @@ PS：只有矮轴，但是可以选择红轴，茶轴，青轴；
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/994e741731ade1947eb99c78d883aa7a?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/554f1b6d120cbd7a</id>
-    <title>受够了视频没听清就反复拖进度条，只考虑音频错别字多，写了个"会看画面"的视频转笔记工具</title>
-    <updated>2026-08-29T20:12:42+00:00</updated>
-    <content>看视频经常一句话没听清，拖回去重听好几遍还是听不清。试了现有的转写工具，发现它们只用音频——恰恰是我听不清的词，它们也转不对（幻灯片上的术语、代码里的名词，声音里根本猜不出来）。 所以做了 Vid2notes ：转写时不只听声音，还抽帧看画面。Whisper 转文字，多模态模型拿着字幕对着截图一起读，输出带截图、章节、时间戳和 AI 总结的图文笔记，可导出 Markdown / SRT / VTT 。 支持最长 10 小时的视频，常见格式都行。 技术栈给感兴趣的 V 友：全栈 Cloudflare （ Workers AI 跑 Whisper + GLM ，Rust + FFmpeg 跑在 Containers 里），按视频 MD5 缓存不重复算。 每天免费 3 个视频 ，不用绑卡： vid2notes 最想知道的反馈：准确率在你的视频上怎么样，尤其是带幻灯片/代码的教学视频。欢迎拍砖 🙏</content>
-    <link href="https://www.v2ex.com/t/1238109#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-29T20:12:42+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/d8a1f3b1008947212a1d97e6c8a82284?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/d8a1f3b1008947212a1d97e6c8a82284?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/d8a1f3b1008947212a1d97e6c8a82284?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/c6b33c4b692a4b80</id>
@@ -659,21 +678,6 @@ PS：只有矮轴，但是可以选择红轴，茶轴，青轴；
     </media:group>
     <dc:creator>sspai.com</dc:creator>
     <link rel="enclosure" href="https://rssfile.sspai.com/article/c1b095fe-dd9b-01aa-8037-12842f5908aa.jpg?imageMogr2/auto-orient/ignore-error/1" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/197f521fc086f369</id>
-    <title>杭州政府提供的免费公共 WiFi 已经全都无法访问未被屏蔽的境外网站(例如 cisco.com、.gov.hk 所属多个网站、paypal.com)了吗？</title>
-    <updated>2026-08-28T07:00:50+00:00</updated>
-    <content>连接上杭州图书馆、浙江图书馆、拱墅区行政中心等单位所提供的免费公共 WiFi 之后，境内网站一律正常，但是任何境外服务器要么仅能够传递 icmp 数据包但却彻底阻断 tcp 数据包，要么任何数据包都彻底阻断，请问是不是杭州境内所有政府机构提供的免费公共 WiFi 都已经如此了？</content>
-    <link href="https://www.v2ex.com/t/1237879#reply14" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-28T07:00:50+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/b359f95b9b64e30bddb05f2a82c54c31?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/b359f95b9b64e30bddb05f2a82c54c31?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/b359f95b9b64e30bddb05f2a82c54c31?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/c6222b5e45aaaee4</id>
