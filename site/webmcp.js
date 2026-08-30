@@ -1,5 +1,6 @@
+"use strict";
+
 (() => {
-  "use strict";
 
   const context = document.modelContext;
   if (!context?.registerTool) return;
@@ -7,14 +8,16 @@
   const lifecycle = new AbortController();
   const register = (tool) => {
     try {
-      void Promise.resolve(context.registerTool(tool, { signal: lifecycle.signal }))
+      Promise.resolve(context.registerTool(tool, { signal: lifecycle.signal }))
         .catch((error) => console.warn("Feedseek WebMCP registration failed", error));
     } catch (error) {
       console.warn("Feedseek WebMCP registration failed", error);
     }
   };
 
-  window.addEventListener("pagehide", () => lifecycle.abort(), { once: true });
+  window.addEventListener("pagehide", (event) => {
+    if (!event.persisted) lifecycle.abort();
+  });
 
   const clampLimit = (value, fallback = 20) => {
     const number = Number(value);
