@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-30T08:41:54.902577+00:00",
+  "last_updated": "2026-08-30T14:10:26.722767+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -13807,6 +13807,105 @@
       "source": "V2EX Play",
       "image": "https://i.imgur.com/ZFVMsH8.png",
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/1ddc839a90ebed53"
+    },
+    {
+      "title": "做了个随机歌曲生成器，帮你逃离推荐算法",
+      "link": "https://www.v2ex.com/t/1238182#reply2",
+      "date": "2026-08-30T09:16:45+00:00",
+      "description": "最近感觉音乐 App 推荐来推荐去都是熟悉的东西，就做了个真正随机选歌的小工具： https://randomsonggenerator.app 可以选曲风、年代和地区，也可以什么都不选直接开抽。支持试听、批量生成和当前会话去重，不用注册。 欢迎转一下看看抽到了什么，也想听听大家的体验～",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/4414/4b33/692076_xlarge.png?m=1786192656",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/553ce443ca271379"
+    },
+    {
+      "title": "分享一个可以让 Claude Code 和 Codex 结对编程的管理工具",
+      "link": "https://www.v2ex.com/t/1238185#reply0",
+      "date": "2026-08-30T09:38:15+00:00",
+      "description": "四月份开始，我日常写代码基本是几个 agent CLI 同时开着：Claude Code 写，Codex review ，偶尔再开一个查资料。我自己日常的工作从古法编程 coding ，变成了在多个 agent 的终端间复制黏贴。于是我做了 Runner ，一个本地跑的 macOS 工具，让这几个 agent 在一个窗口里面互相合作，不需要我在介入当中。 仓库： https://github.com/yicheng47/runner agent 之间如何进行通信 Agent 之前通信的机制比较简单，主要使用一个本地 NDJSON 文件当消息总线，一条消息一行，每个 agent 自己维护读到哪一行的 offset 。之前试过让它们用 Markdown 文件互相留言， 几轮之后 markdown 消耗的 token 比较高，且比较难维护。换成 NDJSON 之后，配一个小 CLI 把消息格式定死（ runner msg / runner signal ），再在 system prompt 里告诉 agent 用这个 CLI 说话。随着模型的能力越来越强，这样的沟通机制在实际生产中也变得很可",
+      "source": "V2EX Creative",
+      "image": "https://raw.githubusercontent.com/yicheng47/runner/main/assets/mission_feed.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/185ee249245b3ac5"
+    },
+    {
+      "title": "一加 15T 刷入 crDroid 后，还能获取 Color OS 钱包应用",
+      "link": "https://www.v2ex.com/t/1238188#reply5",
+      "date": "2026-08-30T10:07:53+00:00",
+      "description": "有 NFC 卡需求，克隆门禁卡和使用交通卡。",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/avatar/c880/df11/594016_xlarge.png?m=1760168314",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/7170737ab888643f"
+    },
+    {
+      "title": "Layerive：用 AI 2 小时做了个本地 AI 图片工作台",
+      "link": "https://www.v2ex.com/t/1238193#reply0",
+      "date": "2026-08-30T10:50:30+00:00",
+      "description": "GitHub： https://github.com/newljs/Layerive 思路参考了 Lovart 的图片工作流，但我更想解决一个实际问题： 平时图片生成、改图改到很多版后，提示词、原图、历史结果全散在不同地方；而且不同模型和中转站价格差异挺大，不想被一个平台绑死。 所以做成了本地项目制： 文生图、图生图、提示词改图 局部框选修改、扩图、图片改字 每次生成自动存版本，可以看版本树、对比前后效果 支持接入 SenseNova 、OpenAI 兼容中转站、Gemini 、Grok 模型和 API Key 都在本地配置，项目图片和历史记录也在本机 最主要是便宜，找几个几分钱一张图的中转站，低成本实现 Lovart 效果",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/ff47/c508/343418_large.png?m=1679034770",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/ead487fceb7c1f6f"
+    },
+    {
+      "title": "自建了一个开源行情面板： A 股/美股/大宗/美债/资金流一屏看，不用配任何 key",
+      "link": "https://www.v2ex.com/t/1238195#reply2",
+      "date": "2026-08-30T10:52:24+00:00",
+      "description": "自建了一个开源行情面板： A 股/美股/大宗/美债/资金流一屏看，不用配任何 key",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/a8359de0b900697de6df2a1dc3d60312?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/d04438a49101243c"
+    },
+    {
+      "title": "[Share] Retirement Benefit Tracker: a free tool for U.S. retirees",
+      "link": "https://www.v2ex.com/t/1238196#reply0",
+      "date": "2026-08-30T10:54:01+00:00",
+      "description": "I just launched Retirement Benefit Tracker: https://www.retirementbenefittracker.com/ It is a free, mobile-friendly resource for U.S. older adults who receive—or are preparing to receive—Social Security, SSI, and Medicare, as well as family members helping them navigate retirement benefits. What it currently includes: Social Security and SSI payment dates, including annual calendars A COLA calculator to estimate how cost-of-living adjustments may affect monthly benefits A Medicare Part B calcula",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/avatar/e296/c273/670522_xlarge.png?m=1730516541",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/4fdf6d88f2a5426a"
+    },
+    {
+      "title": "3D 的 gameboy 游戏机，童年回忆鸭",
+      "link": "https://www.v2ex.com/t/1238201#reply1",
+      "date": "2026-08-30T11:32:41+00:00",
+      "description": "3D 的 gameboy 游戏机，选择游戏或者上传游戏就能玩，童年回忆鸭，哈哈哈，欢迎来玩 游戏机地址： https://fcf8e892.pinme.dev/",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787934204",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/11e0284137c95676"
+    },
+    {
+      "title": "读诗转头 一步搞定，脖子倍轻松",
+      "link": "https://www.v2ex.com/t/1238203#reply1",
+      "date": "2026-08-30T11:39:49+00:00",
+      "description": "一边读古诗，一边练脖子。\n诗句左右交替排版，你得转头才能读完每一句——养生和诗词，一次搞定。 http://8.156.88.61/ 没有域名比较简陋，后续会更新",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/e57a1ef4f9d7552d01c876c2789d5686?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/2c059ffbe513270c"
+    },
+    {
+      "title": "[分享创造] QuotaView 0.4.2：给 Codex 做了一个能感知任务进度的 macOS 灵动岛",
+      "link": "https://www.v2ex.com/t/1238206#reply0",
+      "date": "2026-08-30T11:53:41+00:00",
+      "description": "这段时间把 QuotaView 从 0.3.7 更新到了 0.4.2 。它是一款原生 macOS 菜单栏工具，用来查看 Codex 额度、重置时间和实时任务状态。 这次主要更新了： - 完整显示 5 小时、周额度和 Spark 等不同额度周期。 - 多显示器下，可以把灵动岛锁定在 Codex 所在屏幕。 - 在 AI 球之外新增进度条模式，支持多步骤计划和普通单任务的平滑进度估算。 - 新增状态烟雾、晶钻前沿、液滴涌动和液态涌浪四种效果，设置里可以直接预览。 - 四种效果会跟随 Codex 当前状态切换颜色，并加入更自然的完成动画。 - 重做了任务生命周期逻辑，修复任务中途消失、局部步骤误触发“已完成”、上一个任务状态残留等问题。 这里显示的是保守的任务进度估算，不会伪装成精确百分比。Activity Hook 只传递已完成、进行中和待处理的步骤数量，不会传递对话内容、步骤文本、提示词或工具输出。 项目已开源在 Github： https://github.com/Duoasa/QuotaView 欢迎试用，也欢迎反馈与提出建议。",
+      "source": "V2EX Creative",
+      "image": "https://i.imgur.com/oZieBCt.jpeg",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/8591bdfc8fea7aaa"
+    },
+    {
+      "title": "请问闲鱼上买二手 pixel6 或 7 需要注意什么？",
+      "link": "https://www.v2ex.com/t/1238214#reply4",
+      "date": "2026-08-30T12:34:13+00:00",
+      "description": "像是什么无锁开 oem ，组装机，国产屏，需要怎么避坑？应该选什么样的比较好？ 只是想用 esim 而已",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/avatar/ac4b/29f0/236715_large.png?m=1500451130",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/a14c849ce4d5555d"
+    },
+    {
+      "title": "独立开发的开源的 Windows 水杉输入法被小红书博主推荐后流量直接爆了",
+      "link": "https://www.v2ex.com/t/1238218#reply0",
+      "date": "2026-08-30T13:30:15+00:00",
+      "description": "如题。 前天才和一个 SB 投资人聊，上来就要拿输入法这个东西去卖加密后的用户数据给大厂之类的。并且说，输入法不可能商业化，除非去卖用户数据。我 TM 直接让他滚。当然，当面还是忍了。emo 了很久。 然后今天看到一个小红书博主推荐，然后流量直接爆了，超级开心。 仓库是这个： https://github.com/metasequoiaime/MetasequoiaImeTsf 欢迎来 star and fork 。 小红书的帖子： 38  [打字就能背单词的输入法！完全免费！ - 晓白和林亦 | 小红书 - 你的生活兴趣社区]  😆 ePvqoNWlLh2By5Q 😆 https://www.xiaohongshu.com/discovery/item/6a918789000000000400b678?source=webshare&xhsshare=pc_web&xsec_token=ABDFsvu066khcnajvCZPcPRuvLE6eV1XsAgH4PatDDA8Q=&xsec_source=pc_share",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/113b/978a/555748_xlarge.png?m=1699203313",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/579dd56ae62c7bc9"
     }
   ]
 }
