@@ -118,6 +118,27 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
         self.assertEqual(entries[0]["link"], "https://mcp.so/blog/graph-engineering")
         self.assertEqual(entries[0]["date"].isoformat(), "2026-07-21T00:00:00+00:00")
 
+    def test_mcpso_blog_clamps_dates_from_the_future(self):
+        html = """
+        <a href="/blog/future-post">
+          <h3>Future post</h3>
+          <span>Sep 2, 2026</span>
+        </a>
+        """
+        now = datetime(2026, 8, 30, 15, 0, tzinfo=skillsllm.pytz.UTC)
+        entries = skillsllm.parse_mcpso_blog(html, now=now)
+        self.assertEqual(entries[0]["date"], now)
+
+    def test_collect_mcpso_caps_directory_feed_immediately(self):
+        cards = "".join(
+            f'<a href="/servers/demo-{i}"><h3>Demo {i}</h3></a>'
+            for i in range(12)
+        )
+        with patch.object(skillsllm, "fetch_url", return_value=cards):
+            entries = skillsllm.collect_mcpso(set())
+        directory = [e for e in entries if e["source"] == "MCP.so Feed"]
+        self.assertEqual(len(directory), 10)
+
     def test_native_feed_cleanup_recovers_invalid_xml_control_character(self):
         """LobeHub's current RFC 106 control byte should not poison its RSS."""
         raw = """<?xml version="1.0"?><rss version="2.0"><channel>

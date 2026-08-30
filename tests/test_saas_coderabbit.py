@@ -38,6 +38,36 @@ class CodeRabbitSaasTests(unittest.TestCase):
         self.assertEqual(entries[0]["description"], "Useful newsroom summary.")
         self.assertEqual(entries[0]["date"], datetime(2026, 8, 12, tzinfo=UTC))
 
+    def test_main_persists_retired_cache_cleanup_when_sources_are_empty(self):
+        retired = [{"source": "Upstash Blog", "link": "https://upstash.com/blog/old"}]
+        collectors = (
+            "collect_hcp",
+            "collect_bitly",
+            "collect_commoninja",
+            "collect_native_feeds",
+            "collect_coderabbit_newsroom",
+            "collect_postman_press",
+            "collect_exa_blog",
+            "collect_xweather_blog",
+            "collect_xweather_changelogs",
+            "collect_dated_anchor_sources",
+        )
+        patches = [patch.object(saas, name, return_value=[]) for name in collectors]
+        for active_patch in patches:
+            active_patch.start()
+        self.addCleanup(lambda: [active_patch.stop() for active_patch in reversed(patches)])
+        with (
+            patch.object(saas, "load_cache", return_value={"entries": [{}]}),
+            patch.object(saas, "deserialize_entries", return_value=retired),
+            patch.object(saas, "enrich_entries"),
+            patch.object(saas, "save_cache") as save_cache,
+            patch.object(saas, "generate_atom_feed", return_value="empty-feed"),
+            patch.object(saas, "save_atom_feed") as save_atom_feed,
+        ):
+            self.assertTrue(saas.main())
+        save_cache.assert_called_once_with(saas.FEED_NAME, [])
+        save_atom_feed.assert_called_once_with("empty-feed", saas.FEED_NAME)
+
 
 if __name__ == "__main__":
     unittest.main()

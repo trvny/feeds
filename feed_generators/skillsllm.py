@@ -625,10 +625,11 @@ def parse_mcpso_feed(html, known_links=None, now=None):
     return entries
 
 
-def parse_mcpso_blog(html, known_links=None):
+def parse_mcpso_blog(html, known_links=None, now=None):
     """Parse MCP.so editorial blog cards."""
     soup = BeautifulSoup(html, "html.parser")
     known_links = known_links or set()
+    now = now or datetime.now(pytz.UTC)
     entries = []
     seen = set()
     for card in soup.find_all("a", href=True):
@@ -640,6 +641,8 @@ def parse_mcpso_blog(html, known_links=None):
         link, title, image_url = metadata
         date_match = _MCPSO_BLOG_DATE_RE.search(card.get_text(" ", strip=True))
         date = parse_date(date_match.group(0)) if date_match else None
+        if date and date > now:
+            date = now
         entries.append(
             {
                 "title": title,
@@ -666,6 +669,9 @@ def collect_mcpso(known_links):
             logger.warning("[%s] listing unavailable; continuing", label)
             continue
         parsed = parse_listing(raw, known_links)
+        cap = PER_SOURCE_CAP.get(label)
+        if cap is not None:
+            parsed = parsed[:cap]
         entries.extend(parsed)
         logger.info("[%s] parsed %d entries", label, len(parsed))
     return entries

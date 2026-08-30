@@ -701,15 +701,15 @@ def _cap_per_source(entries: list[dict], per_source: int) -> list[dict]:
 
 
 def main(full: bool = False) -> bool:
-    cached = (
+    raw_cached = (
         []
         if full
-        else _active_cached_entries(
-            deserialize_entries(
-                load_cache(FEED_NAME).get("entries", []), date_field="date"
-            )
+        else deserialize_entries(
+            load_cache(FEED_NAME).get("entries", []), date_field="date"
         )
     )
+    cached = _active_cached_entries(raw_cached)
+    retired_entries_removed = len(cached) != len(raw_cached)
     known_links = {e.get("link") for e in cached}
 
     new_entries = (
@@ -724,7 +724,7 @@ def main(full: bool = False) -> bool:
         + collect_xweather_changelogs()
         + collect_dated_anchor_sources()
     )
-    if not new_entries and not cached:
+    if not new_entries and not cached and not retired_entries_removed:
         logger.error("No entries from any source; preserving the last good feed")
         return False
 
