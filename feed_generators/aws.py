@@ -108,10 +108,16 @@ def _repost_entry(item, links: dict[str, str]) -> dict | None:
 
 def _repost_metadata(response: dict) -> tuple[int, int, int] | None:
     """Validate and return page number, page size, and advertised total."""
-    values = (response.get("page"), response.get("pageSize"), response.get("totalCount"))
-    if not all(isinstance(value, int) and value >= 0 for value in values):
+    page = response.get("page")
+    page_size = response.get("pageSize")
+    total = response.get("totalCount")
+    if not isinstance(page, int) or page < 0:
         return None
-    return values
+    if not isinstance(page_size, int) or page_size < 0:
+        return None
+    if not isinstance(total, int) or total < 0:
+        return None
+    return page, page_size, total
 
 
 def _repost_tokens(response: dict) -> dict[int, str]:
