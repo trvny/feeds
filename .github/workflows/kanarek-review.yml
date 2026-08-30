@@ -77,8 +77,7 @@ jobs:
       actions: read
       contents: read
       pull-requests: write
-    # Keep this on the squash-merged commit so branch cleanup cannot break resolution.
-    uses: trvny/trvny/.github/workflows/kanarek-review-aihubmix-worker.lock.yml@e38e4bbc69f5fa175ebacfbffcd16859fc16c0c1
+    uses: trvny/trvny/.github/workflows/kanarek-review-aihubmix-worker.lock.yml@main
     with:
       pr_number: ${{ format('{0}', github.event.pull_request.number) }}
       head_sha: ${{ github.event.pull_request.head.sha }}
