@@ -184,6 +184,15 @@ NATIVE_FEEDS = [
     ("Behance Blog", "http://feeds.feedburner.com/behance/vorr", 40),
 ]
 
+# Sources intentionally moved to another aggregate. Filter their old cache rows
+# so the migration takes effect on the first post-merge generation.
+RETIRED_CACHE_SOURCES = {"Upstash Blog"}
+
+
+def _active_cached_entries(entries: list[dict]) -> list[dict]:
+    """Drop cached rows for sources no longer maintained by this feed."""
+    return [e for e in entries if e.get("source") not in RETIRED_CACHE_SOURCES]
+
 
 def collect_native_feeds(known_links: set[str]) -> list[dict]:
     """Pull each native RSS/Atom vendor feed via multi_rss.scrape_feed and
@@ -695,7 +704,11 @@ def main(full: bool = False) -> bool:
     cached = (
         []
         if full
-        else deserialize_entries(load_cache(FEED_NAME).get("entries", []), date_field="date")
+        else _active_cached_entries(
+            deserialize_entries(
+                load_cache(FEED_NAME).get("entries", []), date_field="date"
+            )
+        )
     )
     known_links = {e.get("link") for e in cached}
 

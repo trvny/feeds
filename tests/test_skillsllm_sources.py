@@ -59,6 +59,13 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
         saas_urls = {source[1] for source in saas.NATIVE_FEEDS}
         self.assertNotIn("https://upstash.com/blog/feed.xml", saas_urls)
         self.assertIn("https://upstash.com/docs/workflow/changelog/rss.xml", saas_urls)
+        kept = saas._active_cached_entries(
+            [
+                {"source": "Upstash Blog", "link": "https://upstash.com/blog/old"},
+                {"source": "Cursor Changelog", "link": "https://cursor.com/changelog/x"},
+            ]
+        )
+        self.assertEqual([entry["source"] for entry in kept], ["Cursor Changelog"])
 
     def test_mcpso_surfaces_are_documented(self):
         """MCP.so's directory feed and editorial blog should both be visible."""
