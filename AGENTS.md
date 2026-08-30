@@ -6,10 +6,16 @@
 - `site/`: static site and reader.
 - `feeds-proxy/`: supporting Cloudflare Worker that remains in this repository.
 
+## Project philosophy
+
+- Feedseek is not only a fallback for sites without feeds. It treats RSS, Atom, and JSON Feed as publishing protocols worth improving in their own right.
+- A native feed is an upstream source, not automatically the final product. Reuse it when reliable, then normalize, enrich, or repair it when Feedseek can produce more complete, stable, expressive, or interoperable output.
+- Prefer protocol-native semantics over ad-hoc payloads: durable entry identity, canonical links, truthful publication/update dates, useful metadata, provenance/categories, content/media, and equivalent JSON Feed sidecars where supported.
+- Preserve upstream meaning. Improvements should add fidelity and interoperability, not invent editorial content or silently rewrite source facts.
 ## Repository conventions
 
 - Check `main`, open pull requests and recent changes before overlapping work.
-- Prefer a usable native feed before adding a scraper.
+- Prefer consuming a reliable native feed over scraping its HTML, but do not pass it through unchanged when shared normalization or enrichment can improve the published feed.
 - Keep one maintained source of truth per concern and use shared normalization/deduplication helpers instead of local copies.
 - Fix maintained sources and regenerate `feeds/` / `cache/` rather than hand-editing generated output.
 - One broken source must not prevent unrelated feeds from updating.

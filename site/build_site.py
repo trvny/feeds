@@ -374,8 +374,8 @@ def build_index(feeds: list[dict], base: str) -> str:
     autodiscovery = render_autodiscovery(feeds, base)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     desc = (
-        f"{count} self-updating Atom feeds for sites that don't offer a usable "
-        "native feed — news, music, automotive, gaming and more, regenerated every 2 hours."
+        f"{count} self-updating, enhanced Atom/RSS feeds built from native feeds, APIs "
+        "and the web, regenerated every 2 hours."
     )
     schema = json.dumps(
         {
@@ -622,8 +622,8 @@ def build_llms_txt(feeds: list[dict], base: str) -> str:
     lines = [
         "# Feeds",
         "",
-        f"> Self-updating Atom/RSS feed directory: {count} feeds for sites that "
-        "don't offer a usable native feed, regenerated every 2 hours.",
+        f"> Self-updating, enhanced Atom/RSS feed directory: {count} feeds built from "
+        "native feeds, APIs and the web, regenerated every 2 hours.",
         "",
         "## Resources",
         "",

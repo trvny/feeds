@@ -1,6 +1,6 @@
 # Feedseek internals
 
-Feedseek turns native feeds, public APIs and carefully selected web pages into stable RSS/Atom output. The public README stays focused on using the project; implementation details live here.
+Feedseek turns native feeds, public APIs and carefully selected web pages into stable, enriched RSS/Atom output plus JSON Feed 1.1 sidecars. Native feeds are treated as upstream material rather than an automatic final form: the pipeline may normalize, repair or enrich them when that improves fidelity, stability or interoperability. The public README stays focused on using the project; implementation details live here.
 
 ## Pipeline
 
@@ -20,7 +20,7 @@ fetch / parse / normalize / deduplicate
 
 The defaults are intentionally conservative:
 
-- prefer a usable native RSS/Atom feed before scraping;
+- prefer consuming a reliable native RSS/Atom feed over scraping HTML, while still normalizing or enriching the published output when useful;
 - isolate source failures so one broken site does not block unrelated feeds;
 - never replace the last good output with an empty result after a failed fetch;
 - keep entry identity stable and hash-gate `updated` timestamps so unchanged items do not churn;
