@@ -168,12 +168,10 @@
       inputSchema: { type: "object", properties: {}, additionalProperties: false },
       annotations: { readOnlyHint: false, untrustedContentHint: false },
       execute() {
+        const source = text(document.querySelector("#chips .chip.on")) || "All";
+        if (refresh.disabled) return { started: false, alreadyRunning: true, source };
         refresh.click();
-        return {
-          started: true,
-          status: text(document.querySelector("#count")),
-          source: text(document.querySelector("#chips .chip.on")) || "All",
-        };
+        return { started: true, alreadyRunning: false, source };
       },
     });
 
@@ -189,7 +187,7 @@
       },
       annotations: { readOnlyHint: false, untrustedContentHint: true },
       execute({ url }) {
-        const wanted = String(url ?? "");
+        const wanted = String(url ?? "").trim();
         const anchor = [...document.querySelectorAll("#list a.item")]
           .find((item) => item.href === wanted);
         if (!anchor) return { ok: false, error: "Article is not visible in the current Reader view." };

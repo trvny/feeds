@@ -674,6 +674,7 @@ def build_llms_txt(feeds: list[dict], base: str) -> str:
 
 
 def copy_reader_bundle() -> None:
+    """Copy the Reader after root site assets have been assembled."""
     reader_out = OUT_DIR / "reader"
     reader_out.mkdir(exist_ok=True)
     for source, target in (
