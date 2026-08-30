@@ -89,9 +89,10 @@ def _listing_total(data: dict) -> int | None:
     if raw_total is None:
         return None
     try:
-        return int(raw_total)
+        total = int(raw_total)
     except (TypeError, ValueError):
         return None
+    return total if total >= 0 else None
 
 
 def _listing_entry(item, *, label: str, category: str) -> dict | None:
@@ -139,6 +140,8 @@ def parse_listing(html: str, *, label: str, category: str) -> tuple[list[dict], 
         for item in data["item"]
         if (entry := _listing_entry(item, label=label, category=category)) is not None
     ]
+    if total < len(entries):
+        return None
     return entries, total
 
 
@@ -170,6 +173,7 @@ def _collect_source(
     collected: list[dict] = []
     seen: set[str] = set()
     page = 1
+    advertised_total: int | None = None
     total_pages: int | None = None
     reached_known = False
 
@@ -184,6 +188,7 @@ def _collect_source(
             return []
         page_entries, total = parsed
         if total_pages is None:
+            advertised_total = total
             total_pages = max(1, math.ceil(total / PAGE_SIZE)) if total else 1
 
         reached_known = _append_fresh_entries(
@@ -193,7 +198,7 @@ def _collect_source(
             collected=collected,
         )
         if not page_entries:
-            if total > 0:
+            if advertised_total and advertised_total > 0:
                 multi_rss.logger.warning(
                     "[%s] empty page %d while source still advertises entries; discarding partial batch",
                     label,
@@ -233,7 +238,7 @@ def collect_tencent(known_links: set[str]) -> list[dict]:
 
 
 def main(full: bool = False) -> bool:
-    """Generate the combined Tencent Atom feed."""
+    """Generate the combined Tencent Cloud Atom feed."""
     return multi_rss.run(
         feed_name=FEED_NAME,
         title=FEED_TITLE,
