@@ -86,11 +86,13 @@ def _detail_url(category: str, news_id: str) -> str:
 def _listing_total(data: dict) -> int | None:
     """Return Tencent's advertised total, rejecting malformed metadata."""
     raw_total = data.get("num")
-    if raw_total is None:
+    if isinstance(raw_total, bool):
         return None
-    try:
+    if isinstance(raw_total, int):
+        total = raw_total
+    elif isinstance(raw_total, str) and re.fullmatch(r"[+-]?\d+", raw_total.strip()):
         total = int(raw_total)
-    except (TypeError, ValueError):
+    else:
         return None
     return total if total >= 0 else None
 
