@@ -214,7 +214,7 @@ def validate_json_sidecar(path: Path, *, expected_count: int | None = None) -> d
         return _result(path.name, "JSON_MISSING", "JSON Feed sidecar is missing")
     try:
         doc = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         return _json_error(path, f"JSON parse/read error: {exc}")
     return _validate_json_document(path, doc, expected_count=expected_count)
 

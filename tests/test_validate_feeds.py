@@ -83,6 +83,16 @@ class JsonFeedContractTests(unittest.TestCase):
         result = validate_json_sidecar(self.write_feed(doc), expected_count=1)
         self.assertEqual(result["status"], "OK")
 
+    def test_non_utf8_json_is_reported_as_quality_error(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        path = Path(tmp.name) / "feed_demo.json"
+        path.write_bytes(b"\xff\xfe")
+
+        result = validate_json_sidecar(path, expected_count=1)
+        self.assertEqual(result["status"], "JSON_ERROR")
+        self.assertIn("parse/read error", result["message"])
+
 
 if __name__ == "__main__":
     unittest.main()

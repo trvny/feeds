@@ -203,7 +203,11 @@ jobs:
             --remote
 
       - name: Commit and push successful updates
-        if: always() && github.ref == 'refs/heads/main'
+        if: >-
+          always() &&
+          !cancelled() &&
+          github.ref == 'refs/heads/main' &&
+          steps.validate.outcome == 'success'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
@@ -223,6 +227,6 @@ jobs:
         run: |
           if [ "$GENERATE_OUTCOME" != "success" ] || \
              [ "$VALIDATE_OUTCOME" != "success" ]; then
-            echo "Feed generation or validation reported failures; successful partial updates were still published."
+            echo "Feed generation or validation reported failures; updates publish only after final validation passes."
             exit 1
           fi

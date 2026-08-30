@@ -9,6 +9,7 @@ import subprocess
 import sys
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
@@ -39,10 +40,63 @@ class GeneratorTimeoutTests(unittest.TestCase):
 
     def test_a_generator_that_returns_in_time_is_unaffected(self):
         done = subprocess.CompletedProcess(args=["python"], returncode=0, stdout="", stderr="")
-        with mock.patch.object(run_all_feeds.subprocess, "run", return_value=done) as run:
+        with (
+            mock.patch.object(run_all_feeds.subprocess, "run", return_value=done) as run,
+            mock.patch.object(run_all_feeds, "_feed_pair_is_valid", return_value=True),
+        ):
             self.assertTrue(run_all_feeds.run_feed("reuters", self.config()))
         # The timeout must actually be passed, or the guard is decorative.
         self.assertEqual(run.call_args.kwargs["timeout"], run_all_feeds.GENERATOR_TIMEOUT)
+
+    def test_timeout_restores_both_artifacts_after_partial_child_write(self):
+        with TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            xml = directory / "feed_reuters.xml"
+            sidecar = directory / "feed_reuters.json"
+            xml.write_text("old xml", encoding="utf-8")
+            sidecar.write_text("old json", encoding="utf-8")
+
+            def partial_then_timeout(*args, **kwargs):
+                xml.write_text("new xml", encoding="utf-8")
+                raise subprocess.TimeoutExpired(cmd=["python"], timeout=1)
+
+            with (
+                mock.patch.object(run_all_feeds, "FEEDS_DIR", directory),
+                mock.patch.object(
+                    run_all_feeds.subprocess, "run", side_effect=partial_then_timeout
+                ),
+            ):
+                self.assertFalse(run_all_feeds.run_feed("reuters", self.config()))
+
+            self.assertEqual(xml.read_text(encoding="utf-8"), "old xml")
+            self.assertEqual(sidecar.read_text(encoding="utf-8"), "old json")
+
+    def test_success_with_invalid_pair_is_rolled_back(self):
+        with TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            xml = directory / "feed_reuters.xml"
+            sidecar = directory / "feed_reuters.json"
+            xml.write_text("old xml", encoding="utf-8")
+            sidecar.write_text("old json", encoding="utf-8")
+
+            def invalid_success(*args, **kwargs):
+                xml.write_text(
+                    '<feed xmlns="http://www.w3.org/2005/Atom"><entry><id>x</id></entry></feed>',
+                    encoding="utf-8",
+                )
+                sidecar.write_text("not json", encoding="utf-8")
+                return subprocess.CompletedProcess(
+                    args=["python"], returncode=0, stdout="", stderr=""
+                )
+
+            with (
+                mock.patch.object(run_all_feeds, "FEEDS_DIR", directory),
+                mock.patch.object(run_all_feeds.subprocess, "run", side_effect=invalid_success),
+            ):
+                self.assertFalse(run_all_feeds.run_feed("reuters", self.config()))
+
+            self.assertEqual(xml.read_text(encoding="utf-8"), "old xml")
+            self.assertEqual(sidecar.read_text(encoding="utf-8"), "old json")
 
 
 if __name__ == "__main__":

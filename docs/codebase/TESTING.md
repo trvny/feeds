@@ -19,7 +19,7 @@ No coverage command is configured.
 
 ### 2) Test Layout
 
-- Python tests are centralized in `tests/` and named `test_*.py`; the repository currently contains 55 such files.
+- Python tests are centralized in `tests/` and named `test_*.py`; the repository currently contains 56 such files.
 - Reader tests live under `site/test/`; Worker tests live under `feeds-proxy/test/`; both use `*.test.js`.
 - There is no shared Python fixture/bootstrap file. Individual tests adjust `sys.path` or patch dependencies when needed.
 - CI runs the complete Python suite before generation in `.github/workflows/update-feeds.yml`; reader and Worker checks have separate path-filtered workflows.
@@ -44,7 +44,7 @@ No coverage command is configured.
 
 - Coverage tool + threshold: none configured.
 - Current reported coverage: not measured by repository CI.
-- Quality signals: 55 Python test files, dedicated reader/Worker tests, Ruff/MegaLinter and CodeQL workflows, plus feed artifact validation after generation.
+- Quality signals: 56 Python test files, dedicated reader/Worker tests, Ruff/MegaLinter and CodeQL workflows, plus feed artifact validation after generation.
 - Known gap: not every one of the 98 registered source adapters has a dedicated source-specific test file; shared invariants carry much of the regression protection.
 - XML and JSON Feed 1.1 are both publication-gated; source-dependent richness remains intentionally outside the universal validator.
 
