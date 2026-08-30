@@ -2,7 +2,7 @@ name: Kanarek free review
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
     inputs:
       pr_number:
@@ -17,12 +17,6 @@ on:
         description: Base SHA captured for the review
         required: true
         type: string
-      provider:
-        description: Review provider for manual runs
-        required: true
-        default: openrouter
-        type: choice
-        options: [openrouter, orca]
 
 permissions: {}
 
@@ -31,57 +25,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  openrouter:
+  review:
     if: >-
       ${{
-        ((github.event_name == 'workflow_dispatch' && inputs.provider == 'openrouter') ||
-          (github.event_name == 'pull_request' && github.event.action == 'opened')) &&
-        (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft) &&
-        (github.event_name == 'workflow_dispatch' ||
+        github.event_name == 'workflow_dispatch' ||
+        (!github.event.pull_request.draft &&
           github.event.pull_request.head.repo.full_name == github.repository)
       }}
     permissions:
       actions: read
       contents: read
       pull-requests: write
-    uses: trvny/trvny/.github/workflows/kanarek-review-openrouter-worker.lock.yml@main
+    uses: trvny/trvny/.github/workflows/kanarek-review-router-worker.lock.yml@main
     with:
       pr_number: ${{ format('{0}', github.event.pull_request.number || inputs.pr_number) }}
       head_sha: ${{ github.event.pull_request.head.sha || inputs.head_sha }}
       base_sha: ${{ github.event.pull_request.base.sha || inputs.base_sha }}
     secrets:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-      COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  orca:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.provider == 'orca' }}
-    permissions:
-      actions: read
-      contents: read
-      pull-requests: write
-    uses: trvny/trvny/.github/workflows/kanarek-review-worker.lock.yml@main
-    with:
-      pr_number: ${{ format('{0}', inputs.pr_number) }}
-      head_sha: ${{ inputs.head_sha }}
-      base_sha: ${{ inputs.base_sha }}
-    secrets:
-      ORCAROUTER_API_KEY: ${{ secrets.ORCAROUTER_API_KEY }}
-      COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  aihubmix-glm:
-    if: >-
-      ${{
-        github.event_name == 'pull_request' && github.event.action == 'synchronize' &&
-        !github.event.pull_request.draft &&
-        github.event.pull_request.head.repo.full_name == github.repository
-      }}
-    permissions:
-      actions: read
-      contents: read
-      pull-requests: write
-    uses: trvny/trvny/.github/workflows/kanarek-review-aihubmix-worker.lock.yml@main
-    with:
-      pr_number: ${{ format('{0}', github.event.pull_request.number) }}
-      head_sha: ${{ github.event.pull_request.head.sha }}
-      base_sha: ${{ github.event.pull_request.base.sha }}
-    secrets:
-      AIHUBMIX_API_KEY: ${{ secrets.AIHUBMIX_API_KEY }}
       COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
