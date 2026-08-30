@@ -111,11 +111,11 @@ def _repost_metadata(response: dict) -> tuple[int, int, int] | None:
     page = response.get("page")
     page_size = response.get("pageSize")
     total = response.get("totalCount")
-    if not isinstance(page, int) or page < 0:
+    if isinstance(page, bool) or not isinstance(page, int) or page < 0:
         return None
-    if not isinstance(page_size, int) or page_size < 0:
+    if isinstance(page_size, bool) or not isinstance(page_size, int) or page_size < 0:
         return None
-    if not isinstance(total, int) or total < 0:
+    if isinstance(total, bool) or not isinstance(total, int) or total < 0:
         return None
     return page, page_size, total
 
@@ -123,12 +123,20 @@ def _repost_metadata(response: dict) -> tuple[int, int, int] | None:
 def _repost_tokens(response: dict) -> dict[int, str]:
     """Return validated pagination tokens keyed by destination page."""
     tokens: dict[int, str] = {}
-    for record in response.get("pagingTokens", []):
+    raw_tokens = response.get("pagingTokens")
+    if not isinstance(raw_tokens, list):
+        return tokens
+    for record in raw_tokens:
         if not isinstance(record, dict):
             continue
         page = record.get("page")
         token = record.get("token")
-        if isinstance(page, int) and isinstance(token, str) and token:
+        if (
+            isinstance(page, int)
+            and not isinstance(page, bool)
+            and isinstance(token, str)
+            and token
+        ):
             tokens[page] = token
     return tokens
 
@@ -212,6 +220,9 @@ def collect_repost(known_links: set[str]) -> list[dict]:
     """Collect re:Post pages until cached history or the initial-history cap."""
     collected: list[dict] = []
     seen: set[str] = set()
+    known_repost_links = {
+        link for link in known_links if link.startswith(f"{REPOST_URL}/")
+    }
     url = REPOST_URL
     page_no = 1
     reached_known = False
@@ -235,7 +246,7 @@ def collect_repost(known_links: set[str]) -> list[dict]:
         latest_meta = parsed
         reached_known = _append_repost_entries(
             parsed["entries"],
-            known_links=known_links,
+            known_links=known_repost_links,
             seen=seen,
             collected=collected,
         )
@@ -251,7 +262,9 @@ def collect_repost(known_links: set[str]) -> list[dict]:
         page_no += 1
         url = next_url
 
-    if _repost_history_incomplete(known_links, reached_known, page_no, latest_meta):
+    if _repost_history_incomplete(
+        known_repost_links, reached_known, page_no, latest_meta
+    ):
         multi_rss.logger.warning(
             "[AWS re:Post Articles] history boundary exceeded safety cap; discarding partial batch"
         )

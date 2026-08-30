@@ -8,14 +8,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 import aws  # pylint: disable=wrong-import-position
 
+_UNSET = object()
 
-def repost_page(page=1, total=24, entries=None, tokens=None):
+
+def repost_page(page=1, total=24, entries=None, tokens=_UNSET, page_size=12):
     entries = entries or []
-    tokens = tokens or []
+    if tokens is _UNSET:
+        tokens = []
     response = {
         "totalCount": total,
         "nextToken": "next",
-        "pageSize": 12,
+        "pageSize": page_size,
         "page": page,
         "pagingTokens": tokens,
         "articles": entries,
@@ -87,6 +90,14 @@ class AwsFeedTests(unittest.TestCase):
             aws.parse_repost_page('<script id="__NEXT_DATA__">not json</script>')
         )
 
+    def test_repost_rejects_boolean_metadata_and_tolerates_null_tokens(self):
+        self.assertIsNone(aws.parse_repost_page(repost_page(page=True)))
+        self.assertIsNone(aws.parse_repost_page(repost_page(page_size=False)))
+        self.assertIsNone(aws.parse_repost_page(repost_page(total=True)))
+        parsed = aws.parse_repost_page(repost_page(tokens=None))
+        self.assertIsNotNone(parsed)
+        self.assertEqual(parsed["tokens"], {})
+
     def test_repost_paginates_until_known_history(self):
         first = {
             "id": "AR1",
@@ -136,6 +147,27 @@ class AwsFeedTests(unittest.TestCase):
             entries = aws.collect_repost(set())
         self.assertEqual([entry["title"] for entry in entries], ["First"])
         get_html.assert_called_once_with(aws.REPOST_URL)
+
+    def test_repost_bootstraps_with_only_unrelated_cached_links(self):
+        item = {
+            "id": "AR1",
+            "slug": "first",
+            "title": "First",
+            "description": "one",
+            "language": "en",
+            "createdAt": "2026-08-30T10:00:00Z",
+        }
+        cursor = f"page-{2}"
+        html = repost_page(
+            1, total=100, entries=[item], tokens=[{"page": 2, "token": cursor}]
+        )
+        unrelated = {"https://aws.amazon.com/blogs/aws/example"}
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 1),
+            patch.object(aws.multi_rss, "get_html", return_value=html),
+        ):
+            entries = aws.collect_repost(unrelated)
+        self.assertEqual([entry["title"] for entry in entries], ["First"])
 
     def test_repost_discards_partial_batch_on_later_failure(self):
         first = {
