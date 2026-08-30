@@ -400,6 +400,80 @@ class AwsFeedTests(unittest.TestCase):
         self.assertNotIn(aws.REPOST_CURSOR_KEY, state)
         self.assertEqual(get_html.call_count, 4)
 
+    def test_repost_dead_cursor_restarts_from_head_with_original_boundary(self):
+        head = {
+            "id": "ARH",
+            "slug": "known-head",
+            "title": "Known head",
+            "description": "known",
+            "language": "en",
+            "createdAt": "2026-08-30T12:00:00Z",
+        }
+        missing = {
+            "id": "AR6",
+            "slug": "missing-six",
+            "title": "Missing six",
+            "description": "missing",
+            "language": "en",
+            "createdAt": "2026-08-24T10:00:00Z",
+        }
+        old = {
+            "id": "AR10",
+            "slug": "old-ten",
+            "title": "Old ten",
+            "description": "old",
+            "language": "en",
+            "createdAt": "2026-08-20T10:00:00Z",
+        }
+        head_link = "https://repost.aws/articles/ARH/known-head"
+        old_link = "https://repost.aws/articles/AR10/old-ten"
+        boundary_key = f"{aws.REPOST_CURSOR_KEY}_boundary"
+        state = {
+            aws.REPOST_CURSOR_KEY: {
+                "page": 5,
+                "token": "dead-5",
+                "failures": 1,
+            },
+            boundary_key: [old_link],
+        }
+        head_html = repost_page(1, total=120, entries=[head])
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 2),
+            patch.object(aws.multi_rss, "get_html", side_effect=[head_html, None]),
+        ):
+            self.assertEqual(aws.collect_repost({head_link, old_link}, state), [])
+        self.assertNotIn(aws.REPOST_CURSOR_KEY, state)
+        self.assertEqual(state[boundary_key], [old_link])
+
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 4),
+            patch.object(
+                aws.multi_rss,
+                "get_html",
+                side_effect=[
+                    head_html,
+                    repost_page(
+                        1,
+                        total=120,
+                        entries=[head],
+                        tokens=[{"page": 2, "token": "restart-2"}],
+                    ),
+                    repost_page(
+                        2,
+                        total=120,
+                        entries=[missing],
+                        tokens=[{"page": 3, "token": "restart-3"}],
+                    ),
+                    repost_page(3, total=120, entries=[old]),
+                ],
+            ) as get_html,
+        ):
+            entries = aws.collect_repost({head_link, old_link}, state)
+        self.assertEqual([entry["title"] for entry in entries], ["Missing six"])
+        self.assertEqual(get_html.call_count, 4)
+        self.assertNotIn(aws.REPOST_CURSOR_KEY, state)
+        self.assertNotIn(boundary_key, state)
+
     def test_repost_later_failure_tracks_the_page_that_failed(self):
         head = {
             "id": "ARH",

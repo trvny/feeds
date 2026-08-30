@@ -267,9 +267,15 @@ def _store_repost_boundary(
     cache_state[_repost_boundary_key(cursor_key)] = sorted(boundary_links)
 
 
-def _clear_repost_cursor(cache_state: dict, *, key: str = REPOST_CURSOR_KEY) -> None:
+def _clear_repost_cursor(
+    cache_state: dict,
+    *,
+    key: str = REPOST_CURSOR_KEY,
+    preserve_boundary: bool = False,
+) -> None:
     cache_state.pop(key, None)
-    cache_state.pop(_repost_boundary_key(key), None)
+    if not preserve_boundary:
+        cache_state.pop(_repost_boundary_key(key), None)
 
 
 def _note_repost_cursor_failure(
@@ -279,7 +285,16 @@ def _note_repost_cursor_failure(
     page, token, failures = cursor
     failures += 1
     if failures >= REPOST_CURSOR_FAILURE_LIMIT:
-        _clear_repost_cursor(context.cache_state, key=context.cursor_key)
+        _store_repost_boundary(
+            context.cache_state,
+            context.cursor_key,
+            context.boundary_links,
+        )
+        _clear_repost_cursor(
+            context.cache_state,
+            key=context.cursor_key,
+            preserve_boundary=True,
+        )
         multi_rss.logger.warning(
             "[AWS re:Post Articles] saved page %d cursor failed repeatedly; resetting",
             page,
@@ -613,7 +628,7 @@ def _collect_repost_freshness(
 def _collect_repost_initial(context: _RepostContext) -> list[dict]:
     cursor_key = REPOST_FRESH_CURSOR_KEY if context.known_links else REPOST_CURSOR_KEY
     entries, _used = _collect_repost_window(
-        context.with_cursor(cursor_key),
+        _resume_repost_context(context, cursor_key),
         budget=MAX_REPOST_PAGES,
     )
     return entries or []
@@ -646,8 +661,9 @@ def _collect_repost_incremental(context: _RepostContext) -> list[dict]:
     if not fresh_complete:
         return fresh
     archive_cursor = _repost_cursor(context.cache_state)
+    archive_boundary = _load_repost_boundary(context.cache_state, REPOST_CURSOR_KEY)
     remaining = max(0, MAX_REPOST_PAGES - used)
-    if archive_cursor is None or remaining <= 0:
+    if remaining <= 0 or (archive_cursor is None and archive_boundary is None):
         return fresh
     archive_context = _resume_repost_context(context, REPOST_CURSOR_KEY)
     archive, _used = _collect_repost_window(
@@ -664,7 +680,11 @@ def collect_repost(known_links: set[str], cache_state: dict) -> list[dict]:
     context = _RepostContext(repost_links, repost_links, set(), cache_state)
     archive_cursor = _repost_cursor(cache_state)
     fresh_cursor = _repost_cursor(cache_state, key=REPOST_FRESH_CURSOR_KEY)
+    archive_boundary = _load_repost_boundary(cache_state, REPOST_CURSOR_KEY)
+    fresh_boundary = _load_repost_boundary(cache_state, REPOST_FRESH_CURSOR_KEY)
     if archive_cursor is None and fresh_cursor is None:
+        if archive_boundary is not None or fresh_boundary is not None:
+            return _collect_repost_incremental(context)
         return _collect_repost_initial(context)
     if archive_cursor is not None and not repost_links and fresh_cursor is None:
         return _collect_repost_bootstrap_resume(context, archive_cursor)
