@@ -91,7 +91,7 @@ def _listing_total(data: dict) -> int | None:
     if isinstance(raw_total, int):
         total = raw_total
     elif isinstance(raw_total, str) and re.fullmatch(r"[+-]?\d+", raw_total.strip()):
-        total = int(raw_total)
+        total = int(raw_total.strip())
     else:
         return None
     return total if total >= 0 else None
