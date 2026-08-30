@@ -68,7 +68,7 @@ def _repost_response(html: str) -> tuple[dict, BeautifulSoup] | None:
     try:
         payload = json.loads(script.string)
         response = payload["props"]["pageProps"]["response"]
-    except (json.JSONDecodeError, KeyError, TypeError):
+    except json.JSONDecodeError, KeyError, TypeError:
         return None
     if not isinstance(response, dict) or not isinstance(response.get("articles"), list):
         return None
@@ -157,6 +157,7 @@ def parse_repost_page(html: str) -> dict | None:
         "tokens": _repost_tokens(response),
     }
 
+
 def _repost_page_url(token: str) -> str:
     return f"{REPOST_URL}?{urlencode({'page': token, 'pageSize': 12})}"
 
@@ -220,13 +221,15 @@ def collect_repost(known_links: set[str]) -> list[dict]:
         html = multi_rss.get_html(url)
         if not html:
             multi_rss.logger.warning(
-                "[AWS re:Post Articles] page %d unavailable; discarding partial batch", page_no
+                "[AWS re:Post Articles] page %d unavailable; discarding partial batch",
+                page_no,
             )
             return []
         parsed = parse_repost_page(html)
         if parsed is None or parsed["page"] != page_no:
             multi_rss.logger.warning(
-                "[AWS re:Post Articles] page %d payload changed; discarding partial batch", page_no
+                "[AWS re:Post Articles] page %d payload changed; discarding partial batch",
+                page_no,
             )
             return []
         latest_meta = parsed
@@ -260,6 +263,7 @@ def collect_repost(known_links: set[str]) -> list[dict]:
     )
     return collected
 
+
 def parse_cli_release_dates(atom_xml: str) -> dict[str, tuple[datetime, str]]:
     """Map AWS CLI release versions to their GitHub release date and URL."""
     soup = BeautifulSoup(atom_xml, "xml")
@@ -269,7 +273,11 @@ def parse_cli_release_dates(atom_xml: str) -> dict[str, tuple[datetime, str]]:
         updated_el = entry.find("updated")
         link_el = entry.find("link", href=True)
         version = title_el.get_text(strip=True) if title_el else ""
-        date = multi_rss.parse_date(updated_el.get_text(strip=True)) if updated_el else None
+        date = (
+            multi_rss.parse_date(updated_el.get_text(strip=True))
+            if updated_el
+            else None
+        )
         link = str(link_el.get("href") or "").strip() if link_el else ""
         if re.fullmatch(r"2\.\d+\.\d+", version) and date is not None and link:
             releases[version] = (date, link)
@@ -328,7 +336,9 @@ def collect_cli_changelog(known_links: set[str]) -> list[dict]:
         return []
     releases = parse_cli_release_dates(releases_xml)
     entries = parse_cli_changelog(changelog, releases, known_links)
-    multi_rss.logger.info("[AWS CLI v2 Changelog] collected %d fresh releases", len(entries))
+    multi_rss.logger.info(
+        "[AWS CLI v2 Changelog] collected %d fresh releases", len(entries)
+    )
     return entries
 
 
@@ -349,5 +359,7 @@ def main(full: bool = False) -> bool:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the combined AWS Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)

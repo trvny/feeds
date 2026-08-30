@@ -37,6 +37,7 @@ def repost_page(page=1, total=24, entries=None, tokens=None):
 
 class AwsFeedTests(unittest.TestCase):
     """Regression coverage for the combined AWS feed."""
+
     def test_doc_sources_match_requested_surfaces(self):
         self.assertEqual(
             [url for _label, url in aws.doc_sources()],
@@ -74,28 +75,42 @@ class AwsFeedTests(unittest.TestCase):
         parsed = aws.parse_repost_page(repost_page(entries=[item], total=1))
         self.assertIsNotNone(parsed)
         entry = parsed["entries"][0]
-        self.assertEqual(entry["link"], "https://repost.aws/articles/AR123/a-useful-article")
+        self.assertEqual(
+            entry["link"], "https://repost.aws/articles/AR123/a-useful-article"
+        )
         self.assertEqual(entry["date"].isoformat(), "2026-08-29T03:21:02.634000+00:00")
         self.assertEqual(entry["source"], "AWS re:Post Articles")
 
     def test_repost_page_rejects_malformed_payload(self):
         self.assertIsNone(aws.parse_repost_page("<html></html>"))
-        self.assertIsNone(aws.parse_repost_page('<script id="__NEXT_DATA__">not json</script>'))
+        self.assertIsNone(
+            aws.parse_repost_page('<script id="__NEXT_DATA__">not json</script>')
+        )
 
     def test_repost_paginates_until_known_history(self):
         first = {
-            "id": "AR1", "slug": "first", "title": "First", "description": "one",
-            "language": "en", "createdAt": "2026-08-30T10:00:00Z",
+            "id": "AR1",
+            "slug": "first",
+            "title": "First",
+            "description": "one",
+            "language": "en",
+            "createdAt": "2026-08-30T10:00:00Z",
         }
         second = {
-            "id": "AR2", "slug": "second", "title": "Second", "description": "two",
-            "language": "en", "createdAt": "2026-08-29T10:00:00Z",
+            "id": "AR2",
+            "slug": "second",
+            "title": "Second",
+            "description": "two",
+            "language": "en",
+            "createdAt": "2026-08-29T10:00:00Z",
         }
         cursor = f"page-two-{2}"
         html1 = repost_page(1, entries=[first], tokens=[{"page": 2, "token": cursor}])
         html2 = repost_page(2, entries=[second], tokens=[])
         known = {"https://repost.aws/articles/AR2/second"}
-        with patch.object(aws.multi_rss, "get_html", side_effect=[html1, html2]) as get_html:
+        with patch.object(
+            aws.multi_rss, "get_html", side_effect=[html1, html2]
+        ) as get_html:
             entries = aws.collect_repost(known)
         self.assertEqual([entry["title"] for entry in entries], ["First"])
         self.assertEqual(get_html.call_count, 2)
@@ -103,11 +118,17 @@ class AwsFeedTests(unittest.TestCase):
 
     def test_repost_initial_window_stops_at_safety_cap(self):
         item = {
-            "id": "AR1", "slug": "first", "title": "First", "description": "one",
-            "language": "en", "createdAt": "2026-08-30T10:00:00Z",
+            "id": "AR1",
+            "slug": "first",
+            "title": "First",
+            "description": "one",
+            "language": "en",
+            "createdAt": "2026-08-30T10:00:00Z",
         }
         cursor = f"page-{2}"
-        html = repost_page(1, total=100, entries=[item], tokens=[{"page": 2, "token": cursor}])
+        html = repost_page(
+            1, total=100, entries=[item], tokens=[{"page": 2, "token": cursor}]
+        )
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 1),
             patch.object(aws.multi_rss, "get_html", return_value=html) as get_html,
@@ -118,8 +139,12 @@ class AwsFeedTests(unittest.TestCase):
 
     def test_repost_discards_partial_batch_on_later_failure(self):
         first = {
-            "id": "AR1", "slug": "first", "title": "First", "description": "one",
-            "language": "en", "createdAt": "2026-08-30T10:00:00Z",
+            "id": "AR1",
+            "slug": "first",
+            "title": "First",
+            "description": "one",
+            "language": "en",
+            "createdAt": "2026-08-30T10:00:00Z",
         }
         cursor = f"page-{2}"
         html1 = repost_page(1, entries=[first], tokens=[{"page": 2, "token": cursor}])
