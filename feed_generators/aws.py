@@ -6,6 +6,7 @@ import argparse
 import json
 import re
 import sys
+from datetime import datetime
 from urllib.parse import urlencode
 
 import multi_rss
@@ -74,58 +75,130 @@ def _repost_response(html: str) -> tuple[dict, BeautifulSoup] | None:
     return response, soup
 
 
-def parse_repost_page(html: str) -> dict | None:
-    """Parse one server-rendered AWS re:Post article listing page."""
-    parsed = _repost_response(html)
-    if parsed is None:
-        return None
-    response, soup = parsed
+def _repost_links(soup: BeautifulSoup) -> dict[str, str]:
+    """Map re:Post article ids to their canonical server-rendered URLs."""
     links: dict[str, str] = {}
     for anchor in soup.select("a[href^='/articles/']"):
         href = str(anchor.get("href") or "").split("?", 1)[0].split("#", 1)[0]
         parts = href.split("/")
         if len(parts) >= 4 and parts[2]:
             links.setdefault(parts[2], f"https://repost.aws{href}")
+    return links
 
-    entries = []
-    for item in response["articles"]:
-        if not isinstance(item, dict) or item.get("language") not in (None, "en"):
-            continue
-        article_id = str(item.get("id") or "").strip()
-        title = sanitize_xml(str(item.get("title") or "").strip()).strip()
-        link = links.get(article_id)
-        date = multi_rss.parse_date(item.get("createdAt"))
-        if not article_id or not title or not link or date is None:
-            continue
-        description = sanitize_xml(str(item.get("description") or "").strip()).strip()
-        entries.append(
-            {
-                "title": title[:300],
-                "link": link,
-                "date": date,
-                "description": (description or title)[:2000],
-                "source": "AWS re:Post Articles",
-            }
-        )
 
-    page = response.get("page")
-    page_size = response.get("pageSize")
-    total = response.get("totalCount")
-    if not all(isinstance(value, int) and value >= 0 for value in (page, page_size, total)):
+def _repost_entry(item, links: dict[str, str]) -> dict | None:
+    """Normalize one English re:Post article record."""
+    if not isinstance(item, dict) or item.get("language") not in (None, "en"):
         return None
-    tokens = {
-        record.get("page"): record.get("token")
-        for record in response.get("pagingTokens", [])
-        if isinstance(record, dict)
-        and isinstance(record.get("page"), int)
-        and isinstance(record.get("token"), str)
-        and record.get("token")
+    article_id = str(item.get("id") or "").strip()
+    title = sanitize_xml(str(item.get("title") or "").strip()).strip()
+    link = links.get(article_id)
+    date = multi_rss.parse_date(item.get("createdAt"))
+    if not article_id or not title or not link or date is None:
+        return None
+    description = sanitize_xml(str(item.get("description") or "").strip()).strip()
+    return {
+        "title": title[:300],
+        "link": link,
+        "date": date,
+        "description": (description or title)[:2000],
+        "source": "AWS re:Post Articles",
     }
-    return {"entries": entries, "page": page, "page_size": page_size, "total": total, "tokens": tokens}
 
+
+def _repost_metadata(response: dict) -> tuple[int, int, int] | None:
+    """Validate and return page number, page size, and advertised total."""
+    values = (response.get("page"), response.get("pageSize"), response.get("totalCount"))
+    if not all(isinstance(value, int) and value >= 0 for value in values):
+        return None
+    return values
+
+
+def _repost_tokens(response: dict) -> dict[int, str]:
+    """Return validated pagination tokens keyed by destination page."""
+    tokens: dict[int, str] = {}
+    for record in response.get("pagingTokens", []):
+        if not isinstance(record, dict):
+            continue
+        page = record.get("page")
+        token = record.get("token")
+        if isinstance(page, int) and isinstance(token, str) and token:
+            tokens[page] = token
+    return tokens
+
+
+def parse_repost_page(html: str) -> dict | None:
+    """Parse one server-rendered AWS re:Post article listing page."""
+    parsed = _repost_response(html)
+    if parsed is None:
+        return None
+    response, soup = parsed
+    metadata = _repost_metadata(response)
+    if metadata is None:
+        return None
+    page, page_size, total = metadata
+    links = _repost_links(soup)
+    entries = [
+        entry
+        for item in response["articles"]
+        if (entry := _repost_entry(item, links)) is not None
+    ]
+    return {
+        "entries": entries,
+        "page": page,
+        "page_size": page_size,
+        "total": total,
+        "tokens": _repost_tokens(response),
+    }
 
 def _repost_page_url(token: str) -> str:
     return f"{REPOST_URL}?{urlencode({'page': token, 'pageSize': 12})}"
+
+
+def _append_repost_entries(
+    entries: list[dict],
+    *,
+    known_links: set[str],
+    seen: set[str],
+    collected: list[dict],
+) -> bool:
+    """Append unseen re:Post entries and report whether cache history was reached."""
+    reached_known = False
+    for entry in entries:
+        link = entry["link"]
+        if link in known_links:
+            reached_known = True
+        elif link not in seen:
+            seen.add(link)
+            collected.append(entry)
+    return reached_known
+
+
+def _repost_page_complete(page_no: int, parsed: dict, reached_known: bool) -> bool:
+    """Return whether pagination can stop safely after this page."""
+    return (
+        reached_known
+        or page_no * parsed["page_size"] >= parsed["total"]
+        or page_no >= MAX_REPOST_PAGES
+    )
+
+
+def _next_repost_url(parsed: dict, page_no: int) -> str | None:
+    """Return the tokenized next-page URL, or None if the token is missing."""
+    token = parsed["tokens"].get(page_no + 1)
+    return _repost_page_url(token) if token else None
+
+
+def _repost_history_incomplete(
+    known_links: set[str], reached_known: bool, page_no: int, latest_meta: dict | None
+) -> bool:
+    """Detect a capped incremental run that failed to reach cached history."""
+    return bool(
+        known_links
+        and not reached_known
+        and latest_meta is not None
+        and page_no * latest_meta["page_size"] < latest_meta["total"]
+    )
 
 
 def collect_repost(known_links: set[str]) -> list[dict]:
@@ -140,48 +213,48 @@ def collect_repost(known_links: set[str]) -> list[dict]:
     while page_no <= MAX_REPOST_PAGES:
         html = multi_rss.get_html(url)
         if not html:
-            multi_rss.logger.warning("[AWS re:Post Articles] page %d unavailable; discarding partial batch", page_no)
+            multi_rss.logger.warning(
+                "[AWS re:Post Articles] page %d unavailable; discarding partial batch", page_no
+            )
             return []
         parsed = parse_repost_page(html)
         if parsed is None or parsed["page"] != page_no:
-            multi_rss.logger.warning("[AWS re:Post Articles] page %d payload changed; discarding partial batch", page_no)
+            multi_rss.logger.warning(
+                "[AWS re:Post Articles] page %d payload changed; discarding partial batch", page_no
+            )
             return []
         latest_meta = parsed
-        for entry in parsed["entries"]:
-            link = entry["link"]
-            if link in known_links:
-                reached_known = True
-                continue
-            if link not in seen:
-                seen.add(link)
-                collected.append(entry)
-        if (
-            reached_known
-            or page_no * parsed["page_size"] >= parsed["total"]
-            or page_no >= MAX_REPOST_PAGES
-        ):
+        reached_known = _append_repost_entries(
+            parsed["entries"],
+            known_links=known_links,
+            seen=seen,
+            collected=collected,
+        )
+        if _repost_page_complete(page_no, parsed, reached_known):
             break
-        next_page = page_no + 1
-        token = parsed["tokens"].get(next_page)
-        if not token:
-            multi_rss.logger.warning("[AWS re:Post Articles] missing token for page %d; discarding partial batch", next_page)
+        next_url = _next_repost_url(parsed, page_no)
+        if next_url is None:
+            multi_rss.logger.warning(
+                "[AWS re:Post Articles] missing token for page %d; discarding partial batch",
+                page_no + 1,
+            )
             return []
-        page_no = next_page
-        url = _repost_page_url(token)
+        page_no += 1
+        url = next_url
 
-    if (
-        known_links
-        and not reached_known
-        and latest_meta is not None
-        and page_no * latest_meta["page_size"] < latest_meta["total"]
-    ):
-        multi_rss.logger.warning("[AWS re:Post Articles] history boundary exceeded safety cap; discarding partial batch")
+    if _repost_history_incomplete(known_links, reached_known, page_no, latest_meta):
+        multi_rss.logger.warning(
+            "[AWS re:Post Articles] history boundary exceeded safety cap; discarding partial batch"
+        )
         return []
-    multi_rss.logger.info("[AWS re:Post Articles] collected %d fresh entries across %d page(s)", len(collected), page_no)
+    multi_rss.logger.info(
+        "[AWS re:Post Articles] collected %d fresh entries across %d page(s)",
+        len(collected),
+        page_no,
+    )
     return collected
 
-
-def parse_cli_release_dates(atom_xml: str) -> dict[str, tuple[object, str]]:
+def parse_cli_release_dates(atom_xml: str) -> dict[str, tuple[datetime, str]]:
     """Map AWS CLI release versions to their GitHub release date and URL."""
     soup = BeautifulSoup(atom_xml, "xml")
     releases = {}
@@ -212,7 +285,7 @@ def _clean_rst_summary(body: str, version: str) -> str:
 
 def parse_cli_changelog(
     changelog: str,
-    release_dates: dict[str, tuple[object, str]],
+    release_dates: dict[str, tuple[datetime, str]],
     known_links: set[str] | None = None,
 ) -> list[dict]:
     """Join v2 changelog sections with authoritative GitHub release dates."""
@@ -238,7 +311,6 @@ def parse_cli_changelog(
                 "source": "AWS CLI v2 Changelog",
             }
         )
-    entries.sort(key=lambda entry: entry["date"], reverse=True)
     return entries
 
 
