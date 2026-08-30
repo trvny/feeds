@@ -61,12 +61,13 @@ class CodeRabbitSaasTests(unittest.TestCase):
             patch.object(saas, "deserialize_entries", return_value=retired),
             patch.object(saas, "enrich_entries"),
             patch.object(saas, "save_cache") as save_cache,
-            patch.object(saas, "generate_atom_feed", return_value="empty-feed"),
+            patch.object(saas, "generate_atom_feed") as generate_atom_feed,
             patch.object(saas, "save_atom_feed") as save_atom_feed,
         ):
             self.assertTrue(saas.main())
         save_cache.assert_called_once_with(saas.FEED_NAME, [])
-        save_atom_feed.assert_called_once_with("empty-feed", saas.FEED_NAME)
+        generate_atom_feed.assert_not_called()
+        save_atom_feed.assert_not_called()
 
 
 if __name__ == "__main__":

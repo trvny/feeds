@@ -724,7 +724,14 @@ def main(full: bool = False) -> bool:
         + collect_xweather_changelogs()
         + collect_dated_anchor_sources()
     )
-    if not new_entries and not cached and not retired_entries_removed:
+    if not new_entries and not cached:
+        if retired_entries_removed:
+            logger.warning(
+                "Retired cache rows removed, but no active entries are available; "
+                "preserving the last good feed"
+            )
+            save_cache(FEED_NAME, [])
+            return True
         logger.error("No entries from any source; preserving the last good feed")
         return False
 
