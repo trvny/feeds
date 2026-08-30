@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-95 feedów · 759 źródeł
+97 feedów · 765 źródeł
 
 ## Spis grup
 
@@ -227,6 +227,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=claudepluginhub.com&sz=16) ClaudePluginHub — <https://claudepluginhub.com/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=openrouter.ai&sz=16) OpenRouter — <https://openrouter.ai/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.x-cmd.com&sz=16) x-cmd Blog — <https://www.x-cmd.com/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=graphify.com&sz=16) Graphify Blog — <https://graphify.com/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) Graphify Changelog — <https://github.com/Graphify-Labs/graphify/releases.atom>
 - ![](https://www.google.com/s2/favicons?domain=docs.litellm.ai&sz=16) LiteLLM Blog — <https://docs.litellm.ai/blog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) LiteLLM Releases — <https://github.com/BerriAI/litellm/releases.atom>
 - ![](https://www.google.com/s2/favicons?domain=glama.ai&sz=16) Glama Blog — <https://glama.ai/blog/rss.xml>
@@ -984,6 +986,11 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=news.mit.edu&sz=16) MIT Campus — <https://news.mit.edu/rss/campus>
 - ![](https://www.google.com/s2/favicons?domain=news.mit.edu&sz=16) MIT Latest — <https://news.mit.edu/rss/feed>
 
+### ![](https://www.google.com/s2/favicons?domain=www.moltbook.com&sz=16) Moltbook
+`moltbook` · [feed_moltbook.xml](../feeds/feed_moltbook.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.moltbook.com&sz=16) Moltbook Posts API — <https://www.moltbook.com/api/v1/posts?sort=new&limit=50>
+
 ### ![](https://www.google.com/s2/favicons?domain=old.reddit.com&sz=16) multireddit
 `multireddit` · [feed_multireddit.xml](../feeds/feed_multireddit.xml)
 
@@ -1107,6 +1114,13 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.biblegateway.com&sz=16) Biblegateway votd — <https://www.biblegateway.com/votd/get/?format=atom>
 - ![](https://www.google.com/s2/favicons?domain=theysaidso.com&sz=16) QOD — <https://theysaidso.com/qod/feed>
 - ![](https://www.google.com/s2/favicons?domain=quotes.rest&sz=16) VOD — <https://quotes.rest/bible/vod.json>
+
+### ![](https://www.google.com/s2/favicons?domain=www.uber.com&sz=16) Uber Newsroom
+`uber` · [feed_uber.xml](../feeds/feed_uber.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=www.uber.com&sz=16) Uber Blog PL — <https://www.uber.com/pl/pl/blog/>
+- ![](https://www.google.com/s2/favicons?domain=www.uber.com&sz=16) Uber Blog US — <https://www.uber.com/us/en/blog/>
+- ![](https://www.google.com/s2/favicons?domain=www.uber.com&sz=16) Uber Newsroom US — <https://www.uber.com/us/en/newsroom/>
 
 ### ![](https://www.google.com/s2/favicons?domain=ubuntu.com&sz=16) Ubuntu
 `ubuntu` · [feed_ubuntu.xml](../feeds/feed_ubuntu.xml)
