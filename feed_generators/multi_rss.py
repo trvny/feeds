@@ -300,6 +300,108 @@ def generate_atom_feed(
     return fg
 
 
+def _load_run_cache(feed_name, *, full=False, cache_filter=None, cache_transform=None):
+    """Load and optionally filter/transform cached feed entries."""
+    if full:
+        logger.info("Full reset requested; ignoring existing cache")
+        return {}, []
+    cache = load_cache(feed_name)
+    cached = deserialize_entries(cache.get("entries", []), date_field="date")
+    if cache_filter is not None:
+        before = len(cached)
+        cached = [entry for entry in cached if cache_filter(entry)]
+        if len(cached) != before:
+            logger.info("cache_filter dropped %d cached entries", before - len(cached))
+    if cache_transform is not None:
+        cached = [cache_transform(entry) for entry in cached]
+    return cache, cached
+
+
+def _sync_run_cache_state(cache_state, cache, *, full=False):
+    """Round-trip non-entry top-level cache bookkeeping into mutable state."""
+    if cache_state is None:
+        return
+    cache_state.clear()
+    if full:
+        return
+    cache_state.update(
+        {
+            key: value
+            for key, value in cache.items()
+            if key not in {"entries", "last_updated"}
+        }
+    )
+
+
+def _run_refresh_sources(sources, refresh_sources):
+    """Normalize native source refresh selection."""
+    sources = tuple(sources)
+    if refresh_sources is None:
+        return sources, {label for label, _, _ in sources}
+    return sources, set(refresh_sources)
+
+
+def _scrape_run_native_sources(
+    sources, refresh_sources, cached, known_links, *, keep_html=False
+):
+    """Collect native feeds, separating metadata refreshes from add-only items."""
+    cached_dates = {
+        normalize_link(entry["link"]): entry.get("date")
+        for entry in cached
+        if entry.get("link") and entry.get("date") is not None
+    }
+    refresh_articles = []
+    add_only_articles = []
+    for label, url, cap in sources:
+        logger.info("Scraping %s ...", label)
+        refreshing = label in refresh_sources
+        source_known_links = known_links
+        if refreshing:
+            source_known_links = known_links - {
+                entry["link"] for entry in cached if entry.get("source") == label
+            }
+        scraped = scrape_feed(
+            label,
+            url,
+            source_known_links,
+            cap=cap,
+            keep_html=keep_html,
+            cached_dates=cached_dates,
+        )
+        target = refresh_articles if refreshing else add_only_articles
+        target.extend(scraped)
+    return refresh_articles, add_only_articles
+
+
+def _scrape_run_extra_sources(extra_scrapers, known_links):
+    """Collect add-only custom sources while isolating scraper failures."""
+    articles = []
+    for scraper in extra_scrapers:
+        try:
+            articles.extend(scraper(known_links))
+        except Exception as exc:
+            logger.warning(
+                "Scraper %s failed: %s", getattr(scraper, "__name__", scraper), exc
+            )
+    return articles
+
+
+def _merge_run_entries(
+    refresh_articles, add_only_articles, cached, *, dedupe_title_field="title"
+):
+    """Merge native refreshes and add-only items into one normalized cache list."""
+    merged = merge_refreshed_entries(
+        refresh_articles, cached, id_field="link", date_field="date"
+    )
+    merged = merge_entries(
+        add_only_articles, merged, id_field="link", date_field="date"
+    )
+    for entry in merged:
+        entry.pop(SYNTHETIC_TITLE_FIELD, None)
+    merged = dedupe_entries(merged, title_field=dedupe_title_field)
+    return sort_posts_for_feed(merged, date_field="date")
+
+
 def run(
     *,
     feed_name,
@@ -333,91 +435,34 @@ def run(
     such as resumable pagination cursors. Set ``dedupe_title_field=None`` for
     sources whose stable URL is the only identity.
     """
-    cache = {}
-    if full:
-        logger.info("Full reset requested; ignoring existing cache")
-        cached = []
-    else:
-        cache = load_cache(feed_name)
-        cached = deserialize_entries(cache.get("entries", []), date_field="date")
-        if cache_filter is not None:
-            before = len(cached)
-            cached = [entry for entry in cached if cache_filter(entry)]
-            if len(cached) != before:
-                logger.info(
-                    "cache_filter dropped %d cached entries", before - len(cached)
-                )
-        if cache_transform is not None:
-            cached = [cache_transform(entry) for entry in cached]
-
-    if cache_state is not None:
-        cache_state.clear()
-        if not full:
-            cache_state.update(
-                {
-                    key: value
-                    for key, value in cache.items()
-                    if key not in {"entries", "last_updated"}
-                }
-            )
-
-    sources = tuple(sources)
-    if refresh_sources is None:
-        refresh_sources = {label for label, _, _ in sources}
-    else:
-        refresh_sources = set(refresh_sources)
-
+    cache, cached = _load_run_cache(
+        feed_name,
+        full=full,
+        cache_filter=cache_filter,
+        cache_transform=cache_transform,
+    )
+    _sync_run_cache_state(cache_state, cache, full=full)
+    sources, refresh_sources = _run_refresh_sources(sources, refresh_sources)
     known_links = {entry["link"] for entry in cached}
-    cached_dates = {
-        normalize_link(entry["link"]): entry.get("date")
-        for entry in cached
-        if entry.get("link") and entry.get("date") is not None
-    }
-    refresh_articles = []
-    add_only_articles = []
-    for label, url, cap in sources:
-        logger.info("Scraping %s ...", label)
-        source_known_links = known_links
-        refreshing = label in refresh_sources
-        if refreshing:
-            source_known_links = known_links - {
-                entry["link"] for entry in cached if entry.get("source") == label
-            }
-        scraped = scrape_feed(
-            label,
-            url,
-            source_known_links,
-            cap=cap,
-            keep_html=keep_html,
-            cached_dates=cached_dates,
-        )
-        if refreshing:
-            refresh_articles += scraped
-        else:
-            add_only_articles += scraped
-
-    for scraper in extra_scrapers:
-        try:
-            add_only_articles += scraper(known_links)
-        except Exception as exc:
-            logger.warning(
-                "Scraper %s failed: %s", getattr(scraper, "__name__", scraper), exc
-            )
+    refresh_articles, add_only_articles = _scrape_run_native_sources(
+        sources,
+        refresh_sources,
+        cached,
+        known_links,
+        keep_html=keep_html,
+    )
+    add_only_articles.extend(_scrape_run_extra_sources(extra_scrapers, known_links))
 
     if not refresh_articles and not add_only_articles and not cached:
         logger.warning("No articles collected; skipping write to avoid an empty feed")
         return False
 
-    merged = merge_refreshed_entries(
-        refresh_articles, cached, id_field="link", date_field="date"
+    merged = _merge_run_entries(
+        refresh_articles,
+        add_only_articles,
+        cached,
+        dedupe_title_field=dedupe_title_field,
     )
-    merged = merge_entries(
-        add_only_articles, merged, id_field="link", date_field="date"
-    )
-    for entry in merged:
-        entry.pop(SYNTHETIC_TITLE_FIELD, None)
-    merged = dedupe_entries(merged, title_field=dedupe_title_field)
-    merged = sort_posts_for_feed(merged, date_field="date")
 
     # Unconditional: a feed without an explicit per_source_cap used to fall back
     # to a plain recency slice, which is precisely where the starvation was worst
