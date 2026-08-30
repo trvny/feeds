@@ -47,7 +47,7 @@ def _find_entries(root: ET.Element) -> list[ET.Element]:
 def _parse_rss_date(text: str) -> datetime | None:
     try:
         return parsedate_to_datetime(text)
-    except ValueError, TypeError:
+    except (ValueError, TypeError):
         return None
 
 
