@@ -174,7 +174,7 @@ class AwsFeedTests(unittest.TestCase):
             entries = aws.collect_repost(unrelated, {})
         self.assertEqual([entry["title"] for entry in entries], ["First"])
 
-    def test_repost_discards_partial_batch_on_later_failure(self):
+    def test_repost_keeps_successful_pages_before_later_unavailable_failure(self):
         first = {
             "id": "AR1",
             "slug": "first",
@@ -185,8 +185,14 @@ class AwsFeedTests(unittest.TestCase):
         }
         cursor = f"page-{2}"
         html1 = repost_page(1, entries=[first], tokens=[{"page": 2, "token": cursor}])
+        state = {}
         with patch.object(aws.multi_rss, "get_html", side_effect=[html1, None]):
-            self.assertEqual(aws.collect_repost(set(), {}), [])
+            entries = aws.collect_repost(set(), state)
+        self.assertEqual([entry["title"] for entry in entries], ["First"])
+        self.assertEqual(
+            state[aws.REPOST_CURSOR_KEY],
+            {"page": 2, "token": cursor, "failures": 1},
+        )
 
     def test_repost_resumes_from_saved_cursor_with_hard_cap(self):
         head = {
@@ -395,11 +401,101 @@ class AwsFeedTests(unittest.TestCase):
                 ],
             ),
         ):
-            self.assertEqual(aws.collect_repost(known, state), [])
+            entries = aws.collect_repost(known, state)
+        self.assertEqual([entry["title"] for entry in entries], ["Archive five"])
         self.assertEqual(
             state[aws.REPOST_CURSOR_KEY],
             {"page": 6, "token": "archive-6", "failures": 1},
         )
+
+    def test_repost_saved_freshness_cursor_rescans_head_until_known_overlap(self):
+        fresh1 = {
+            "id": "AR1",
+            "slug": "fresh-one",
+            "title": "Fresh one",
+            "description": "one",
+            "language": "en",
+            "createdAt": "2026-08-30T13:00:00Z",
+        }
+        fresh2 = {
+            "id": "AR2",
+            "slug": "fresh-two",
+            "title": "Fresh two",
+            "description": "two",
+            "language": "en",
+            "createdAt": "2026-08-30T12:00:00Z",
+        }
+        seen3 = {
+            "id": "AR3",
+            "slug": "seen-three",
+            "title": "Seen three",
+            "description": "seen",
+            "language": "en",
+            "createdAt": "2026-08-30T11:00:00Z",
+        }
+        missing5 = {
+            "id": "AR5",
+            "slug": "missing-five",
+            "title": "Missing five",
+            "description": "missing",
+            "language": "en",
+            "createdAt": "2026-08-29T10:00:00Z",
+        }
+        old = "https://repost.aws/articles/AR10/old-ten"
+        seen = "https://repost.aws/articles/AR3/seen-three"
+        fresh_boundary_key = f"{aws.REPOST_FRESH_CURSOR_KEY}_boundary"
+        state = {
+            aws.REPOST_CURSOR_KEY: {"page": 8, "token": "archive-8"},
+            aws.REPOST_FRESH_CURSOR_KEY: {"page": 5, "token": "saved-fresh-5"},
+            fresh_boundary_key: [old],
+        }
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 4),
+            patch.object(
+                aws.multi_rss,
+                "get_html",
+                side_effect=[
+                    repost_page(
+                        1,
+                        total=120,
+                        entries=[fresh1],
+                        tokens=[{"page": 2, "token": "live-2"}],
+                    ),
+                    repost_page(
+                        2,
+                        total=120,
+                        entries=[fresh2],
+                        tokens=[{"page": 3, "token": "live-3"}],
+                    ),
+                    repost_page(
+                        3,
+                        total=120,
+                        entries=[seen3],
+                        tokens=[{"page": 4, "token": "live-4"}],
+                    ),
+                    repost_page(
+                        5,
+                        total=120,
+                        entries=[missing5],
+                        tokens=[{"page": 6, "token": "saved-fresh-6"}],
+                    ),
+                ],
+            ) as get_html,
+        ):
+            entries = aws.collect_repost({old, seen}, state)
+        self.assertEqual(
+            [entry["title"] for entry in entries],
+            ["Fresh one", "Fresh two", "Missing five"],
+        )
+        self.assertEqual(get_html.call_count, 4)
+        self.assertIn("page=live-2", get_html.call_args_list[1].args[0])
+        self.assertIn("page=live-3", get_html.call_args_list[2].args[0])
+        self.assertIn("page=saved-fresh-5", get_html.call_args_list[3].args[0])
+        self.assertEqual(
+            state[aws.REPOST_FRESH_CURSOR_KEY],
+            {"page": 6, "token": "saved-fresh-6"},
+        )
+        self.assertEqual(state[fresh_boundary_key], [old])
 
     def test_repost_scans_all_fresh_pages_before_archive_resume(self):
         fresh1 = {

@@ -434,6 +434,7 @@ def _collect_repost_window(
     page_no, url = _repost_window_start(cursor)
     requests_used = 0
     active_cursor = cursor
+    result: list[dict] | None = None
     while requests_used < budget:
         requests_used += 1
         parsed, failure = _fetch_repost_page(url, page_no)
@@ -444,7 +445,9 @@ def _collect_repost_window(
                 page_no,
                 failure or "changed",
             )
-            return None, requests_used
+            if failure == "unavailable" and collected:
+                result = collected
+            break
         if requests_used == 1:
             active_cursor = _healthy_repost_cursor(context, active_cursor)
         finished, next_cursor = _repost_page_continuation(
@@ -452,28 +455,27 @@ def _collect_repost_window(
         )
         if finished:
             _clear_repost_cursor(context.cache_state, key=context.cursor_key)
-            return collected, requests_used
+            result = collected
+            break
         if next_cursor is None:
             multi_rss.logger.warning(
                 "[AWS re:Post Articles] missing token for page %d", page_no + 1
             )
             _clear_repost_cursor(context.cache_state, key=context.cursor_key)
-            return None, requests_used
+            break
         if requests_used >= budget:
             _checkpoint_repost_cursor(context, next_cursor)
-            return collected, requests_used
+            result = collected
+            break
         page_no, token = next_cursor
         active_cursor = (page_no, token, 0)
         url = _repost_page_url(token)
-    return collected, requests_used
+    return result, requests_used
 
 
 def _fresh_cursor_from_head(
-    context: _RepostContext, head_next: tuple[int, str] | None
+    head_next: tuple[int, str] | None,
 ) -> tuple[int, str, int] | None:
-    saved = _repost_cursor(context.cache_state, key=REPOST_FRESH_CURSOR_KEY)
-    if saved is not None:
-        return saved
     if head_next is None:
         multi_rss.logger.warning(
             "[AWS re:Post Articles] missing token for fresh page 2"
@@ -483,30 +485,101 @@ def _fresh_cursor_from_head(
     return page, token, 0
 
 
-def _collect_repost_freshness(
+def _collect_repost_prefix_to_known(
+    context: _RepostContext, *, budget: int
+) -> tuple[list[dict] | None, bool, bool, int]:
+    """Rescan from the head until cached overlap safely reconnects a saved cursor."""
+    if budget <= 0:
+        return [], False, False, 0
+    collected: list[dict] = []
+    page_no = 1
+    url = REPOST_URL
+    requests_used = 0
+    reconnected = False
+    reached_boundary = False
+    result: list[dict] | None = collected
+    while requests_used < budget:
+        requests_used += 1
+        parsed, failure = _fetch_repost_page(url, page_no)
+        if parsed is None:
+            _log_repost_page_failure(page_no, failure or "changed")
+            if failure != "unavailable" or not collected:
+                result = None
+            break
+        links = {entry["link"] for entry in parsed["entries"]}
+        reached_boundary = bool(links & context.boundary_links)
+        reached_known = bool(links & context.known_links)
+        _append_repost_entries(parsed["entries"], context, collected)
+        if reached_boundary or page_no * parsed["page_size"] >= parsed["total"]:
+            reconnected = True
+            reached_boundary = True
+            break
+        if reached_known:
+            reconnected = True
+            break
+        next_cursor = _next_repost_cursor(parsed, page_no)
+        if next_cursor is None:
+            multi_rss.logger.warning(
+                "[AWS re:Post Articles] missing token for page %d", page_no + 1
+            )
+            result = None
+            break
+        page_no, token = next_cursor
+        url = _repost_page_url(token)
+    return result, reconnected, reached_boundary, requests_used
+
+
+def _resume_repost_freshness(
     context: _RepostContext,
+    saved_cursor: tuple[int, str, int],
     *,
     budget: int,
 ) -> tuple[list[dict] | None, bool, int]:
-    """Scan fresh pages from the head before any archive continuation."""
-    fresh_context = _resume_repost_context(context, REPOST_FRESH_CURSOR_KEY)
-    head = _collect_repost_head(fresh_context)
+    """Reconnect the current head to a persisted freshness continuation."""
+    prefix, reconnected, reached_boundary, used = _collect_repost_prefix_to_known(
+        context, budget=budget
+    )
+    if prefix is None:
+        return None, False, used
+    if reached_boundary:
+        _clear_repost_cursor(context.cache_state, key=REPOST_FRESH_CURSOR_KEY)
+        return prefix, True, used
+    if not reconnected or used >= budget:
+        return prefix, False, used
+    more, resumed_used = _collect_repost_window(
+        context,
+        budget=budget - used,
+        cursor=saved_cursor,
+    )
+    if more is not None:
+        prefix.extend(more)
+    complete = (
+        more is not None
+        and _repost_cursor(context.cache_state, key=REPOST_FRESH_CURSOR_KEY) is None
+    )
+    return prefix, complete, used + resumed_used
+
+
+def _start_repost_freshness(
+    context: _RepostContext, *, budget: int
+) -> tuple[list[dict] | None, bool, int]:
+    """Start a new bounded freshness scan from the listing head."""
+    head = _collect_repost_head(context)
     if head is None:
         return None, False, 1
     collected, finished, head_next = head
     if finished:
         _clear_repost_cursor(context.cache_state, key=REPOST_FRESH_CURSOR_KEY)
         return collected, True, 1
-    fresh_cursor = _fresh_cursor_from_head(fresh_context, head_next)
+    fresh_cursor = _fresh_cursor_from_head(head_next)
     if fresh_cursor is None:
         return collected, False, 1
     remaining = budget - 1
     if remaining <= 0:
-        if _repost_cursor(context.cache_state, key=REPOST_FRESH_CURSOR_KEY) is None:
-            _checkpoint_repost_cursor(fresh_context, (fresh_cursor[0], fresh_cursor[1]))
+        _checkpoint_repost_cursor(context, (fresh_cursor[0], fresh_cursor[1]))
         return collected, False, 1
     more, used = _collect_repost_window(
-        fresh_context,
+        context,
         budget=remaining,
         cursor=fresh_cursor,
     )
@@ -517,6 +590,19 @@ def _collect_repost_freshness(
         and _repost_cursor(context.cache_state, key=REPOST_FRESH_CURSOR_KEY) is None
     )
     return collected, complete, 1 + used
+
+
+def _collect_repost_freshness(
+    context: _RepostContext,
+    *,
+    budget: int,
+) -> tuple[list[dict] | None, bool, int]:
+    """Scan fresh pages from the head before any archive continuation."""
+    fresh_context = _resume_repost_context(context, REPOST_FRESH_CURSOR_KEY)
+    saved_cursor = _repost_cursor(context.cache_state, key=REPOST_FRESH_CURSOR_KEY)
+    if saved_cursor is not None:
+        return _resume_repost_freshness(fresh_context, saved_cursor, budget=budget)
+    return _start_repost_freshness(fresh_context, budget=budget)
 
 
 def _collect_repost_initial(context: _RepostContext) -> list[dict]:
