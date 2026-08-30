@@ -74,12 +74,25 @@ class TencentFeedTests(unittest.TestCase):
             "missing": async_html([item], include_total=False),
             "invalid": async_html([item], total="invalid"),
             "negative": async_html([item], total=-1),
+            "float": async_html([item], total=1.5),
+            "bool": async_html([item], total=True),
         }
         for label, html in cases.items():
             with self.subTest(label=label):
                 self.assertIsNone(
                     parse_listing(html, label="Tencent Cloud Blogs", category="800")
                 )
+
+    def test_parse_listing_accepts_integer_string_total(self):
+        item = {"newsId": "one", "cateId": "800", "title": "One"}
+        parsed = parse_listing(
+            async_html([item], total="12"),
+            label="Tencent Cloud Blogs",
+            category="800",
+        )
+        self.assertIsNotNone(parsed)
+        _entries, total = parsed
+        self.assertEqual(total, 12)
 
     def test_parse_listing_rejects_total_smaller_than_returned_page(self):
         html = async_html(
