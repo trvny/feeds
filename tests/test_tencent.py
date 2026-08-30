@@ -73,12 +73,23 @@ class TencentFeedTests(unittest.TestCase):
         cases = {
             "missing": async_html([item], include_total=False),
             "invalid": async_html([item], total="invalid"),
+            "negative": async_html([item], total=-1),
         }
         for label, html in cases.items():
             with self.subTest(label=label):
                 self.assertIsNone(
                     parse_listing(html, label="Tencent Cloud Blogs", category="800")
                 )
+
+    def test_parse_listing_rejects_total_smaller_than_returned_page(self):
+        html = async_html(
+            [
+                {"newsId": "one", "cateId": "800", "title": "One"},
+                {"newsId": "two", "cateId": "800", "title": "Two"},
+            ],
+            total=1,
+        )
+        self.assertIsNone(parse_listing(html, label="Tencent Cloud Blogs", category="800"))
 
     def test_parse_press_listing_uses_news_details_route(self):
         html = async_html([
@@ -136,6 +147,17 @@ class TencentFeedTests(unittest.TestCase):
             {"newsId": "one", "cateId": "800", "title": "One", "newsTime": "2026-08-29"},
         ], total=24)
         page_two = async_html([], total=24)
+        with patch.object(tencent.multi_rss, "get_html", side_effect=[page_one, page_two]):
+            entries = _collect_source(
+                label="Tencent Cloud Blogs", url=BLOGS_URL, category="800", known_links=set()
+            )
+        self.assertEqual(entries, [])
+
+    def test_empty_later_page_cannot_hide_behind_zero_total(self):
+        page_one = async_html([
+            {"newsId": "one", "cateId": "800", "title": "One", "newsTime": "2026-08-29"},
+        ], total=24)
+        page_two = async_html([], total=0)
         with patch.object(tencent.multi_rss, "get_html", side_effect=[page_one, page_two]):
             entries = _collect_source(
                 label="Tencent Cloud Blogs", url=BLOGS_URL, category="800", known_links=set()
