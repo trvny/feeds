@@ -292,6 +292,11 @@ def _note_repost_cursor_failure(
         failures,
         key=context.cursor_key,
     )
+    _store_repost_boundary(
+        context.cache_state,
+        context.cursor_key,
+        context.boundary_links,
+    )
 
 
 def _repost_finished(page_no: int, parsed: dict, reached_boundary: bool) -> bool:

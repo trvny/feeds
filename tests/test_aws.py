@@ -194,6 +194,41 @@ class AwsFeedTests(unittest.TestCase):
             {"page": 2, "token": cursor, "failures": 1},
         )
 
+    def test_repost_failure_checkpoint_preserves_incremental_history_boundary(self):
+        fresh = {
+            "id": "AR1",
+            "slug": "fresh-one",
+            "title": "Fresh one",
+            "description": "one",
+            "language": "en",
+            "createdAt": "2026-08-30T12:00:00Z",
+        }
+        known = "https://repost.aws/articles/AR10/known-ten"
+        state = {}
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 2),
+            patch.object(
+                aws.multi_rss,
+                "get_html",
+                side_effect=[
+                    repost_page(
+                        1,
+                        total=120,
+                        entries=[fresh],
+                        tokens=[{"page": 2, "token": "fresh-2"}],
+                    ),
+                    None,
+                ],
+            ),
+        ):
+            entries = aws.collect_repost({known}, state)
+        self.assertEqual([entry["title"] for entry in entries], ["Fresh one"])
+        self.assertEqual(
+            state[aws.REPOST_FRESH_CURSOR_KEY],
+            {"page": 2, "token": "fresh-2", "failures": 1},
+        )
+        self.assertEqual(state[f"{aws.REPOST_FRESH_CURSOR_KEY}_boundary"], [known])
+
     def test_repost_resumes_from_saved_cursor_with_hard_cap(self):
         head = {
             "id": "ARH",
