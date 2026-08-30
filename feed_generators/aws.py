@@ -174,23 +174,44 @@ def _repost_page_url(token: str) -> str:
     return f"{REPOST_URL}?{urlencode({'page': token, 'pageSize': 12})}"
 
 
+@dataclass(frozen=True)
+class _RepostContext:
+    """Shared scrape state plus the immutable history boundary for one cursor."""
+
+    known_links: set[str]
+    boundary_links: set[str]
+    seen: set[str]
+    cache_state: dict
+    cursor_key: str = REPOST_CURSOR_KEY
+
+    def with_cursor(
+        self, cursor_key: str, boundary_links: set[str] | None = None
+    ) -> _RepostContext:
+        """Reuse scrape state with another cursor and optional history boundary."""
+        return _RepostContext(
+            self.known_links,
+            self.boundary_links if boundary_links is None else boundary_links,
+            self.seen,
+            self.cache_state,
+            cursor_key,
+        )
+
+
 def _append_repost_entries(
-    entries: list[dict],
-    *,
-    known_links: set[str],
-    seen: set[str],
-    collected: list[dict],
+    entries: list[dict], context: _RepostContext, collected: list[dict]
 ) -> bool:
-    """Append unseen re:Post entries and report whether cache history was reached."""
-    reached_known = False
+    """Append unseen entries and report whether the original history was reached."""
+    reached_boundary = False
     for entry in entries:
         link = entry["link"]
-        if link in known_links:
-            reached_known = True
-        elif link not in seen:
-            seen.add(link)
+        if link in context.boundary_links:
+            reached_boundary = True
+        if link in context.known_links or link in context.boundary_links:
+            continue
+        if link not in context.seen:
+            context.seen.add(link)
             collected.append(entry)
-    return reached_known
+    return reached_boundary
 
 
 def _repost_cursor(
@@ -212,6 +233,20 @@ def _repost_cursor(
     return page, token, failures
 
 
+def _repost_boundary_key(cursor_key: str) -> str:
+    return f"{cursor_key}_boundary"
+
+
+def _load_repost_boundary(cache_state: dict, cursor_key: str) -> set[str] | None:
+    """Load the immutable history snapshot stored with a pagination cursor."""
+    raw = cache_state.get(_repost_boundary_key(cursor_key))
+    if raw is None:
+        return None
+    if not isinstance(raw, list):
+        return set()
+    return {link for link in raw if isinstance(link, str) and link}
+
+
 def _store_repost_cursor(
     cache_state: dict,
     page: int,
@@ -226,32 +261,42 @@ def _store_repost_cursor(
     cache_state[key] = cursor
 
 
+def _store_repost_boundary(
+    cache_state: dict, cursor_key: str, boundary_links: set[str]
+) -> None:
+    cache_state[_repost_boundary_key(cursor_key)] = sorted(boundary_links)
+
+
 def _clear_repost_cursor(cache_state: dict, *, key: str = REPOST_CURSOR_KEY) -> None:
     cache_state.pop(key, None)
+    cache_state.pop(_repost_boundary_key(key), None)
 
 
 def _note_repost_cursor_failure(
-    cache_state: dict,
-    cursor: tuple[int, str, int],
-    *,
-    key: str = REPOST_CURSOR_KEY,
+    context: _RepostContext, cursor: tuple[int, str, int]
 ) -> None:
     """Keep one transient cursor failure, then reset a repeatedly dead token."""
     page, token, failures = cursor
     failures += 1
     if failures >= REPOST_CURSOR_FAILURE_LIMIT:
-        _clear_repost_cursor(cache_state, key=key)
+        _clear_repost_cursor(context.cache_state, key=context.cursor_key)
         multi_rss.logger.warning(
             "[AWS re:Post Articles] saved page %d cursor failed repeatedly; resetting",
             page,
         )
         return
-    _store_repost_cursor(cache_state, page, token, failures, key=key)
+    _store_repost_cursor(
+        context.cache_state,
+        page,
+        token,
+        failures,
+        key=context.cursor_key,
+    )
 
 
-def _repost_finished(page_no: int, parsed: dict, reached_known: bool) -> bool:
-    """Return whether cached history or the advertised source end was reached."""
-    return reached_known or page_no * parsed["page_size"] >= parsed["total"]
+def _repost_finished(page_no: int, parsed: dict, reached_boundary: bool) -> bool:
+    """Return whether original history or the advertised source end was reached."""
+    return reached_boundary or page_no * parsed["page_size"] >= parsed["total"]
 
 
 def _next_repost_cursor(parsed: dict, page_no: int) -> tuple[int, str] | None:
@@ -286,21 +331,16 @@ def _log_repost_page_failure(page_no: int, failure: str) -> None:
 
 
 def _collect_repost_head(
-    known_links: set[str], seen: set[str]
+    context: _RepostContext,
 ) -> tuple[list[dict], bool, tuple[int, str] | None] | None:
-    """Poll page 1 and report whether cached history was already reached."""
+    """Poll page 1 and report whether the original history was reached."""
     parsed, failure = _fetch_repost_page(REPOST_URL, 1)
     if parsed is None:
         _log_repost_page_failure(1, failure or "changed")
         return None
     collected: list[dict] = []
-    reached_known = _append_repost_entries(
-        parsed["entries"],
-        known_links=known_links,
-        seen=seen,
-        collected=collected,
-    )
-    finished = _repost_finished(1, parsed, reached_known)
+    reached_boundary = _append_repost_entries(parsed["entries"], context, collected)
+    finished = _repost_finished(1, parsed, reached_boundary)
     next_cursor = None if finished else _next_repost_cursor(parsed, 1)
     return collected, finished, next_cursor
 
@@ -314,87 +354,71 @@ def _repost_window_start(cursor: tuple[int, str, int] | None) -> tuple[int, str]
 
 
 def _handle_repost_window_failure(
-    cache_state: dict,
+    context: _RepostContext,
     cursor: tuple[int, str, int] | None,
     page_no: int,
     failure: str,
-    *,
-    cursor_key: str,
 ) -> None:
     """Apply the bounded retry/reset policy for a failed pagination window."""
     _log_repost_page_failure(page_no, failure)
     if cursor is None:
         return
     if failure == "unavailable":
-        _note_repost_cursor_failure(cache_state, cursor, key=cursor_key)
+        _note_repost_cursor_failure(context, cursor)
     else:
-        _clear_repost_cursor(cache_state, key=cursor_key)
+        _clear_repost_cursor(context.cache_state, key=context.cursor_key)
 
 
 def _healthy_repost_cursor(
-    cache_state: dict,
-    cursor: tuple[int, str, int] | None,
-    *,
-    cursor_key: str,
+    context: _RepostContext, cursor: tuple[int, str, int] | None
 ) -> tuple[int, str, int] | None:
     """Reset a saved cursor's transient-failure count after a successful fetch."""
     if cursor is None:
         return None
     page, token, _failures = cursor
     healthy = (page, token, 0)
-    _store_repost_cursor(cache_state, page, token, key=cursor_key)
+    _store_repost_cursor(context.cache_state, page, token, key=context.cursor_key)
     return healthy
 
 
 def _repost_page_continuation(
     parsed: dict,
     page_no: int,
-    known_links: set[str],
-    seen: set[str],
+    context: _RepostContext,
     collected: list[dict],
 ) -> tuple[bool, tuple[int, str] | None]:
     """Append one page and return whether it finished plus its continuation."""
-    reached_known = _append_repost_entries(
-        parsed["entries"],
-        known_links=known_links,
-        seen=seen,
-        collected=collected,
-    )
-    if _repost_finished(page_no, parsed, reached_known):
+    reached_boundary = _append_repost_entries(parsed["entries"], context, collected)
+    if _repost_finished(page_no, parsed, reached_boundary):
         return True, None
     return False, _next_repost_cursor(parsed, page_no)
 
 
 def _checkpoint_repost_cursor(
-    cache_state: dict,
-    next_cursor: tuple[int, str],
-    *,
-    cursor_key: str,
+    context: _RepostContext, next_cursor: tuple[int, str]
 ) -> None:
     page, token = next_cursor
-    _store_repost_cursor(cache_state, page, token, key=cursor_key)
+    _store_repost_cursor(context.cache_state, page, token, key=context.cursor_key)
+    _store_repost_boundary(
+        context.cache_state,
+        context.cursor_key,
+        context.boundary_links,
+    )
     multi_rss.logger.info(
         "[AWS re:Post Articles] checkpointed continuation at page %d", page
     )
 
 
-@dataclass(frozen=True)
-class _RepostContext:
-    """Shared mutable scraper state with one selected pagination cursor."""
-
-    known_links: set[str]
-    seen: set[str]
-    cache_state: dict
-    cursor_key: str = REPOST_CURSOR_KEY
-
-    def with_cursor(self, cursor_key: str) -> _RepostContext:
-        """Reuse the same scrape state with a different persisted cursor."""
-        return _RepostContext(
-            self.known_links,
-            self.seen,
-            self.cache_state,
-            cursor_key,
+def _resume_repost_context(context: _RepostContext, cursor_key: str) -> _RepostContext:
+    """Bind a cursor to its original immutable history boundary."""
+    boundary = _load_repost_boundary(context.cache_state, cursor_key)
+    if boundary is None:
+        boundary = (
+            set()
+            if _repost_cursor(context.cache_state, key=cursor_key)
+            else context.boundary_links
         )
+    return context.with_cursor(cursor_key, boundary)
 
 
 def _collect_repost_window(
@@ -415,25 +439,16 @@ def _collect_repost_window(
         parsed, failure = _fetch_repost_page(url, page_no)
         if parsed is None:
             _handle_repost_window_failure(
-                context.cache_state,
+                context,
                 active_cursor,
                 page_no,
                 failure or "changed",
-                cursor_key=context.cursor_key,
             )
             return None, requests_used
         if requests_used == 1:
-            active_cursor = _healthy_repost_cursor(
-                context.cache_state,
-                active_cursor,
-                cursor_key=context.cursor_key,
-            )
+            active_cursor = _healthy_repost_cursor(context, active_cursor)
         finished, next_cursor = _repost_page_continuation(
-            parsed,
-            page_no,
-            context.known_links,
-            context.seen,
-            collected,
+            parsed, page_no, context, collected
         )
         if finished:
             _clear_repost_cursor(context.cache_state, key=context.cursor_key)
@@ -445,11 +460,7 @@ def _collect_repost_window(
             _clear_repost_cursor(context.cache_state, key=context.cursor_key)
             return None, requests_used
         if requests_used >= budget:
-            _checkpoint_repost_cursor(
-                context.cache_state,
-                next_cursor,
-                cursor_key=context.cursor_key,
-            )
+            _checkpoint_repost_cursor(context, next_cursor)
             return collected, requests_used
         page_no, token = next_cursor
         active_cursor = (page_no, token, 0)
@@ -478,26 +489,22 @@ def _collect_repost_freshness(
     budget: int,
 ) -> tuple[list[dict] | None, bool, int]:
     """Scan fresh pages from the head before any archive continuation."""
-    head = _collect_repost_head(context.known_links, context.seen)
+    fresh_context = _resume_repost_context(context, REPOST_FRESH_CURSOR_KEY)
+    head = _collect_repost_head(fresh_context)
     if head is None:
         return None, False, 1
     collected, finished, head_next = head
     if finished:
         _clear_repost_cursor(context.cache_state, key=REPOST_FRESH_CURSOR_KEY)
         return collected, True, 1
-    fresh_cursor = _fresh_cursor_from_head(context, head_next)
+    fresh_cursor = _fresh_cursor_from_head(fresh_context, head_next)
     if fresh_cursor is None:
         return collected, False, 1
     remaining = budget - 1
     if remaining <= 0:
         if _repost_cursor(context.cache_state, key=REPOST_FRESH_CURSOR_KEY) is None:
-            _checkpoint_repost_cursor(
-                context.cache_state,
-                (fresh_cursor[0], fresh_cursor[1]),
-                cursor_key=REPOST_FRESH_CURSOR_KEY,
-            )
+            _checkpoint_repost_cursor(fresh_context, (fresh_cursor[0], fresh_cursor[1]))
         return collected, False, 1
-    fresh_context = context.with_cursor(REPOST_FRESH_CURSOR_KEY)
     more, used = _collect_repost_window(
         fresh_context,
         budget=remaining,
@@ -524,12 +531,14 @@ def _collect_repost_initial(context: _RepostContext) -> list[dict]:
 def _collect_repost_bootstrap_resume(
     context: _RepostContext, archive_cursor: tuple[int, str, int]
 ) -> list[dict]:
-    head = _collect_repost_head(set(), context.seen)
+    head_context = context.with_cursor(REPOST_FRESH_CURSOR_KEY, set())
+    head = _collect_repost_head(head_context)
     if head is None:
         return []
     head_entries, _finished, _next_cursor = head
+    archive_context = _resume_repost_context(context, REPOST_CURSOR_KEY)
     archive, _used = _collect_repost_window(
-        context,
+        archive_context,
         budget=max(0, MAX_REPOST_PAGES - 1),
         cursor=archive_cursor,
     )
@@ -549,8 +558,9 @@ def _collect_repost_incremental(context: _RepostContext) -> list[dict]:
     remaining = max(0, MAX_REPOST_PAGES - used)
     if archive_cursor is None or remaining <= 0:
         return fresh
+    archive_context = _resume_repost_context(context, REPOST_CURSOR_KEY)
     archive, _used = _collect_repost_window(
-        context,
+        archive_context,
         budget=remaining,
         cursor=archive_cursor,
     )
@@ -560,7 +570,7 @@ def _collect_repost_incremental(context: _RepostContext) -> list[dict]:
 def collect_repost(known_links: set[str], cache_state: dict) -> list[dict]:
     """Collect fresh pages first, then advance bounded archive catch-up."""
     repost_links = {link for link in known_links if link.startswith(f"{REPOST_URL}/")}
-    context = _RepostContext(repost_links, set(), cache_state)
+    context = _RepostContext(repost_links, repost_links, set(), cache_state)
     archive_cursor = _repost_cursor(cache_state)
     fresh_cursor = _repost_cursor(cache_state, key=REPOST_FRESH_CURSOR_KEY)
     if archive_cursor is None and fresh_cursor is None:

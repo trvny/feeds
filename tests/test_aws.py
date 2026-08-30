@@ -527,6 +527,63 @@ class AwsFeedTests(unittest.TestCase):
             state[aws.REPOST_CURSOR_KEY], {"page": 8, "token": "archive-8"}
         )
 
+    def test_repost_archive_overlap_does_not_replace_original_history_boundary(self):
+        known_head = {
+            "id": "ARH",
+            "slug": "known-head",
+            "title": "Known head",
+            "description": "known",
+            "language": "en",
+            "createdAt": "2026-08-30T12:00:00Z",
+        }
+        shifted = {
+            "id": "AR8",
+            "slug": "shifted-eight",
+            "title": "Shifted eight",
+            "description": "already collected",
+            "language": "en",
+            "createdAt": "2026-08-20T10:00:00Z",
+        }
+        missing = {
+            "id": "AR9",
+            "slug": "missing-nine",
+            "title": "Missing nine",
+            "description": "still needs collection",
+            "language": "en",
+            "createdAt": "2026-08-19T10:00:00Z",
+        }
+        known = {
+            "https://repost.aws/articles/ARH/known-head",
+            "https://repost.aws/articles/AR8/shifted-eight",
+        }
+        boundary_key = f"{aws.REPOST_CURSOR_KEY}_boundary"
+        state = {
+            aws.REPOST_CURSOR_KEY: {"page": 9, "token": "archive-9"},
+            boundary_key: [],
+        }
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 2),
+            patch.object(
+                aws.multi_rss,
+                "get_html",
+                side_effect=[
+                    repost_page(1, total=120, entries=[known_head]),
+                    repost_page(
+                        9,
+                        total=120,
+                        entries=[shifted, missing],
+                        tokens=[{"page": 10, "token": "archive-10"}],
+                    ),
+                ],
+            ),
+        ):
+            entries = aws.collect_repost(known, state)
+        self.assertEqual([entry["title"] for entry in entries], ["Missing nine"])
+        self.assertEqual(
+            state[aws.REPOST_CURSOR_KEY], {"page": 10, "token": "archive-10"}
+        )
+        self.assertEqual(state[boundary_key], [])
+
     def test_multi_rss_round_trips_cache_state_for_repost_cursor(self):
         link = "https://example.com/cached"
         cache = {
