@@ -42,9 +42,11 @@ def main() -> None:
         offset += len(payload)
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_bytes(
-        struct.pack("<HHH", 0, 1, len(images)) + b"".join(entries) + b"".join(payloads)
-    )
+    payload = struct.pack("<HHH", 0, 1, len(images)) + b"".join(entries) + b"".join(payloads)
+    OUTPUT.write_bytes(payload)
+    reader_output = OUTPUT.parent / "reader" / OUTPUT.name
+    if reader_output.parent.exists():
+        reader_output.write_bytes(payload)
     print(f"Built {OUTPUT} with sizes: {', '.join(str(size) for size, _ in images)}")
 
 

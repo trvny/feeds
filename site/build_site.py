@@ -9,6 +9,8 @@ self-contained ``public/`` directory containing:
   * ``sitemap.xml``  - for search engines
   * ``robots.txt``   - allows crawling, points at the sitemap
   * ``llms.txt``     - llmstxt.org file: LLM-friendly directory of the feeds
+  * ``subscriptions.opml`` and ``reader/`` - the portable browser reader bundle
+  * ``webmcp.js``    - host-agnostic WebMCP tools for the registry and reader
   * ``.nojekyll``    - stop GitHub Pages running the files through Jekyll
 
 Pure standard library, so nothing here constrains the dependency set. Run it
@@ -586,6 +588,7 @@ def build_index(feeds: list[dict], base: str) -> str:
       }} catch (_) {{ window.prompt('Copy this feed URL:', btn.dataset.copy); }}
     }});
   </script>
+  <script src="webmcp.js"></script>
 </body>
 </html>
 """
@@ -611,6 +614,30 @@ def build_sitemap(feeds: list[dict], base: str) -> str:
 
 def build_robots(base: str) -> str:
     return f"User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n"
+
+
+def build_opml(feeds: list[dict], base: str) -> str:
+    stamp = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
+    lines = [
+        "<?xml version='1.0' encoding='utf-8'?>",
+        '<opml version="2.0">',
+        "  <head>",
+        "    <title>trvny subscriptions</title>",
+        f"    <dateModified>{stamp}</dateModified>",
+        "  </head>",
+        "  <body>",
+    ]
+    for feed in feeds:
+        title = html.escape(feed["title"], quote=True)
+        attrs = (
+            f'type="rss" text="{title}" title="{title}" '
+            f'xmlUrl="{html.escape(base + feed["filename"], quote=True)}"'
+        )
+        if feed["source"]:
+            attrs += f' htmlUrl="{html.escape(feed["source"], quote=True)}"'
+        lines.append(f"    <outline {attrs} />")
+    lines += ["  </body>", "</opml>"]
+    return "\n".join(lines) + "\n"
 
 
 def build_llms_txt(feeds: list[dict], base: str) -> str:
@@ -644,6 +671,20 @@ def build_llms_txt(feeds: list[dict], base: str) -> str:
         lines.append(entry)
     lines.append("")
     return "\n".join(lines)
+
+
+def copy_reader_bundle() -> None:
+    reader_out = OUT_DIR / "reader"
+    reader_out.mkdir(exist_ok=True)
+    for source, target in (
+        ("reader.html", "index.html"),
+        ("reader-fetch.js", "reader-fetch.js"),
+        ("reader.js", "reader.js"),
+    ):
+        shutil.copy2(SITE_DIR / source, reader_out / target)
+    for name in ("favicon.svg", "favicon.ico", "site.webmanifest"):
+        shutil.copy2(OUT_DIR / name, reader_out / name)
+    shutil.copytree(OUT_DIR / "icons", reader_out / "icons", dirs_exist_ok=True)
 
 
 def main() -> None:
@@ -682,6 +723,9 @@ def main() -> None:
             shutil.copy2(src, icons_out / name)
 
     (OUT_DIR / "site.webmanifest").write_text(WEBMANIFEST, encoding="utf-8")
+    shutil.copy2(SITE_DIR / "webmcp.js", OUT_DIR / "webmcp.js")
+    (OUT_DIR / "subscriptions.opml").write_text(build_opml(feeds, base), encoding="utf-8")
+    copy_reader_bundle()
 
     (OUT_DIR / "index.html").write_text(build_index(feeds, base), encoding="utf-8")
     (OUT_DIR / "sitemap.xml").write_text(build_sitemap(feeds, base), encoding="utf-8")
