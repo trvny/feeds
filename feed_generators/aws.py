@@ -199,20 +199,13 @@ def _repost_cursor(cache_state: dict) -> tuple[int, str, int] | None:
     page = raw.get("page")
     token = raw.get("token")
     failures = raw.get("failures", 0)
-    if not _valid_repost_cursor_values(page, token, failures):
+    if isinstance(page, bool) or not isinstance(page, int) or page <= 1:
+        return None
+    if not isinstance(token, str) or not token:
+        return None
+    if isinstance(failures, bool) or not isinstance(failures, int) or failures < 0:
         return None
     return page, token, failures
-
-
-def _valid_repost_cursor_values(page, token, failures) -> bool:
-    """Validate persisted cursor fields without accepting bool as an int."""
-    if isinstance(page, bool) or not isinstance(page, int) or page <= 1:
-        return False
-    if not isinstance(token, str) or not token:
-        return False
-    return not (
-        isinstance(failures, bool) or not isinstance(failures, int) or failures < 0
-    )
 
 
 def _store_repost_cursor(
