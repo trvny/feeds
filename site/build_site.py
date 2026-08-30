@@ -683,9 +683,9 @@ def copy_reader_bundle() -> None:
     ):
         shutil.copy2(SITE_DIR / source, reader_out / target)
     for name in ("favicon.svg", "favicon.ico", "site.webmanifest"):
-        source = OUT_DIR / name
-        if source.exists():
-            shutil.copy2(source, reader_out / name)
+        asset_source = OUT_DIR / name
+        if asset_source.exists():
+            shutil.copy2(asset_source, reader_out / name)
     shutil.copytree(OUT_DIR / "icons", reader_out / "icons", dirs_exist_ok=True)
 
 

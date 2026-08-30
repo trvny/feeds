@@ -170,7 +170,7 @@
       execute() {
         refresh.click();
         return {
-          started: refresh.disabled,
+          started: true,
           status: text(document.querySelector("#count")),
           source: text(document.querySelector("#chips .chip.on")) || "All",
         };
