@@ -14,7 +14,7 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - Fastly            blog (native RSS)
     - Exa               changelog (native RSS) + blog (sitemap + per-post fetch)
     - Home Assistant    blog (native Atom)
-    - Upstash           blog (native RSS) + Workflow changelog (native RSS)
+    - Upstash           Workflow changelog (native RSS; blog lives in SkillsLLM)
     - Xweather          blog (scraped index) + weather-api changelog (scraped)
                         + mcp-server changelog (scraped)
     - Cursor            changelog (native RSS) + blog (scraped dated anchors)
@@ -84,7 +84,7 @@ FEED_SUBTITLE = (
     "Vercel (blog + changelog + SDK docs), Apify, Zapier, Fastly, "
     "Postman (blog + press), "
     "Exa (blog + changelog), Home Assistant, "
-    "Upstash (blog + Workflow changelog), "
+    "Upstash Workflow changelog, "
     "Xweather (blog + API + MCP changelogs), "
     "Cursor (blog + changelog), NeuralTrust, "
     "Abnormal (blog + newsroom), Character.AI, "
@@ -175,7 +175,6 @@ NATIVE_FEEDS = [
     ("Postman", "https://blog.postman.com/feed/", 40),
     ("Exa Changelog", "https://exa.ai/docs/changelog/rss.xml", 40),
     ("Home Assistant", "https://www.home-assistant.io/atom.xml", 40),
-    ("Upstash Blog", "https://upstash.com/blog/feed.xml", 40),
     ("Upstash Workflow Changelog", "https://upstash.com/docs/workflow/changelog/rss.xml", None),
     ("Cursor Changelog", "https://cursor.com/changelog/rss.xml", 40),
     ("CodeRabbit Blog", "https://www.coderabbit.ai/feed", 50),
@@ -184,6 +183,15 @@ NATIVE_FEEDS = [
     ("Astral Codex Ten", "https://www.astralcodexten.com/feed", 40),
     ("Behance Blog", "http://feeds.feedburner.com/behance/vorr", 40),
 ]
+
+# Sources intentionally moved to another aggregate. Filter their old cache rows
+# so the migration takes effect on the first post-merge generation.
+RETIRED_CACHE_SOURCES = {"Upstash Blog"}
+
+
+def _active_cached_entries(entries: list[dict]) -> list[dict]:
+    """Drop cached rows for sources no longer maintained by this feed."""
+    return [e for e in entries if e.get("source") not in RETIRED_CACHE_SOURCES]
 
 
 def collect_native_feeds(known_links: set[str]) -> list[dict]:
@@ -693,11 +701,15 @@ def _cap_per_source(entries: list[dict], per_source: int) -> list[dict]:
 
 
 def main(full: bool = False) -> bool:
-    cached = (
+    raw_cached = (
         []
         if full
-        else deserialize_entries(load_cache(FEED_NAME).get("entries", []), date_field="date")
+        else deserialize_entries(
+            load_cache(FEED_NAME).get("entries", []), date_field="date"
+        )
     )
+    cached = _active_cached_entries(raw_cached)
+    retired_entries_removed = len(cached) != len(raw_cached)
     known_links = {e.get("link") for e in cached}
 
     new_entries = (
@@ -713,6 +725,13 @@ def main(full: bool = False) -> bool:
         + collect_dated_anchor_sources()
     )
     if not new_entries and not cached:
+        if retired_entries_removed:
+            logger.warning(
+                "Retired cache rows removed, but no active entries are available; "
+                "preserving the last good feed"
+            )
+            save_cache(FEED_NAME, [])
+            return True
         logger.error("No entries from any source; preserving the last good feed")
         return False
 

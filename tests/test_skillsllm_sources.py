@@ -1,9 +1,12 @@
 import sys
 import unittest
+from datetime import datetime
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
+import saas
 import skillsllm
 from skillsllm_aihubmix import (
     AIHUBMIX_BLOG_URL,
@@ -44,6 +47,138 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
             feeds["Graphify Changelog"],
             "https://github.com/Graphify-Labs/graphify/releases.atom",
         )
+
+    def test_upstash_and_lobehub_native_feeds_are_registered(self):
+        """Use Upstash RSS and LobeHub's locale-neutral feed endpoints."""
+        feeds = {source[0]: source[1] for source in skillsllm.NATIVE_FEEDS}
+        self.assertEqual(feeds["Upstash Blog"], "https://upstash.com/blog/feed.xml")
+        self.assertEqual(feeds["LobeHub Blog"], "https://lobehub.com/blog/feed")
+        self.assertEqual(
+            feeds["LobeHub Changelog"], "https://lobehub.com/changelog/feed"
+        )
+        saas_urls = {source[1] for source in saas.NATIVE_FEEDS}
+        self.assertNotIn("https://upstash.com/blog/feed.xml", saas_urls)
+        self.assertIn("https://upstash.com/docs/workflow/changelog/rss.xml", saas_urls)
+        kept = saas._active_cached_entries(
+            [
+                {"source": "Upstash Blog", "link": "https://upstash.com/blog/old"},
+                {"source": "Cursor Changelog", "link": "https://cursor.com/changelog/x"},
+            ]
+        )
+        self.assertEqual([entry["source"] for entry in kept], ["Cursor Changelog"])
+
+    def test_legacy_lobehub_locale_cache_rows_are_retired(self):
+        entries = [
+            {"link": 123, "source": "Broken"},
+            {"link": None, "source": "Broken"},
+            {"source": "Broken"},
+            {"link": "https://lobehub.com/pl/blog/old-post", "source": "LobeHub Blog"},
+            {
+                "link": "https://lobehub.com/pl/changelog/versions/v1#1.142.0",
+                "source": "LobeHub Changelog",
+            },
+            {"link": "https://lobehub.com/blog/current-post", "source": "LobeHub Blog"},
+            {"link": "https://example.com/pl/blog/keep", "source": "Other"},
+        ]
+        kept = skillsllm._active_cached_entries(entries)
+        self.assertEqual(
+            [entry["link"] for entry in kept],
+            [
+                "https://lobehub.com/blog/current-post",
+                "https://example.com/pl/blog/keep",
+            ],
+        )
+
+    def test_mcpso_surfaces_are_documented(self):
+        """MCP.so's directory feed and editorial blog should both be visible."""
+        sources = dict(skillsllm.doc_sources())
+        self.assertEqual(sources["MCP.so Feed"], "https://mcp.so/feed")
+        self.assertEqual(sources["MCP.so Blog"], "https://mcp.so/blog")
+        self.assertEqual(skillsllm.PER_SOURCE_CAP["MCP.so Feed"], 10)
+
+    def test_mcpso_feed_parser_uses_card_timestamp(self):
+        html = """
+        <a href="/servers/demo">
+          <img src="/logo.png">
+          <h3>Demo MCP</h3>
+          <p class="line-clamp-2">Useful MCP server.</p>
+          <span title="08/30/2026, 08:34 PM">Submitted recently</span>
+        </a>
+        """
+        entries = skillsllm.parse_mcpso_feed(
+            html, now=datetime(2026, 8, 30, 21, 0, tzinfo=skillsllm.pytz.UTC)
+        )
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["link"], "https://mcp.so/servers/demo")
+        self.assertEqual(entries[0]["title"], "Demo MCP")
+        self.assertEqual(entries[0]["description"], "Useful MCP server.")
+        self.assertEqual(entries[0]["date"].isoformat(), "2026-08-30T20:34:00+00:00")
+        self.assertEqual(entries[0]["image"], "https://mcp.so/logo.png")
+
+    def test_mcpso_feed_clamps_source_timestamps_from_the_future(self):
+        """MCP.so currently exposes future createdAt values; do not promote them."""
+        html = """
+        <a href="/servers/future">
+          <h3>Future MCP</h3>
+          <span title="08/30/2026, 08:34 PM">Submitted in 5 hours</span>
+        </a>
+        """
+        now = datetime(2026, 8, 30, 15, 0, tzinfo=skillsllm.pytz.UTC)
+        entries = skillsllm.parse_mcpso_feed(html, now=now)
+        self.assertEqual(entries[0]["date"], now)
+
+    def test_mcpso_blog_parser_uses_visible_date(self):
+        html = """
+        <a href="/blog/graph-engineering">
+          <h3>Graph Engineering</h3>
+          <p class="line-clamp-3">A guide to agent graphs.</p>
+          <span>Jul 21, 2026</span>
+        </a>
+        """
+        entries = skillsllm.parse_mcpso_blog(html)
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["link"], "https://mcp.so/blog/graph-engineering")
+        self.assertEqual(entries[0]["date"].isoformat(), "2026-07-21T00:00:00+00:00")
+
+    def test_mcpso_blog_clamps_dates_from_the_future(self):
+        html = """
+        <a href="/blog/future-post">
+          <h3>Future post</h3>
+          <span>Sep 2, 2026</span>
+        </a>
+        """
+        now = datetime(2026, 8, 30, 15, 0, tzinfo=skillsllm.pytz.UTC)
+        entries = skillsllm.parse_mcpso_blog(html, now=now)
+        self.assertEqual(entries[0]["date"], now)
+
+    def test_collect_mcpso_caps_directory_feed_immediately(self):
+        cards = "".join(
+            f'<a href="/servers/demo-{i}"><h3>Demo {i}</h3></a>'
+            for i in range(12)
+        )
+        with patch.object(skillsllm, "fetch_url", return_value=cards):
+            entries = skillsllm.collect_mcpso(set())
+        directory = [e for e in entries if e["source"] == "MCP.so Feed"]
+        self.assertEqual(len(directory), 10)
+
+    def test_native_feed_cleanup_recovers_invalid_xml_control_character(self):
+        """LobeHub's current RFC 106 control byte should not poison its RSS."""
+        raw = """<?xml version="1.0"?><rss version="2.0"><channel>
+        <title>LobeHub Blog</title><link>https://lobehub.com/blog</link>
+        <item><title>[RFC] 106 - \x08Desktop config</title>
+        <link>https://lobehub.com/blog/rfc-106</link></item>
+        </channel></rss>"""
+        with (
+            patch.object(
+                skillsllm,
+                "NATIVE_FEEDS",
+                [("LobeHub Blog", "https://lobehub.com/blog/feed", "lobehub-blog", 30)],
+            ),
+            patch.object(skillsllm, "fetch_url", return_value=raw),
+        ):
+            entries = skillsllm.collect_native_feeds()
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["title"], "[RFC] 106 - Desktop config")
 
     def test_aihubmix_sources_are_documented(self):
         """All requested AIHubMix surfaces should be exposed to source docs."""
