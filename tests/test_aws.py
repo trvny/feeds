@@ -2,7 +2,7 @@ import json
 import sys
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
@@ -120,12 +120,12 @@ class AwsFeedTests(unittest.TestCase):
         html2 = repost_page(2, entries=[second], tokens=[])
         known = {"https://repost.aws/articles/AR2/second"}
         with (
-            patch.object(aws, "MAX_REPOST_PAGES", 1),
+            patch.object(aws, "MAX_REPOST_PAGES", 2),
             patch.object(
                 aws.multi_rss, "get_html", side_effect=[html1, html2]
             ) as get_html,
         ):
-            entries = aws.collect_repost(known)
+            entries = aws.collect_repost(known, {})
         self.assertEqual([entry["title"] for entry in entries], ["First"])
         self.assertEqual(get_html.call_count, 2)
         self.assertIn(f"page={cursor}", get_html.call_args_list[1].args[0])
@@ -143,12 +143,14 @@ class AwsFeedTests(unittest.TestCase):
         html = repost_page(
             1, total=100, entries=[item], tokens=[{"page": 2, "token": cursor}]
         )
+        state = {}
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 1),
             patch.object(aws.multi_rss, "get_html", return_value=html) as get_html,
         ):
-            entries = aws.collect_repost(set())
+            entries = aws.collect_repost(set(), state)
         self.assertEqual([entry["title"] for entry in entries], ["First"])
+        self.assertEqual(state[aws.REPOST_CURSOR_KEY], {"page": 2, "token": cursor})
         get_html.assert_called_once_with(aws.REPOST_URL)
 
     def test_repost_bootstraps_with_only_unrelated_cached_links(self):
@@ -169,7 +171,7 @@ class AwsFeedTests(unittest.TestCase):
             patch.object(aws, "MAX_REPOST_PAGES", 1),
             patch.object(aws.multi_rss, "get_html", return_value=html),
         ):
-            entries = aws.collect_repost(unrelated)
+            entries = aws.collect_repost(unrelated, {})
         self.assertEqual([entry["title"] for entry in entries], ["First"])
 
     def test_repost_discards_partial_batch_on_later_failure(self):
@@ -184,7 +186,124 @@ class AwsFeedTests(unittest.TestCase):
         cursor = f"page-{2}"
         html1 = repost_page(1, entries=[first], tokens=[{"page": 2, "token": cursor}])
         with patch.object(aws.multi_rss, "get_html", side_effect=[html1, None]):
-            self.assertEqual(aws.collect_repost(set()), [])
+            self.assertEqual(aws.collect_repost(set(), {}), [])
+
+    def test_repost_resumes_from_saved_cursor_with_hard_cap(self):
+        item = {
+            "id": "AR2",
+            "slug": "second",
+            "title": "Second",
+            "description": "two",
+            "language": "en",
+            "createdAt": "2026-08-29T10:00:00Z",
+        }
+        resume = "resume-page-2"
+        next_token = "resume-page-3"
+        state = {aws.REPOST_CURSOR_KEY: {"page": 2, "token": resume}}
+        html = repost_page(
+            2, total=100, entries=[item], tokens=[{"page": 3, "token": next_token}]
+        )
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 1),
+            patch.object(aws.multi_rss, "get_html", return_value=html) as get_html,
+        ):
+            entries = aws.collect_repost(set(), state)
+        self.assertEqual([entry["title"] for entry in entries], ["Second"])
+        self.assertEqual(state[aws.REPOST_CURSOR_KEY], {"page": 3, "token": next_token})
+        self.assertIn(f"page={resume}", get_html.call_args.args[0])
+        self.assertEqual(get_html.call_count, 1)
+
+    def test_repost_cursor_clears_when_cached_history_is_reached(self):
+        item = {
+            "id": "AR2",
+            "slug": "second",
+            "title": "Second",
+            "description": "two",
+            "language": "en",
+            "createdAt": "2026-08-29T10:00:00Z",
+        }
+        link = "https://repost.aws/articles/AR2/second"
+        state = {aws.REPOST_CURSOR_KEY: {"page": 2, "token": "resume-page-2"}}
+        html = repost_page(2, total=100, entries=[item], tokens=[])
+        with patch.object(aws.multi_rss, "get_html", return_value=html):
+            self.assertEqual(aws.collect_repost({link}, state), [])
+        self.assertNotIn(aws.REPOST_CURSOR_KEY, state)
+
+    def test_repost_page_without_usable_entries_is_a_source_failure(self):
+        item = {
+            "id": "AR2",
+            "slug": "zweite",
+            "title": "Zweite",
+            "description": "zwei",
+            "language": "de",
+            "createdAt": "2026-08-29T10:00:00Z",
+        }
+        state = {aws.REPOST_CURSOR_KEY: {"page": 2, "token": "resume-page-2"}}
+        html = repost_page(
+            2, total=100, entries=[item], tokens=[{"page": 3, "token": "next"}]
+        )
+        with patch.object(aws.multi_rss, "get_html", return_value=html):
+            self.assertEqual(aws.collect_repost(set(), state), [])
+        self.assertEqual(
+            state[aws.REPOST_CURSOR_KEY], {"page": 2, "token": "resume-page-2"}
+        )
+
+    def test_repost_stale_resume_cursor_resets_for_next_run(self):
+        state = {aws.REPOST_CURSOR_KEY: {"page": 3, "token": "stale"}}
+        html = repost_page(2, total=100, entries=[], tokens=[])
+        with patch.object(aws.multi_rss, "get_html", return_value=html):
+            self.assertEqual(aws.collect_repost(set(), state), [])
+        self.assertNotIn(aws.REPOST_CURSOR_KEY, state)
+
+    def test_multi_rss_round_trips_cache_state_for_repost_cursor(self):
+        link = "https://example.com/cached"
+        cache = {
+            "entries": [
+                {
+                    "link": link,
+                    "title": "Cached",
+                    "description": "Cached",
+                    "source": "Custom",
+                    "date": "2026-08-01T00:00:00+00:00",
+                }
+            ],
+            aws.REPOST_CURSOR_KEY: {"page": 2, "token": "old"},
+            "last_updated": "2026-08-01T00:00:00+00:00",
+        }
+        cache_state = {"stale": True}
+        states_seen = []
+
+        def custom_scraper(_known_links):
+            states_seen.append(dict(cache_state))
+            cache_state[aws.REPOST_CURSOR_KEY] = {"page": 3, "token": "next"}
+            return []
+
+        fg = MagicMock()
+        with (
+            patch.object(aws.multi_rss, "load_cache", return_value=cache),
+            patch.object(aws.multi_rss, "enrich_entries"),
+            patch.object(aws.multi_rss, "save_cache") as save_cache,
+            patch.object(aws.multi_rss, "generate_atom_feed", return_value=fg),
+            patch.object(aws.multi_rss, "save_atom_feed"),
+        ):
+            result = aws.multi_rss.run(
+                feed_name="example",
+                title="Example",
+                subtitle="Example",
+                blog_url="https://example.com/",
+                author="Example",
+                extra_scrapers=(custom_scraper,),
+                cache_state=cache_state,
+            )
+
+        self.assertTrue(result)
+        self.assertEqual(
+            states_seen, [{aws.REPOST_CURSOR_KEY: {"page": 2, "token": "old"}}]
+        )
+        self.assertEqual(
+            save_cache.call_args.kwargs["extra"],
+            {aws.REPOST_CURSOR_KEY: {"page": 3, "token": "next"}},
+        )
 
     def test_cli_release_dates_and_changelog_are_joined(self):
         atom = """<feed xmlns='http://www.w3.org/2005/Atom'>

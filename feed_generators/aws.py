@@ -18,6 +18,7 @@ FEED_TITLE = "AWS"
 BLOG_URL = "https://aws.amazon.com/blogs/"
 MAX_ENTRIES = 400
 MAX_REPOST_PAGES = 8
+REPOST_CURSOR_KEY = "repost_cursor"
 
 WHATS_NEW_FEED = "https://aws.amazon.com/about-aws/whats-new/recent/feed/"
 NEWS_BLOG_URL = "https://aws.amazon.com/blogs/aws/"
@@ -189,33 +190,59 @@ def _append_repost_entries(
     return reached_known
 
 
-def _repost_page_complete(
-    page_no: int, parsed: dict, reached_known: bool, *, has_history: bool
-) -> bool:
-    """Return whether pagination can stop safely after this page."""
-    if reached_known or page_no * parsed["page_size"] >= parsed["total"]:
-        return True
-    return not has_history and page_no >= MAX_REPOST_PAGES
+def _repost_cursor(cache_state: dict) -> tuple[int, str] | None:
+    """Return a validated saved re:Post continuation cursor."""
+    raw = cache_state.get(REPOST_CURSOR_KEY)
+    if not isinstance(raw, dict):
+        return None
+    page = raw.get("page")
+    token = raw.get("token")
+    if (
+        isinstance(page, int)
+        and not isinstance(page, bool)
+        and page > 1
+        and isinstance(token, str)
+        and token
+    ):
+        return page, token
+    return None
 
 
-def _next_repost_url(parsed: dict, page_no: int) -> str | None:
-    """Return the tokenized next-page URL, or None if the token is missing."""
-    token = parsed["tokens"].get(page_no + 1)
-    return _repost_page_url(token) if token else None
+def _store_repost_cursor(cache_state: dict, page: int, token: str) -> None:
+    cache_state[REPOST_CURSOR_KEY] = {"page": page, "token": token}
 
 
-def collect_repost(known_links: set[str]) -> list[dict]:
-    """Collect re:Post pages until cached history or the initial-history cap."""
+def _clear_repost_cursor(cache_state: dict) -> None:
+    cache_state.pop(REPOST_CURSOR_KEY, None)
+
+
+def _repost_finished(page_no: int, parsed: dict, reached_known: bool) -> bool:
+    """Return whether cached history or the advertised source end was reached."""
+    return reached_known or page_no * parsed["page_size"] >= parsed["total"]
+
+
+def _next_repost_cursor(parsed: dict, page_no: int) -> tuple[int, str] | None:
+    """Return the validated token for the next absolute page."""
+    next_page = page_no + 1
+    token = parsed["tokens"].get(next_page)
+    return (next_page, token) if token else None
+
+
+def collect_repost(known_links: set[str], cache_state: dict) -> list[dict]:
+    """Collect a bounded re:Post slice, resuming through cache bookkeeping."""
     collected: list[dict] = []
     seen: set[str] = set()
-    known_repost_links = {
-        link for link in known_links if link.startswith(f"{REPOST_URL}/")
-    }
-    url = REPOST_URL
-    page_no = 1
-    reached_known = False
+    known_links = {link for link in known_links if link.startswith(f"{REPOST_URL}/")}
+    saved_cursor = _repost_cursor(cache_state)
+    if saved_cursor is None:
+        page_no = 1
+        url = REPOST_URL
+    else:
+        page_no, token = saved_cursor
+        url = _repost_page_url(token)
+    pages_fetched = 0
 
-    while True:
+    while pages_fetched < MAX_REPOST_PAGES:
         html = multi_rss.get_html(url)
         if not html:
             multi_rss.logger.warning(
@@ -223,37 +250,55 @@ def collect_repost(known_links: set[str]) -> list[dict]:
                 page_no,
             )
             return []
+        pages_fetched += 1
         parsed = parse_repost_page(html)
         if parsed is None or parsed["page"] != page_no:
+            if saved_cursor is not None and pages_fetched == 1:
+                _clear_repost_cursor(cache_state)
             multi_rss.logger.warning(
                 "[AWS re:Post Articles] page %d payload changed; discarding partial batch",
                 page_no,
             )
             return []
+        if parsed["total"] > 0 and not parsed["entries"]:
+            multi_rss.logger.warning(
+                "[AWS re:Post Articles] page %d has no usable entries; discarding partial batch",
+                page_no,
+            )
+            return []
+
         reached_known = _append_repost_entries(
             parsed["entries"],
-            known_links=known_repost_links,
+            known_links=known_links,
             seen=seen,
             collected=collected,
         )
-        if _repost_page_complete(
-            page_no, parsed, reached_known, has_history=bool(known_repost_links)
-        ):
+        if _repost_finished(page_no, parsed, reached_known):
+            _clear_repost_cursor(cache_state)
             break
-        next_url = _next_repost_url(parsed, page_no)
-        if next_url is None:
+
+        next_cursor = _next_repost_cursor(parsed, page_no)
+        if next_cursor is None:
             multi_rss.logger.warning(
                 "[AWS re:Post Articles] missing token for page %d; discarding partial batch",
                 page_no + 1,
             )
             return []
-        page_no += 1
-        url = next_url
+        next_page, next_token = next_cursor
+        if pages_fetched >= MAX_REPOST_PAGES:
+            _store_repost_cursor(cache_state, next_page, next_token)
+            multi_rss.logger.info(
+                "[AWS re:Post Articles] checkpointed continuation at page %d",
+                next_page,
+            )
+            break
+        page_no = next_page
+        url = _repost_page_url(next_token)
 
     multi_rss.logger.info(
         "[AWS re:Post Articles] collected %d fresh entries across %d page(s)",
         len(collected),
-        page_no,
+        pages_fetched,
     )
     return collected
 
@@ -337,6 +382,13 @@ def collect_cli_changelog(known_links: set[str]) -> list[dict]:
 
 
 def main(full: bool = False) -> bool:
+    """Generate the combined AWS feed with persisted scraper state."""
+    cache_state: dict = {}
+
+    def collect_repost_with_state(known_links: set[str]) -> list[dict]:
+        """Bind the shared cache state to the re:Post scraper callback."""
+        return collect_repost(known_links, cache_state)
+
     return multi_rss.run(
         feed_name=FEED_NAME,
         title=FEED_TITLE,
@@ -344,9 +396,10 @@ def main(full: bool = False) -> bool:
         blog_url=BLOG_URL,
         author="Amazon Web Services",
         sources=SOURCES,
-        extra_scrapers=(collect_repost, collect_cli_changelog),
+        extra_scrapers=(collect_repost_with_state, collect_cli_changelog),
         max_entries=MAX_ENTRIES,
         per_source_cap=PER_SOURCE_CAP,
+        cache_state=cache_state,
         full=full,
     )
 

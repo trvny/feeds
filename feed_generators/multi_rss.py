@@ -210,7 +210,11 @@ def scrape_feed(
             # items are stamped on first sight; rediscovered cached items keep
             # that first-seen value instead of moving to "now" every refresh.
             cached_date = cached_dates.get(normalize_link(link))
-            date = _item_date(item, cached_date) or cached_date or datetime.now(timezone.utc)
+            date = (
+                _item_date(item, cached_date)
+                or cached_date
+                or datetime.now(timezone.utc)
+            )
             title_el = item.find("title")
             title = sanitize_xml(title_el.get_text(strip=True)) if title_el else ""
             # Some feeds ship an empty <title/> (timeanddate's calendar RSS
@@ -313,6 +317,7 @@ def run(
     full=False,
     cache_filter=None,
     cache_transform=None,
+    cache_state=None,
     dedupe_title_field="title",
     icon=None,
     source_tags=None,
@@ -323,9 +328,12 @@ def run(
     Native RSS/Atom sources refresh cached metadata by default because their
     listing feed is already fetched on every run. Pass ``refresh_sources=()``
     to retain add-only behavior, or a label collection to refresh only those
-    native sources. Extra/custom scrapers remain cache-gated and add-only. Set
-    ``dedupe_title_field=None`` for sources whose stable URL is the only identity.
+    native sources. Extra/custom scrapers remain cache-gated and add-only. Pass
+    a mutable ``cache_state`` dict to round-trip non-entry top-level bookkeeping,
+    such as resumable pagination cursors. Set ``dedupe_title_field=None`` for
+    sources whose stable URL is the only identity.
     """
+    cache = {}
     if full:
         logger.info("Full reset requested; ignoring existing cache")
         cached = []
@@ -341,6 +349,17 @@ def run(
                 )
         if cache_transform is not None:
             cached = [cache_transform(entry) for entry in cached]
+
+    if cache_state is not None:
+        cache_state.clear()
+        if not full:
+            cache_state.update(
+                {
+                    key: value
+                    for key, value in cache.items()
+                    if key not in {"entries", "last_updated"}
+                }
+            )
 
     sources = tuple(sources)
     if refresh_sources is None:
@@ -411,7 +430,7 @@ def run(
     # same dicts as merged, so what is learned here is kept by the cache below
     # and no URL is ever looked up twice.
     enrich_entries(feed_items, images=image_backfill)
-    save_cache(feed_name, merged)
+    save_cache(feed_name, merged, extra=cache_state)
 
     fg = generate_atom_feed(
         feed_items,
