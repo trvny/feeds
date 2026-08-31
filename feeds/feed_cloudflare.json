@@ -11,9 +11,9 @@
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/c1cbedbae0bb2348",
       "url": "https://www.cloudflarestatus.com/incidents/9g65dxfbcjln",
       "title": "Incorrect geo location for some Cloudflare WARP users",
-      "content_text": "Aug 30 , 15:51 UTC Identified - We are continuing to work on a fix for this issue. Aug 29 , 15:31 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 11:30 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 00:55 UTC Identified - We are continuing to work on a fix for this issue. Aug 27 , 18:56 UTC Identified - The issue has been identified and we are working with third party providers to fix it. Aug 27 , 18:46 UTC Investigating - Cloudflare is",
-      "date_published": "2026-08-30T15:51:03Z",
-      "date_modified": "2026-08-30T15:51:03Z",
+      "content_text": "Aug 31 , 15:15 UTC Identified - We are continuing to work on a fix for this issue. Aug 30 , 15:51 UTC Identified - We are continuing to work on a fix for this issue. Aug 29 , 15:31 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 11:30 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 00:55 UTC Identified - We are continuing to work on a fix for this issue. Aug 27 , 18:56 UTC Identified - The issue has been identified and we are working with",
+      "date_published": "2026-08-31T15:15:03Z",
+      "date_modified": "2026-08-31T15:15:03Z",
       "authors": [
         {
           "name": "Cloudflare Status"
@@ -21,6 +21,84 @@
       ],
       "tags": [
         "Cloudflare Status"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/26c0d67281e9cf9d",
+      "url": "https://www.cloudflarestatus.com/incidents/kby271yt9vwx",
+      "title": "Workers KV experiencing elevated error rates in Western Europe Region",
+      "content_text": "Aug 31 , 15:04 UTC Resolved - This incident has been resolved. Aug 31 , 12:40 UTC Monitoring - We are continuing to monitor for any further issues. Aug 31 , 12:40 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 31 , 11:02 UTC Investigating - We are investigating an issue affecting Workers KV in the Western Europe Region, which may result in elevated error rates for read requests. Writes are not affected. Our engineering team is currently working to identify and",
+      "date_published": "2026-08-31T15:04:13Z",
+      "date_modified": "2026-08-31T15:04:13Z",
+      "authors": [
+        {
+          "name": "Cloudflare Status"
+        }
+      ],
+      "tags": [
+        "Cloudflare Status"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/f28be7a7e6050e79",
+      "url": "https://www.cloudflarestatus.com/incidents/fcdl2yb3q7qw",
+      "title": "Cloudflare Access bypass IP service experiencing availability issues",
+      "content_text": "Aug 31 , 14:50 UTC Resolved - This incident has been resolved. Aug 31 , 13:08 UTC Identified - The issue has been identified and a fix is being implemented. Aug 31 , 11:40 UTC Investigating - We are investigating an issue affecting the Access IP List service, which may result in failures when bypassing users whose IPs are listed in them. Our engineering team is currently working to identify and resolve the root cause. We will provide updates as more information becomes available.",
+      "date_published": "2026-08-31T14:50:56Z",
+      "date_modified": "2026-08-31T14:50:56Z",
+      "authors": [
+        {
+          "name": "Cloudflare Status"
+        }
+      ],
+      "tags": [
+        "Cloudflare Status"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/26ace185f75ed80d",
+      "url": "https://blog.cloudflare.com/introducing-adaptive-intelligence/",
+      "title": "Introducing Adaptive Intelligence: Undermining the economics of every bot attack",
+      "content_text": "Bot operators have historically had the economic advantage, bypassing static, deterministic detection rules with cheap proxies and retooling. Cloudflare's new Adaptive Intelligence engine flips this dynamic by autonomously learning from the meta-signals of live traffic and deploying disposable rules, making automated attacks too expensive to sustain.",
+      "date_published": "2026-08-31T12:59:00Z",
+      "date_modified": "2026-08-31T12:59:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Blog"
+        }
+      ],
+      "image": "https://blog.cloudflare.com/_emdash/api/media/file/01M15GS9CV1VMMQCAPHYE4AFD2.01M15GSA31CJVHRJCPHH7FBX77.png",
+      "tags": [
+        "Cloudflare Blog"
+      ],
+      "attachments": [
+        {
+          "url": "https://blog.cloudflare.com/_emdash/api/media/file/01M15GS9CV1VMMQCAPHYE4AFD2.01M15GSA31CJVHRJCPHH7FBX77.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/5d9ed659354f9aa5",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-08-31-crawl-content-use/",
+      "title": "Browser Run - Crawl endpoint now respects the Content Signals `use` directive",
+      "content_text": "The /crawl endpoint now respects the use directive of the Content Signals ↗ standard, letting site owners express the maximum level at which their content may be used. You can declare your intended level with the new contentUse parameter. Allowed values, from least to most permissive, are reference and full , and the default is full . If a target site's robots.txt sets a use level that is more restrictive than your declared contentUse , the crawl request is rejected with a 400 error. curl -X POS",
+      "date_published": "2026-08-31T00:00:00Z",
+      "date_modified": "2026-08-31T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
       ]
     },
     {
@@ -1739,29 +1817,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/9378e020cafbeec8",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-17-qwen-3.8-27b-workers-ai/",
-      "title": "Workers AI - Qwen 3.8 27B now available on Workers AI",
-      "content_text": "@cf/qwen/qwen3.8-27b is now available on Workers AI. Qwen 3.8 27B is a 27-billion-parameter instruction-tuned vision language model from Alibaba's Qwen family. It processes images and text together, with reasoning and function calling for agentic workflows. Key capabilities: Vision : Accept image and text inputs and generate text responses. Reasoning : Support thinking mode for complex, step-by-step problem-solving. Function calling : Build agents that invoke tools and APIs across multiple conve",
-      "date_published": "2026-08-17T00:00:00Z",
-      "date_modified": "2026-08-17T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/efa354e2f9c3d088",
       "url": "https://developers.cloudflare.com/changelog/post/2026-08-17-pool-name-analytics-filter/",
       "title": "Load Balancing - Load balancing analytics now filters by pool name",
@@ -2199,38 +2254,6 @@
       "content_text": "Aug 10 , 10:15 UTC Investigating - Cloudflare is aware of, and investigating, an issue which potentially impacts multiple users in Tel Aviv that use 1.1.1.1 public resolver. Further detail will be provided as more information becomes available.",
       "date_published": "2026-08-10T10:15:40Z",
       "date_modified": "2026-08-10T10:15:40Z",
-      "authors": [
-        {
-          "name": "Cloudflare Status"
-        }
-      ],
-      "tags": [
-        "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/91bf8f25ec5b4379",
-      "url": "https://www.cloudflarestatus.com/incidents/ydgyl9v3g02s",
-      "title": "Connectivity Issues in Egypt",
-      "content_text": "Aug 8 , 14:26 UTC Investigating - Cloudflare is aware of, and investigating a connectivity issue which potentially impacts end-user connectivity in Egypt.\nMore updates to follow shortly.",
-      "date_published": "2026-08-08T14:26:41Z",
-      "date_modified": "2026-08-08T14:26:41Z",
-      "authors": [
-        {
-          "name": "Cloudflare Status"
-        }
-      ],
-      "tags": [
-        "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/339067e208a200f0",
-      "url": "https://www.cloudflarestatus.com/incidents/9fzfjzc5ms0h",
-      "title": "R2 Availability Issues",
-      "content_text": "Aug 7 , 18:42 UTC Investigating - Cloudflare is aware, and investigating an issue affecting availability for a small number of R2 buckets",
-      "date_published": "2026-08-07T18:42:26Z",
-      "date_modified": "2026-08-07T18:42:26Z",
       "authors": [
         {
           "name": "Cloudflare Status"
@@ -3075,29 +3098,6 @@
       ],
       "tags": [
         "Cloudflare Maintenance"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/332b3a1715df230a",
-      "url": "https://blog.cloudflare.com/introducing-cache-response-rules/",
-      "title": "Introducing Cache Response Rules",
-      "content_text": "Perhaps you’ve seen something that should sail out of cache get dragged back to the origin by a stray Set-Cookie or Cache-Control, headers that can be hard to change on the origin itself. Cache Response Rules is the fix, applied at the right time.",
-      "date_published": "2026-07-23T18:40:38Z",
-      "date_modified": "2026-07-23T18:40:38Z",
-      "authors": [
-        {
-          "name": "Cloudflare Blog"
-        }
-      ],
-      "image": "https://blog.cloudflare.com/_emdash/api/media/file/01KY7Z140JM9461HHN0FHSNDVQ.png",
-      "tags": [
-        "Cloudflare Blog"
-      ],
-      "attachments": [
-        {
-          "url": "https://blog.cloudflare.com/_emdash/api/media/file/01KY7Z140JM9461HHN0FHSNDVQ.png",
-          "mime_type": "image/png"
-        }
       ]
     },
     {

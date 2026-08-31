@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-30T18:11:54.232112+00:00",
+  "last_updated": "2026-08-31T17:43:25.633114+00:00",
   "entries": [
     {
       "title": "Kneeliverse: A universal knee-detection library for performance curves",
@@ -5110,10 +5110,48 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/e0a07a141d3c201c"
     },
     {
+      "title": "Browser Run - Crawl endpoint now respects the Content Signals `use` directive",
+      "link": "https://developers.cloudflare.com/changelog/post/2026-08-31-crawl-content-use/",
+      "date": "2026-08-31T00:00:00+00:00",
+      "description": "The /crawl endpoint now respects the use directive of the Content Signals ↗ standard, letting site owners express the maximum level at which their content may be used. You can declare your intended level with the new contentUse parameter. Allowed values, from least to most permissive, are reference and full , and the default is full . If a target site's robots.txt sets a use level that is more restrictive than your declared contentUse , the crawl request is rejected with a 400 error. curl -X POS",
+      "source": "Cloudflare Changelog",
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/5d9ed659354f9aa5"
+    },
+    {
+      "title": "Introducing Adaptive Intelligence: Undermining the economics of every bot attack",
+      "link": "https://blog.cloudflare.com/introducing-adaptive-intelligence/",
+      "date": "2026-08-31T12:59:00+00:00",
+      "description": "Bot operators have historically had the economic advantage, bypassing static, deterministic detection rules with cheap proxies and retooling. Cloudflare's new Adaptive Intelligence engine flips this dynamic by autonomously learning from the meta-signals of live traffic and deploying disposable rules, making automated attacks too expensive to sustain.",
+      "source": "Cloudflare Blog",
+      "image": "https://blog.cloudflare.com/_emdash/api/media/file/01M15GS9CV1VMMQCAPHYE4AFD2.01M15GSA31CJVHRJCPHH7FBX77.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/26ace185f75ed80d"
+    },
+    {
+      "title": "Cloudflare Access bypass IP service experiencing availability issues",
+      "link": "https://www.cloudflarestatus.com/incidents/fcdl2yb3q7qw",
+      "date": "2026-08-31T14:50:56+00:00",
+      "description": "Aug 31 , 14:50 UTC Resolved - This incident has been resolved. Aug 31 , 13:08 UTC Identified - The issue has been identified and a fix is being implemented. Aug 31 , 11:40 UTC Investigating - We are investigating an issue affecting the Access IP List service, which may result in failures when bypassing users whose IPs are listed in them. Our engineering team is currently working to identify and resolve the root cause. We will provide updates as more information becomes available.",
+      "source": "Cloudflare Status",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/f28be7a7e6050e79"
+    },
+    {
+      "title": "Workers KV experiencing elevated error rates in Western Europe Region",
+      "link": "https://www.cloudflarestatus.com/incidents/kby271yt9vwx",
+      "date": "2026-08-31T15:04:13+00:00",
+      "description": "Aug 31 , 15:04 UTC Resolved - This incident has been resolved. Aug 31 , 12:40 UTC Monitoring - We are continuing to monitor for any further issues. Aug 31 , 12:40 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 31 , 11:02 UTC Investigating - We are investigating an issue affecting Workers KV in the Western Europe Region, which may result in elevated error rates for read requests. Writes are not affected. Our engineering team is currently working to identify and",
+      "source": "Cloudflare Status",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/cloudflare/26c0d67281e9cf9d"
+    },
+    {
       "title": "Incorrect geo location for some Cloudflare WARP users",
       "link": "https://www.cloudflarestatus.com/incidents/9g65dxfbcjln",
-      "date": "2026-08-30T15:51:03+00:00",
-      "description": "Aug 30 , 15:51 UTC Identified - We are continuing to work on a fix for this issue. Aug 29 , 15:31 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 11:30 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 00:55 UTC Identified - We are continuing to work on a fix for this issue. Aug 27 , 18:56 UTC Identified - The issue has been identified and we are working with third party providers to fix it. Aug 27 , 18:46 UTC Investigating - Cloudflare is ",
+      "date": "2026-08-31T15:15:03+00:00",
+      "description": "Aug 31 , 15:15 UTC Identified - We are continuing to work on a fix for this issue. Aug 30 , 15:51 UTC Identified - We are continuing to work on a fix for this issue. Aug 29 , 15:31 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 11:30 UTC Identified - We are continuing to work on a fix for this issue. Aug 28 , 00:55 UTC Identified - We are continuing to work on a fix for this issue. Aug 27 , 18:56 UTC Identified - The issue has been identified and we are working with",
       "source": "Cloudflare Status",
       "image": null,
       "image_checked": true,
