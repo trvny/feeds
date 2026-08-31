@@ -12,6 +12,8 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - Apify             blog (native RSS)
     - Zapier            blog (native RSS)
     - Fastly            blog (native RSS)
+    - Postman           blog (native RSS) + app release notes (first-party JSON)
+                        + press room (scraped)
     - Exa               changelog (native RSS) + blog (sitemap + per-post fetch)
     - Home Assistant    blog (native Atom)
     - Upstash           Workflow changelog (native RSS; blog lives in SkillsLLM)
@@ -47,6 +49,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from datetime import datetime, timezone
@@ -82,7 +85,7 @@ FEED_SUBTITLE = (
     "Combined updates from HashiCorp / HCP (blog + changelog), "
     "Bitly (blog + press + MCP changelog), Common Ninja, "
     "Vercel (blog + changelog + SDK docs), Apify, Zapier, Fastly, "
-    "Postman (blog + press), "
+    "Postman (blog + app release notes + press), "
     "Exa (blog + changelog), Home Assistant, "
     "Upstash Workflow changelog, "
     "Xweather (blog + API + MCP changelogs), "
@@ -218,10 +221,21 @@ def collect_native_feeds(known_links: set[str]) -> list[dict]:
 
 CODERABBIT_NEWSROOM_URL = "https://www.coderabbit.ai/newsroom"
 CODERABBIT_NEWSROOM_MAX = 50
+POSTMAN_APP_RELEASE_NOTES_URL = "https://www.postman.com/release-notes/postman-app/"
+POSTMAN_APP_RELEASE_NOTES_DATA_URL = (
+    "https://mkt.cdn.postman.com/www-next/release-notes/app-release-notes.json"
+)
+POSTMAN_APP_RELEASE_NOTES_MAX = 40
+_POSTMAN_RELEASE_DATE_RE = re.compile(r"(?m)^[A-Z][a-z]+ \d{1,2}, 20\d{2}\s*$")
+_POSTMAN_VERSION_RE = re.compile(r"^(\d+)\.\d+\.\d+(?:[-+][\w.-]+)?$")
+_POSTMAN_MD_LINK_RE = re.compile(r"!?\[([^]\n]+)\]\([^)]*\)")
 
 
 def doc_sources():
-    return [("CodeRabbit Newsroom", CODERABBIT_NEWSROOM_URL)]
+    return [
+        ("CodeRabbit Newsroom", CODERABBIT_NEWSROOM_URL),
+        ("Postman App Release Notes", POSTMAN_APP_RELEASE_NOTES_URL),
+    ]
 
 
 def collect_coderabbit_newsroom(known_links: set[str]) -> list[dict]:
@@ -265,6 +279,87 @@ def collect_coderabbit_newsroom(known_links: set[str]) -> list[dict]:
     out.sort(key=lambda e: e["date"] or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
     logger.info("CodeRabbit Newsroom: %d entries", len(out))
     return out[:CODERABBIT_NEWSROOM_MAX]
+
+
+def _postman_release_description(content: str, title: str) -> str:
+    """Turn one release-note Markdown body into a compact plain summary."""
+    lines = content.splitlines()
+    if lines and lines[0].lstrip().startswith("## "):
+        lines = lines[1:]
+    if lines and _POSTMAN_RELEASE_DATE_RE.fullmatch(lines[0].strip()):
+        lines = lines[1:]
+    body = "\n".join(lines)
+    body = _POSTMAN_MD_LINK_RE.sub(r"\1", body)
+    body = re.sub(r"(?m)^#{1,6}\s*", "", body)
+    body = re.sub(r"[*_`]+", "", body)
+    body = re.sub(r"(?m)^\s*[-+]\s+", "", body)
+    body = sanitize_xml(re.sub(r"\s+", " ", body).strip())
+    return body[:500] or title
+
+
+def parse_postman_app_release_notes(raw: str, known_links: set[str] | None = None) -> list[dict]:
+    """Parse Postman's first-party app release-notes JSON, newest major only."""
+    known_links = known_links or set()
+    try:
+        payload = json.loads(raw)
+    except (TypeError, json.JSONDecodeError):
+        return []
+    notes = payload.get("notes") if isinstance(payload, dict) else None
+    if not isinstance(notes, list):
+        return []
+
+    majors = []
+    for note in notes:
+        version = str(note.get("version") or "") if isinstance(note, dict) else ""
+        match = _POSTMAN_VERSION_RE.fullmatch(version.strip())
+        if match:
+            majors.append(int(match.group(1)))
+    if not majors:
+        return []
+    current_major = max(majors)
+
+    out: list[dict] = []
+    seen: set[str] = set()
+    for note in notes:
+        if not isinstance(note, dict):
+            continue
+        version = str(note.get("version") or "").strip()
+        match = _POSTMAN_VERSION_RE.fullmatch(version)
+        if not match or int(match.group(1)) != current_major:
+            continue
+        content = str(note.get("content") or "").strip()
+        title = sanitize_xml(f"Postman {version}")
+        anchor = re.sub(r"[^\w-]+", "", version.replace(".", "-").lower())
+        link = f"{POSTMAN_APP_RELEASE_NOTES_URL}#{anchor}"
+        if link in known_links or link in seen:
+            continue
+        date_match = _POSTMAN_RELEASE_DATE_RE.search(content)
+        date = multi_rss.parse_date(date_match.group(0)) if date_match else None
+        if date is None:
+            date = multi_rss.parse_date(note.get("createdAt"))
+        out.append({
+            "id": link,
+            "title": title,
+            "link": link,
+            "date": date or stable_fallback_date(link),
+            "description": _postman_release_description(content, title),
+            "content_html": None,
+            "source": "Postman App Release Notes",
+        })
+        seen.add(link)
+
+    out.sort(key=lambda entry: entry["date"], reverse=True)
+    return out[:POSTMAN_APP_RELEASE_NOTES_MAX]
+
+
+def collect_postman_app_release_notes(known_links: set[str]) -> list[dict]:
+    """Fetch Postman's app release notes from the JSON used by its own frontend."""
+    raw = multi_rss.get_html(POSTMAN_APP_RELEASE_NOTES_DATA_URL)
+    if not raw:
+        return []
+    entries = parse_postman_app_release_notes(raw, known_links)
+    logger.info("Postman App Release Notes: %d entries", len(entries))
+    return entries
 
 
 import datetime as _dt  # noqa: E402
@@ -718,6 +813,7 @@ def main(full: bool = False) -> bool:
         + collect_commoninja()
         + collect_native_feeds(known_links)
         + collect_coderabbit_newsroom(known_links)
+        + collect_postman_app_release_notes(known_links)
         + collect_postman_press(known_links)
         + collect_exa_blog(known_links)
         + collect_xweather_blog()
