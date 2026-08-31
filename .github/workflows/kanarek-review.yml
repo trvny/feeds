@@ -42,5 +42,5 @@ jobs:
       head_sha: ${{ github.event.pull_request.head.sha || inputs.head_sha }}
       base_sha: ${{ github.event.pull_request.base.sha || inputs.base_sha }}
     secrets:
-      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      KANAREK_REVIEW_ROUTER_TOKEN: ${{ secrets.KANAREK_REVIEW_ROUTER_TOKEN }}
       COPILOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
