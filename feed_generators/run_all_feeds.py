@@ -13,9 +13,12 @@ import logging
 import os
 import subprocess
 import sys
+from pathlib import Path
 
-from models import FeedConfig, FeedType, load_feed_registry
+from models import FeedConfig, load_feed_registry
 from normalize_feed_self_links import normalize_feed_self_links
+from utils import write_atomically
+from validate_feeds import validate_feed, validate_json_sidecar
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -28,6 +31,57 @@ logger = logging.getLogger(__name__)
 # finish. Losing one feed is fine: a generator that writes nothing leaves the
 # last good file in place.
 GENERATOR_TIMEOUT = float(os.environ.get("FEEDSEEK_GENERATOR_TIMEOUT", "480"))
+FEEDS_DIR = Path(__file__).resolve().parent.parent / "feeds"
+
+
+def _pair_paths(feed_name: str) -> tuple[Path, Path]:
+    xml_path = FEEDS_DIR / f"feed_{feed_name}.xml"
+    return xml_path, xml_path.with_suffix(".json")
+
+
+def _snapshot_feed_pair(feed_name: str) -> dict[Path, bytes | None]:
+    """Keep the parent's last-known-good pair while a child generator runs."""
+    return {
+        path: path.read_bytes() if path.exists() else None
+        for path in _pair_paths(feed_name)
+    }
+
+
+def _restore_feed_pair(snapshot: dict[Path, bytes | None]) -> None:
+    """Restore both artifacts after a failed/timed-out child process."""
+    for path, data in snapshot.items():
+        if data is None:
+            path.unlink(missing_ok=True)
+            continue
+        write_atomically(path, lambda target, payload=data: target.write_bytes(payload))
+
+
+def _feed_pair_is_valid(feed_name: str) -> bool:
+    """Check one generated pair before the parent accepts child success."""
+    xml_path, json_path = _pair_paths(feed_name)
+    if not xml_path.exists():
+        logger.error("Generator %s returned success without an XML artifact", feed_name)
+        return False
+    xml_result = validate_feed(xml_path)
+    if xml_result["status"] in {"ERROR", "EMPTY"}:
+        logger.error("Generator %s produced invalid XML: %s", feed_name, xml_result["message"])
+        return False
+    json_result = validate_json_sidecar(
+        json_path, expected_count=xml_result["item_count"]
+    )
+    if json_result["status"] != "OK":
+        logger.error("Generator %s produced invalid JSON Feed: %s", feed_name, json_result["message"])
+        return False
+    return True
+
+
+def _reject_feed_update(
+    feed_name: str, snapshot: dict[Path, bytes | None], message: str, *args
+) -> bool:
+    logger.error(message, *args)
+    _restore_feed_pair(snapshot)
+    logger.info("Restored last-known-good XML + JSON pair for %s", feed_name)
+    return False
 
 
 def run_feed(feed_name: str, config: FeedConfig, full: bool = False) -> bool:
@@ -39,6 +93,7 @@ def run_feed(feed_name: str, config: FeedConfig, full: bool = False) -> bool:
     if full:
         cmd.append("--full")
 
+    snapshot = _snapshot_feed_pair(feed_name)
     logger.info("Running %s: %s", feed_name, script_path)
     try:
         result = subprocess.run(
@@ -49,12 +104,13 @@ def run_feed(feed_name: str, config: FeedConfig, full: bool = False) -> bool:
         for stream, label in ((exc.stdout, "stdout"), (exc.stderr, "stderr")):
             if stream and stream.strip():
                 logger.warning("[%s %s before timeout]\n%s", feed_name, label, stream.rstrip())
-        logger.error(
-            "Generator %s exceeded %.0fs and was killed; its feed keeps the last good file",
+        return _reject_feed_update(
+            feed_name,
+            snapshot,
+            "Generator %s exceeded %.0fs and was killed",
             feed_name,
             GENERATOR_TIMEOUT,
         )
-        return False
 
     if result.stdout.strip():
         logger.info("[%s stdout]\n%s", feed_name, result.stdout.rstrip())
@@ -62,12 +118,21 @@ def run_feed(feed_name: str, config: FeedConfig, full: bool = False) -> bool:
         log = logger.warning if result.returncode == 0 else logger.error
         log("[%s stderr]\n%s", feed_name, result.stderr.rstrip())
 
-    if result.returncode == 0:
-        logger.info("Successfully ran: %s", feed_name)
-        return True
+    if result.returncode != 0:
+        return _reject_feed_update(
+            feed_name,
+            snapshot,
+            "Generator %s exited with status %d",
+            feed_name,
+            result.returncode,
+        )
+    if not _feed_pair_is_valid(feed_name):
+        return _reject_feed_update(
+            feed_name, snapshot, "Generator %s failed the XML + JSON pair check", feed_name
+        )
 
-    logger.error("Generator %s exited with status %d", feed_name, result.returncode)
-    return False
+    logger.info("Successfully ran: %s", feed_name)
+    return True
 
 
 def normalize_generated_feeds() -> bool:
@@ -85,34 +150,72 @@ def normalize_generated_feeds() -> bool:
     return True
 
 
-def run_all_feeds(
-    skip_selenium: bool = False,
-    selenium_only: bool = False,
-    feed: str | None = None,
-    full: bool = False,
+def _run_named_feed(
+    feed: str,
+    registry: dict[str, FeedConfig],
+    skipped_configs: list[str],
+    *,
+    full: bool,
 ) -> int:
-    """Run generators from the registry and return a truthful process status."""
-    registry, skipped_configs = load_feed_registry(return_skipped=True)
+    """Run one named feed after resolving registry state."""
+    if feed not in registry:
+        if feed in skipped_configs:
+            logger.error("Feed '%s' has an invalid config in feeds.yaml", feed)
+        else:
+            logger.error(
+                "Feed '%s' not found in registry. Available: %s",
+                feed,
+                ", ".join(sorted(registry)),
+            )
+        return 1
 
-    if feed:
-        if feed not in registry:
-            if feed in skipped_configs:
-                logger.error("Feed '%s' has an invalid config in feeds.yaml", feed)
-            else:
-                logger.error(
-                    "Feed '%s' not found in registry. Available: %s",
-                    feed,
-                    ", ".join(sorted(registry)),
-                )
-            return 1
-        config = registry[feed]
-        if not config.enabled:
-            logger.warning("Feed '%s' is disabled in feeds.yaml", feed)
-            return 1
-        run_ok = run_feed(feed, config, full=full)
-        normalize_ok = normalize_generated_feeds()
-        return 0 if run_ok and normalize_ok else 1
+    config = registry[feed]
+    if not config.enabled:
+        logger.warning("Feed '%s' is disabled in feeds.yaml", feed)
+        return 1
 
+    run_ok = run_feed(feed, config, full=full)
+    normalize_ok = normalize_generated_feeds()
+    return 0 if run_ok and normalize_ok else 1
+
+
+def _log_generation_summary(
+    successful_scripts: list[str],
+    failed_scripts: list[str],
+    skipped_scripts: list[str],
+    skipped_configs: list[str],
+    *,
+    normalization_ok: bool,
+) -> None:
+    """Log the batch outcome without adding branching to the runner."""
+    logger.info("\n%s", "=" * 60)
+    logger.info("Feed Generation Summary:")
+    logger.info("  Successful: %d", len(successful_scripts))
+    logger.info("  Failed: %d", len(failed_scripts))
+    logger.info("  Skipped (disabled/filtered): %d", len(skipped_scripts))
+    logger.info("  Invalid configs (skipped): %d", len(skipped_configs))
+    logger.info("  Metadata normalization: %s", "ok" if normalization_ok else "failed")
+
+    for heading, names, level, marker in (
+        ("Failed feeds", failed_scripts, logger.error, "✗"),
+        ("Invalid feed configs in feeds.yaml", skipped_configs, logger.error, "⚠"),
+        ("Skipped feeds", skipped_scripts, logger.info, "○"),
+    ):
+        if not names:
+            continue
+        level("\n%s:", heading)
+        for name in names:
+            level("  %s %s", marker, name)
+    logger.info("%s\n", "=" * 60)
+
+
+def _run_registry(
+    registry: dict[str, FeedConfig],
+    skipped_configs: list[str],
+    *,
+    full: bool,
+) -> int:
+    """Run every enabled registry entry and report the aggregate status."""
     failed_scripts: list[str] = []
     successful_scripts: list[str] = []
     skipped_scripts: list[str] = []
@@ -122,61 +225,33 @@ def run_all_feeds(
             logger.info("Skipping disabled feed: %s", name)
             skipped_scripts.append(name)
             continue
-
-        is_selenium = config.type == FeedType.SELENIUM
-        if skip_selenium and is_selenium:
-            logger.info("Skipping Selenium generator: %s", name)
-            skipped_scripts.append(name)
-            continue
-        if selenium_only and not is_selenium:
-            logger.info("Skipping non-Selenium generator: %s", name)
-            skipped_scripts.append(name)
-            continue
-
-        if run_feed(name, config, full=full):
-            successful_scripts.append(name)
-        else:
-            failed_scripts.append(name)
+        target = successful_scripts if run_feed(name, config, full=full) else failed_scripts
+        target.append(name)
 
     normalization_ok = normalize_generated_feeds()
-
-    logger.info("\n%s", "=" * 60)
-    logger.info("Feed Generation Summary:")
-    logger.info("  Successful: %d", len(successful_scripts))
-    logger.info("  Failed: %d", len(failed_scripts))
-    logger.info("  Skipped (disabled/filtered): %d", len(skipped_scripts))
-    logger.info("  Invalid configs (skipped): %d", len(skipped_configs))
-    logger.info("  Metadata normalization: %s", "ok" if normalization_ok else "failed")
-
-    if failed_scripts:
-        logger.error("\nFailed feeds:")
-        for name in failed_scripts:
-            logger.error("  ✗ %s", name)
-    if skipped_configs:
-        logger.error("\nInvalid feed configs in feeds.yaml:")
-        for name in skipped_configs:
-            logger.error("  ⚠ %s", name)
-    if skipped_scripts:
-        logger.info("\nSkipped feeds:")
-        for name in skipped_scripts:
-            logger.info("  ○ %s", name)
-    logger.info("%s\n", "=" * 60)
-
+    _log_generation_summary(
+        successful_scripts,
+        failed_scripts,
+        skipped_scripts,
+        skipped_configs,
+        normalization_ok=normalization_ok,
+    )
     return 1 if failed_scripts or skipped_configs or not normalization_ok else 0
+
+
+def run_all_feeds(
+    feed: str | None = None,
+    full: bool = False,
+) -> int:
+    """Run generators from the registry and return a truthful process status."""
+    registry, skipped_configs = load_feed_registry(return_skipped=True)
+    if feed:
+        return _run_named_feed(feed, registry, skipped_configs, full=full)
+    return _run_registry(registry, skipped_configs, full=full)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run RSS feed generators")
-    parser.add_argument(
-        "--skip-selenium",
-        action="store_true",
-        help="Skip Selenium-based generators",
-    )
-    parser.add_argument(
-        "--selenium-only",
-        action="store_true",
-        help="Run only Selenium-based generators",
-    )
     parser.add_argument("--feed", type=str, help="Run one feed by registry name")
     parser.add_argument(
         "--full",
@@ -185,15 +260,4 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    if args.skip_selenium and args.selenium_only:
-        logger.error("Cannot use both --skip-selenium and --selenium-only")
-        sys.exit(1)
-
-    sys.exit(
-        run_all_feeds(
-            skip_selenium=args.skip_selenium,
-            selenium_only=args.selenium_only,
-            feed=args.feed,
-            full=args.full,
-        )
-    )
+    sys.exit(run_all_feeds(feed=args.feed, full=args.full))

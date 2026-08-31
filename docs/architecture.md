@@ -1,6 +1,6 @@
 # Feedseek internals
 
-Feedseek turns native feeds, public APIs and carefully selected web pages into stable RSS/Atom output. The public README stays focused on using the project; implementation details live here.
+Feedseek turns native feeds, public APIs and carefully selected web pages into stable, enriched RSS/Atom output plus JSON Feed 1.1 sidecars. Native feeds are treated as upstream material rather than an automatic final form: the pipeline may normalize, repair or enrich them when that improves fidelity, stability or interoperability. The public README stays focused on using the project; implementation details live here.
 
 ## Pipeline
 
@@ -20,12 +20,18 @@ fetch / parse / normalize / deduplicate
 
 The defaults are intentionally conservative:
 
-- prefer a usable native RSS/Atom feed before scraping;
+- prefer consuming a reliable native RSS/Atom feed over scraping HTML, while still normalizing or enriching the published output when useful;
 - isolate source failures so one broken site does not block unrelated feeds;
 - never replace the last good output with an empty result after a failed fetch;
 - keep entry identity stable and hash-gate `updated` timestamps so unchanged items do not churn;
 - deduplicate by normalized URL/title where sources overlap;
 - keep generated `feeds/` and `cache/` data separate from maintained generator code.
+
+## Feed quality contract
+
+The publication gate has a small universal core. Every enabled feed must produce non-empty, parseable XML and a valid JSON Feed 1.1 sidecar with the same item count. JSON items need unique non-empty IDs and a protocol content field. These are format invariants Feedseek controls itself, so they are safe to require from every generator.
+
+Everything that depends on upstream richness stays adaptive. Images, authors, categories, provenance, summaries and publication/update dates should be preserved or enriched whenever the source gives enough evidence, but their absence alone does not fail a feed. A weather endpoint, a changelog and a newsroom should not be forced through the same editorial cookie cutter. When metadata is present, shared helpers should normalize it without inventing facts.
 
 ## Link and image enrichment
 
@@ -63,7 +69,7 @@ In CI, feed `rel="self"` URLs are derived from `GITHUB_REPOSITORY`, so repositor
 
 ## Adding a feed
 
-1. Create `feed_generators/<name>.py` exposing `main(full: bool)` and writing `feeds/feed_<name>.xml`.
+1. Create `feed_generators/<name>.py` exposing `main(full: bool)` and publish through the shared writer, which maintains the XML + JSON Feed pair.
 2. Register it in `feeds.yaml`.
 3. Reuse shared HTTP, normalization, cache and feed helpers instead of creating local copies.
 4. Add the source/feed row to the registry table in `README.md`; tests keep that table aligned with `feeds.yaml`.

@@ -10,11 +10,12 @@ import ast
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 from tempfile import TemporaryDirectory
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-from utils import write_atomically  # noqa: E402
+from utils import save_atom_feed, write_atomically  # noqa: E402
 
 
 class WriteAtomicallyTests(unittest.TestCase):
@@ -68,6 +69,49 @@ class WriteAtomicallyTests(unittest.TestCase):
                 lambda p: (seen.append(p), p.write_text("x", encoding="utf-8"))[1],
             )
         self.assertEqual(seen[0].parent, target.parent)
+
+
+class FeedPairTests(unittest.TestCase):
+    @staticmethod
+    def feed():
+        from feedgen.feed import FeedGenerator
+
+        fg = FeedGenerator()
+        fg.id("https://example.test/")
+        fg.title("Demo")
+        fg.link(href="https://example.test/", rel="alternate")
+        fg.description("Demo feed")
+        entry = fg.add_entry()
+        entry.id("https://example.test/1")
+        entry.title("One")
+        entry.link(href="https://example.test/1")
+        entry.description("One")
+        return fg
+
+    def test_json_failure_restores_previous_xml(self):
+        with TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            target = directory / "feed_demo.xml"
+            target.write_text("last good xml", encoding="utf-8")
+            with (
+                mock.patch("utils.get_feeds_dir", return_value=directory),
+                mock.patch("utils._write_json_sidecar", side_effect=RuntimeError("json failed")),
+                self.assertRaises(RuntimeError),
+            ):
+                save_atom_feed(self.feed(), "demo")
+            self.assertEqual(target.read_text(encoding="utf-8"), "last good xml")
+
+    def test_json_failure_removes_first_xml_when_no_previous_pair_exists(self):
+        with TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            target = directory / "feed_demo.xml"
+            with (
+                mock.patch("utils.get_feeds_dir", return_value=directory),
+                mock.patch("utils._write_json_sidecar", side_effect=RuntimeError("json failed")),
+                self.assertRaises(RuntimeError),
+            ):
+                save_atom_feed(self.feed(), "demo")
+            self.assertFalse(target.exists())
 
 
 class GeneratorWriterPolicyTests(unittest.TestCase):

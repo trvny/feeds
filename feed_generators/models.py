@@ -1,7 +1,6 @@
 """Pydantic models for feed configuration and settings."""
 
 import logging
-from enum import StrEnum
 from pathlib import Path
 
 import yaml
@@ -10,16 +9,10 @@ from pydantic import BaseModel, ValidationError, field_validator
 logger = logging.getLogger(__name__)
 
 
-class FeedType(StrEnum):
-    REQUESTS = "requests"
-    SELENIUM = "selenium"
-
-
 class FeedConfig(BaseModel):
     """Configuration for a single feed generator."""
 
     script: str
-    type: FeedType
     blog_url: str
     enabled: bool = True
 

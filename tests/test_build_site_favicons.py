@@ -99,6 +99,44 @@ class SiteFaviconTests(unittest.TestCase):
         self.assertIn("https://example.com/favicon.ico", fallbacks)
         self.assertEqual(fallbacks[-1], build_site.FAVICON_SVG)
 
+    def test_autodiscovery_advertises_xml_and_json_feed(self):
+        links = build_site.render_autodiscovery(
+            [{"filename": "feed_test.xml", "title": "Test", "format": "atom"}],
+            "https://feeds.example/",
+        )
+
+        self.assertIn('type="application/atom+xml"', links)
+        self.assertIn('href="https://feeds.example/feed_test.xml"', links)
+        self.assertIn('type="application/feed+json"', links)
+        self.assertIn('href="https://feeds.example/feed_test.json"', links)
+
+    def test_publication_requires_json_sidecar(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            xml = directory / "feed_test.xml"
+            xml.write_text("<feed />", encoding="utf-8")
+            original = build_site.FEEDS_DIR
+            build_site.FEEDS_DIR = directory
+            self.addCleanup(setattr, build_site, "FEEDS_DIR", original)
+
+            with self.assertRaisesRegex(SystemExit, "feed_test.json"):
+                build_site.require_json_sidecars(
+                    [{"filename": "feed_test.xml", "title": "Test"}]
+                )
+
+    def test_publication_accepts_xml_json_pair(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            (directory / "feed_test.xml").write_text("<feed />", encoding="utf-8")
+            (directory / "feed_test.json").write_text("{}", encoding="utf-8")
+            original = build_site.FEEDS_DIR
+            build_site.FEEDS_DIR = directory
+            self.addCleanup(setattr, build_site, "FEEDS_DIR", original)
+
+            build_site.require_json_sidecars(
+                [{"filename": "feed_test.xml", "title": "Test"}]
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

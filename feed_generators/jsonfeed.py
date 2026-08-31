@@ -5,11 +5,12 @@ Every feed this project publishes as ``feeds/feed_<name>.xml`` also gets a
 (https://jsonfeed.org/version/1.1). It is written from the just-produced XML
 so the published Atom/RSS file stays the single source of truth — whatever the
 generator emitted (MRSS media, dc:creator, tag-URI ids) is mirrored, not
-re-derived. Strictly additive: readers that consume XML ignore the .json.
+re-derived. XML readers can still ignore the .json, but both representations are
+first-class publication artifacts.
 
-Called from ``utils.save_atom_feed`` / ``utils.save_rss_feed``; a JSON sidecar
-is only written when an XML file is, so the keep-last-good invariant holds (a
-failed run that skips the XML leaves the previous .json in place).
+Called from ``utils.save_atom_feed`` / ``utils.save_rss_feed``. If JSON Feed
+serialization fails after XML rendering, the shared writer restores the previous
+XML so the scheduled workflow keeps the last known-good XML + JSON pair.
 """
 
 import calendar

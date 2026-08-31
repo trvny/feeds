@@ -318,6 +318,18 @@ def collect_feeds() -> list[dict]:
     return feeds
 
 
+def require_json_sidecars(feeds: list[dict]) -> None:
+    """Require the first-class JSON Feed sibling for every published XML feed."""
+    missing = [
+        (FEEDS_DIR / str(feed["filename"])).with_suffix(".json").name
+        for feed in feeds
+        if not (FEEDS_DIR / str(feed["filename"])).with_suffix(".json").is_file()
+    ]
+    if missing:
+        joined = ", ".join(missing)
+        raise SystemExit(f"Missing required JSON Feed sidecar(s): {joined}")
+
+
 def render_card(feed: dict, base: str) -> str:
     url = base + feed["filename"]
     dom = domain_of(feed["source"])
@@ -367,6 +379,12 @@ def render_autodiscovery(feeds: list[dict], base: str) -> str:
             f'  <link rel="alternate" type="{mime}" '
             f'title="{title}" href="{href}">'
         )
+        json_name = str(f["filename"]).rsplit(".", 1)[0] + ".json"
+        json_href = html.escape(base + json_name, quote=True)
+        lines.append(
+            '  <link rel="alternate" type="application/feed+json" '
+            f'title="{title} (JSON Feed)" href="{json_href}">'
+        )
     return "\n".join(lines)
 
 
@@ -376,8 +394,8 @@ def build_index(feeds: list[dict], base: str) -> str:
     autodiscovery = render_autodiscovery(feeds, base)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     desc = (
-        f"{count} self-updating Atom feeds for sites that don't offer a usable "
-        "native feed — news, music, automotive, gaming and more, regenerated every 2 hours."
+        f"{count} self-updating, enhanced Atom/RSS feeds with JSON Feed 1.1 sidecars, "
+        "built from native feeds, APIs and the web, regenerated every 2 hours."
     )
     schema = json.dumps(
         {
@@ -649,8 +667,8 @@ def build_llms_txt(feeds: list[dict], base: str) -> str:
     lines = [
         "# Feeds",
         "",
-        f"> Self-updating Atom/RSS feed directory: {count} feeds for sites that "
-        "don't offer a usable native feed, regenerated every 2 hours.",
+        f"> Self-updating, enhanced Atom/RSS feeds with JSON Feed 1.1 sidecars: "
+        f"{count} feeds built from native feeds, APIs and the web, regenerated every 2 hours.",
         "",
         "## Resources",
         "",
@@ -695,6 +713,7 @@ def main() -> None:
     feeds = collect_feeds()
     if not feeds:
         raise SystemExit("No feeds found in feeds/ — nothing to publish.")
+    require_json_sidecars(feeds)
 
     if OUT_DIR.exists():
         shutil.rmtree(OUT_DIR)
@@ -702,11 +721,10 @@ def main() -> None:
 
     for f in feeds:
         shutil.copy2(FEEDS_DIR / f["filename"], OUT_DIR / f["filename"])
-        # Publish the JSON Feed 1.1 sibling too, when present, so
-        # <base>/feed_<name>.json is served from Pages alongside the XML.
+        # The preflight above guarantees every published XML has its
+        # first-class JSON Feed 1.1 sibling.
         json_sibling = (FEEDS_DIR / f["filename"]).with_suffix(".json")
-        if json_sibling.exists():
-            shutil.copy2(json_sibling, OUT_DIR / json_sibling.name)
+        shutil.copy2(json_sibling, OUT_DIR / json_sibling.name)
 
     # Real favicon files (not just the inline data: URI in <link rel="icon">)
     # so tools that fetch /favicon.svg or /favicon.ico directly (QR code

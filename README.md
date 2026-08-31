@@ -6,7 +6,7 @@
 
 # Feedseek 📡
 
-**Self-updating RSS/Atom feeds for sites that do not provide a useful native feed.**
+**Self-updating, enhanced RSS/Atom + JSON feeds, built both where feeds are missing and where native feeds can be made better.**
 
 [![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feedseek/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feedseek/actions/workflows/update-feeds.yml)
 [![feeds](https://img.shields.io/badge/feeds-98-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
@@ -26,7 +26,9 @@
 
 Feedseek discovers or builds feeds, normalizes entries, deduplicates them and publishes the generated output through GitHub Pages. The scheduled workflow refreshes sources every two hours, while source failures are isolated so one broken site does not sink the rest.
 
-Native RSS/Atom is preferred whenever it is useful; scraping and API adapters fill the gaps. A failed or empty fetch does not replace the last known-good feed.
+Feedseek is not only a generator for sites that lack feeds. Native RSS/Atom is a valuable upstream input, not an untouchable final product: when the source material allows it, Feedseek normalizes and enriches it into a more stable, complete, expressive and interoperable feed, with a JSON Feed 1.1 sidecar alongside the XML.
+
+The goal is to use the useful semantics of RSS, Atom and JSON Feed as fully as the source allows: durable identity, canonical links, truthful publication/update dates, useful metadata, provenance, categories and media. Scraping and API adapters fill gaps that native sources leave behind. A failed or empty fetch does not replace the last known-good feed.
 
 Inspired by [Olshansk/rss-feeds](https://github.com/Olshansk/rss-feeds) & [rss-bridge/rss-bridge](https://github.com/rss-bridge/rss-bridge).
 
