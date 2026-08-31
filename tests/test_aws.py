@@ -345,6 +345,46 @@ class AwsFeedTests(unittest.TestCase):
         self.assertEqual([entry["title"] for entry in entries], ["Fresh head"])
         self.assertNotIn(aws.REPOST_CURSOR_KEY, state)
 
+    def test_repost_parsed_failure_preserves_original_boundary_for_head_recovery(self):
+        head = {
+            "id": "ARH",
+            "slug": "head",
+            "title": "Known head",
+            "description": "known",
+            "language": "en",
+            "createdAt": "2026-08-30T11:00:00Z",
+        }
+        unusable = {
+            "id": "AR5",
+            "slug": "fuenf",
+            "title": "Fuenf",
+            "description": "fuenf",
+            "language": "de",
+            "createdAt": "2026-08-25T10:00:00Z",
+        }
+        head_link = "https://repost.aws/articles/ARH/head"
+        old_link = "https://repost.aws/articles/OLD/original-boundary"
+        boundary_key = f"{aws.REPOST_CURSOR_KEY}_boundary"
+        state = {
+            aws.REPOST_CURSOR_KEY: {"page": 5, "token": "archive-5"},
+            boundary_key: [old_link],
+        }
+        with (
+            patch.object(aws, "MAX_REPOST_PAGES", 2),
+            patch.object(
+                aws.multi_rss,
+                "get_html",
+                side_effect=[
+                    repost_page(1, total=120, entries=[head]),
+                    repost_page(5, total=120, entries=[unusable]),
+                ],
+            ),
+        ):
+            entries = aws.collect_repost({head_link, old_link}, state)
+        self.assertEqual(entries, [])
+        self.assertNotIn(aws.REPOST_CURSOR_KEY, state)
+        self.assertEqual(state[boundary_key], [old_link])
+
     def test_repost_stale_resume_cursor_resets_for_next_run(self):
         head = {
             "id": "ARH",

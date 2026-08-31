@@ -386,7 +386,16 @@ def _handle_repost_window_failure(
     if failure == "unavailable":
         _note_repost_cursor_failure(context, cursor)
     else:
-        _clear_repost_cursor(context.cache_state, key=context.cursor_key)
+        _store_repost_boundary(
+            context.cache_state,
+            context.cursor_key,
+            context.boundary_links,
+        )
+        _clear_repost_cursor(
+            context.cache_state,
+            key=context.cursor_key,
+            preserve_boundary=True,
+        )
 
 
 def _healthy_repost_cursor(
