@@ -677,6 +677,10 @@ def build_llms_txt(feeds: list[dict], base: str) -> str:
         f"- [Live reader]({base}reader/): Browser-based feed reader",
         "- [Source & how it works](https://github.com/trvny/feedseek)",
         "",
+        "## Agent access",
+        "",
+        "On browser hosts that implement WebMCP, the feed directory exposes `search_feeds` and `set_feed_filter`; the Reader exposes `read_visible_articles`, `set_source_filter`, `start_reader_refresh` and `open_article`.",
+        "",
         "## Feeds",
         "",
     ]
