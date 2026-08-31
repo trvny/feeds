@@ -8,6 +8,75 @@
   "icon": "https://blogs.oracle.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/oracle/0dc326e6840beed0",
+      "url": "https://forums.oracle.com/ords/apexds/post/sqlcl-projects-adding-trailing-blank-lines-to-triggers-when-8235",
+      "title": "SQLcl Projects: Adding trailing blank lines to TRIGGERs when export.format.enable=FALSE",
+      "content_text": "I have discovered an issue with SQLcl Projects, specific to TRIGGERs and only when the configuration setting export.format.enable=FALSE . Tested using: Oracle Database 23.26.3 SQLcl version: 26.2.1.0 build: 26.2.1.222.1617 The issue is that after deploying into a database using project deploy, and subsequently trying to create a new change using project export an extra trailing blank line is added to all TRIGGER DDL. Running into this issue quite regularly when building out a new environment for",
+      "date_published": "2026-08-31T21:02:35Z",
+      "date_modified": "2026-08-31T21:02:35Z",
+      "authors": [
+        {
+          "name": "Oracle Developer Community"
+        }
+      ],
+      "image": "https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png",
+      "tags": [
+        "Oracle Developer Community"
+      ],
+      "attachments": [
+        {
+          "url": "https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/oracle/e0ccd5d7e7ad2ab1",
+      "url": "https://blogs.oracle.com/cloud-infrastructure/fn-cli-enhancements-for-oci-functions",
+      "title": "Fn CLI for OCI Functions: More Capabilities, Simpler Workflows",
+      "content_text": "We’re excited to announce enhancements to Fn CLI that bring more OCI capabilities into the developer CLI experience, simplify common commands, and streamline deployment automation. Developers using OCI Functions have historically had to move between Fn CLI, OCI CLI, raw annotations, and lower-level request payloads to manage production workflows.  With the latest Fn CLI enhancements, […]",
+      "date_published": "2026-08-31T20:00:00Z",
+      "date_modified": "2026-08-31T20:00:00Z",
+      "authors": [
+        {
+          "name": "Oracle Cloud Infrastructure"
+        }
+      ],
+      "image": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/fn-cli-oci-functions-featured-image.png",
+      "tags": [
+        "Oracle Cloud Infrastructure"
+      ],
+      "attachments": [
+        {
+          "url": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/fn-cli-oci-functions-featured-image.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/oracle/e459eea274184968",
+      "url": "https://blogs.oracle.com/cloud-infrastructure/hl7-edi-fhir-processing-on-oci",
+      "title": "Reference Architecture: Building a Cost Optimized, High-Throughput HL7, EDI, and FHIR Processing Pipeline on OCI",
+      "content_text": "Healthcare transaction volumes are highly unpredictable. A claims intake workflow or a FHIR-based data exchange might handle a steady stream of requests during standard hours, only to face large, sudden spikes from provider portals, clearinghouses, automated batch submissions, or pharmacy networks. Whether you are managing prior authorizations, eligibility verifications (EDI 270/271), claims intake (EDI 837), […]",
+      "date_published": "2026-08-31T18:18:16Z",
+      "date_modified": "2026-08-31T18:18:16Z",
+      "authors": [
+        {
+          "name": "Oracle Cloud Infrastructure"
+        }
+      ],
+      "image": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/06/healthcarepipeline-v3-1.png",
+      "tags": [
+        "Oracle Cloud Infrastructure"
+      ],
+      "attachments": [
+        {
+          "url": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/06/healthcarepipeline-v3-1.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/oracle/149d6a3f30bd0c14",
       "url": "https://forums.oracle.com/ords/apexds/post/filter-a-public-spatial-studio-published-project-using-an-o-6139",
       "title": "Filter a public Spatial Studio published project using an Oracle APEX page item",
@@ -319,29 +388,6 @@
         {
           "url": "https://objectstorage.us-phoenix-1.oraclecloud.com/p/8XchFSZkjz8qO4p8uxTZOqA0LbZbAcrp1MON3Ph8P79VRQLjAIsR8S0ieDkLokBl/n/axciphqpnohg/b/forums-prod-www/o/attachments/aHKjAdHn-4075-LfCUfTsa",
           "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/oracle/a99fba86e9ea4ad2",
-      "url": "https://forums.oracle.com/ords/apexds/post/how-to-identify-inactive-apex-sessions-in-ords-1724",
-      "title": "How to Identify Inactive APEX Sessions in ORDS?",
-      "content_text": "Hi everyone, I’m running an Oracle APEX 26.1 application on ORDS 26.1.1 with Oracle Database 19c. In some cases—such as power outages, browser crashes, or users simply closing the browser—the APEX session remains active on the ORDS/database side even though the client is no longer connected. I’d like to: Identify these inactive APEX sessions. Automatically terminate them within a maximum of 2 minutes after the client disconnects. Questions: Is there a built-in mechanism in APEX, ORDS, or the Ora",
-      "date_published": "2026-08-29T11:04:09Z",
-      "date_modified": "2026-08-29T11:04:09Z",
-      "authors": [
-        {
-          "name": "Oracle Developer Community"
-        }
-      ],
-      "image": "https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png",
-      "tags": [
-        "Oracle Developer Community"
-      ],
-      "attachments": [
-        {
-          "url": "https://objectstorage.us-phoenix-1.oraclecloud.com/p/usZakwxzsyewMRwrzramy7IpDhL0NnhNKqIsS4oCJQZlZGXvq0UNqBQXLk6rcQI4/n/axciphqpnohg/b/forums-prod-app/o/300000/static/domain/devforum.png",
-          "mime_type": "image/png"
         }
       ]
     },
@@ -1427,29 +1473,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/oracle/f300809075de59ab",
-      "url": "https://blogs.oracle.com/cloud-infrastructure/oracle-multicloud-whats-new-blog",
-      "title": "Oracle Multicloud – What’s News",
-      "content_text": "Hello, and welcome to the Oracle Multicloud What’s News blog, where we cover topics such as new services, region launches, and customer success stories. Please bookmark this page or subscribe to our RSS feed for news, updates, and information from Oracle’s Multicloud team as you use Oracle AI Database in the cloud. – Oracle Multicloud Team […]",
-      "date_published": "2026-08-12T15:43:00Z",
-      "date_modified": "2026-08-12T15:43:00Z",
-      "authors": [
-        {
-          "name": "Oracle Cloud Infrastructure"
-        }
-      ],
-      "image": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/04/Whats-new-blog-series_v2-1.png",
-      "tags": [
-        "Oracle Cloud Infrastructure"
-      ],
-      "attachments": [
-        {
-          "url": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/04/Whats-new-blog-series_v2-1.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/oracle/fe31ba2e7060e435",
       "url": "https://www.oracle.com/news/announcement/oracle-health-ai-powered-patient-portal-generally-available-2026-08-12/",
       "title": "Oracle Health’s AI-Powered Patient Portal Now Generally Available",
@@ -1537,29 +1560,6 @@
       "attachments": [
         {
           "url": "https://www.oracle.com/a/pr/img/og-social-quantinuum.jpg",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/oracle/707da86cf0a6fbd4",
-      "url": "https://blogs.oracle.com/cloud-infrastructure/autoscaling-for-red-hat-openshift-on-oci",
-      "title": "Introducing autoscaling for Red Hat OpenShift on Oracle Cloud Infrastructure",
-      "content_text": "Oracle and Red Hat continue to expand Red Hat OpenShift on Oracle Cloud Infrastructure (OCI), helping you run enterprise Kubernetes workloads with more automation, flexibility, and operational consistency. Today, Oracle and Red Hat are introducing autoscaling support for OpenShift on OCI, generally available for OpenShift 4.22 and later. Your clusters can now adjust worker capacity […]",
-      "date_published": "2026-08-11T20:00:00Z",
-      "date_modified": "2026-08-11T20:00:00Z",
-      "authors": [
-        {
-          "name": "Oracle Cloud Infrastructure"
-        }
-      ],
-      "image": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2025/12/social-og-oci-logo-1200x1200-1.jpg",
-      "tags": [
-        "Oracle Cloud Infrastructure"
-      ],
-      "attachments": [
-        {
-          "url": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2025/12/social-og-oci-logo-1200x1200-1.jpg",
           "mime_type": "image/jpeg"
         }
       ]

@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://aws.amazon.com/blogs/</id>
   <title>AWS</title>
-  <updated>2026-08-31T17:42:52.906098+00:00</updated>
+  <updated>2026-08-31T23:00:58.850885+00:00</updated>
   <author>
     <name>Amazon Web Services</name>
   </author>
@@ -13,6 +13,121 @@
   <logo>https://aws.amazon.com/favicon.ico</logo>
   <subtitle>AWS announcements, selected blogs, re:Post articles, and AWS CLI v2 releases.</subtitle>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/2600e9c005005d96</id>
+    <title>Amazon Redshift now supports AWS IAM Identity Center authentication with enhanced VPC routing</title>
+    <updated>2026-08-31T21:02:00+00:00</updated>
+    <content>Amazon Redshift now supports AWS IAM Identity Center authentication for provisioned clusters and serverless workgroups configured with enhanced VPC routing (EVR). You can access Amazon Redshift with single sign-on with your corporate credentials, and the traffic traverses Amazon Virtual Private Cloud (Amazon VPC) and stays on the AWS network. This is valuable for customers with data residency, regulatory, or network-isolation requirements that mandate no public internet egress for analytics. Wit</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-redshift-supports-idc-evr" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T21:02:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/d959127de7d9e45c</id>
+    <title>Amazon EC2 R9g and R9gd instances powered by AWS Graviton5 processors are now generally available</title>
+    <updated>2026-08-31T19:53:34+00:00</updated>
+    <content>Amazon EC2 R9g and R9gd instances powered by AWS Graviton5 are now generally available, delivering up to 25% better compute performance than R8g, ideal for databases, in-memory caches, and real-time analytics.</content>
+    <link href="https://aws.amazon.com/blogs/aws/amazon-ec2-r9g-and-r9gd-instances-powered-by-aws-graviton5-processors-are-now-generally-available/" rel="alternate"/>
+    <category term="AWS News Blog" label="AWS News Blog"/>
+    <published>2026-08-31T19:53:34+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2025/09/12/EC2-F2.png" type="image/png" medium="image" height="400" width="800"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2025/09/12/EC2-F2.png" height="400" width="800"/>
+    </media:group>
+    <dc:creator>AWS News Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2025/09/12/EC2-F2.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/beb9200451f36a99</id>
+    <title>Amazon Timestream for InfluxDB is now available in 8 additional AWS Regions</title>
+    <updated>2026-08-31T19:48:00+00:00</updated>
+    <content>You can now use Amazon Timestream for InfluxDB in the Africa (Cape Town), Asia Pacific (Bangkok), Asia Pacific (Hong Kong), Asia Pacific (Hyderabad), Asia Pacific (Melbourne), Asia Pacific (Seoul), Europe (Zurich), and Israel (Tel Aviv) AWS Regions. Timestream for InfluxDB makes it easy for application developers and DevOps teams to run fully managed InfluxDB databases on AWS for real-time time-series applications using open-source APIs. Timestream for InfluxDB offers Multi-AZ high availability,</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-timestream-influxdb-regions/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T19:48:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/d8b57b54cfb39128</id>
+    <title>AWS CLI 2.36.35</title>
+    <updated>2026-08-31T18:12:36+00:00</updated>
+    <content>api-change:support: AWS Support now allows up to 10 attachments (150 MB each) per case correspondence, up from 3 at 5 MB. Customers can share large diagnostic logs, heap dumps, and packet captures directly in cases to reduce back-and-forth and speed up resolution. Available in US East, US West, and Europe (Ireland). api-change:connect: Added support for global routing on Amazon Connect Global Resiliency instances. New APIs GetCrossRegionRouting and UpdateCrossRegionRouting allow you to view and control cross-region contact routing between linked instances, so both Regions are active at all times. api-change:agent-registry: AWS Agent Registry becomes Generally Available api-change:devops-agent: Adds support for Slack bidirectional communication configuration in AWS DevOps Agent agent spaces. api-change:pinpoint-sms-voice-v2: AWS End User Messaging SMS now returns ConditionalBehavior on DescribeRegistrationFieldDefinitions, allowing you to programmatically discover which registration fields are required, optional, or disallowed based on the values of other fields in the same form. api-change:kafkaconnect: Amazon MSK Connect now supports restarting newly created connectors via the asynchronous RestartConnector API. Restart all tasks or only failed tasks, while preserving configuration and committed offsets. This returns a connector operation ARN that you can track with DescribeConnectorOperation. api-change:workspaces-instances: Amazon WorkSpaces Core managed instances now support nested virtualization. Customers can enable nested virtualization with supported instance types at launch via CpuOptions.NestedVirtualization in CreateWorkspaceInstance to run hypervisors and virtual machines inside their WorkSpaces Instance. api-change:quicksight: This release adds support for managing apps in Amazon QuickSight with ListApps, SearchApps, DescribeApp, DescribeAppPermissions, UpdateAppPermissions, and DeleteApp api-change:controltower: Updated the descriptions for the AWS Control Tower ListEnabledControls API parameters to make them more accurate and intuitive. api-change:customer-profiles: This release introduces new APIs for segment membership events allowing segment definition membership events to be exported to a kinesis stream for downstream processing. Additionally, includes new calculated attribute statistic and 2 new segment dimension types. api-change:agent-registry-control: AWS Agent Registry becomes Generally Available api-change:kinesis: Adds support for data delivery to Amazon S3 Tables (Apache Iceberg) and general purpose Amazon S3 buckets with new CreateChannel, UpdateChannel, DeleteChannel, DescribeChannel, and ListChannels APIs for Amazon Kinesis Data Streams. api-change:sagemaker: Amazon SageMaker Batch Transform now supports G6e instances, powered by NVIDIA L40S Tensor Core GPUs. G6e instances are the most cost-efficient GPU instances for deploying generative AI models and the highest-performance GPU instances for spatial computing worklo</content>
+    <link href="https://github.com/aws/aws-cli/releases/tag/2.36.35" rel="alternate"/>
+    <category term="AWS CLI v2 Changelog" label="AWS CLI v2 Changelog"/>
+    <published>2026-08-31T18:12:36+00:00</published>
+    <media:group>
+      <media:content url="https://opengraph.githubassets.com/583f8c845f002bb12fac4491535c40dcdc8e6bbbcaea6f6089da16130e8dcf0a/aws/aws-cli" type="image/jpeg" medium="image" height="600" width="1200"/>
+      <media:thumbnail url="https://opengraph.githubassets.com/583f8c845f002bb12fac4491535c40dcdc8e6bbbcaea6f6089da16130e8dcf0a/aws/aws-cli" height="600" width="1200"/>
+    </media:group>
+    <dc:creator>AWS CLI v2 Changelog</dc:creator>
+    <link rel="enclosure" href="https://opengraph.githubassets.com/583f8c845f002bb12fac4491535c40dcdc8e6bbbcaea6f6089da16130e8dcf0a/aws/aws-cli" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/100415d5896985c7</id>
+    <title>Amazon Redshift now supports Apache Iceberg v3 tables</title>
+    <updated>2026-08-31T18:10:00+00:00</updated>
+    <content>Amazon Redshift now supports reading from and writing to Apache Iceberg v3 tables in your data lake. Apache Iceberg is an open table format, and its v3 release adds several new features. With this launch, Amazon Redshift introduces support for default column values, row lineage, and deletion vectors. With default column values, you can define an initial value that Amazon Redshift applies when no value is provided, simplifying schema evolution as you add columns to existing tables. Row lineage ex</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-redshift-supports-apache-iceberg-v3" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T18:10:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/6dbb1ba6a0474caf</id>
+    <title>Amazon EC2 R9g and R9gd memory optimized instances are now available</title>
+    <updated>2026-08-31T18:08:00+00:00</updated>
+    <content>Starting today, Amazon Elastic Compute Cloud (Amazon EC2) R9g and R9gd instances, powered by AWS Graviton5 processors, are generally available. AWS Graviton5 processors are the fifth generation of custom-designed CPUs, delivering the best price performance for memory-intensive workloads running on Amazon EC2. R9g instances are ideal for memory-intensive workloads including databases, in-memory caches, real-time big data analytics, Linux-based workloads including containerized and micro-service-b</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-ec2-r9g-and-r9gd-memory-optimized-instances-are-now-available/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T18:08:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/47ba683bba37a1ac</id>
+    <title>Amazon Cognito now supports machine-to-machine authorization without a user pool domain</title>
+    <updated>2026-08-31T18:00:00+00:00</updated>
+    <content>Amazon Cognito now supports the GetClientToken API operation, enabling app clients to obtain access tokens for machine-to-machine (M2M) authorization directly through the AWS SDK, CLI, or API — without configuring a user pool domain. This gives you an additional path to authorize service-to-service communication for applications, microservices, and automated workloads. The new GetClientToken API operation lets your app client authenticate with its client ID and secret to receive an access token </content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-cognito-get-client-token/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T18:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/f2ec4bdb9a90206a</id>
+    <title>Use Amazon Bedrock AgentCore capabilities from your existing EKS agents in a no-egress VPC (IRSA + PrivateLink)</title>
+    <updated>2026-08-31T17:51:08.188000+00:00</updated>
+    <content>Privately reach Amazon Bedrock AgentCore (Runtime and Memory) from a self-hosted EKS agent authenticated with IRSA/SigV4, inside a no-egress VPC. Covers the AWS STS interface endpoint and regional STS configuration, the AgentCore data-plane and control-plane interface VPC endpoints, endpoint policies, and the IAM trust policy.</content>
+    <link href="https://repost.aws/articles/ARsi7lQ4J4T2qfYJD5RYKUAQ/use-amazon-bedrock-agentcore-capabilities-from-your-existing-eks-agents-in-a-no-egress-vpc-irsa-privatelink" rel="alternate"/>
+    <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
+    <published>2026-08-31T17:51:08.188000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
+    <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/397d37368d474873</id>
+    <title>AWS Lambda recursive loop detection is now available in all commercial AWS Regions</title>
+    <updated>2026-08-31T17:30:00+00:00</updated>
+    <content>AWS Lambda recursive loop detection has expanded support to all commercial AWS Regions. This feature, which is enabled by default, is a guardrail that automatically detects and stops recursive invocations between Lambda functions and other supported services, preventing runaway workloads. When using event sources such as Amazon S3, Amazon SQS, and Amazon SNS to trigger Lambda functions, a misconfiguration or code defect can cause events to be sent back to the same source that triggered the Lambd</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/lambda-recursion-regions" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T17:30:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/2dba6f4d401bb91a</id>
+    <title>Amazon Aurora serverless is now available with 30% better performance and smarter scaling in additional AWS Regions</title>
+    <updated>2026-08-31T16:46:00+00:00</updated>
+    <content>Amazon Aurora serverless now delivers up to 30% better performance and enhanced scaling in additional AWS Regions: Asia Pacific (New Zealand), Asia Pacific (Thailand), Africa (Cape Town), Europe (Milan), and Mexico (Central). These improvements are available for both Aurora PostgreSQL and Aurora MySQL. Aurora serverless is the autoscaling database that scales up to support your most demanding workloads and down to zero when you don't need it, so you only pay for what you actually use. The enhanc</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-aurora-serverless-performance-improvement-additional-regions/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T16:46:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/8cfe1c034331caec</id>
     <title>Amazon OpenSearch Service adds new Cluster Insights for faster diagnosis of cluster status</title>
     <updated>2026-08-31T15:41:00+00:00</updated>
@@ -20,6 +135,16 @@
     <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/opensearch-cluster-status-insight/" rel="alternate"/>
     <category term="AWS What's New" label="AWS What's New"/>
     <published>2026-08-31T15:41:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/173b5060443cb988</id>
+    <title>AWS Agent Registry for centralized agent discovery and governance is now generally available</title>
+    <updated>2026-08-31T15:21:00+00:00</updated>
+    <content>AWS Agent Registry is now generally available. It provides a private, governed catalog and discovery layer for agents, tools, skills, MCP servers, and custom resources within your organization. Teams get complete visibility into their AI landscape, so they can discover existing capabilities instead of rebuilding from scratch. Access it through the AWS Agent Registry console, AWS CLI, or AWS SDK. You can also discover and use registry resources from Amazon Bedrock AgentCore, Amazon Quick, and Kir</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/aws-agent-registry-generally-available" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T15:21:00+00:00</published>
     <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
@@ -38,6 +163,16 @@
     <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/827bfc458708f0b442009c9c9836f7e4b65557fb/2020/06/03/Blog-Post_thumbnail.png" type="image/png" length="0"/>
   </entry>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/c6c28b29bbed7047</id>
+    <title>AWS announces AWS Interconnect - multicloud connectivity with Microsoft Azure in preview</title>
+    <updated>2026-08-31T15:00:00+00:00</updated>
+    <content>AWS announces the public preview of AWS Interconnect — multicloud with Microsoft Azure. Customers have been adopting multicloud strategies while migrating more applications to the cloud. They do so for many reasons including interoperability requirements, the freedom to choose technology that best suits their needs, and the ability to build and deploy applications on any environment with greater ease and speed. Previously, when interconnecting workloads across multiple cloud service providers (C</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/aws-announces-AWS-interconnect-multicloud-microsoft-azure-preview/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T15:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/af09bc3287abe775</id>
     <title>AWS Weekly Roundup: Welcome DuckLabs to the team, Agentic Resource Discovery (ARD), and more (August 31, 2026)</title>
     <updated>2026-08-31T14:45:25+00:00</updated>
@@ -51,6 +186,36 @@
     </media:group>
     <dc:creator>AWS News Blog</dc:creator>
     <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/08/28/AWS_Ducklabs_white_logo_800x400.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/bb79e438fea98724</id>
+    <title>AWS Workload Credentials Provider is now available as a one-click install for Linux and Windows</title>
+    <updated>2026-08-31T07:00:00+00:00</updated>
+    <content>Today, AWS Secrets Manager announces one-click installation for the AWS Workload Credentials Provider (AWCP) on Amazon Linux and Windows, reducing setup from a multi-step build-from-source process to a single command. AWCP resolves secrets from AWS Secrets Manager and caches them locally, enabling applications to retrieve secrets over a local HTTP endpoint. AWCP also enables you to pull your certificates from AWS Certificate Manager. Previously, customers who wanted to use AWCP on Amazon EC2 ins</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/workload-credentials-provider-install/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T07:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/0487a688c1259692</id>
+    <title>Automated Security Response on AWS adds AI Toolkit for custom remediations</title>
+    <updated>2026-08-31T06:00:00+00:00</updated>
+    <content>Today, AWS announced four new capabilities for Automated Security Response on AWS (ASR). Customers can now use an AI-driven Toolkit that generates custom remediations using any AI assistant with built-in safety guardrails. In addition, customers can automatically remediate findings from Amazon Inspector, Amazon GuardDuty, and Amazon Macie. Customers can also centrally configure and scope automated remediations by account, OU, region, and resource tags through an enhanced web console. Lastly, cus</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/automated-security-response-adds-AI-toolkit/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T06:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/a67d2d3f10d839e3</id>
+    <title>AWS Elastic Beanstalk now supports Active Directory domain join for Windows Server environments</title>
+    <updated>2026-08-31T04:00:00+00:00</updated>
+    <content>AWS Elastic Beanstalk now automatically joins the Windows Server instances in your environment to an Active Directory domain that you manage with AWS Directory Service. Previously, running domain-joined Windows workloads on Elastic Beanstalk required custom join scripts that you had to maintain. With this launch, you set a few configuration options and every instance in the environment — including instances launched later by auto scaling — joins the domain at boot, before your application deploy</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/elastic-beanstalk-active-directory-domain-join/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T04:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/bbe732f6fe1e28f2</id>
@@ -146,7 +311,7 @@
     <id>tag:trvny.github.io,2024:feedseek/aws/dd011211b19975db</id>
     <title>AWS Transform now in scope for FedRAMP Class C</title>
     <updated>2026-08-28T19:45:00+00:00</updated>
-    <content>AWS Transform is now in scope for FedRAMP Class C (formerly Moderate baseline) in the US East (Ohio) Region. You can now use AWS Transform to build applications and run workloads that are subject to FedRAMP Class C compliance requirements. The Federal Risk and Authorization Management Program (FedRAMP) is a US government-wide program that delivers a standard approach to the security assessment, authorization, and continuous monitoring for cloud products and services. AWS Transform is an agentic </content>
+    <content>The AWS Transform service is now in scope for FedRAMP Class C (formerly Moderate baseline) in the US East (N. Virginia) Region. You can use AWS Transform from this region to migrate and modernize resources that are or will be located in any of the US East/US West Regions in order to satisfy FedRAMP Class C compliance requirements. Additionally, AWS Transform MGN is in scope for FedRAMP Class D, and can be used independently to migrate resources that require FedRAMP Class D compliance. The Federa</content>
     <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/aws-transform-fedramp-class-c/" rel="alternate"/>
     <category term="AWS What's New" label="AWS What's New"/>
     <published>2026-08-28T19:45:00+00:00</published>
@@ -1455,7 +1620,12 @@
     <link href="https://github.com/aws/aws-cli/releases/tag/2.36.27" rel="alternate"/>
     <category term="AWS CLI v2 Changelog" label="AWS CLI v2 Changelog"/>
     <published>2026-08-19T18:41:05+00:00</published>
+    <media:group>
+      <media:content url="https://opengraph.githubassets.com/583f8c845f002bb12fac4491535c40dcdc8e6bbbcaea6f6089da16130e8dcf0a/aws/aws-cli" type="image/jpeg" medium="image" height="600" width="1200"/>
+      <media:thumbnail url="https://opengraph.githubassets.com/583f8c845f002bb12fac4491535c40dcdc8e6bbbcaea6f6089da16130e8dcf0a/aws/aws-cli" height="600" width="1200"/>
+    </media:group>
     <dc:creator>AWS CLI v2 Changelog</dc:creator>
+    <link rel="enclosure" href="https://opengraph.githubassets.com/583f8c845f002bb12fac4491535c40dcdc8e6bbbcaea6f6089da16130e8dcf0a/aws/aws-cli" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/4a4d8943aba24fbd</id>
@@ -1488,76 +1658,6 @@
     <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/757f8bf0cd477928</id>
-    <title>Amazon OpenSearch Ingestion is now available in GovCloud Regions</title>
-    <updated>2026-08-19T17:54:00+00:00</updated>
-    <content>Starting today, customers can use Amazon OpenSearch Ingestion in AWS GovCloud (US-East) and AWS GovCloud (US-West), for ingesting data into their Amazon OpenSearch Service managed clusters or serverless collections. Amazon OpenSearch Ingestion is a fully managed data ingestion tier that allows you to ingest and process data before indexing it in Amazon OpenSearch managed clusters or serverless collections. Amazon OpenSearch Ingestion provides a no-code experience to filter, transform, redact, an</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/opensearch-ingestion-available-govcloud-regions" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T17:54:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/cc0de7c294639aae</id>
-    <title>AWS Marketplace launches support for Amazon Lightsail</title>
-    <updated>2026-08-19T17:04:00+00:00</updated>
-    <content>Today, AWS Marketplace announces support for launching select Amazon Machine Images (AMIs) on Amazon Lightsail. Customers who want simple, predictable pricing and a streamlined instance-creation experience can now easily deploy eligible AWS Marketplace AMIs on Amazon Lightsail in just a few clicks. Lightsail instance bundles include compute, storage, and a generous data transfer allowance at a fixed monthly price. Lightsail also offers managed databases, containers, load balancers, and more, mak</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/aws-marketplace-launch-ami-amazon-lightsail" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T17:04:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/212cd0a18aeaebd3</id>
-    <title>AWS announces a new Availability Zone in the Europe (London) Region</title>
-    <updated>2026-08-19T17:00:00+00:00</updated>
-    <content>AWS has added a fourth Availability Zone to the Europe (London) Region (eu-west-2), expanding infrastructure capacity to meet growing demand for cloud compute in the Region. The new Availability Zone delivers next-generation AI and ML capacity, including Amazon EC2, Trn3, and P6 accelerated instances, alongside general-purpose compute. The new Availability Zone gives AWS customers in eu-west-2 greater capacity for AI and ML workloads and additional fault isolation for building highly available, </content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/aws-new-availability-zone-europe/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T17:00:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/c972fec33a0f96f8</id>
-    <title>AWS Lambda MicroVMs is now available in 5 additional AWS regions</title>
-    <updated>2026-08-19T16:14:00+00:00</updated>
-    <content>AWS Lambda MicroVMs is now available in 5 additional AWS Regions: Asia Pacific (Mumbai), Asia Pacific (Singapore), Asia Pacific (Sydney), Europe (Frankfurt), and Europe (Stockholm). With this launch, you can use Lambda MicroVMs in a total of 10 AWS Regions. Lambda MicroVMs is a serverless compute primitive that provides VM-level isolation, near-instant launch and resume speeds, and state preservation for executing user or AI generated code.  Developers can use Lambda MicroVMs to give each user o</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/lambda-microvms-5-additional-regions" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T16:14:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/d5bac9b4b23bca05</id>
-    <title>Amazon Quick adds deny by default for custom permissions</title>
-    <updated>2026-08-19T15:36:00+00:00</updated>
-    <content>Amazon Quick custom permissions now include deny by default, a governance setting that automatically restricts new AI capabilities before they reach users. Previously, new AI capabilities were available to all users on release, requiring administrators to react after the fact. With deny by default, administrators restrict the AI capability category in a custom permissions profile and assign it to users, roles, or the entire account. Quick then denies any new AI capability at launch for those use</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-quick-deny-by-default/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T15:36:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/09fef912acb668fc</id>
-    <title>Amazon WorkSpaces Applications now offers in-console monitoring capabilities</title>
-    <updated>2026-08-19T15:00:00+00:00</updated>
-    <content>Amazon WorkSpaces Applications now offers a native monitoring experience embedded directly in the service console. Administrators can now access real-time session-level metrics, instance-level resource data, and network performance metrics without requiring third-party monitoring tools or Amazon CloudWatch expertise. Previously, enterprise customers managing large WorkSpaces Applications deployments relied on external solutions or built complex custom CloudWatch dashboards. Now, comprehensive mo</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-workspaces-applications-console-monitoring" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T15:00:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/02e3ff4b3ee6f3db</id>
-    <title>AWS IAM now supports 20 managed policies per role by default</title>
-    <updated>2026-08-19T15:00:00+00:00</updated>
-    <content>AWS Identity and Access Management (IAM) has increased the default quota for managed policies per role from 10 to 20. This higher default quota reduces the need to make Service Quota requests when following IAM best practices like separating permissions into purpose-specific policies or when onboarding to AWS Partner products that require attaching additional managed policies. If you need more than 20 managed policies per role, you can request a quota increase up to 25 using Service Quotas. This</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/aws-iam-quota-increase/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T15:00:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/fc8f41253831115b</id>
     <title>Monitor AWS RDS and EKS version end-of-support with AWS DevOps Agent</title>
     <updated>2026-08-19T14:28:42.748000+00:00</updated>
@@ -1566,7 +1666,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://repost.aws/articles/AR964ZjeJrR6eMvRIs_LGyxQ/monitor-aws-rds-and-eks-version-end-of-support-with-aws-devops-agent" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-19T14:28:42.748000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/79e3db2e384b53b1</id>
@@ -1576,7 +1681,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://github.com/aws/aws-cli/releases/tag/2.36.26" rel="alternate"/>
     <category term="AWS CLI v2 Changelog" label="AWS CLI v2 Changelog"/>
     <published>2026-08-19T14:15:38+00:00</published>
+    <media:group>
+      <media:content url="https://opengraph.githubassets.com/583f8c845f002bb12fac4491535c40dcdc8e6bbbcaea6f6089da16130e8dcf0a/aws/aws-cli" type="image/jpeg" medium="image" height="600" width="1200"/>
+      <media:thumbnail url="https://opengraph.githubassets.com/583f8c845f002bb12fac4491535c40dcdc8e6bbbcaea6f6089da16130e8dcf0a/aws/aws-cli" height="600" width="1200"/>
+    </media:group>
     <dc:creator>AWS CLI v2 Changelog</dc:creator>
+    <link rel="enclosure" href="https://opengraph.githubassets.com/583f8c845f002bb12fac4491535c40dcdc8e6bbbcaea6f6089da16130e8dcf0a/aws/aws-cli" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/1fe54b150bf1b2d1</id>
@@ -1586,27 +1696,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://repost.aws/articles/ARLa1ufKQuQSOybNqUmT52ug/how-do-i-gather-the-request-id-for-an-openai-model-call-on-amazon-bedrock-made-from-the-codex-cli-or-the-chatgpt-desktop-app" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-19T13:52:12.164000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/8ed51751f3a8e62d</id>
-    <title>AWS Storage Gateway now supports FIPS-compliant private connectivity for Tape and Volume Gateway</title>
-    <updated>2026-08-19T10:00:00+00:00</updated>
-    <content>AWS Storage Gateway now supports FIPS 140-3 validated endpoints over AWS PrivateLink for Tape Gateway and Volume Gateway. Previously, FIPS endpoints were available only over the public internet. Now you can keep FIPS-compliant traffic on the private AWS network, making it easier to use Storage Gateway for regulated workloads. With this launch, your Tape Gateway and Volume Gateway can reach the Storage Gateway service endpoints privately through an interface VPC endpoint in your VPC, while using </content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/storage-gateway-fips-privatelink/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T10:00:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/a34ec5e98bf812e4</id>
-    <title>Amazon EC2 R8a instances are now available in Asia Pacific (Taipei) region</title>
-    <updated>2026-08-19T07:51:00+00:00</updated>
-    <content>Starting today, Amazon EC2 R8a instances are now available in Asia Pacific (Taipei) Region. These instances, feature 5th Gen AMD EPYC processors (formerly code named Turin) with a maximum frequency of 4.5 GHz, deliver up to 30% higher performance, and up to 19% better price-performance compared to R7a instances. R8a instances deliver 45% more memory bandwidth compared to R7a instances, making these instances ideal for latency sensitive workloads. Compared to Amazon EC2 R7a instances, R8a instanc</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-ec2-r8a-asia-pacific-taipei/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T07:51:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/2e59330c1aeea3fb</id>
@@ -1616,17 +1711,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://repost.aws/articles/ARt4V5wGT5TPON9sefvpcwQA/retail-consumer-packaged-goods-industry-incident-detection-and-response-alarming-best-practices" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-19T05:51:02.648000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/2810cf8e2ec2ccb8</id>
-    <title>Amazon Bedrock now supports SpaceXAI Grok 4.6 with Cross Region Inferencing</title>
-    <updated>2026-08-19T05:18:00+00:00</updated>
-    <content>Amazon Bedrock now supports SpaceXAI Grok 4.6, a frontier model built for coding, agentic tasks, and knowledge work, with US Geo and Global cross-Region inference. Customers can now access Grok 4.6 at scale with cross-Region inference routing requests across multiple AWS Regions for higher throughput and lower inference costs. Cross-Region inference automatically routes inference requests across multiple AWS Regions to give you higher throughput, without you needing to manage capacity across mul</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-bedrock-grok-4-6/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T05:18:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/b67ecd01dc4216bd</id>
@@ -1636,7 +1726,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://repost.aws/articles/ARG6fCLXm6T1ewCWDZrQVCbQ/energy-and-utilities-industries-incident-detection-and-response-alarming-best-practices" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-19T03:41:19.650000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/57ed1aee6c9bde75</id>
@@ -1646,27 +1741,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://repost.aws/articles/ARq4ZEn-UZTwGWrVLr8jfJIg/vpc-lattice-cost-visibility-in-aws-cost-explorer" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-19T01:43:30.218000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/d1230c3a981ba732</id>
-    <title>Amazon Bedrock now supports OpenAI models in India</title>
-    <updated>2026-08-18T23:30:00+00:00</updated>
-    <content>Amazon Bedrock now supports the OpenAI GPT-5.6 models (Terra and Luna) in India, with India Geo cross-Region inference. Customers with regulatory requirements of in-country inferencing can now use OpenAI models at scale ensuring that inferencing is processed within India. Cross-Region inference automatically routes inference requests across multiple AWS Regions to give you higher throughput, without you needing to manage capacity across multiple Regions. The new India Geo inference profiles—in.o</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-bedrock-openai-india-v1/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-18T23:30:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/e9faf991d58a8b87</id>
-    <title>AWS IAM identity federation to external services is now available in AWS European Sovereign Cloud Region</title>
-    <updated>2026-08-18T22:30:00+00:00</updated>
-    <content>AWS Identity and Access Management (IAM) now enables AWS workloads in the AWS European Sovereign Cloud (Germany) Region to securely authenticate with external services using short-lived JSON Web Tokens (JWTs). The AWS European Sovereign Cloud is an independent cloud for Europe entirely located within the European Union (EU), designed to help customers meet their evolving sovereignty requirements. With outbound identity federation, AWS workloads can securely authenticate with third-party cloud pr</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/aws-iam-european-sovereign-cloud/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-18T22:30:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/cef5c9b81824e048</id>
@@ -1676,7 +1756,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://repost.aws/articles/ARf4DvlMJ8TG-P81A3FhV1gw/windchill-on-aws" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-18T19:57:57.717000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/03af65ea859023d6</id>
@@ -1686,7 +1771,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://repost.aws/articles/AR6bTfkIQ3QjmdLdSNaykqFA/understanding-mysql-binlog-format-choosing-between-row-mixed-and-statement" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-18T19:52:19.155000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/f28afa4cda81749e</id>
@@ -1696,7 +1786,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://repost.aws/articles/ARToCZsICCR52YmxeeZuTBMw/digitizing-alert-mechanisms-to-enhance-ehs" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-18T19:39:04.863000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/74672ca1988cc104</id>
@@ -1721,7 +1816,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://repost.aws/articles/AR_gbMkpbaTJOwRyCpqGf6uA/analyze-amazon-bedrock-cost-spikes-with-aws-devops-agent" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-17T17:49:45.350000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/65fa590eba59a03a</id>
@@ -1746,7 +1846,12 @@ It walks through creating a custom scheduled agent that discovers resources acro
     <link href="https://repost.aws/articles/ARTNTQAXK6RKOX-nAFIJaI7w/reducing-token-costs-with-a-hybrid-multi-agent-architecture-bedrock-for-routing-sagemaker-ai-for-task-execution" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-17T11:54:58.245000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/e06f164d02cf3fff</id>
@@ -1757,7 +1862,12 @@ This document identifies the migration's impact on existing RAM resource shares 
     <link href="https://repost.aws/articles/ARoGptVq6MTWSPy4_pBGpFnA/how-do-i-move-a-member-account-between-aws-organizations-without-interrupting-aws-ram-resource-sharing" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-14T07:59:37.937000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/20fe0fb54108fce6</id>
@@ -1767,7 +1877,12 @@ This document identifies the migration's impact on existing RAM resource shares 
     <link href="https://repost.aws/articles/ARArP9nY_mQ5KcMqpNrv7fRw/minimizing-reindex-failures-on-large-amazon-opensearch-indices-why-cluster-capacity-must-be-validated-first" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-13T23:25:47.410000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/db4685138ab35e3f</id>
@@ -1777,7 +1892,12 @@ This document identifies the migration's impact on existing RAM resource shares 
     <link href="https://repost.aws/articles/ARrHX7tetjRE--X-FqAzVTkA/minimizing-downtime-for-amazon-opensearch-disaster-recovery-domains-why-2-nodes-beat-1" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-13T22:19:37.809000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/d2b39475b6a634b1</id>
@@ -1787,7 +1907,12 @@ This document identifies the migration's impact on existing RAM resource shares 
     <link href="https://repost.aws/articles/ARoOiDsqswQzeCYouQ84Mu0A/setting-up-push-notifications-for-public-aws-health-events" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-13T20:54:26.664000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/4e483f7474488dab</id>
@@ -1803,7 +1928,12 @@ Or, after setting up the endpoints, users see:
     <link href="https://repost.aws/articles/ARpLNVHKKVRF-LOzSmm3DDoA/how-do-i-use-saml-based-federated-authentication-with-multiple-aws-client-vpn-endpoints-across-accounts" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-13T16:23:18.809000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/8ac10008da734e23</id>
@@ -1813,7 +1943,12 @@ Or, after setting up the endpoints, users see:
     <link href="https://repost.aws/articles/ARdj8VwaKmQpWwbhakNHoS6w/connecting-a-private-self-managed-gitlab-to-aws-devops-agent" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-13T07:22:34.793000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/47cdc423774528e1</id>
@@ -1823,7 +1958,12 @@ Or, after setting up the endpoints, users see:
     <link href="https://repost.aws/articles/AR8bsCaOTqQguST6Cqjof1qg/handling-ecs-fargate-task-retirements-without-manual-restarts" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-13T05:17:10.910000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/df7c19febe305a22</id>
@@ -1833,7 +1973,12 @@ Or, after setting up the endpoints, users see:
     <link href="https://repost.aws/articles/ARqPkWw6ICTrmVHCGbCD9-1w/why-multi-region-replication-does-not-replace-backups-protecting-databases-and-streaming-analytics-pipelines-from-ransomware" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-12T21:13:05.174000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/e389276879d5f700</id>
@@ -1843,7 +1988,12 @@ Or, after setting up the endpoints, users see:
     <link href="https://repost.aws/articles/ARROV4kRGITAOSAbVxPvK-4Q/how-do-i-analyze-aurora-global-database-replication-lag-to-predict-failover-readiness-across-transactional-and-analytics-workloads" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-12T21:08:30.780000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/ee3fb0579363a92f</id>
@@ -1853,7 +2003,12 @@ Or, after setting up the endpoints, users see:
     <link href="https://repost.aws/articles/ARlx3lyV68TmysAp8E7jsV4w/how-much-do-kafka-transactions-cost-you-on-amazon-msk-express-brokers-a-measured-deep-dive" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-12T15:09:56.515000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/d822e6b538f32f98</id>
@@ -2320,16 +2475,6 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://repost.aws/articles/AR7yxoDQz6TfmEiobTC0J30Q/eliminate-the-s3-claim-check-pattern-with-sqs-1-mib-messages" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-07-31T22:19:22.738000+00:00</published>
-    <dc:creator>AWS re:Post Articles</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/fad12aede4324d9b</id>
-    <title>AWS Transit Gateway Policy-Based Routing (PBR): Complete Guide to Rule-Based Traffic Forwarding</title>
-    <updated>2026-07-31T06:16:12.259000+00:00</updated>
-    <content>This article provides a complete guide to AWS Transit Gateway Policy-Based Routing (PBR) — a new feature enabling traffic forwarding decisions based on source/destination IP, ports, and protocol instead of destination-only routing. It covers implementation steps, use cases, limitations, troubleshooting, and benefits for network engineers and security architects building multi-VPC architectures with selective security inspection requirements.</content>
-    <link href="https://repost.aws/articles/ARiOlSG1W5S1OhB7bA6wDceQ/aws-transit-gateway-policy-based-routing-pbr-complete-guide-to-rule-based-traffic-forwarding" rel="alternate"/>
-    <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
-    <published>2026-07-31T06:16:12.259000+00:00</published>
     <dc:creator>AWS re:Post Articles</dc:creator>
   </entry>
   <entry>

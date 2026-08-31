@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-31T17:48:46.674021+00:00",
+  "last_updated": "2026-08-31T23:07:02.424681+00:00",
   "entries": [
     {
       "title": "Database Storage Latencies",
@@ -7170,6 +7170,15 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/python/1cb59bfa6abff253"
     },
     {
+      "title": "Metadata requests no longer tracked in PyPI download counts",
+      "link": "https://blog.pypi.org/posts/2026-08-31-download-counts/",
+      "date": "2026-08-31T06:09:00+00:00",
+      "description": "On 2026-08-24 I shipped a change to the configuration that emits PyPI's download logs so that only requests for actual distribution artifacts are counted. A request has to end in .whl , .tar.gz , or .zip to produce a download record. The counts are more accurate now, and existing systems based on PyPI's BigQuery dataset , like pypistats.org will display a different shape going forward. If you maintain something that reads these numbers from the public dataset, the discontinuity at 2026-08-24 is ",
+      "source": "PyPI Blog",
+      "image": "https://blog.pypi.org/assets/images/social/posts/2026-08-31-download-counts.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/6534841a22521e1e"
+    },
+    {
       "title": "Ed Crewe: From Routing Checks to Trajectory Testing: Evaluating an Agentic Chatbot",
       "link": "http://edcrewe.blogspot.com/2026/08/from-routing-checks-to-trajectory.html",
       "date": "2026-08-31T09:28:24+00:00",
@@ -7184,19 +7193,8 @@
       "date": "2026-08-31T10:45:44+00:00",
       "description": "Who are you? I'm a software engineer at REVSYS. Before that I was an accountant. I was also a university instructor in the US and China.  I taught English, Western Culture, Problem-Solving, Accounting and MIS. What would you bring to the PSF Board of Directors? I bring business acumen from my accounting degree, MBA, and prior career as an accountant. I've also been on a non-profit board, when I was a board member for DEFNA, the non-profit that puts on DjangoCon US. I bring a global perspective o",
       "source": "Planet Python",
-      "image": null,
-      "image_attempts": 1,
-      "image_attempt_url": "https://pyfound.blogspot.com/2026/08/kojo-idrissa-2026-psf-board-election.html",
+      "image": "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/psf/grants/report-2006-10/psf-logo.png",
       "entry_id": "tag:trvny.github.io,2024:feedseek/python/7b0e80b9ec7f703b"
-    },
-    {
-      "title": "Graham Dumpleton: Introducing wrapture",
-      "link": "https://grahamdumpleton.me/posts/2026/08/introducing-wrapture/",
-      "date": "2026-08-31T13:39:00+00:00",
-      "description": "For the best part of two decades, through wrapt , I have been dealing with the mechanics of monkey patching in Python. Anyone who has followed wrapt will know I am quite pedantic about correctness, to the point of caring whether a wrapper preserves every last introspectable detail of the thing it wraps. For much of that time I have wanted the same standard from the tools I use when testing code, and unittest.mock , which does what it does well enough, was never designed to give it. A fabricated ",
-      "source": "Planet Python",
-      "image": "https://opengraph.githubassets.com/991846ca/GrahamDumpleton/wrapture",
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/b086ccf8d901fb27"
     },
     {
       "title": "PyCharm: Fine-Tuning SOTA Object Detection Models on Real-World Datasets",
@@ -7208,54 +7206,72 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/python/f5e4a6fc339bb221"
     },
     {
-      "title": "asyncmq 0.10.0",
-      "link": "https://pypi.org/project/asyncmq/0.10.0/",
-      "date": "2026-08-31T17:48:21+00:00",
-      "description": "Async task queue with BullMQ-like features",
-      "source": "PyPI Updates",
-      "image": null,
-      "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/3e207c4cbd5a58d9"
+      "title": "Graham Dumpleton: Introducing wrapture",
+      "link": "https://grahamdumpleton.me/posts/2026/08/introducing-wrapture/",
+      "date": "2026-08-31T21:38:56+00:00",
+      "description": "For the best part of two decades, through wrapt , I have been dealing with the mechanics of monkey patching in Python. Anyone who has followed wrapt will know I am quite pedantic about correctness, to the point of caring whether a wrapper preserves every last introspectable detail of the thing it wraps. For much of that time I have wanted the same standard from the tools I use when testing code, and unittest.mock , which does what it does well enough, was never designed to give it. A fabricated ",
+      "source": "Planet Python",
+      "image": "https://opengraph.githubassets.com/991846ca/GrahamDumpleton/wrapture",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/b086ccf8d901fb27"
     },
     {
-      "title": "ffun 1.29.2",
-      "link": "https://pypi.org/project/ffun/1.29.2/",
-      "date": "2026-08-31T17:48:22+00:00",
-      "description": "Backend for the Feeds Fun — web-based news reader",
-      "source": "PyPI Updates",
-      "image": null,
-      "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/556e7380281bbbf9"
+      "title": "Graham Dumpleton: Unit testing with wrapture",
+      "link": "https://grahamdumpleton.me/posts/2026/09/unit-testing-with-wrapture/",
+      "date": "2026-08-31T21:38:56+00:00",
+      "description": "In introducing wrapture I said the one idea everything sits on is to wrap rather than replace. That is easy to say and harder to see the point of, so this post takes a small piece of code and writes tests for it twice, once with unittest.mock and once with wrapture. I am not going to walk through every mock idiom and show its wrapture spelling, since a good part of the time the two are doing the same thing with different syntax, and the comparison page in the documentation already maps one onto ",
+      "source": "Planet Python",
+      "image": "https://opengraph.githubassets.com/54f11ba6/GrahamDumpleton/wrapture",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/c2b9d192e571037b"
     },
     {
-      "title": "cpersona 2.5.8",
-      "link": "https://pypi.org/project/cpersona/2.5.8/",
-      "date": "2026-08-31T17:48:24+00:00",
-      "description": "CPersona — Persistent AI memory server with 3-layer hybrid search, confidence scoring, and 30 tools. MIT licensed.",
+      "title": "rds-proxy-password-rotation 0.6.512",
+      "link": "https://pypi.org/project/rds-proxy-password-rotation/0.6.512/",
+      "date": "2026-08-31T23:05:17+00:00",
+      "description": "A program to rotate the password of an RDS database accessed via a RDS proxy",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/12ce5e6a83cfbfe4"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/6cbb39b294700743"
     },
     {
-      "title": "scc-firewall-manager-sdk 1.22.1103",
-      "link": "https://pypi.org/project/scc-firewall-manager-sdk/1.22.1103/",
-      "date": "2026-08-31T17:48:37+00:00",
-      "description": "Cisco Security Cloud Control Firewall Manager API",
+      "title": "aa-customizer 1.3.1",
+      "link": "https://pypi.org/project/aa-customizer/1.3.1/",
+      "date": "2026-08-31T23:05:35+00:00",
+      "description": "Branding & customization plugin for Alliance Auth — custom logos, login backgrounds, favicons, and more.",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/31ee1a869fa0822e"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/66cac029bea413a6"
     },
     {
-      "title": "lablink-client-service 0.3.0",
-      "link": "https://pypi.org/project/lablink-client-service/0.3.0/",
-      "date": "2026-08-31T17:48:40+00:00",
-      "description": "Lablink Client Service that will be installed in the lablink-client-base-image",
+      "title": "canon-hermes-plugin 0.14.1",
+      "link": "https://pypi.org/project/canon-hermes-plugin/0.14.1/",
+      "date": "2026-08-31T23:06:00+00:00",
+      "description": "Canon messaging platform plugin for Hermes Agent",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/7379694bd1af6da8"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/92e05d8acd74c286"
+    },
+    {
+      "title": "chronologia 0.23.2a1",
+      "link": "https://pypi.org/project/chronologia/0.23.2a1/",
+      "date": "2026-08-31T23:06:30+00:00",
+      "description": "General-purpose calendrical and chronological core: unbounded datetime-compatible dates, half-open time spans, and a JDN calendar/era/regnal/cycle registry.",
+      "source": "PyPI Updates",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/dbe22fa99468a998"
+    },
+    {
+      "title": "songhive 0.0.14",
+      "link": "https://pypi.org/project/songhive/0.0.14/",
+      "date": "2026-08-31T23:06:47+00:00",
+      "description": "A federated and self-hosted music sharing service",
+      "source": "PyPI Updates",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/be77ce6aa9151edd"
     }
   ]
 }
