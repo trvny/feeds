@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-98 feedów · 769 źródeł
+99 feedów · 780 źródeł
 
 ## Spis grup
 
@@ -865,6 +865,21 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.lesswrong.com&sz=16) LessWrong — <https://www.lesswrong.com/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.lesswrong.com&sz=16) LessWrong (all posts) — <https://www.lesswrong.com/feed.xml?view=allPosts>
 - ![](https://www.google.com/s2/favicons?domain=80000hours.org&sz=16) 80,000 Hours — <https://80000hours.org/latest/feed/>
+
+### ![](https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=16) AWS
+`aws` · [feed_aws.xml](../feeds/feed_aws.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=16) AWS What's New — <https://aws.amazon.com/about-aws/whats-new/recent/feed/>
+- ![](https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=16) AWS Blogs — <https://aws.amazon.com/blogs/>
+- ![](https://www.google.com/s2/favicons?domain=repost.aws&sz=16) AWS re:Post Articles — <https://repost.aws/articles>
+- ![](https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=16) AWS News Blog — <https://aws.amazon.com/blogs/aws/>
+- ![](https://www.google.com/s2/favicons?domain=raw.githubusercontent.com&sz=16) AWS CLI v2 Changelog — <https://raw.githubusercontent.com/aws/aws-cli/v2/CHANGELOG.rst>
+- ![](https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=16) AWS Developer Tools Blog — <https://aws.amazon.com/blogs/developer/>
+- ![](https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=16) AWS Open Source Blog — <https://aws.amazon.com/blogs/opensource/>
+- ![](https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=16) AWS News Blog — <https://aws.amazon.com/blogs/aws/feed/>
+- ![](https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=16) AWS Developer Tools Blog — <https://aws.amazon.com/blogs/developer/feed/>
+- ![](https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=16) AWS Open Source Blog — <https://aws.amazon.com/blogs/opensource/feed/>
+- ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) CLI releases atom — <https://github.com/aws/aws-cli/releases.atom>
 
 ### ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) download-soundtracks
 `download-soundtracks` · [feed_download-soundtracks.xml](../feeds/feed_download-soundtracks.xml)
