@@ -11,13 +11,18 @@ import aws  # pylint: disable=wrong-import-position
 _UNSET = object()
 
 
+def _cursor(value: str) -> str:
+    """Mark an opaque pagination cursor used only by test fixtures."""
+    return value
+
+
 def repost_page(page=1, total=24, entries=None, tokens=_UNSET, page_size=12):
     entries = entries or []
     if tokens is _UNSET:
         tokens = []
     response = {
         "totalCount": total,
-        "nextToken": "next",
+        "nextToken": _cursor("next"),
         "pageSize": page_size,
         "page": page,
         "pagingTokens": tokens,
@@ -215,7 +220,7 @@ class AwsFeedTests(unittest.TestCase):
                         1,
                         total=120,
                         entries=[fresh],
-                        tokens=[{"page": 2, "token": "fresh-2"}],
+                        tokens=[{"page": 2, "token": _cursor("fresh-2")}],
                     ),
                     None,
                 ],
@@ -225,7 +230,7 @@ class AwsFeedTests(unittest.TestCase):
         self.assertEqual([entry["title"] for entry in entries], ["Fresh one"])
         self.assertEqual(
             state[aws.REPOST_FRESH_CURSOR_KEY],
-            {"page": 2, "token": "fresh-2", "failures": 1},
+            {"page": 2, "token": _cursor("fresh-2"), "failures": 1},
         )
         self.assertEqual(state[f"{aws.REPOST_FRESH_CURSOR_KEY}_boundary"], [known])
 
@@ -247,14 +252,14 @@ class AwsFeedTests(unittest.TestCase):
             "createdAt": "2026-08-29T10:00:00Z",
         }
         resume = "resume-page-2"
-        next_token = "resume-page-3"
+        next_cursor = _cursor("resume-page-3")
         state = {aws.REPOST_CURSOR_KEY: {"page": 2, "token": resume, "failures": 1}}
         head_html = repost_page(1, total=100, entries=[head])
         archive_html = repost_page(
             2,
             total=100,
             entries=[archived],
-            tokens=[{"page": 3, "token": next_token}],
+            tokens=[{"page": 3, "token": next_cursor}],
         )
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 2),
@@ -266,7 +271,9 @@ class AwsFeedTests(unittest.TestCase):
         self.assertEqual(
             [entry["title"] for entry in entries], ["Fresh head", "Second"]
         )
-        self.assertEqual(state[aws.REPOST_CURSOR_KEY], {"page": 3, "token": next_token})
+        self.assertEqual(
+            state[aws.REPOST_CURSOR_KEY], {"page": 3, "token": next_cursor}
+        )
         self.assertEqual(get_html.call_count, 2)
         self.assertEqual(get_html.call_args_list[0].args[0], aws.REPOST_URL)
         self.assertIn(f"page={resume}", get_html.call_args_list[1].args[0])
@@ -292,7 +299,7 @@ class AwsFeedTests(unittest.TestCase):
             "https://repost.aws/articles/ARH/head",
             "https://repost.aws/articles/AR2/second",
         }
-        state = {aws.REPOST_CURSOR_KEY: {"page": 2, "token": "resume-page-2"}}
+        state = {aws.REPOST_CURSOR_KEY: {"page": 2, "token": _cursor("resume-page-2")}}
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 2),
             patch.object(
@@ -324,7 +331,7 @@ class AwsFeedTests(unittest.TestCase):
             "language": "de",
             "createdAt": "2026-08-29T10:00:00Z",
         }
-        state = {aws.REPOST_CURSOR_KEY: {"page": 2, "token": "resume-page-2"}}
+        state = {aws.REPOST_CURSOR_KEY: {"page": 2, "token": _cursor("resume-page-2")}}
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 2),
             patch.object(
@@ -336,7 +343,7 @@ class AwsFeedTests(unittest.TestCase):
                         2,
                         total=100,
                         entries=[unusable],
-                        tokens=[{"page": 3, "token": "next"}],
+                        tokens=[{"page": 3, "token": _cursor("next")}],
                     ),
                 ],
             ),
@@ -366,7 +373,7 @@ class AwsFeedTests(unittest.TestCase):
         old_link = "https://repost.aws/articles/OLD/original-boundary"
         boundary_key = f"{aws.REPOST_CURSOR_KEY}_boundary"
         state = {
-            aws.REPOST_CURSOR_KEY: {"page": 5, "token": "archive-5"},
+            aws.REPOST_CURSOR_KEY: {"page": 5, "token": _cursor("archive-5")},
             boundary_key: [old_link],
         }
         with (
@@ -394,7 +401,7 @@ class AwsFeedTests(unittest.TestCase):
             "language": "en",
             "createdAt": "2026-08-30T11:00:00Z",
         }
-        state = {aws.REPOST_CURSOR_KEY: {"page": 3, "token": "stale"}}
+        state = {aws.REPOST_CURSOR_KEY: {"page": 3, "token": _cursor("stale")}}
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 2),
             patch.object(
@@ -419,7 +426,7 @@ class AwsFeedTests(unittest.TestCase):
             "language": "en",
             "createdAt": "2026-08-30T11:00:00Z",
         }
-        state = {aws.REPOST_CURSOR_KEY: {"page": 2, "token": "dead"}}
+        state = {aws.REPOST_CURSOR_KEY: {"page": 2, "token": _cursor("dead")}}
         head_html = repost_page(1, total=100, entries=[head])
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 2),
@@ -432,7 +439,7 @@ class AwsFeedTests(unittest.TestCase):
             first = aws.collect_repost(set(), state)
             self.assertEqual(
                 state[aws.REPOST_CURSOR_KEY],
-                {"page": 2, "token": "dead", "failures": 1},
+                {"page": 2, "token": _cursor("dead"), "failures": 1},
             )
             second = aws.collect_repost(set(), state)
         self.assertEqual([entry["title"] for entry in first], ["Fresh head"])
@@ -471,7 +478,7 @@ class AwsFeedTests(unittest.TestCase):
         state = {
             aws.REPOST_CURSOR_KEY: {
                 "page": 5,
-                "token": "dead-5",
+                "token": _cursor("dead-5"),
                 "failures": 1,
             },
             boundary_key: [old_link],
@@ -496,13 +503,13 @@ class AwsFeedTests(unittest.TestCase):
                         1,
                         total=120,
                         entries=[head],
-                        tokens=[{"page": 2, "token": "restart-2"}],
+                        tokens=[{"page": 2, "token": _cursor("restart-2")}],
                     ),
                     repost_page(
                         2,
                         total=120,
                         entries=[missing],
-                        tokens=[{"page": 3, "token": "restart-3"}],
+                        tokens=[{"page": 3, "token": _cursor("restart-3")}],
                     ),
                     repost_page(3, total=120, entries=[old]),
                 ],
@@ -532,7 +539,7 @@ class AwsFeedTests(unittest.TestCase):
             "createdAt": "2026-08-25T10:00:00Z",
         }
         known = {"https://repost.aws/articles/ARH/head"}
-        state = {aws.REPOST_CURSOR_KEY: {"page": 5, "token": "archive-5"}}
+        state = {aws.REPOST_CURSOR_KEY: {"page": 5, "token": _cursor("archive-5")}}
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 4),
             patch.object(
@@ -544,7 +551,7 @@ class AwsFeedTests(unittest.TestCase):
                         5,
                         total=120,
                         entries=[archived],
-                        tokens=[{"page": 6, "token": "archive-6"}],
+                        tokens=[{"page": 6, "token": _cursor("archive-6")}],
                     ),
                     None,
                 ],
@@ -554,7 +561,7 @@ class AwsFeedTests(unittest.TestCase):
         self.assertEqual([entry["title"] for entry in entries], ["Archive five"])
         self.assertEqual(
             state[aws.REPOST_CURSOR_KEY],
-            {"page": 6, "token": "archive-6", "failures": 1},
+            {"page": 6, "token": _cursor("archive-6"), "failures": 1},
         )
 
     def test_repost_saved_freshness_cursor_rescans_head_until_known_overlap(self):
@@ -594,8 +601,8 @@ class AwsFeedTests(unittest.TestCase):
         seen = "https://repost.aws/articles/AR3/seen-three"
         fresh_boundary_key = f"{aws.REPOST_FRESH_CURSOR_KEY}_boundary"
         state = {
-            aws.REPOST_CURSOR_KEY: {"page": 8, "token": "archive-8"},
-            aws.REPOST_FRESH_CURSOR_KEY: {"page": 5, "token": "saved-fresh-5"},
+            aws.REPOST_CURSOR_KEY: {"page": 8, "token": _cursor("archive-8")},
+            aws.REPOST_FRESH_CURSOR_KEY: {"page": 5, "token": _cursor("saved-fresh-5")},
             fresh_boundary_key: [old],
         }
         with (
@@ -608,25 +615,25 @@ class AwsFeedTests(unittest.TestCase):
                         1,
                         total=120,
                         entries=[fresh1],
-                        tokens=[{"page": 2, "token": "live-2"}],
+                        tokens=[{"page": 2, "token": _cursor("live-2")}],
                     ),
                     repost_page(
                         2,
                         total=120,
                         entries=[fresh2],
-                        tokens=[{"page": 3, "token": "live-3"}],
+                        tokens=[{"page": 3, "token": _cursor("live-3")}],
                     ),
                     repost_page(
                         3,
                         total=120,
                         entries=[seen3],
-                        tokens=[{"page": 4, "token": "live-4"}],
+                        tokens=[{"page": 4, "token": _cursor("live-4")}],
                     ),
                     repost_page(
                         5,
                         total=120,
                         entries=[missing5],
-                        tokens=[{"page": 6, "token": "saved-fresh-6"}],
+                        tokens=[{"page": 6, "token": _cursor("saved-fresh-6")}],
                     ),
                 ],
             ) as get_html,
@@ -642,7 +649,7 @@ class AwsFeedTests(unittest.TestCase):
         self.assertIn("page=saved-fresh-5", get_html.call_args_list[3].args[0])
         self.assertEqual(
             state[aws.REPOST_FRESH_CURSOR_KEY],
-            {"page": 6, "token": "saved-fresh-6"},
+            {"page": 6, "token": _cursor("saved-fresh-6")},
         )
         self.assertEqual(state[fresh_boundary_key], [old])
 
@@ -680,7 +687,7 @@ class AwsFeedTests(unittest.TestCase):
             "createdAt": "2026-08-20T10:00:00Z",
         }
         known = {"https://repost.aws/articles/AR3/known-three"}
-        state = {aws.REPOST_CURSOR_KEY: {"page": 8, "token": "archive-8"}}
+        state = {aws.REPOST_CURSOR_KEY: {"page": 8, "token": _cursor("archive-8")}}
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 4),
             patch.object(
@@ -691,20 +698,20 @@ class AwsFeedTests(unittest.TestCase):
                         1,
                         total=120,
                         entries=[fresh1],
-                        tokens=[{"page": 2, "token": "fresh-2"}],
+                        tokens=[{"page": 2, "token": _cursor("fresh-2")}],
                     ),
                     repost_page(
                         2,
                         total=120,
                         entries=[fresh2],
-                        tokens=[{"page": 3, "token": "fresh-3"}],
+                        tokens=[{"page": 3, "token": _cursor("fresh-3")}],
                     ),
                     repost_page(3, total=120, entries=[known3]),
                     repost_page(
                         8,
                         total=120,
                         entries=[archived],
-                        tokens=[{"page": 9, "token": "archive-9"}],
+                        tokens=[{"page": 9, "token": _cursor("archive-9")}],
                     ),
                 ],
             ) as get_html,
@@ -717,7 +724,7 @@ class AwsFeedTests(unittest.TestCase):
         self.assertEqual(get_html.call_count, 4)
         self.assertNotIn(aws.REPOST_FRESH_CURSOR_KEY, state)
         self.assertEqual(
-            state[aws.REPOST_CURSOR_KEY], {"page": 9, "token": "archive-9"}
+            state[aws.REPOST_CURSOR_KEY], {"page": 9, "token": _cursor("archive-9")}
         )
 
     def test_repost_fresh_checkpoint_preserves_archive_cursor(self):
@@ -737,7 +744,7 @@ class AwsFeedTests(unittest.TestCase):
             "language": "en",
             "createdAt": "2026-08-30T11:00:00Z",
         }
-        state = {aws.REPOST_CURSOR_KEY: {"page": 8, "token": "archive-8"}}
+        state = {aws.REPOST_CURSOR_KEY: {"page": 8, "token": _cursor("archive-8")}}
         with (
             patch.object(aws, "MAX_REPOST_PAGES", 2),
             patch.object(
@@ -748,13 +755,13 @@ class AwsFeedTests(unittest.TestCase):
                         1,
                         total=120,
                         entries=[fresh1],
-                        tokens=[{"page": 2, "token": "fresh-2"}],
+                        tokens=[{"page": 2, "token": _cursor("fresh-2")}],
                     ),
                     repost_page(
                         2,
                         total=120,
                         entries=[fresh2],
-                        tokens=[{"page": 3, "token": "fresh-3"}],
+                        tokens=[{"page": 3, "token": _cursor("fresh-3")}],
                     ),
                 ],
             ),
@@ -766,10 +773,10 @@ class AwsFeedTests(unittest.TestCase):
             [entry["title"] for entry in entries], ["Fresh one", "Fresh two"]
         )
         self.assertEqual(
-            state[aws.REPOST_FRESH_CURSOR_KEY], {"page": 3, "token": "fresh-3"}
+            state[aws.REPOST_FRESH_CURSOR_KEY], {"page": 3, "token": _cursor("fresh-3")}
         )
         self.assertEqual(
-            state[aws.REPOST_CURSOR_KEY], {"page": 8, "token": "archive-8"}
+            state[aws.REPOST_CURSOR_KEY], {"page": 8, "token": _cursor("archive-8")}
         )
 
     def test_repost_archive_overlap_does_not_replace_original_history_boundary(self):
@@ -803,7 +810,7 @@ class AwsFeedTests(unittest.TestCase):
         }
         boundary_key = f"{aws.REPOST_CURSOR_KEY}_boundary"
         state = {
-            aws.REPOST_CURSOR_KEY: {"page": 9, "token": "archive-9"},
+            aws.REPOST_CURSOR_KEY: {"page": 9, "token": _cursor("archive-9")},
             boundary_key: [],
         }
         with (
@@ -817,7 +824,7 @@ class AwsFeedTests(unittest.TestCase):
                         9,
                         total=120,
                         entries=[shifted, missing],
-                        tokens=[{"page": 10, "token": "archive-10"}],
+                        tokens=[{"page": 10, "token": _cursor("archive-10")}],
                     ),
                 ],
             ),
@@ -825,7 +832,7 @@ class AwsFeedTests(unittest.TestCase):
             entries = aws.collect_repost(known, state)
         self.assertEqual([entry["title"] for entry in entries], ["Missing nine"])
         self.assertEqual(
-            state[aws.REPOST_CURSOR_KEY], {"page": 10, "token": "archive-10"}
+            state[aws.REPOST_CURSOR_KEY], {"page": 10, "token": _cursor("archive-10")}
         )
         self.assertEqual(state[boundary_key], [])
 
@@ -841,7 +848,7 @@ class AwsFeedTests(unittest.TestCase):
                     "date": "2026-08-01T00:00:00+00:00",
                 }
             ],
-            aws.REPOST_CURSOR_KEY: {"page": 2, "token": "old"},
+            aws.REPOST_CURSOR_KEY: {"page": 2, "token": _cursor("old")},
             "last_updated": "2026-08-01T00:00:00+00:00",
         }
         cache_state = {"stale": True}
@@ -849,7 +856,7 @@ class AwsFeedTests(unittest.TestCase):
 
         def custom_scraper(_known_links):
             states_seen.append(dict(cache_state))
-            cache_state[aws.REPOST_CURSOR_KEY] = {"page": 3, "token": "next"}
+            cache_state[aws.REPOST_CURSOR_KEY] = {"page": 3, "token": _cursor("next")}
             return []
 
         fg = MagicMock()
@@ -872,11 +879,11 @@ class AwsFeedTests(unittest.TestCase):
 
         self.assertTrue(result)
         self.assertEqual(
-            states_seen, [{aws.REPOST_CURSOR_KEY: {"page": 2, "token": "old"}}]
+            states_seen, [{aws.REPOST_CURSOR_KEY: {"page": 2, "token": _cursor("old")}}]
         )
         self.assertEqual(
             save_cache.call_args.kwargs["extra"],
-            {aws.REPOST_CURSOR_KEY: {"page": 3, "token": "next"}},
+            {aws.REPOST_CURSOR_KEY: {"page": 3, "token": _cursor("next")}},
         )
 
     def test_cli_release_dates_and_changelog_are_joined(self):
