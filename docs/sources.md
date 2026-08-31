@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-99 feedów · 780 źródeł
+99 feedów · 782 źródeł
 
 ## Spis grup
 
@@ -474,6 +474,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 `saas` · [feed_saas.xml](../feeds/feed_saas.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=www.coderabbit.ai&sz=16) CodeRabbit Newsroom — <https://www.coderabbit.ai/newsroom>
+- ![](https://www.google.com/s2/favicons?domain=www.postman.com&sz=16) Postman App Release Notes — <https://www.postman.com/release-notes/postman-app/>
 - ![](https://www.google.com/s2/favicons?domain=cursor.com&sz=16) Cursor Blog — <https://cursor.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=neuraltrust.ai&sz=16) NeuralTrust — <https://neuraltrust.ai/resources>
 - ![](https://www.google.com/s2/favicons?domain=abnormal.ai&sz=16) Abnormal Blog — <https://abnormal.ai/blog>
@@ -500,6 +501,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.xweather.com&sz=16) Xweather Weather API Changelog — <https://www.xweather.com/docs/weather-api/changelog>
 - ![](https://www.google.com/s2/favicons?domain=www.xweather.com&sz=16) Xweather MCP Server Changelog — <https://www.xweather.com/docs/mcp-server/changelog>
 - ![](https://www.google.com/s2/favicons?domain=exa.ai&sz=16) EXA sitemap — <https://exa.ai/sitemap.xml>
+- ![](https://www.google.com/s2/favicons?domain=mkt.cdn.postman.com&sz=16) Postman app release notes data — <https://mkt.cdn.postman.com/www-next/release-notes/app-release-notes.json>
 - ![](https://www.google.com/s2/favicons?domain=www.postman.com&sz=16) Postman press — <https://www.postman.com/company/press-media/>
 - ![](https://www.google.com/s2/favicons?domain=www.xweather.com&sz=16) Xweather blog — <https://www.xweather.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=bitly.com&sz=16) Blog listing — <https://bitly.com/blog/>
