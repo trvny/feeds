@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-98 feedów · 767 źródeł
+98 feedów · 769 źródeł
 
 ## Spis grup
 
@@ -213,6 +213,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) Cognition Blog — <https://cognition.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) Cognition Research — <https://cognition.com/research>
 - ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Release Notes — <https://docs.devin.ai/release-notes/overview>
+- ![](https://www.google.com/s2/favicons?domain=mcp.so&sz=16) MCP.so Feed — <https://mcp.so/feed>
+- ![](https://www.google.com/s2/favicons?domain=mcp.so&sz=16) MCP.so Blog — <https://mcp.so/blog>
 - ![](https://www.google.com/s2/favicons?domain=aihubmix.com&sz=16) AIHubMix Blog (PL) — <https://aihubmix.com/blog/pl>
 - ![](https://www.google.com/s2/favicons?domain=docs.aihubmix.com&sz=16) AIHubMix Docs Blog (EN) — <https://docs.aihubmix.com/en/blogs>
 - ![](https://www.google.com/s2/favicons?domain=docs.aihubmix.com&sz=16) AIHubMix Changelog — <https://docs.aihubmix.com/en/update/News>
@@ -226,6 +228,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=pieces.app&sz=16) Pieces Blog — <https://pieces.app/blog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=claudepluginhub.com&sz=16) ClaudePluginHub — <https://claudepluginhub.com/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=openrouter.ai&sz=16) OpenRouter — <https://openrouter.ai/blog/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=upstash.com&sz=16) Upstash Blog — <https://upstash.com/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.x-cmd.com&sz=16) x-cmd Blog — <https://www.x-cmd.com/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=graphify.com&sz=16) Graphify Blog — <https://graphify.com/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) Graphify Changelog — <https://github.com/Graphify-Labs/graphify/releases.atom>
@@ -233,8 +236,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) LiteLLM Releases — <https://github.com/BerriAI/litellm/releases.atom>
 - ![](https://www.google.com/s2/favicons?domain=glama.ai&sz=16) Glama Blog — <https://glama.ai/blog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=glama.ai&sz=16) Glama MCP Servers — <https://glama.ai/mcp/servers/feeds/recent-servers.xml>
-- ![](https://www.google.com/s2/favicons?domain=lobehub.com&sz=16) LobeHub Changelog — <https://lobehub.com/pl/changelog/feed>
-- ![](https://www.google.com/s2/favicons?domain=lobehub.com&sz=16) LobeHub Blog — <https://lobehub.com/pl/blog/feed>
+- ![](https://www.google.com/s2/favicons?domain=lobehub.com&sz=16) LobeHub Changelog — <https://lobehub.com/changelog/feed>
+- ![](https://www.google.com/s2/favicons?domain=lobehub.com&sz=16) LobeHub Blog — <https://lobehub.com/blog/feed>
 - ![](https://www.google.com/s2/favicons?domain=aiskill.market&sz=16) AI Skill Market — <https://aiskill.market/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=skillsllm.com&sz=16) Blog — <https://skillsllm.com/>
 - ![](https://www.google.com/s2/favicons?domain=glama.ai&sz=16) Glama release notes — <https://glama.ai/release-notes>
@@ -487,7 +490,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=blog.postman.com&sz=16) Postman — <https://blog.postman.com/feed/>
 - ![](https://www.google.com/s2/favicons?domain=exa.ai&sz=16) Exa Changelog — <https://exa.ai/docs/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.home-assistant.io&sz=16) Home Assistant — <https://www.home-assistant.io/atom.xml>
-- ![](https://www.google.com/s2/favicons?domain=upstash.com&sz=16) Upstash Blog — <https://upstash.com/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=upstash.com&sz=16) Upstash Workflow Changelog — <https://upstash.com/docs/workflow/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=cursor.com&sz=16) Cursor Changelog — <https://cursor.com/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.coderabbit.ai&sz=16) CodeRabbit Blog — <https://www.coderabbit.ai/feed>
