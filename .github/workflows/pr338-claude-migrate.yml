@@ -41,7 +41,7 @@ jobs:
               'MAX_ENTRIES = 150\nLEGACY_PLATFORM_RELEASE_SOURCE = "Claude Platform release notes"\n',
               1,
           )
-          helper = '''def _known_links_for_refresh(cached):
+          helpers = '''def _known_links_for_refresh(cached):
               """Keep legacy Platform links eligible for native RSS refresh."""
               return {
                   entry["link"]
@@ -50,11 +50,32 @@ jobs:
               }
 
 
+          def _cache_for_merge(cached, new_articles):
+              """Drop legacy Platform rows only after native RSS returned replacements."""
+              if not any(
+                  entry.get("source") == "Claude Platform" for entry in new_articles
+              ):
+                  return cached
+              return [
+                  entry
+                  for entry in cached
+                  if entry.get("source") != LEGACY_PLATFORM_RELEASE_SOURCE
+              ]
+
+
           '''
-          text = text.replace("def main(full=False):\n", helper + "def main(full=False):\n", 1)
+          text = text.replace("def main(full=False):\n", helpers + "def main(full=False):\n", 1)
           text = text.replace(
               '    known_links = {e["link"] for e in cached}\n',
               "    known_links = _known_links_for_refresh(cached)\n",
+              1,
+          )
+          text = text.replace(
+              '    merged = merge_entries(new_articles, cached, id_field="link", date_field="date")\n',
+              '    merge_cache = _cache_for_merge(cached, new_articles)\n'
+              '    merged = merge_entries(\n'
+              '        new_articles, merge_cache, id_field="link", date_field="date"\n'
+              '    )\n',
               1,
           )
           path.write_text(text, encoding="utf-8")
@@ -63,23 +84,32 @@ jobs:
           tests = test_path.read_text(encoding="utf-8")
           anchor = '''    def test_microsoft_includes_requested_sources(self):
           '''
-          test = '''    def test_claude_refreshes_legacy_platform_rows_from_native_rss(self):
+          test = '''    def test_claude_migrates_legacy_platform_rows_after_rss_success(self):
                   legacy_link = (
                       "https://platform.claude.com/docs/en/release-notes/"
                       "overview#example"
                   )
-                  other_link = "https://claude.com/blog/example"
-                  known = claude._known_links_for_refresh(
-                      [
-                          {
-                              "link": legacy_link,
-                              "source": claude.LEGACY_PLATFORM_RELEASE_SOURCE,
-                          },
-                          {"link": other_link, "source": "Claude Blog"},
-                      ]
-                  )
+                  legacy = {
+                      "link": legacy_link,
+                      "source": claude.LEGACY_PLATFORM_RELEASE_SOURCE,
+                  }
+                  other = {
+                      "link": "https://claude.com/blog/example",
+                      "source": "Claude Blog",
+                  }
+                  native = {"link": legacy_link, "source": "Claude Platform"}
+
+                  known = claude._known_links_for_refresh([legacy, other])
                   self.assertNotIn(legacy_link, known)
-                  self.assertIn(other_link, known)
+                  self.assertIn(other["link"], known)
+                  self.assertEqual(
+                      claude._cache_for_merge([legacy, other], []),
+                      [legacy, other],
+                  )
+                  self.assertEqual(
+                      claude._cache_for_merge([legacy, other], [native]),
+                      [other],
+                  )
 
           '''
           if anchor not in tests:
