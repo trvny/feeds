@@ -1,0 +1,107 @@
+name: PR 338 Regenerate Feeds
+
+on:
+  push:
+    branches:
+      - gptomek/add-requested-feeds
+    paths:
+      - ".github/workflows/pr338-regenerate.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+        with:
+          enable-cache: false
+          python-version: "3.14"
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Refresh affected generated state from main
+        run: |
+          git fetch origin main
+          git checkout origin/main -- \
+            cache/claude_posts.json \
+            cache/microsoft_posts.json \
+            cache/skillsllm_posts.json \
+            feeds/feed_claude.xml \
+            feeds/feed_claude.json \
+            feeds/feed_microsoft.xml \
+            feeds/feed_microsoft.json \
+            feeds/feed_skillsllm.xml \
+            feeds/feed_skillsllm.json
+
+      - name: Add Mintlify to SkillsLLM metadata
+        run: |
+          uv run --no-project python - <<'PY'
+          from pathlib import Path
+
+          path = Path("feed_generators/skillsllm.py")
+          text = path.read_text(encoding="utf-8")
+          old = (
+              '"Servers blog, Claude Skills Hub, Agent Zero, Hugging Face, MindStudio, "\n'
+              '        "OpenRouter, Upstash, x-cmd, Graphify (blog + changelog), MCP.so (feed + blog), "'
+          )
+          new = (
+              '"Servers blog, Claude Skills Hub, Agent Zero, Hugging Face, MindStudio, "\n'
+              '        "Mintlify (blog + changelog), OpenRouter, Upstash, x-cmd, "\n'
+              '        "Graphify (blog + changelog), MCP.so (feed + blog), "'
+          )
+          if old not in text:
+              raise SystemExit("SkillsLLM subtitle anchor not found")
+          path.write_text(text.replace(old, new, 1), encoding="utf-8")
+          PY
+
+      - name: Run targeted tests
+        run: |
+          uv run --locked python -m unittest \
+            tests.test_cognition_sources \
+            tests.test_requested_feed_sources \
+            tests.test_skillsllm_sources \
+            tests.test_skillsllm_attempts
+
+      - name: Regenerate affected feeds
+        run: |
+          uv run --locked python feed_generators/claude.py
+          uv run --locked python feed_generators/microsoft.py
+          uv run --locked python feed_generators/skillsllm.py
+          uv run --locked python feed_generators/docs_sources.py
+
+      - name: Validate generated feeds
+        run: uv run --locked python feed_generators/validate_feeds.py
+
+      - name: Commit generated results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            feed_generators/skillsllm.py \
+            cache/claude_posts.json \
+            cache/microsoft_posts.json \
+            cache/skillsllm_posts.json \
+            feeds/feed_claude.xml \
+            feeds/feed_claude.json \
+            feeds/feed_microsoft.xml \
+            feeds/feed_microsoft.json \
+            feeds/feed_skillsllm.xml \
+            feeds/feed_skillsllm.json \
+            docs/sources.md
+          git diff --staged --check
+          if git diff --staged --quiet; then
+            echo "No generated changes"
+          else
+            git commit -m 'Address feed source review'
+            git push origin HEAD:gptomek/add-requested-feeds
+          fi
