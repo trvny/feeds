@@ -100,6 +100,7 @@ DATE_ONLY_RE = re.compile(r"^\s*" + DATE_RE.pattern + r"\s*$")
 _ORDINAL_RE = re.compile(r"(\d{1,2})(?:st|nd|rd|th)", re.IGNORECASE)
 
 MAX_ENTRIES = 150
+LEGACY_PLATFORM_RELEASE_SOURCE = "Claude Platform release notes"
 
 
 def parse_date(date_str):
@@ -436,6 +437,28 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     return fg
 
 
+def _known_links_for_refresh(cached):
+    """Keep legacy Platform links eligible for native RSS refresh."""
+    return {
+        entry["link"]
+        for entry in cached
+        if entry.get("source") != LEGACY_PLATFORM_RELEASE_SOURCE
+    }
+
+
+def _cache_for_merge(cached, new_articles):
+    """Drop legacy Platform rows only after native RSS returned replacements."""
+    if not any(
+        entry.get("source") == "Claude Platform" for entry in new_articles
+    ):
+        return cached
+    return [
+        entry
+        for entry in cached
+        if entry.get("source") != LEGACY_PLATFORM_RELEASE_SOURCE
+    ]
+
+
 def main(full=False):
     if full:
         logger.info("Full reset requested — ignoring existing cache")
@@ -444,14 +467,17 @@ def main(full=False):
         cache = load_cache(FEED_NAME)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
 
-    known_links = {e["link"] for e in cached}
+    known_links = _known_links_for_refresh(cached)
     new_articles = scrape_all(known_links)
 
     if not new_articles and not cached:
         logger.warning("No articles collected — skipping write to avoid an empty feed")
         return False
 
-    merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
+    merge_cache = _cache_for_merge(cached, new_articles)
+    merged = merge_entries(
+        new_articles, merge_cache, id_field="link", date_field="date"
+    )
     merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
 

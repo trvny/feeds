@@ -208,13 +208,13 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/claude/841426eaf5b7c5c6",
       "url": "https://platform.claude.com/docs/en/release-notes/overview#august-27-2026",
-      "title": "Claude Platform — August 27, 2026",
-      "content_text": "In Python SDK 1.2.0, TypeScript SDK 0.122.0, Go SDK 1.68.0, Java SDK 2.59.0, Ruby SDK 1.67.0, and C SDK 12.44.0, client.beta.files and client.beta.skills no longer send the files-api-2025-04-14 and skills-2025-10-02 beta headers and return the same shapes as client.files and client.skills . With this change, client.beta.skills.delete() deletes a Skill together with all of its versions, and the beta Messages type BetaSkill (the container Skill reference) is renamed BetaContainerSkill . Requests t",
+      "title": "Claude Platform release notes — August 27, 2026",
+      "content_text": "You can now create personal keys and service account keys in the Claude Console. They act as you or as a service account , with the same permissions, and stop working when the linked account is removed from an organization. This lets organization admins more easily track usage for each account, and ensure key usage is legitimate. These API keys can be scoped to a specific workspace or work on admin endpoints and across any workspace the account has access to. Workspace API keys remain supported",
       "date_published": "2026-08-27T00:00:00Z",
       "date_modified": "2026-08-27T00:00:00Z",
       "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
       "tags": [
-        "Claude Platform release notes"
+        "Claude Platform"
       ],
       "attachments": [
         {
@@ -278,6 +278,24 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/claude/0784980a7d0b07c3",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview#august-26-2026",
+      "title": "Claude Platform release notes — August 26, 2026",
+      "content_text": "The Compliance API session endpoints are out of beta for Cowork and Claude Code sessions. See Retrieve session transcripts . The Compliance API local session endpoints now also return transcripts of Claude Science sessions ( product_surface value claude_science ) and Claude for Microsoft 365 sessions in Excel, PowerPoint, Word, and Outlook ( product_surface values beginning with office_agents ), in beta for Claude Enterprise organizations, with your existing Compliance Access Key and the read:co",
+      "date_published": "2026-08-26T00:00:00Z",
+      "date_modified": "2026-08-26T00:00:00Z",
+      "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
+      "tags": [
+        "Claude Platform"
+      ],
+      "attachments": [
+        {
+          "url": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/claude/af9006b6bcf25128",
       "url": "https://claude.com/blog/cowork-built-in-browser",
       "title": "Claude gets its own browser in Cowork",
@@ -291,24 +309,6 @@
       "attachments": [
         {
           "url": "https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/69027547e3e5c830cb5d0a37_og_claude-is-now-available-in-microsoft-365-copilot.jpg",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/claude/0784980a7d0b07c3",
-      "url": "https://platform.claude.com/docs/en/release-notes/overview#august-26-2026",
-      "title": "Claude Platform — August 26, 2026",
-      "content_text": "The Compliance API session endpoints are out of beta for Cowork and Claude Code sessions. See Retrieve session transcripts. The Compliance API local session endpoints now also return transcripts of Claude Science sessions ( product surface value claude science ) and Claude for Microsoft 365 sessions in Excel, PowerPoint, Word, and Outlook ( product surface values beginning with office agents ), in beta for Claude Enterprise organizations, with your existing Compliance Access Key and the read:com",
-      "date_published": "2026-08-26T00:00:00Z",
-      "date_modified": "2026-08-26T00:00:00Z",
-      "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
-      "tags": [
-        "Claude Platform release notes"
-      ],
-      "attachments": [
-        {
-          "url": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
           "mime_type": "image/jpeg"
         }
       ]
@@ -766,13 +766,13 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/claude/2daccd0a3b66e6d6",
       "url": "https://platform.claude.com/docs/en/release-notes/overview#august-20-2026",
-      "title": "Claude Platform — August 20, 2026",
-      "content_text": "We've released v1.0 of the Python SDK . The SDK's HTTP layer moves from httpx to httpx2, a maintained, API-compatible fork: build custom http client , Timeout , and transport objects from httpx2 (the DefaultHttpxClient helpers are unchanged), and call httpx2.alias httpx() at startup if you rely on tracing or mocking libraries that patch httpx . v1.0 requires Python 3.10 or later and removes long-deprecated surface, including the legacy Text Completions API, the temperature , top p , and top k pa",
+      "title": "Claude Platform release notes — August 20, 2026",
+      "content_text": "We've released v1.0 of the Python SDK . The SDK's HTTP layer moves from httpx to httpx2 , a maintained, API-compatible fork: build custom http_client , Timeout , and transport objects from httpx2 (the DefaultHttpxClient helpers are unchanged), and call httpx2.alias_httpx() at startup if you rely on tracing or mocking libraries that patch httpx . v1.0 requires Python 3.10 or later and removes long-deprecated surface, including the legacy Text Completions API, the temperature , top_p , and top_k p",
       "date_published": "2026-08-20T00:00:00Z",
       "date_modified": "2026-08-20T00:00:00Z",
       "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
       "tags": [
-        "Claude Platform release notes"
+        "Claude Platform"
       ],
       "attachments": [
         {
@@ -885,13 +885,13 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/claude/14949f9a3871bad8",
       "url": "https://platform.claude.com/docs/en/release-notes/overview#august-19-2026",
-      "title": "Claude Platform — August 19, 2026",
-      "content_text": "The Admin API user-management endpoints for Claude Enterprise (claude.ai) organizations (members, invites, groups, and custom roles) are now generally available. The anthropic-beta: ce-user-management-2026-07-13 header is no longer required on group and custom-role requests; requests that still send it are accepted unchanged. See User management.",
+      "title": "Claude Platform release notes — August 19, 2026",
+      "content_text": "The computer use tool is out of beta on the Claude API as the computer_toolset_20260801 toolset: no beta header, batch actions (several actions in one turn), zoom enabled by default, and per-member configuration through configs . Earlier beta versions remain available. Upgrading an existing integration changes the request shape and tool handling; see Migrate from computer_20251124 . We've launched the browser use tool ( browser_toolset_20260801 ), a client toolset for driving a browser that your",
       "date_published": "2026-08-19T00:00:00Z",
       "date_modified": "2026-08-19T00:00:00Z",
       "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
       "tags": [
-        "Claude Platform release notes"
+        "Claude Platform"
       ],
       "attachments": [
         {
@@ -975,13 +975,13 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/claude/0f1316b7c76c918a",
       "url": "https://platform.claude.com/docs/en/release-notes/overview#august-18-2026",
-      "title": "Claude Platform — August 18, 2026",
-      "content_text": "Workbench is now Playground in the Claude Console. Playground supports every Messages API parameter and includes templates that demonstrate API features such as code execution and web search. It shows the full SDK request and the API response for each run, to help you understand the API and build with it. For more, see the Claude Help Center or try it at platform.claude.com/playground.",
+      "title": "Claude Platform release notes — August 18, 2026",
+      "content_text": "Workbench is now playground in the Claude Console. Playground supports every Messages API parameter and includes templates that demonstrate API features such as code execution and web search. It shows the full SDK request and the API response for each run, to help you understand the API and build with it. For more, see the Claude Help Center or try it at platform.claude.com/playground .",
       "date_published": "2026-08-18T00:00:00Z",
       "date_modified": "2026-08-18T00:00:00Z",
       "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
       "tags": [
-        "Claude Platform release notes"
+        "Claude Platform"
       ],
       "attachments": [
         {
@@ -1418,17 +1418,17 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/claude/444736bb6cef2c81",
       "url": "https://platform.claude.com/docs/en/release-notes/overview#august-11-2026",
-      "title": "Claude Platform — August 11, 2026",
-      "content_text": "The Compliance API now returns transcripts of Cowork and Claude Code sessions that run on your users' machines, in beta for Claude Enterprise organizations. GET /v1/compliance/apps/sessions/local lists sessions across your organization, GET /v1/compliance/apps/sessions/local/{session id} retrieves one session's metadata, and GET /v1/compliance/apps/sessions/local/{session id}/messages returns its transcript, all with your existing Compliance Access Key and the read:compliance user data scope. Se",
+      "title": "Claude Platform release notes — August 11, 2026",
+      "content_text": "The Compliance API now returns transcripts of Cowork and Claude Code sessions that run on your users' machines, in beta for Claude Enterprise organizations. GET /v1/compliance/apps/sessions/local lists sessions across your organization, GET /v1/compliance/apps/sessions/local/{session_id} retrieves one session's metadata, and GET /v1/compliance/apps/sessions/local/{session_id}/messages returns its transcript, all with your existing Compliance Access Key and the read:compliance_user_data scope. Se",
       "date_published": "2026-08-11T00:00:00Z",
       "date_modified": "2026-08-11T00:00:00Z",
-      "image": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+      "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
       "tags": [
-        "Claude Platform release notes"
+        "Claude Platform"
       ],
       "attachments": [
         {
-          "url": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+          "url": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
           "mime_type": "image/jpeg"
         }
       ]
@@ -1508,17 +1508,17 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/claude/5405e22806ebf4cf",
       "url": "https://platform.claude.com/docs/en/release-notes/overview#august-10-2026",
-      "title": "Claude Platform — August 10, 2026",
-      "content_text": "The introductory pricing for Claude Sonnet 5 ($2 / $10 per MTok) is now the standard price: the previously scheduled increase to $3 / $15 per MTok on September 1, 2026 will not occur. See Pricing.",
+      "title": "Claude Platform release notes — August 10, 2026",
+      "content_text": "The introductory pricing for Claude Sonnet 5 ($2 / $10 per MTok) is now the standard price: the previously scheduled increase to $3 / $15 per MTok on September 1, 2026 will not occur. See Pricing .",
       "date_published": "2026-08-10T00:00:00Z",
       "date_modified": "2026-08-10T00:00:00Z",
-      "image": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+      "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
       "tags": [
-        "Claude Platform release notes"
+        "Claude Platform"
       ],
       "attachments": [
         {
-          "url": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+          "url": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
           "mime_type": "image/jpeg"
         }
       ]
@@ -1596,6 +1596,24 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/claude/6679cba79425b43b",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview#august-7-2026",
+      "title": "Claude Platform release notes — August 7, 2026",
+      "content_text": "You can now set a budget on a Claude Managed Agents session: a hard cap on the session's spend, priced at public list rates. A session that reaches its budget pauses with the budget_reached stop reason instead of starting new model requests; changing or removing the budget resumes it. Deployments accept the same budget and apply it to each session they start. See Session budgets . You can now give a Claude Managed Agents session an advisor: a model at least as capable as the agent's own that the",
+      "date_published": "2026-08-07T00:00:00Z",
+      "date_modified": "2026-08-07T00:00:00Z",
+      "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
+      "tags": [
+        "Claude Platform"
+      ],
+      "attachments": [
+        {
+          "url": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/claude/3be2b1fcdc2c7902",
       "url": "https://claude.com/blog/how-anthropics-business-development-team-uses-claude-to-run-inbound-and-outbound-at-scale",
       "title": "How anthropics business development team uses claude to run inbound and outbound at scale",
@@ -1609,24 +1627,6 @@
       "attachments": [
         {
           "url": "https://cdn.prod.website-files.com/68a44d4040f98a4adf2207b6/6a7a5d2394984ce6aa0e8313_og_how-anthropics-business-development-team-uses-claude-to-run-inbound-and-outbound-at-scale%20(1).jpg",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/claude/6679cba79425b43b",
-      "url": "https://platform.claude.com/docs/en/release-notes/overview#august-7-2026",
-      "title": "Claude Platform — August 7, 2026",
-      "content_text": "You can now set a budget on a Claude Managed Agents session: a hard cap on the session's spend, priced at public list rates. A session that reaches its budget pauses with the budget reached stop reason instead of starting new model requests; changing or removing the budget resumes it. Deployments accept the same budget and apply it to each session they start. See Session budgets. You can now give a Claude Managed Agents session an advisor: a model at least as capable as the agent's own that the",
-      "date_published": "2026-08-07T00:00:00Z",
-      "date_modified": "2026-08-07T00:00:00Z",
-      "image": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
-      "tags": [
-        "Claude Platform release notes"
-      ],
-      "attachments": [
-        {
-          "url": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
           "mime_type": "image/jpeg"
         }
       ]
@@ -1764,17 +1764,17 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/claude/42ed699e3922f4ee",
       "url": "https://platform.claude.com/docs/en/release-notes/overview#august-5-2026",
-      "title": "Claude Platform — August 5, 2026",
-      "content_text": "Inference hooks are now in beta for Claude Enterprise organizations. Point Claude at your organization's AI security server, and each governed prompt across claude.ai, Cowork, and Claude Code is held for the server's allow or deny verdict before inference proceeds. Requests are signed, failure handling is configurable, and every denial is recorded in the compliance Activity Feed. See Inference hooks.",
+      "title": "Claude Platform release notes — August 5, 2026",
+      "content_text": "Inference hooks are now in beta for Claude Enterprise organizations. Point Claude at your organization's AI security server, and each governed prompt across claude.ai, Cowork, and Claude Code is held for the server's allow or deny verdict before inference proceeds. Requests are signed, failure handling is configurable, and every denial is recorded in the compliance Activity Feed . See Inference hooks . We've retired the Claude Opus 4.1 model ( claude-opus-4-1-20250805 ). All requests to this mod",
       "date_published": "2026-08-05T00:00:00Z",
       "date_modified": "2026-08-05T00:00:00Z",
-      "image": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+      "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
       "tags": [
-        "Claude Platform release notes"
+        "Claude Platform"
       ],
       "attachments": [
         {
-          "url": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+          "url": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
           "mime_type": "image/jpeg"
         }
       ]
@@ -1901,17 +1901,17 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/claude/10807b85102f1569",
       "url": "https://platform.claude.com/docs/en/release-notes/overview#august-3-2026",
-      "title": "Claude Platform — August 3, 2026",
-      "content_text": "The Compliance API now returns transcripts of Cowork sessions started on claude.ai web or mobile, in beta for Claude Enterprise organizations. GET /v1/compliance/apps/sessions/remote lists sessions and GET /v1/compliance/apps/sessions/remote/{session id}/messages returns one session's transcript, using your existing Compliance Access Key with the read:compliance user data scope. See Retrieve remote sessions.",
+      "title": "Claude Platform release notes — August 3, 2026",
+      "content_text": "The Compliance API now returns transcripts of Cowork sessions started on claude.ai web or mobile, in beta for Claude Enterprise organizations. GET /v1/compliance/apps/sessions/remote lists sessions and GET /v1/compliance/apps/sessions/remote/{session_id}/messages returns one session's transcript, using your existing Compliance Access Key with the read:compliance_user_data scope. See Sessions in the cloud .",
       "date_published": "2026-08-03T00:00:00Z",
       "date_modified": "2026-08-03T00:00:00Z",
-      "image": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+      "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
       "tags": [
-        "Claude Platform release notes"
+        "Claude Platform"
       ],
       "attachments": [
         {
-          "url": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+          "url": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
           "mime_type": "image/jpeg"
         }
       ]
@@ -1919,17 +1919,17 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/claude/c7938ea279056a52",
       "url": "https://platform.claude.com/docs/en/release-notes/overview#august-1-2026",
-      "title": "Claude Platform — August 1, 2026",
-      "content_text": "Dreams (research preview) now supports Claude Opus 5. See Supported models.",
+      "title": "Claude Platform release notes — August 1, 2026",
+      "content_text": "Dreams (research preview) now supports Claude Opus 5. See Supported models .",
       "date_published": "2026-08-01T00:00:00Z",
       "date_modified": "2026-08-01T00:00:00Z",
-      "image": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+      "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
       "tags": [
-        "Claude Platform release notes"
+        "Claude Platform"
       ],
       "attachments": [
         {
-          "url": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+          "url": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
           "mime_type": "image/jpeg"
         }
       ]
@@ -2187,6 +2187,24 @@
       ]
     },
     {
+      "id": "tag:trvny.github.io,2024:feedseek/claude/2affd9c68605b4d3",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview#july-24-2026",
+      "title": "Claude Platform release notes — July 24, 2026",
+      "content_text": "We've launched Claude Opus 5 ( claude-opus-5 ), a step-change improvement over Claude Opus 4.8. Claude Opus 5 supports a 1M token context window (both the default and the maximum), 128k max output tokens, and thinking on by default, at $5 / $25 USD per MTok, the same pricing as Claude Opus 4.8. It's available on the Claude API, Claude in Amazon Bedrock , Claude Platform on AWS , Claude on Google Cloud , and Claude in Microsoft Foundry . See What's new in Claude Opus 5 for new features, behavior",
+      "date_published": "2026-07-24T00:00:00Z",
+      "date_modified": "2026-07-24T00:00:00Z",
+      "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
+      "tags": [
+        "Claude Platform"
+      ],
+      "attachments": [
+        {
+          "url": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/claude/ca1de71f82c67193",
       "url": "https://claude.com/blog/how-the-product-designer-who-built-claude-design-uses-it-to-explore-ideas-before-building-them",
       "title": "How the product designer who built claude design uses it to explore ideas before building them",
@@ -2218,24 +2236,6 @@
       "attachments": [
         {
           "url": "https://platform.claude.com/docs/og?locale=en&path=release-notes/system-prompts&design-rev=1",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/claude/2affd9c68605b4d3",
-      "url": "https://platform.claude.com/docs/en/release-notes/overview#july-24-2026",
-      "title": "Claude Platform — July 24, 2026",
-      "content_text": "We've launched Claude Opus 5 ( claude-opus-5 ), a step-change improvement over Claude Opus 4.8. Claude Opus 5 supports a 1M token context window (both the default and the maximum), 128k max output tokens, and thinking on by default, at $5 / $25 per MTok, the same pricing as Claude Opus 4.8. It's available on the Claude API, Claude in Amazon Bedrock, Claude on Google Cloud, and Claude in Microsoft Foundry. See What's new in Claude Opus 5 for new features, behavior changes, and migration guidance,",
-      "date_published": "2026-07-24T00:00:00Z",
-      "date_modified": "2026-07-24T00:00:00Z",
-      "image": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
-      "tags": [
-        "Claude Platform release notes"
-      ],
-      "attachments": [
-        {
-          "url": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
           "mime_type": "image/jpeg"
         }
       ]
@@ -2405,17 +2405,17 @@
     {
       "id": "tag:trvny.github.io,2024:feedseek/claude/58d8d60841659d85",
       "url": "https://platform.claude.com/docs/en/release-notes/overview#july-22-2026",
-      "title": "Claude Platform — July 22, 2026",
-      "content_text": "You can now set an effort level on a Claude Managed Agents agent's model configuration. Pass effort inside the model object when you create the agent. See Effort levels for what each level does. Webhooks for Claude Managed Agents now cover the environment and memory store lifecycle: four environment. event types and three memory store. event types. You can react to environment and memory store lifecycle changes without polling. See the Environment events and Memory store events tabs in Subscribe",
+      "title": "Claude Platform release notes — July 22, 2026",
+      "content_text": "You can now set an effort level on a Claude Managed Agents agent's model configuration. Pass effort inside the model object when you create the agent . See Effort levels for what each level does. Webhooks for Claude Managed Agents now cover the environment and memory store lifecycle: four environment.* event types and three memory_store.* event types. You can react to environment and memory store lifecycle changes without polling. See the Environment events and Memory store events tabs in Subscr",
       "date_published": "2026-07-22T00:00:00Z",
       "date_modified": "2026-07-22T00:00:00Z",
-      "image": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+      "image": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
       "tags": [
-        "Claude Platform release notes"
+        "Claude Platform"
       ],
       "attachments": [
         {
-          "url": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+          "url": "https://platform.claude.com/web-api/og/docs/en/release-notes/overview?design-rev=2",
           "mime_type": "image/jpeg"
         }
       ]
