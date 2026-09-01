@@ -2,10 +2,16 @@ const FETCH_TIMEOUT_MS = 8000;
 const MAX_REDIRECTS = 3;
 const MAX_RESPONSE_BYTES = 2 * 1024 * 1024;
 const BODYLESS_STATUSES = new Set([101, 204, 205, 304]);
+const PROXY_ORIGIN = "https://feeds.trfny.com";
+const ROBOTS = "User-agent: *\nAllow: /index.md\nAllow: /llms.txt\nAllow: /llms-full.txt\nDisallow: /\n";
+const INDEX_MD = `# Feedseek fetch proxy\n\n> Constrained HTTPS fetch helper used by the Feedseek Reader.\n\nThe proxy accepts a public HTTPS target through the \`url\` query parameter. It blocks private-looking hosts, non-HTTPS targets, unsafe redirects and oversized responses.\n\n- [Feedseek](https://trvny.github.io/feedseek/)\n- [Concise LLM guide](${PROXY_ORIGIN}/llms.txt)\n- [Full LLM guide](${PROXY_ORIGIN}/llms-full.txt)\n- [Source](https://github.com/trvny/feedseek/tree/main/feeds-proxy)\n`;
+const LLMS = `# Feedseek fetch proxy\n\n> Constrained public HTTPS fetch helper for Feedseek's browser Reader.\n\n## Resources\n\n- [Proxy overview](${PROXY_ORIGIN}/index.md): Markdown description and security boundaries.\n- [Feedseek site](https://trvny.github.io/feedseek/index.md): main feed directory.\n- [Full proxy guide](${PROXY_ORIGIN}/llms-full.txt): complete proxy documentation.\n- [Source](https://github.com/trvny/feedseek/tree/main/feeds-proxy): implementation and tests.\n`;
+const LLMS_FULL = `# Feedseek fetch proxy full documentation\n\nSource: ${PROXY_ORIGIN}/\n\nDescription: Complete LLM-oriented guide to the constrained Feedseek Reader fetch proxy.\n\n## Contract\n\nGET requests with a \`url=https://...\` query parameter fetch a public HTTPS resource for the Reader. Responses are size-bounded and redirects are followed only after each target is revalidated.\n\n## Security boundaries\n\nThe proxy rejects non-HTTPS schemes, credentials in URLs, non-standard ports, localhost/private-looking names and direct IP literals. Redirects are capped and revalidated. Responses are capped at 2 MiB. It is not intended as a general open proxy.\n\n## Search indexing\n\nProxied upstream payloads are returned with X-Robots-Tag noindex,nofollow so the proxy cannot become an indexed duplicate of the source feed.\n\n## Related\n\n- [Feedseek](https://trvny.github.io/feedseek/index.md)\n- [Source](https://github.com/trvny/feedseek/tree/main/feeds-proxy)\n`;
+
 
 const CORS_HEADERS = {
   "access-control-allow-origin": "*",
-  "access-control-allow-methods": "GET, OPTIONS",
+  "access-control-allow-methods": "GET, HEAD, OPTIONS",
   "access-control-allow-headers": "accept, content-type",
 };
 
@@ -46,7 +52,7 @@ function isBlockedHostname(hostname) {
  * @param {string | URL | undefined} [base]
  */
 function parseTarget(value, base) {
-  let target;
+  let target = null;
   try {
     target = new URL(value, base);
   } catch {
@@ -121,45 +127,76 @@ async function readLimited(response) {
   return body;
 }
 
+/** @type {Record<string, {body: string, contentType: string, maxAge: number}>} */
+const DISCOVERY = {
+  "/robots.txt": { body: ROBOTS, contentType: "text/plain; charset=utf-8", maxAge: 86400 },
+  "/index.md": { body: INDEX_MD, contentType: "text/markdown; charset=utf-8", maxAge: 3600 },
+  "/llms.txt": { body: LLMS, contentType: "text/plain; charset=utf-8", maxAge: 3600 },
+  "/llms-full.txt": { body: LLMS_FULL, contentType: "text/plain; charset=utf-8", maxAge: 3600 },
+};
+
+/** @param {Request} request @param {URL} requestUrl */
+function discoveryResponse(request, requestUrl) {
+  const discovery = DISCOVERY[requestUrl.pathname];
+  if (!discovery || (request.method !== "GET" && request.method !== "HEAD")) return null;
+  const { body, contentType, maxAge } = discovery;
+  return new Response(request.method === "HEAD" ? null : body, {
+    headers: {
+      ...CORS_HEADERS,
+      ...SECURITY_HEADERS,
+      "content-type": contentType,
+      "cache-control": `public, max-age=${maxAge}`,
+    },
+  });
+}
+
+/** @param {URL} requestUrl */
+async function proxyResponse(requestUrl) {
+  const raw = requestUrl.searchParams.get("url");
+  if (!raw) return text("bad url", 400);
+
+  let target = null;
+  try {
+    target = parseTarget(raw);
+  } catch (error) {
+    const blocked = error instanceof Error && error.message === "blocked host";
+    return text(blocked ? "blocked host" : "bad url", blocked ? 403 : 400);
+  }
+
+  let upstream = null;
+  try {
+    upstream = await fetchWithRedirects(target);
+  } catch (error) {
+    const message = error instanceof Error && error.name === "TimeoutError"
+      ? "upstream timeout"
+      : error instanceof Error
+        ? error.message
+        : "fetch failed";
+    return text(message, 502);
+  }
+
+  let body = null;
+  try {
+    body = await readLimited(upstream);
+  } catch (error) {
+    return text(error instanceof Error ? error.message : "fetch failed", 502);
+  }
+
+  const headers = new Headers({ ...CORS_HEADERS, ...SECURITY_HEADERS });
+  headers.set("content-type", upstream.headers.get("content-type") || "application/xml; charset=utf-8");
+  headers.set("cache-control", upstream.ok ? "public, max-age=900" : "no-store");
+  headers.set("x-robots-tag", "noindex, nofollow");
+  return new Response(body, { status: upstream.status, headers });
+}
+
 export default {
   /** @param {Request} request */
-  async fetch(request) {
+  fetch(request) {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS_HEADERS });
+    const requestUrl = new URL(request.url);
+    const discovery = discoveryResponse(request, requestUrl);
+    if (discovery) return discovery;
     if (request.method !== "GET") return text("method not allowed", 405);
-
-    const raw = new URL(request.url).searchParams.get("url");
-    if (!raw) return text("bad url", 400);
-
-    let target;
-    try {
-      target = parseTarget(raw);
-    } catch (error) {
-      const blocked = error instanceof Error && error.message === "blocked host";
-      return text(blocked ? "blocked host" : "bad url", blocked ? 403 : 400);
-    }
-
-    let upstream;
-    try {
-      upstream = await fetchWithRedirects(target);
-    } catch (error) {
-      const message = error instanceof Error && error.name === "TimeoutError"
-        ? "upstream timeout"
-        : error instanceof Error
-          ? error.message
-          : "fetch failed";
-      return text(message, 502);
-    }
-
-    let body;
-    try {
-      body = await readLimited(upstream);
-    } catch (error) {
-      return text(error instanceof Error ? error.message : "fetch failed", 502);
-    }
-
-    const headers = new Headers({ ...CORS_HEADERS, ...SECURITY_HEADERS });
-    headers.set("content-type", upstream.headers.get("content-type") || "application/xml; charset=utf-8");
-    headers.set("cache-control", upstream.ok ? "public, max-age=900" : "no-store");
-    return new Response(body, { status: upstream.status, headers });
+    return proxyResponse(requestUrl);
   },
 };

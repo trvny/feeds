@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://aws.amazon.com/blogs/</id>
   <title>AWS</title>
-  <updated>2026-09-01T05:34:45.796734+00:00</updated>
+  <updated>2026-09-01T11:58:50.512148+00:00</updated>
   <author>
     <name>Amazon Web Services</name>
   </author>
@@ -12,6 +12,21 @@
   <icon>https://aws.amazon.com/favicon.ico</icon>
   <logo>https://aws.amazon.com/favicon.ico</logo>
   <subtitle>AWS announcements, selected blogs, re:Post articles, and AWS CLI v2 releases.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/ee226b515b1eb203</id>
+    <title>"Topic not present in metadata after 60000 ms" on Amazon MSK: it may be an authorization failure, not a missing topic</title>
+    <updated>2026-09-01T07:52:06.728000+00:00</updated>
+    <content>When a Kafka producer fails with TimeoutException: Topic ... not present in metadata after 60000 ms, most people check whether the topic exists or whether the network is broken. But this error also occurs when the topic exists and the cluster is healthy: on MSK clusters using IAM access control, a missing DESCRIBE permission on the topic surfaces as exactly this error. This article explains why the message is misleading, how to confirm the cause from broker logs, and how to fix the IAM policy.</content>
+    <link href="https://repost.aws/articles/AR59GEqjtTRRqsQMfPZVIafQ/topic-not-present-in-metadata-after-60000-ms-on-amazon-msk-it-may-be-an-authorization-failure-not-a-missing-topic" rel="alternate"/>
+    <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
+    <published>2026-09-01T07:52:06.728000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
+    <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/f967e2721dcb6f3c</id>
     <title>Upgrading Amazon MQ for RabbitMQ 3.13 to 4.2 In-Place: A Practical Walkthrough</title>
@@ -105,6 +120,16 @@
     <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-timestream-influxdb-regions/" rel="alternate"/>
     <category term="AWS What's New" label="AWS What's New"/>
     <published>2026-08-31T19:48:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/894993e297a66632</id>
+    <title>Amazon Connect Global Resiliency now supports cross-region routing of contacts across two active AWS regions</title>
+    <updated>2026-08-31T19:25:00+00:00</updated>
+    <content>Amazon Connect Global Resiliency now supports cross-region routing of contacts to agents across two linked AWS regions. For example, a contact arriving in US East (N. Virginia) is offered to the longest-available matching agent whether that agent is in US East (N. Virginia) or US West (Oregon), while managers view analytics and search contacts across both regions as a unified contact center. Because both regions now carry live traffic at all times, neither sits idle as an untested standby. Your </content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-connect-global-resiliency-cross-region-routing/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-08-31T19:25:00+00:00</published>
     <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
@@ -1663,16 +1688,6 @@
     <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/2329cd15bb79a118</id>
-    <title>Amazon EC2 enables AMI creation with local snapshots from instances on Outposts</title>
-    <updated>2026-08-19T21:30:00+00:00</updated>
-    <content>Amazon EC2 now supports creating Amazon Machine Images (AMIs) with local snapshots from instances running on AWS Outposts. This capability makes it easier for customers to create AMIs while storing snapshots directly on the Outpost to meet data residency requirements. Customers can now create AMIs with snapshots stored either on the Outpost itself or in the parent AWS Region. When keeping data local, EC2 automatically determines the target Outpost from the instance's location — no need to manual</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/ec2-create-image-local-snapshot-outpost" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-19T21:30:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/52f3a36aafed6f0a</id>
     <title>AWS CLI 2.36.27</title>
     <updated>2026-08-19T18:41:05+00:00</updated>
@@ -2575,7 +2590,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://repost.aws/articles/ARMisj-p_rTBKWwluSKXHsVw/optimize-your-medialive-abr-ladder-identify-unused-renditions-and-improve-viewer-experience-using-cloudfront-access-logs" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-03T21:28:37.111000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/ba2884a2bb528df2</id>
@@ -2585,7 +2605,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://repost.aws/articles/AR7CB7sRL2Tt-axEtox7JcBA/automate-vpn-bgp-troubleshooting-with-aws-devops-agent" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-03T21:18:10.278000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/b2805bc2be804139</id>
@@ -2595,7 +2620,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/announcing-general-availability-of-dynamodb-mapper-for-kotlin/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-08-03T21:03:09+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/30/announcing-general-availability-of-dynamodb-mapper-for-kotlin.png" type="image/png" medium="image" height="576" width="1152"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/30/announcing-general-availability-of-dynamodb-mapper-for-kotlin.png" height="576" width="1152"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/30/announcing-general-availability-of-dynamodb-mapper-for-kotlin.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/9797256784ebf825</id>
@@ -2605,7 +2635,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/aws-durable-execution-sdk-for-net-now-generally-available/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-08-03T16:36:23+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/31/aws-durable-execution-sdk-dotNet.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/31/aws-durable-execution-sdk-dotNet.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/31/aws-durable-execution-sdk-dotNet.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/b1645579b8ca6957</id>
@@ -2630,7 +2665,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://repost.aws/articles/ARdTYOsEMRRWGjtcuNEH2UAg/why-raising-socket-receive-buffer-bytes-on-amazon-msk-does-not-improve-producer-throughput" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-03T08:39:47.980000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/990dbc3bd4b8f4c9</id>
@@ -2640,17 +2680,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://repost.aws/articles/AR-CnszI7uRBiaPOC8Wn2gbQ/end-to-end-troubleshooting-at-aws-data-transfer-terminal-from-no-connectivity-to-slow-transfers" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-03T07:02:14.747000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/e785ffd5a2b0bc2c</id>
-    <title>Diagnosing Subnet IP Fragmentation for EKS Prefix Delegation</title>
-    <updated>2026-08-02T22:57:44.590000+00:00</updated>
-    <content>Amazon EKS prefix delegation and EKS Auto Mode assign /28 prefixes (16 contiguous addresses) to worker nodes instead of individual IP addresses. A subnet can report plenty of free addresses and still fail to attach a prefix. This article explains why that happens, how to diagnose it with an open-source read-only tool, and how to remediate it.</content>
-    <link href="https://repost.aws/articles/AR2V512_InQV2uiyVvUnZRtg/diagnosing-subnet-ip-fragmentation-for-eks-prefix-delegation" rel="alternate"/>
-    <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
-    <published>2026-08-02T22:57:44.590000+00:00</published>
-    <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/d3cba36faeed7e3d</id>
@@ -2660,7 +2695,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/annual-net-target-updates-for-the-aws-sdk-for-net/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-07-29T21:18:33+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/29/Annual-.NET-Target-Updates-for-the-AWS-SDK-for-.NET​.png" type="image/png" medium="image" height="480" width="960"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/29/Annual-.NET-Target-Updates-for-the-AWS-SDK-for-.NET​.png" height="480" width="960"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/29/Annual-.NET-Target-Updates-for-the-AWS-SDK-for-.NET​.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/92b878818ab4d8a7</id>
@@ -2670,7 +2710,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/installing-and-updating-the-aws-cli-with-single-line-commands/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-07-28T14:55:26+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/31/installing-updating-aws-cli-single-line.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/31/installing-updating-aws-cli-single-line.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/31/installing-updating-aws-cli-single-line.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/a30bd71cd914c770</id>
@@ -2725,7 +2770,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/updating-typescript-version-support-in-aws-sdk-for-javascript-v3/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-07-15T16:07:03+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/08/2026-typescript-support.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/08/2026-typescript-support.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/08/2026-typescript-support.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/7d45655823335e8b</id>
@@ -2735,7 +2785,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/aws/amazon-sqs-turns-20-two-decades-of-reliable-messaging-at-scale/" rel="alternate"/>
     <category term="AWS News Blog" label="AWS News Blog"/>
     <published>2026-07-13T18:13:57+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/08/10/aws-sqs-thum.jpg" type="image/jpeg" medium="image" height="400" width="800"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/08/10/aws-sqs-thum.jpg" height="400" width="800"/>
+    </media:group>
     <dc:creator>AWS News Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/08/10/aws-sqs-thum.jpg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/c074392b3115d693</id>
@@ -2835,7 +2890,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/aws/amazon-ec2-c9g-and-c9gd-instances-powered-by-aws-graviton5-processors-are-now-available/" rel="alternate"/>
     <category term="AWS News Blog" label="AWS News Blog"/>
     <published>2026-06-30T20:56:44+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2025/10/07/EC2-F2b.png" type="image/png" medium="image" height="400" width="800"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2025/10/07/EC2-F2b.png" height="400" width="800"/>
+    </media:group>
     <dc:creator>AWS News Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2025/10/07/EC2-F2b.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/c8d1c8e2e29b3fc1</id>
@@ -2890,7 +2950,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/opensource/open-governance-for-mysql-a-step-forward-for-the-community/" rel="alternate"/>
     <category term="AWS Open Source Blog" label="AWS Open Source Blog"/>
     <published>2026-06-25T17:14:14+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/06/25/Screenshot-2026-06-25-at-5.08.31 AM-1252x630.png" type="image/png" medium="image" height="630" width="1252"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/06/25/Screenshot-2026-06-25-at-5.08.31 AM-1252x630.png" height="630" width="1252"/>
+    </media:group>
     <dc:creator>AWS Open Source Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/06/25/Screenshot-2026-06-25-at-5.08.31 AM-1252x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/e03f083d4789634c</id>
@@ -2930,7 +2995,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/aws-cli-v1-maintenance-mode-announcing-changes-to-dependency-updates/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-06-10T18:31:56+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/06/10/aws-cli-v1-maintenance-mode-announcing-changes-to-dependency-updates-1.png" type="image/png" medium="image" height="576" width="1152"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/06/10/aws-cli-v1-maintenance-mode-announcing-changes-to-dependency-updates-1.png" height="576" width="1152"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/06/10/aws-cli-v1-maintenance-mode-announcing-changes-to-dependency-updates-1.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/1de65d9fe555889e</id>
@@ -2940,7 +3010,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/introducing-open-source-skills-for-aws-sdk-best-practices/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-06-02T18:54:26+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/08/open-source-skils-aws-sdk-feature.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/08/open-source-skils-aws-sdk-feature.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/08/open-source-skils-aws-sdk-feature.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/18e936dc4def8ade</id>
@@ -2950,7 +3025,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/announcing-the-general-availability-of-the-aws-iot-device-sdk-for-swift/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-06-01T23:15:34+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/06/01/IoT-SDK-Swift-GA-blog-Feature-Image.jpeg" type="image/jpeg" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/06/01/IoT-SDK-Swift-GA-blog-Feature-Image.jpeg" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/06/01/IoT-SDK-Swift-GA-blog-Feature-Image.jpeg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/099f932d14fac872</id>
@@ -2960,7 +3040,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/aws-sdk-for-net-v3-end-of-support-announcement/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-06-01T19:14:51+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/08/2026-dotNet-end-of-support.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/08/2026-dotNet-end-of-support.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/07/08/2026-dotNet-end-of-support.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/35927352cc70eab0</id>
@@ -2970,7 +3055,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/aws-tools-for-powershell-v4-end-of-support-announcement/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-06-01T19:14:48+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/29/powershell-v4-eol-featured-image.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/29/powershell-v4-eol-featured-image.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/29/powershell-v4-eol-featured-image.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/440bd2b8968b5408</id>
@@ -2980,7 +3070,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/introducing-multipart-download-support-for-aws-tools-for-powershell-v5/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-06-01T19:04:35+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/27/multipart-powershell-featured-image.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/27/multipart-powershell-featured-image.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/27/multipart-powershell-featured-image.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/18039c7acb0cac35</id>
@@ -2990,7 +3085,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/announcing-updated-retry-behavior-for-aws-sdks-and-tools/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-05-20T18:42:23+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/20/2026-retry-behavior-feature-image-1.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/20/2026-retry-behavior-feature-image-1.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/20/2026-retry-behavior-feature-image-1.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/22a1ccd25f2dc7b7</id>
@@ -3000,7 +3100,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/announcing-the-general-availability-of-amazon-s3-transfer-manager-for-swift/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-05-04T21:45:13+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/04/s3-xfer-swift-featured-image.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/04/s3-xfer-swift-featured-image.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/05/04/s3-xfer-swift-featured-image.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/75dd9f45edb4df65</id>
@@ -3025,7 +3130,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/create-minimal-reproductions-for-aws-sdk-javascript-v3-with-create-aws-sdk-repro/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-04-23T18:37:18+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/04/20/create-minimal-repros-featured-image.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/04/20/create-minimal-repros-featured-image.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/04/20/create-minimal-repros-featured-image.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/1b529ea6f2f629b0</id>
@@ -3065,7 +3175,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/smithy-java-client-framework-is-now-generally-available/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-04-06T17:41:04+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/04/06/smithy-java-client-featured-image.png" type="image/png" medium="image" height="360" width="720"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/04/06/smithy-java-client-featured-image.png" height="360" width="720"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/04/06/smithy-java-client-featured-image.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/aa05d959b267f01c</id>
@@ -3075,7 +3190,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/developer/smithy-kotlin-client-code-generation-now-generally-available/" rel="alternate"/>
     <category term="AWS Developer Tools Blog" label="AWS Developer Tools Blog"/>
     <published>2026-04-02T15:24:42+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/04/02/devtools-32-1120x630.png" type="image/png" medium="image" height="630" width="1120"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/04/02/devtools-32-1120x630.png" height="630" width="1120"/>
+    </media:group>
     <dc:creator>AWS Developer Tools Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/0716d9708d321ffb6a00818614779e779925365c/2026/04/02/devtools-32-1120x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/f71465178b7b39d2</id>
@@ -3085,7 +3205,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/opensource/ocsf-achieves-itu-support-powering-ai-ready-security-operations/" rel="alternate"/>
     <category term="AWS Open Source Blog" label="AWS Open Source Blog"/>
     <published>2026-03-24T16:48:50+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/03/19/Screenshot-2026-03-19-at-9.25.15 AM.png" type="image/png" medium="image" height="433" width="875"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/03/19/Screenshot-2026-03-19-at-9.25.15 AM.png" height="433" width="875"/>
+    </media:group>
     <dc:creator>AWS Open Source Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/03/19/Screenshot-2026-03-19-at-9.25.15 AM.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/4642b3ef32f1b2da</id>
@@ -3095,7 +3220,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/opensource/aws-and-others-invest-12-5m-to-defend-the-open-source-ecosystem-from-ai-threats/" rel="alternate"/>
     <category term="AWS Open Source Blog" label="AWS Open Source Blog"/>
     <published>2026-03-17T16:09:55+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/03/16/Screenshot-2026-03-16-at-12.35.57 PM-1260x628.png" type="image/png" medium="image" height="628" width="1260"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/03/16/Screenshot-2026-03-16-at-12.35.57 PM-1260x628.png" height="628" width="1260"/>
+    </media:group>
     <dc:creator>AWS Open Source Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/03/16/Screenshot-2026-03-16-at-12.35.57 PM-1260x628.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/5d6107ca3f00395a</id>
@@ -3105,7 +3235,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/opensource/introducing-strands-labs-get-hands-on-today-with-state-of-the-art-experimental-approaches-to-agentic-development/" rel="alternate"/>
     <category term="AWS Open Source Blog" label="AWS Open Source Blog"/>
     <published>2026-02-23T18:24:30+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/02/20/Screenshot-2026-02-20-at-10.52.37 AM-1260x628.png" type="image/png" medium="image" height="628" width="1260"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/02/20/Screenshot-2026-02-20-at-10.52.37 AM-1260x628.png" height="628" width="1260"/>
+    </media:group>
     <dc:creator>AWS Open Source Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2026/02/20/Screenshot-2026-02-20-at-10.52.37 AM-1260x628.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/f639af941f9b0c0e</id>
@@ -3115,7 +3250,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/opensource/cedar-joins-cncf-as-a-sandbox-project/" rel="alternate"/>
     <category term="AWS Open Source Blog" label="AWS Open Source Blog"/>
     <published>2025-12-15T18:21:10+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/12/11/Screenshot-2025-12-11-at-10.08.53 AM.png" type="image/png" medium="image" height="479" width="963"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/12/11/Screenshot-2025-12-11-at-10.08.53 AM.png" height="479" width="963"/>
+    </media:group>
     <dc:creator>AWS Open Source Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/12/11/Screenshot-2025-12-11-at-10.08.53 AM.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/7926ccedef8f5861</id>
@@ -3140,7 +3280,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/opensource/shaping-the-future-of-mcp-aws-commitment-and-vision/" rel="alternate"/>
     <category term="AWS Open Source Blog" label="AWS Open Source Blog"/>
     <published>2025-12-09T17:09:35+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/12/09/Screenshot-2025-12-08-at-8.14.54 PM-1260x627.png" type="image/png" medium="image" height="627" width="1260"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/12/09/Screenshot-2025-12-08-at-8.14.54 PM-1260x627.png" height="627" width="1260"/>
+    </media:group>
     <dc:creator>AWS Open Source Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/12/09/Screenshot-2025-12-08-at-8.14.54 PM-1260x627.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/5760512e54c18d6f</id>
@@ -3150,7 +3295,12 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/opensource/introducing-strands-agent-sops-natural-language-workflows-for-ai-agents/" rel="alternate"/>
     <category term="AWS Open Source Blog" label="AWS Open Source Blog"/>
     <published>2025-11-20T21:34:48+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/11/20/Screenshot-2025-11-20-at-1.36.15 PM-1260x630.png" type="image/png" medium="image" height="630" width="1260"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/11/20/Screenshot-2025-11-20-at-1.36.15 PM-1260x630.png" height="630" width="1260"/>
+    </media:group>
     <dc:creator>AWS Open Source Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/11/20/Screenshot-2025-11-20-at-1.36.15 PM-1260x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/9b0e6f974bfff2d9</id>
@@ -3175,6 +3325,11 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://aws.amazon.com/blogs/opensource/the-swift-aws-lambda-runtime-moves-to-awslabs/" rel="alternate"/>
     <category term="AWS Open Source Blog" label="AWS Open Source Blog"/>
     <published>2025-11-06T16:55:55+00:00</published>
+    <media:group>
+      <media:content url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/11/05/Screenshot-2025-11-05-at-11.16.18 AM.png" type="image/png" medium="image" height="492" width="981"/>
+      <media:thumbnail url="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/11/05/Screenshot-2025-11-05-at-11.16.18 AM.png" height="492" width="981"/>
+    </media:group>
     <dc:creator>AWS Open Source Blog</dc:creator>
+    <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/ca3512f4dfa95a03169c5a670a4c91a19b3077b4/2025/11/05/Screenshot-2025-11-05-at-11.16.18 AM.png" type="image/png" length="0"/>
   </entry>
 </feed>
