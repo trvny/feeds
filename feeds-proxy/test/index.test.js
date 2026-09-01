@@ -36,6 +36,7 @@ test("forwards valid HTTPS feeds with cache and security headers", async () => {
     assert.equal(response.headers.get("cache-control"), "public, max-age=900");
     assert.equal(response.headers.get("access-control-allow-origin"), "*");
     assert.equal(response.headers.get("x-content-type-options"), "nosniff");
+    assert.equal(response.headers.get("x-robots-tag"), "noindex, nofollow");
     assert.equal(seenUrl, "https://example.com/feed.xml");
     assert.equal(seenInit.redirect, "manual");
     assert.equal(seenInit.headers["user-agent"], "feedseek-reader/2.0");
@@ -133,8 +134,29 @@ test("answers preflight and rejects non-GET methods", async () => {
   const post = await worker.fetch(new Request("https://proxy.test/", { method: "POST" }));
 
   assert.equal(options.status, 204);
-  assert.equal(options.headers.get("access-control-allow-methods"), "GET, OPTIONS");
+  assert.equal(options.headers.get("access-control-allow-methods"), "GET, HEAD, OPTIONS");
   assert.equal(post.status, 405);
   assert.equal(await post.text(), "method not allowed");
   assert.equal(post.headers.get("cache-control"), "no-store");
+});
+
+
+test("supports HEAD for public discovery documents", async () => {
+  const response = await worker.fetch(new Request("https://feeds.trfny.com/llms-full.txt", { method: "HEAD" }));
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("content-type"), "text/plain; charset=utf-8");
+  assert.equal(await response.text(), "");
+});
+
+test("serves llms v2 discovery documents without a proxy target", async () => {
+  for (const [path, needle] of [
+    ["/index.md", "# Feedseek fetch proxy"],
+    ["/llms.txt", "/index.md"],
+    ["/llms-full.txt", "# Feedseek fetch proxy full documentation"],
+    ["/robots.txt", "Disallow: /"],
+  ]) {
+    const response = await worker.fetch(new Request(`https://feeds.trfny.com${path}`));
+    assert.equal(response.status, 200);
+    assert.match(await response.text(), new RegExp(needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
 });
