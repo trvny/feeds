@@ -41,6 +41,19 @@ class CognitionSourceTests(unittest.TestCase):
         self.assertEqual(entries[0]["title"], "Example research")
         self.assertEqual(entries[0]["date"].isoformat(), "2026-08-14T00:00:00+00:00")
 
+    def test_cognition_preserves_link_fragments(self):
+        research = (
+            '<a href="/research/example#details">'
+            "Example research 08.14.26 Research summary</a>"
+        )
+
+        with patch.object(cognition, "_fetch", side_effect=[research, ""]):
+            entries = cognition.collect_cognition(set())
+
+        self.assertEqual(
+            entries[0]["link"], "https://cognition.com/research/example#details"
+        )
+
     def test_devin_release_notes_sort_newest_and_keep_hyphens(self):
         markdown = (
             "## August 13, 2026\n"
