@@ -51,7 +51,7 @@ jobs:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
 
-      # No java-kotlin leg here: the Android app moved to trvny/kanarek, which
+      # No java-kotlin leg here: the Android app moved to twojstar/kanarek, which
       # scans it with CodeQL default setup. Nothing in this repository compiles.
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
