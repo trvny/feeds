@@ -5,9 +5,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 import anthropic  # noqa: E402
+import claude  # noqa: E402
 import github  # noqa: E402
 import google  # noqa: E402
 import google_ai_studio  # noqa: E402
+import microsoft  # noqa: E402
 import python  # noqa: E402
 import rutracker  # noqa: E402
 import skillsllm  # noqa: E402
@@ -22,6 +24,46 @@ class RequestedFeedSourcesTests(unittest.TestCase):
         urls = {source[1] for source in skillsllm.NATIVE_FEEDS}
         self.assertIn("https://huggingface.co/blog/feed.xml", urls)
         self.assertIn("https://www.mindstudio.ai/rss.xml", urls)
+        self.assertIn("https://www.mintlify.com/docs/changelog/rss.xml", urls)
+        self.assertIn("https://www.mintlify.com/feed.xml", urls)
+
+    def test_claude_includes_platform_release_notes_feed(self):
+        urls = {source[1] for source in claude.RSS_SOURCES}
+        self.assertIn(
+            "https://platform.claude.com/docs/en/release-notes/feed.xml", urls
+        )
+
+    def test_claude_migrates_legacy_platform_rows_after_rss_success(self):
+        legacy_link = (
+            "https://platform.claude.com/docs/en/release-notes/"
+            "overview#example"
+        )
+        legacy = {
+            "link": legacy_link,
+            "source": claude.LEGACY_PLATFORM_RELEASE_SOURCE,
+        }
+        other = {
+            "link": "https://claude.com/blog/example",
+            "source": "Claude Blog",
+        }
+        native = {"link": legacy_link, "source": "Claude Platform"}
+
+        known = claude._known_links_for_refresh([legacy, other])
+        self.assertNotIn(legacy_link, known)
+        self.assertIn(other["link"], known)
+        self.assertEqual(
+            claude._cache_for_merge([legacy, other], []),
+            [legacy, other],
+        )
+        self.assertEqual(
+            claude._cache_for_merge([legacy, other], [native]),
+            [other],
+        )
+
+    def test_microsoft_includes_requested_sources(self):
+        urls = {source[1] for source in microsoft.SOURCES}
+        self.assertIn("https://opensource.microsoft.com/blog/feed/", urls)
+        self.assertIn("https://microsoft.github.io/mcscatblog/feed.xml", urls)
 
     def test_skillsllm_includes_mem0_blog_and_research(self):
         sources = {source["label"]: source for source in skillsllm.SOURCES}

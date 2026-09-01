@@ -437,7 +437,13 @@ def build_markdown(yaml_feeds: dict, collected: dict) -> str:
         "> Plik generowany: `uv run --locked feed_generators/docs_sources.py`. "
         "Nie edytuj ręcznie — zmień źródła w generatorze.\n"
     )
-    out.append(f"{n_feeds} feedów · {n_sources} źródeł\n")
+    if n_sources == 1:
+        source_word = "źródło"
+    elif n_sources % 10 in (2, 3, 4) and n_sources % 100 not in (12, 13, 14):
+        source_word = "źródła"
+    else:
+        source_word = "źródeł"
+    out.append(f"{n_feeds} feedów · {n_sources} {source_word}\n")
 
     out.append("## Spis grup\n")
     out.extend(f"- {title}" for title, _ in plan)

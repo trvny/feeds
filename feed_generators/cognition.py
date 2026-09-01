@@ -70,7 +70,7 @@ def collect_cognition(known_links: set[str]) -> list[dict]:
             title = before or after
             if not title:
                 continue
-            link = urljoin(url, anchor["href"]).split("#", 1)[0]
+            link = urljoin(url, str(anchor["href"]))
             if (
                 not link.startswith("https://cognition.com/")
                 or link in seen

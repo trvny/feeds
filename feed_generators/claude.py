@@ -6,8 +6,9 @@ written to ``feeds/feed_claude.xml``:
     - Claude Blog                 https://claude.com/blog
     - Claude Code                  https://code.claude.com/docs/en/whats-new/rss.xml   (native RSS)
                                    https://code.claude.com/docs/en/changelog/rss.xml   (native RSS)
+    - Claude Platform feed
+      https://platform.claude.com/docs/en/release-notes/feed.xml (native RSS)
     - Claude Apps Release notes     https://support.claude.com/en/articles/12138966-release-notes  (HTML)
-    - Claude Platform release notes https://platform.claude.com/docs/en/release-notes/overview         (Mintlify .md)
     - Claude Platform system prompts https://platform.claude.com/docs/en/release-notes/system-prompts  (Mintlify .md)
 
 Source handling:
@@ -16,10 +17,9 @@ Source handling:
   * Support page  — each dated ``<h3>`` (with a stable ``id``) becomes an entry;
                     the body text up to the next heading is the summary.
   * Status page   — native Atom incident history; each ``<entry>`` is an incident.
-  * Platform pages — fetched as Mintlify raw markdown (``<path>.md``). The
-                    overview is keyed by ``### <date>`` sections; the system
-                    prompts page is keyed by ``## <model>`` sections (dated from
-                    the first date inside each section).
+  * System prompts — fetched as Mintlify raw markdown (``<path>.md``); each
+                     ``## <model>`` section is dated from the first date
+                     inside it.
 
 History accumulates across hourly runs via the shared JSON cache
 (``cache/claude_posts.json``); entries dedupe by link.
@@ -68,6 +68,10 @@ RSS_SOURCES = [
     ("Claude Code", "https://code.claude.com/docs/en/whats-new/rss.xml"),
     ("Claude Code", "https://code.claude.com/docs/en/changelog/rss.xml"),
     ("Claude Cowork", "https://claude.com/docs/cowork/changelog/rss.xml"),
+    (
+        "Claude Platform",
+        "https://platform.claude.com/docs/en/release-notes/feed.xml",
+    ),
 ]
 
 SUPPORT_RELEASE_NOTES = "https://support.claude.com/en/articles/12138966-release-notes"
@@ -78,12 +82,7 @@ SUPPORT_RELEASE_NOTES = "https://support.claude.com/en/articles/12138966-release
 STATUS_ATOM = "https://status.claude.com/history.atom"
 STATUS_LABEL = "Claude Status"
 
-# Mintlify pages: (label, html_url, markdown_url, section_heading_level, title_is_date)
-PLATFORM_OVERVIEW = (
-    "Claude Platform release notes",
-    "https://platform.claude.com/docs/en/release-notes/overview",
-    "https://platform.claude.com/docs/en/release-notes/overview.md",
-)
+# Mintlify system-prompts page: (label, html_url, markdown_url)
 PLATFORM_SYSPROMPTS = (
     "Claude Platform system prompts",
     "https://platform.claude.com/docs/en/release-notes/system-prompts",
@@ -101,6 +100,7 @@ DATE_ONLY_RE = re.compile(r"^\s*" + DATE_RE.pattern + r"\s*$")
 _ORDINAL_RE = re.compile(r"(\d{1,2})(?:st|nd|rd|th)", re.IGNORECASE)
 
 MAX_ENTRIES = 150
+LEGACY_PLATFORM_RELEASE_SOURCE = "Claude Platform release notes"
 
 
 def parse_date(date_str):
@@ -324,7 +324,7 @@ def scrape_support_release_notes(known_links):
 
 
 # --------------------------------------------------------------------------- #
-# Platform release notes & system prompts (Mintlify raw markdown)
+# Platform system prompts (Mintlify raw markdown)
 # --------------------------------------------------------------------------- #
 
 
@@ -351,31 +351,6 @@ def _split_md_sections(md_text, level):
     if cur_head is not None:
         sections.append((cur_head, "\n".join(cur_body)))
     return sections
-
-
-def scrape_platform_overview(known_links):
-    label, page_url, md_url = PLATFORM_OVERVIEW
-    entries = []
-    md = _fetch_markdown(md_url)
-    if not md:
-        return entries
-    for heading, body in _split_md_sections(md, level=3):
-        if not DATE_ONLY_RE.match(heading):
-            continue  # only dated release sections
-        date_obj = parse_date(heading)
-        link = f"{page_url}#{slugify(heading)}"
-        if link in known_links:
-            continue
-        title = sanitize_xml(f"Claude Platform — {heading}")
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date_obj,
-            "description": sanitize_xml(clean_markdown(body) or heading),
-            "source": label,
-        })
-        logger.info(f"  [{label}] {title}")
-    return entries
 
 
 def scrape_platform_sysprompts(known_links):
@@ -420,8 +395,6 @@ def scrape_all(known_links):
     new_entries += scrape_support_release_notes(known_links)
     logger.info("Scraping Claude Status ...")
     new_entries += scrape_status_atom(known_links)
-    logger.info("Scraping Claude Platform release notes ...")
-    new_entries += scrape_platform_overview(known_links)
     logger.info("Scraping Claude Platform system prompts ...")
     new_entries += scrape_platform_sysprompts(known_links)
     return new_entries
@@ -464,6 +437,28 @@ def generate_atom_feed(articles, feed_name=FEED_NAME):
     return fg
 
 
+def _known_links_for_refresh(cached):
+    """Keep legacy Platform links eligible for native RSS refresh."""
+    return {
+        entry["link"]
+        for entry in cached
+        if entry.get("source") != LEGACY_PLATFORM_RELEASE_SOURCE
+    }
+
+
+def _cache_for_merge(cached, new_articles):
+    """Drop legacy Platform rows only after native RSS returned replacements."""
+    if not any(
+        entry.get("source") == "Claude Platform" for entry in new_articles
+    ):
+        return cached
+    return [
+        entry
+        for entry in cached
+        if entry.get("source") != LEGACY_PLATFORM_RELEASE_SOURCE
+    ]
+
+
 def main(full=False):
     if full:
         logger.info("Full reset requested — ignoring existing cache")
@@ -472,14 +467,17 @@ def main(full=False):
         cache = load_cache(FEED_NAME)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
 
-    known_links = {e["link"] for e in cached}
+    known_links = _known_links_for_refresh(cached)
     new_articles = scrape_all(known_links)
 
     if not new_articles and not cached:
         logger.warning("No articles collected — skipping write to avoid an empty feed")
         return False
 
-    merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
+    merge_cache = _cache_for_merge(cached, new_articles)
+    merged = merge_entries(
+        new_articles, merge_cache, id_field="link", date_field="date"
+    )
     merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
 

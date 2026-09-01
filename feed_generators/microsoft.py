@@ -1,8 +1,8 @@
 """Microsoft feed: combined Atom from Microsoft's native RSS feeds — the
 Official Microsoft Blog, On the Issues, Research, Source (global + EMEA PL),
 Signal, Unlocked (PL), the Microsoft 365 Blog, DevBlogs, the Microsoft Open
-Source blog, GenAIScript, the Microsoft 365 Developer changelog, and the Tech
-Community blogs firehose."""
+Source blog, MCSCAT, GenAIScript, the Microsoft 365 Developer changelog, and
+the Tech Community blogs firehose."""
 
 import argparse
 import sys
@@ -37,6 +37,11 @@ SOURCES = [
     ),
     ("Microsoft DevBlogs", "https://devblogs.microsoft.com/feed", 40),
     ("Microsoft Open Source", "https://opensource.microsoft.com/blog/feed/", 40),
+    (
+        "Microsoft MCSCAT",
+        "https://microsoft.github.io/mcscatblog/feed.xml",
+        40,
+    ),
     ("GenAIScript", "https://microsoft.github.io/genaiscript/blog/rss.xml", 40),
     (
         "Microsoft 365 Developer Changelog",
@@ -59,7 +64,8 @@ def main(full=False):
         subtitle="Combined Microsoft feed: Official Microsoft Blog, On the "
         "Issues, Research, Source (global + EMEA PL), Signal, "
         "Unlocked (PL), the Microsoft 365 Blog, DevBlogs, the "
-        "Microsoft Open Source blog, GenAIScript, the Microsoft 365 Developer "
+        "Microsoft Open Source blog, MCSCAT, GenAIScript, the Microsoft 365 "
+        "Developer "
         "changelog, and the Tech Community blogs.",
         blog_url="https://blogs.microsoft.com/",
         author="Microsoft",
