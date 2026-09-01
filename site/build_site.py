@@ -660,6 +660,14 @@ def build_opml(feeds: list[dict], base: str) -> str:
     return "\n".join(lines) + "\n"
 
 
+def markdown_inline(value: object) -> str:
+    """Flatten untrusted feed metadata and escape Markdown inline syntax."""
+    text = " ".join(str(value or "").split())
+    for char in ("\\", "`", "*", "_", "[", "]", "(", ")", "<", ">"):
+        text = text.replace(char, "\\" + char)
+    return text
+
+
 def build_llms_txt(feeds: list[dict], base: str) -> str:
     """llmstxt.org file: a concise, LLM-readable directory of the site.
 
@@ -691,9 +699,9 @@ def build_llms_txt(feeds: list[dict], base: str) -> str:
     for f in feeds:
         url = base + f["filename"]
         desc = f["subtitle"] or f["source"]
-        entry = f"- [{f['title']}]({url})"
+        entry = f"- [{markdown_inline(f['title'])}]({url})"
         if desc:
-            entry += f": {desc}"
+            entry += f": {markdown_inline(desc)}"
         lines.append(entry)
     lines.append("")
     return "\n".join(lines)
@@ -723,9 +731,9 @@ def build_index_markdown(feeds: list[dict], base: str) -> str:
     for feed in feeds:
         url = base + feed["filename"]
         desc = feed["subtitle"] or feed["source"]
-        entry = f"- [{feed['title']}]({url})"
+        entry = f"- [{markdown_inline(feed['title'])}]({url})"
         if desc:
-            entry += f": {desc}"
+            entry += f": {markdown_inline(desc)}"
         lines.append(entry)
     lines.append("")
     return "\n".join(lines)
@@ -776,11 +784,11 @@ def build_llms_full(feeds: list[dict], base: str) -> str:
         json_url = base + str(feed["filename"]).rsplit(".", 1)[0] + ".json"
         desc = feed["subtitle"] or feed["source"] or "Enhanced Feedseek feed"
         lines.extend([
-            f"### {feed['title']}",
+            f"### {markdown_inline(feed['title'])}",
             "",
             f"- Feed: {url}",
             f"- JSON Feed: {json_url}",
-            f"- Description: {desc}",
+            f"- Description: {markdown_inline(desc)}",
             "",
         ])
     lines.extend([
@@ -796,17 +804,19 @@ def build_llms_full(feeds: list[dict], base: str) -> str:
     return "\n".join(lines)
 
 
-def copy_reader_bundle() -> None:
+def build_reader_html(base: str) -> str:
+    reader_html = (SITE_DIR / "reader.html").read_text(encoding="utf-8")
+    return reader_html.replace("https://trvny.github.io/feedseek/reader/", f"{base}reader/")
+
+
+def copy_reader_bundle(base: str) -> None:
     """Copy the Reader after root site assets have been assembled."""
     reader_out = OUT_DIR / "reader"
     reader_out.mkdir(exist_ok=True)
-    for source, target in (
-        ("reader.html", "index.html"),
-        ("reader-fetch.js", "reader-fetch.js"),
-        ("reader.js", "reader.js"),
-    ):
-        shutil.copy2(SITE_DIR / source, reader_out / target)
-    (reader_out / "index.md").write_text(build_reader_markdown(site_base_url()), encoding="utf-8")
+    (reader_out / "index.html").write_text(build_reader_html(base), encoding="utf-8")
+    for source in ("reader-fetch.js", "reader.js"):
+        shutil.copy2(SITE_DIR / source, reader_out / source)
+    (reader_out / "index.md").write_text(build_reader_markdown(base), encoding="utf-8")
     for name in ("favicon.svg", "favicon.ico", "site.webmanifest"):
         asset_source = OUT_DIR / name
         if asset_source.exists():
@@ -852,7 +862,7 @@ def main() -> None:
     (OUT_DIR / "site.webmanifest").write_text(WEBMANIFEST, encoding="utf-8")
     shutil.copy2(SITE_DIR / "webmcp.js", OUT_DIR / "webmcp.js")
     (OUT_DIR / "subscriptions.opml").write_text(build_opml(feeds, base), encoding="utf-8")
-    copy_reader_bundle()
+    copy_reader_bundle(base)
 
     (OUT_DIR / "index.html").write_text(build_index(feeds, base), encoding="utf-8")
     (OUT_DIR / "index.md").write_text(build_index_markdown(feeds, base), encoding="utf-8")

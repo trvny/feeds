@@ -110,6 +110,22 @@ class SiteFaviconTests(unittest.TestCase):
         self.assertIn('type="application/feed+json"', links)
         self.assertIn('href="https://feeds.example/feed_test.json"', links)
 
+    def test_markdown_metadata_is_flattened_and_escaped(self):
+        feed = {
+            "filename": "feed_test.xml",
+            "title": "Safe](https://evil.example)\n# injected",
+            "subtitle": "first line\n## injected",
+            "source": "https://example.com/",
+        }
+        rendered = build_site.build_index_markdown([feed], "https://feeds.example/")
+        self.assertIn(r"Safe\]\(https://evil.example\) # injected", rendered)
+        self.assertNotIn("\n## injected", rendered)
+
+    def test_reader_metadata_uses_build_base(self):
+        rendered = build_site.build_reader_html("https://feedseek.pages.dev/")
+        self.assertIn("https://feedseek.pages.dev/reader/", rendered)
+        self.assertNotIn("https://trvny.github.io/feedseek/reader/", rendered)
+
     def test_publication_requires_json_sidecar(self):
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp)

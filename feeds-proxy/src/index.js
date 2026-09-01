@@ -150,6 +150,45 @@ function discoveryResponse(request, requestUrl) {
   });
 }
 
+/** @param {URL} requestUrl */
+async function proxyResponse(requestUrl) {
+  const raw = requestUrl.searchParams.get("url");
+  if (!raw) return text("bad url", 400);
+
+  let target;
+  try {
+    target = parseTarget(raw);
+  } catch (error) {
+    const blocked = error instanceof Error && error.message === "blocked host";
+    return text(blocked ? "blocked host" : "bad url", blocked ? 403 : 400);
+  }
+
+  let upstream;
+  try {
+    upstream = await fetchWithRedirects(target);
+  } catch (error) {
+    const message = error instanceof Error && error.name === "TimeoutError"
+      ? "upstream timeout"
+      : error instanceof Error
+        ? error.message
+        : "fetch failed";
+    return text(message, 502);
+  }
+
+  let body;
+  try {
+    body = await readLimited(upstream);
+  } catch (error) {
+    return text(error instanceof Error ? error.message : "fetch failed", 502);
+  }
+
+  const headers = new Headers({ ...CORS_HEADERS, ...SECURITY_HEADERS });
+  headers.set("content-type", upstream.headers.get("content-type") || "application/xml; charset=utf-8");
+  headers.set("cache-control", upstream.ok ? "public, max-age=900" : "no-store");
+  headers.set("x-robots-tag", "noindex, nofollow");
+  return new Response(body, { status: upstream.status, headers });
+}
+
 export default {
   /** @param {Request} request */
   async fetch(request) {
@@ -158,41 +197,6 @@ export default {
     const discovery = discoveryResponse(request, requestUrl);
     if (discovery) return discovery;
     if (request.method !== "GET") return text("method not allowed", 405);
-
-    const raw = requestUrl.searchParams.get("url");
-    if (!raw) return text("bad url", 400);
-
-    let target;
-    try {
-      target = parseTarget(raw);
-    } catch (error) {
-      const blocked = error instanceof Error && error.message === "blocked host";
-      return text(blocked ? "blocked host" : "bad url", blocked ? 403 : 400);
-    }
-
-    let upstream;
-    try {
-      upstream = await fetchWithRedirects(target);
-    } catch (error) {
-      const message = error instanceof Error && error.name === "TimeoutError"
-        ? "upstream timeout"
-        : error instanceof Error
-          ? error.message
-          : "fetch failed";
-      return text(message, 502);
-    }
-
-    let body;
-    try {
-      body = await readLimited(upstream);
-    } catch (error) {
-      return text(error instanceof Error ? error.message : "fetch failed", 502);
-    }
-
-    const headers = new Headers({ ...CORS_HEADERS, ...SECURITY_HEADERS });
-    headers.set("content-type", upstream.headers.get("content-type") || "application/xml; charset=utf-8");
-    headers.set("cache-control", upstream.ok ? "public, max-age=900" : "no-store");
-    headers.set("x-robots-tag", "noindex, nofollow");
-    return new Response(body, { status: upstream.status, headers });
+    return proxyResponse(requestUrl);
   },
 };
