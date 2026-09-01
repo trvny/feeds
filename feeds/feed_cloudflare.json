@@ -8,10 +8,33 @@
   "icon": "https://blog.cloudflare.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/26075ea56b6cbebe",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-01-d1-free-tier-limit-enforcement/",
+      "title": "D1 - D1 enforces free tier daily query limits",
+      "content_text": "Beginning September 1, 2026, D1 queries on the Workers Free plan will fail when an account exceeds the daily row read or row write limits . Queries via the Workers Binding API and the REST API will return errors until the limit resets at midnight UTC. Stored data is not affected. You will receive email alerts when the daily limit is reached. The following errors indicate that a limit has been exceeded: Error Description Your account has exceeded D1's free tier daily row read limit. Upgrade to a",
+      "date_published": "2026-09-01T00:00:00Z",
+      "date_modified": "2026-09-01T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/653fbdba48e56c52",
       "url": "https://www.cloudflarestatus.com/incidents/72lc3n642lkf",
       "title": "Cloudflare Access one-time PIN emails blocked by certain email security gateways, including Proofpoint",
-      "content_text": "Aug 31 , 22:02 UTC Resolved - This incident has been resolved an the developer documentation has also been updated to reflect the same information: https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/#allow-otp-emails-through-your-email-gateway Aug 31 , 20:49 UTC Monitoring - Some customers using Proofpoint may experience delayed Cloudflare notifications and login codes. Proofpoint is temporarily deferring messages with an SMTP 421 4.7.0 response. Cloudf",
+      "content_text": "Aug 31 , 22:02 UTC Resolved - This incident has been resolved and the developer documentation has also been updated to reflect the same information: https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/#allow-otp-emails-through-your-email-gateway Aug 31 , 20:49 UTC Monitoring - Some customers using Proofpoint may experience delayed Cloudflare notifications and login codes. Proofpoint is temporarily deferring messages with an SMTP 421 4.7.0 response. Cloud",
       "date_published": "2026-08-31T22:02:59Z",
       "date_modified": "2026-08-31T22:02:59Z",
       "authors": [
@@ -1846,29 +1869,6 @@
       ],
       "tags": [
         "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/efa354e2f9c3d088",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-17-pool-name-analytics-filter/",
-      "title": "Load Balancing - Load balancing analytics now filters by pool name",
-      "content_text": "Load balancing analytics now filters traffic data by pool name instead of pool ID, aligning the query behavior with the pool names displayed in the filter dropdown. Previously, the analytics pool filter queried by internal pool ID while displaying pool names in the UI dropdown. This mismatch caused filtering issues when pools shared similar names or when you expected results based on the visible pool name. Because the underlying query used a different identifier than what appeared on screen, the",
-      "date_published": "2026-08-17T00:00:00Z",
-      "date_modified": "2026-08-17T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
       ]
     },
     {

@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-08-31T23:01:37.330144+00:00</updated>
+  <updated>2026-09-01T05:35:10.756107+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -13,10 +13,25 @@
   <logo>https://blog.cloudflare.com/favicon.ico</logo>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/26075ea56b6cbebe</id>
+    <title>D1 - D1 enforces free tier daily query limits</title>
+    <updated>2026-09-01T00:00:00+00:00</updated>
+    <content>Beginning September 1, 2026, D1 queries on the Workers Free plan will fail when an account exceeds the daily row read or row write limits . Queries via the Workers Binding API and the REST API will return errors until the limit resets at midnight UTC. Stored data is not affected. You will receive email alerts when the daily limit is reached. The following errors indicate that a limit has been exceeded: Error Description Your account has exceeded D1's free tier daily row read limit. Upgrade to a </content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-09-01-d1-free-tier-limit-enforcement/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-09-01T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/653fbdba48e56c52</id>
     <title>Cloudflare Access one-time PIN emails blocked by certain email security gateways, including Proofpoint</title>
     <updated>2026-08-31T22:02:59+00:00</updated>
-    <content>Aug 31 , 22:02 UTC Resolved - This incident has been resolved an the developer documentation has also been updated to reflect the same information: https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/#allow-otp-emails-through-your-email-gateway Aug 31 , 20:49 UTC Monitoring - Some customers using Proofpoint may experience delayed Cloudflare notifications and login codes. Proofpoint is temporarily deferring messages with an SMTP 421 4.7.0 response. Cloudf</content>
+    <content>Aug 31 , 22:02 UTC Resolved - This incident has been resolved and the developer documentation has also been updated to reflect the same information: https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/#allow-otp-emails-through-your-email-gateway Aug 31 , 20:49 UTC Monitoring - Some customers using Proofpoint may experience delayed Cloudflare notifications and login codes. Proofpoint is temporarily deferring messages with an SMTP 421 4.7.0 response. Cloud</content>
     <link href="https://www.cloudflarestatus.com/incidents/72lc3n642lkf" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-31T22:02:59+00:00</published>
@@ -1206,21 +1221,6 @@ We are working to understand the full impact and mitigate this problem.  More up
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-17T08:58:06+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/efa354e2f9c3d088</id>
-    <title>Load Balancing - Load balancing analytics now filters by pool name</title>
-    <updated>2026-08-17T00:00:00+00:00</updated>
-    <content>Load balancing analytics now filters traffic data by pool name instead of pool ID, aligning the query behavior with the pool names displayed in the filter dropdown. Previously, the analytics pool filter queried by internal pool ID while displaying pool names in the UI dropdown. This mismatch caused filtering issues when pools shared similar names or when you expected results based on the visible pool name. Because the underlying query used a different identifier than what appeared on screen, the</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-17-pool-name-analytics-filter/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-17T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/4b8fd639104ebea0</id>
