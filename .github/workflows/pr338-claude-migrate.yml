@@ -42,7 +42,7 @@ jobs:
               1,
           )
           helper = '''def _known_links_for_refresh(cached):
-              """Keep legacy Platform links eligible for refresh from the native RSS feed."""
+              """Keep legacy Platform links eligible for native RSS refresh."""
               return {
                   entry["link"]
                   for entry in cached
@@ -64,16 +64,22 @@ jobs:
           anchor = '''    def test_microsoft_includes_requested_sources(self):
           '''
           test = '''    def test_claude_refreshes_legacy_platform_rows_from_native_rss(self):
-              legacy_link = "https://platform.claude.com/docs/en/release-notes/overview#example"
-              other_link = "https://claude.com/blog/example"
-              known = claude._known_links_for_refresh(
-                  [
-                      {"link": legacy_link, "source": claude.LEGACY_PLATFORM_RELEASE_SOURCE},
-                      {"link": other_link, "source": "Claude Blog"},
-                  ]
-              )
-              self.assertNotIn(legacy_link, known)
-              self.assertIn(other_link, known)
+                  legacy_link = (
+                      "https://platform.claude.com/docs/en/release-notes/"
+                      "overview#example"
+                  )
+                  other_link = "https://claude.com/blog/example"
+                  known = claude._known_links_for_refresh(
+                      [
+                          {
+                              "link": legacy_link,
+                              "source": claude.LEGACY_PLATFORM_RELEASE_SOURCE,
+                          },
+                          {"link": other_link, "source": "Claude Blog"},
+                      ]
+                  )
+                  self.assertNotIn(legacy_link, known)
+                  self.assertIn(other_link, known)
 
           '''
           if anchor not in tests:
