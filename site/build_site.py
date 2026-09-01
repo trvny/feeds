@@ -417,9 +417,11 @@ def build_index(feeds: list[dict], base: str) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Feeds — self-updating Atom feeds</title>
   <meta name="description" content="{html.escape(desc, quote=True)}">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="google-site-verification" content="xbXKq1w3ClpoMlxws6qobmZjpSmGVhi2xbrf7kwJV0s" />
   <link rel="canonical" href="{html.escape(base, quote=True)}">
-  <link rel="alternate" type="text/plain" href="{html.escape(base + "llms.txt", quote=True)}" title="Feedseek llms.txt">
+  <link rel="alternate" type="text/markdown" href="{html.escape(base + "index.md", quote=True)}" title="Feedseek Markdown">
+  <link rel="describedby" href="{html.escape(base + "llms.txt", quote=True)}" title="Feedseek llms.txt">
 {ICON_LINKS}
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Feedseek">
@@ -674,7 +676,9 @@ def build_llms_txt(feeds: list[dict], base: str) -> str:
         "",
         f"- [All feeds (OPML)]({base}subscriptions.opml): One-shot import of every published feed",
         f"- [Feed directory (sitemap)]({base}sitemap.xml): Machine-readable list of every feed URL",
-        f"- [Live reader]({base}reader/): Browser-based feed reader",
+        f"- [Markdown directory]({base}index.md): LLM-friendly version of the directory page",
+        f"- [Live reader]({base}reader/index.md): Markdown description of the browser Reader",
+        f"- [Full LLM guide]({base}llms-full.txt): Complete site/feed documentation in one file",
         "- [Source & how it works](https://github.com/trvny/feedseek)",
         "",
         "## Agent access",
@@ -695,6 +699,103 @@ def build_llms_txt(feeds: list[dict], base: str) -> str:
     return "\n".join(lines)
 
 
+def build_index_markdown(feeds: list[dict], base: str) -> str:
+    count = len(feeds)
+    lines = [
+        "# Feedseek",
+        "",
+        f"> Directory of {count} self-updating enhanced Atom/RSS feeds with JSON Feed 1.1 sidecars.",
+        "",
+        "Feedseek improves and normalizes feeds from native feeds, APIs and web sources, then regenerates the public set every two hours.",
+        "",
+        "## Resources",
+        "",
+        f"- [Browser directory]({base})",
+        f"- [Reader]({base}reader/)",
+        f"- [All feeds as OPML]({base}subscriptions.opml)",
+        f"- [Concise LLM guide]({base}llms.txt)",
+        f"- [Full LLM guide]({base}llms-full.txt)",
+        "- [Source](https://github.com/trvny/feedseek)",
+        "",
+        "## Published feeds",
+        "",
+    ]
+    for feed in feeds:
+        url = base + feed["filename"]
+        desc = feed["subtitle"] or feed["source"]
+        entry = f"- [{feed['title']}]({url})"
+        if desc:
+            entry += f": {desc}"
+        lines.append(entry)
+    lines.append("")
+    return "\n".join(lines)
+
+
+def build_reader_markdown(base: str) -> str:
+    return f"""# Feedseek Reader
+
+> Browser reader for the feeds published by Feedseek.
+
+The Reader is available at {base}reader/. It can refresh the published feed set, filter sources and open articles while keeping reader state in the browser.
+
+## Agent access
+
+On browser hosts implementing WebMCP, the Reader exposes `read_visible_articles`, `set_source_filter`, `start_reader_refresh` and `open_article`.
+
+## Links
+
+- [Feed directory]({base}index.md)
+- [Concise LLM guide]({base}llms.txt)
+- [Full LLM guide]({base}llms-full.txt)
+- [Source](https://github.com/trvny/feedseek)
+"""
+
+
+def build_llms_full(feeds: list[dict], base: str) -> str:
+    count = len(feeds)
+    lines = [
+        "# Feedseek full documentation",
+        "",
+        f"Source: {base}",
+        "",
+        f"Description: Complete LLM-oriented guide to Feedseek and its {count} published feeds.",
+        "",
+        "## Feed directory",
+        "",
+        "Feedseek publishes enhanced Atom/RSS feeds with JSON Feed 1.1 sidecars, an OPML bundle and a browser Reader. Sources may begin as native feeds, APIs or web pages; the project normalizes and improves them rather than treating an existing native feed as automatically final.",
+        "",
+        "## Reader",
+        "",
+        "The browser Reader consumes the public feed set and supports source filtering, refresh and article opening. WebMCP-capable browser hosts can expose the Reader's existing UI state through bounded tools.",
+        "",
+        "## Published feeds",
+        "",
+    ]
+    for feed in feeds:
+        url = base + feed["filename"]
+        json_url = base + str(feed["filename"]).rsplit(".", 1)[0] + ".json"
+        desc = feed["subtitle"] or feed["source"] or "Enhanced Feedseek feed"
+        lines.extend([
+            f"### {feed['title']}",
+            "",
+            f"- Feed: {url}",
+            f"- JSON Feed: {json_url}",
+            f"- Description: {desc}",
+            "",
+        ])
+    lines.extend([
+        "## Discovery and source",
+        "",
+        f"- [Markdown directory]({base}index.md)",
+        f"- [Markdown Reader]({base}reader/index.md)",
+        f"- [OPML]({base}subscriptions.opml)",
+        f"- [Sitemap]({base}sitemap.xml)",
+        "- [Repository](https://github.com/trvny/feedseek)",
+        "",
+    ])
+    return "\n".join(lines)
+
+
 def copy_reader_bundle() -> None:
     """Copy the Reader after root site assets have been assembled."""
     reader_out = OUT_DIR / "reader"
@@ -705,6 +806,7 @@ def copy_reader_bundle() -> None:
         ("reader.js", "reader.js"),
     ):
         shutil.copy2(SITE_DIR / source, reader_out / target)
+    (reader_out / "index.md").write_text(build_reader_markdown(site_base_url()), encoding="utf-8")
     for name in ("favicon.svg", "favicon.ico", "site.webmanifest"):
         asset_source = OUT_DIR / name
         if asset_source.exists():
@@ -753,9 +855,11 @@ def main() -> None:
     copy_reader_bundle()
 
     (OUT_DIR / "index.html").write_text(build_index(feeds, base), encoding="utf-8")
+    (OUT_DIR / "index.md").write_text(build_index_markdown(feeds, base), encoding="utf-8")
     (OUT_DIR / "sitemap.xml").write_text(build_sitemap(feeds, base), encoding="utf-8")
     (OUT_DIR / "robots.txt").write_text(build_robots(base), encoding="utf-8")
     (OUT_DIR / "llms.txt").write_text(build_llms_txt(feeds, base), encoding="utf-8")
+    (OUT_DIR / "llms-full.txt").write_text(build_llms_full(feeds, base), encoding="utf-8")
     (OUT_DIR / ".nojekyll").write_text("", encoding="utf-8")
 
     print(f"Built {len(feeds)} feeds into {OUT_DIR}/ (base: {base})")
