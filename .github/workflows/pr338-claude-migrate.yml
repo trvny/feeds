@@ -1,0 +1,120 @@
+name: PR 338 Claude Cache Migration
+
+on:
+  push:
+    branches:
+      - gptomek/add-requested-feeds
+    paths:
+      - ".github/workflows/pr338-claude-migrate.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+        with:
+          enable-cache: false
+          python-version: "3.14"
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Make legacy Platform rows refreshable
+        run: |
+          uv run --no-project python - <<'PY'
+          from pathlib import Path
+
+          path = Path("feed_generators/claude.py")
+          text = path.read_text(encoding="utf-8")
+          text = text.replace(
+              "MAX_ENTRIES = 150\n",
+              'MAX_ENTRIES = 150\nLEGACY_PLATFORM_RELEASE_SOURCE = "Claude Platform release notes"\n',
+              1,
+          )
+          helper = '''def _known_links_for_refresh(cached):
+              """Keep legacy Platform links eligible for refresh from the native RSS feed."""
+              return {
+                  entry["link"]
+                  for entry in cached
+                  if entry.get("source") != LEGACY_PLATFORM_RELEASE_SOURCE
+              }
+
+
+          '''
+          text = text.replace("def main(full=False):\n", helper + "def main(full=False):\n", 1)
+          text = text.replace(
+              '    known_links = {e["link"] for e in cached}\n',
+              "    known_links = _known_links_for_refresh(cached)\n",
+              1,
+          )
+          path.write_text(text, encoding="utf-8")
+
+          test_path = Path("tests/test_requested_feed_sources.py")
+          tests = test_path.read_text(encoding="utf-8")
+          anchor = '''    def test_microsoft_includes_requested_sources(self):
+          '''
+          test = '''    def test_claude_refreshes_legacy_platform_rows_from_native_rss(self):
+              legacy_link = "https://platform.claude.com/docs/en/release-notes/overview#example"
+              other_link = "https://claude.com/blog/example"
+              known = claude._known_links_for_refresh(
+                  [
+                      {"link": legacy_link, "source": claude.LEGACY_PLATFORM_RELEASE_SOURCE},
+                      {"link": other_link, "source": "Claude Blog"},
+                  ]
+              )
+              self.assertNotIn(legacy_link, known)
+              self.assertIn(other_link, known)
+
+          '''
+          if anchor not in tests:
+              raise SystemExit("test insertion anchor not found")
+          test_path.write_text(tests.replace(anchor, test + anchor, 1), encoding="utf-8")
+          PY
+
+      - name: Run focused tests
+        run: |
+          uv run --locked python -m unittest \
+            tests.test_requested_feed_sources \
+            tests.test_cognition_sources
+
+      - name: Regenerate Claude feed
+        run: uv run --locked python feed_generators/claude.py
+
+      - name: Verify native Platform cache migration
+        run: |
+          uv run --no-project python - <<'PY'
+          import json
+          from pathlib import Path
+
+          data = json.loads(Path("cache/claude_posts.json").read_text(encoding="utf-8"))
+          sources = {entry.get("source") for entry in data.get("entries", [])}
+          if "Claude Platform release notes" in sources:
+              raise SystemExit("legacy Claude Platform cache rows remain")
+          if "Claude Platform" not in sources:
+              raise SystemExit("native Claude Platform rows missing")
+          PY
+          uv run --locked python feed_generators/validate_feeds.py
+
+      - name: Commit migration
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            feed_generators/claude.py \
+            tests/test_requested_feed_sources.py \
+            cache/claude_posts.json \
+            feeds/feed_claude.xml \
+            feeds/feed_claude.json
+          git diff --staged --check
+          git commit -m 'Migrate Claude Platform cache to native RSS'
+          git push origin HEAD:gptomek/add-requested-feeds
