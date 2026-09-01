@@ -4,7 +4,7 @@ const MAX_RESPONSE_BYTES = 2 * 1024 * 1024;
 const BODYLESS_STATUSES = new Set([101, 204, 205, 304]);
 const PROXY_ORIGIN = "https://feeds.trfny.com";
 const ROBOTS = "User-agent: *\nAllow: /index.md\nAllow: /llms.txt\nAllow: /llms-full.txt\nDisallow: /\n";
-const INDEX_MD = `# Feedseek fetch proxy\n\n> Constrained HTTPS fetch helper used by the Feedseek Reader.\n\nThe proxy accepts a public HTTPS target through the \`url\` query parameter. It blocks private-looking hosts, non-HTTPS targets, unsafe redirects and oversized responses.\n\n- [Feedseek](${"https://trvny.github.io/feedseek/"})\n- [Concise LLM guide](${PROXY_ORIGIN}/llms.txt)\n- [Full LLM guide](${PROXY_ORIGIN}/llms-full.txt)\n- [Source](https://github.com/trvny/feedseek/tree/main/feeds-proxy)\n`;
+const INDEX_MD = `# Feedseek fetch proxy\n\n> Constrained HTTPS fetch helper used by the Feedseek Reader.\n\nThe proxy accepts a public HTTPS target through the \`url\` query parameter. It blocks private-looking hosts, non-HTTPS targets, unsafe redirects and oversized responses.\n\n- [Feedseek](https://trvny.github.io/feedseek/)\n- [Concise LLM guide](${PROXY_ORIGIN}/llms.txt)\n- [Full LLM guide](${PROXY_ORIGIN}/llms-full.txt)\n- [Source](https://github.com/trvny/feedseek/tree/main/feeds-proxy)\n`;
 const LLMS = `# Feedseek fetch proxy\n\n> Constrained public HTTPS fetch helper for Feedseek's browser Reader.\n\n## Resources\n\n- [Proxy overview](${PROXY_ORIGIN}/index.md): Markdown description and security boundaries.\n- [Feedseek site](https://trvny.github.io/feedseek/index.md): main feed directory.\n- [Full proxy guide](${PROXY_ORIGIN}/llms-full.txt): complete proxy documentation.\n- [Source](https://github.com/trvny/feedseek/tree/main/feeds-proxy): implementation and tests.\n`;
 const LLMS_FULL = `# Feedseek fetch proxy full documentation\n\nSource: ${PROXY_ORIGIN}/\n\nDescription: Complete LLM-oriented guide to the constrained Feedseek Reader fetch proxy.\n\n## Contract\n\nGET requests with a \`url=https://...\` query parameter fetch a public HTTPS resource for the Reader. Responses are size-bounded and redirects are followed only after each target is revalidated.\n\n## Security boundaries\n\nThe proxy rejects non-HTTPS schemes, credentials in URLs, non-standard ports, localhost/private-looking names and direct IP literals. Redirects are capped and revalidated. Responses are capped at 2 MiB. It is not intended as a general open proxy.\n\n## Search indexing\n\nProxied upstream payloads are returned with X-Robots-Tag noindex,nofollow so the proxy cannot become an indexed duplicate of the source feed.\n\n## Related\n\n- [Feedseek](https://trvny.github.io/feedseek/index.md)\n- [Source](https://github.com/trvny/feedseek/tree/main/feeds-proxy)\n`;
 
@@ -52,7 +52,7 @@ function isBlockedHostname(hostname) {
  * @param {string | URL | undefined} [base]
  */
 function parseTarget(value, base) {
-  let target;
+  let target = null;
   try {
     target = new URL(value, base);
   } catch {
@@ -155,7 +155,7 @@ async function proxyResponse(requestUrl) {
   const raw = requestUrl.searchParams.get("url");
   if (!raw) return text("bad url", 400);
 
-  let target;
+  let target = null;
   try {
     target = parseTarget(raw);
   } catch (error) {
@@ -163,7 +163,7 @@ async function proxyResponse(requestUrl) {
     return text(blocked ? "blocked host" : "bad url", blocked ? 403 : 400);
   }
 
-  let upstream;
+  let upstream = null;
   try {
     upstream = await fetchWithRedirects(target);
   } catch (error) {
@@ -175,7 +175,7 @@ async function proxyResponse(requestUrl) {
     return text(message, 502);
   }
 
-  let body;
+  let body = null;
   try {
     body = await readLimited(upstream);
   } catch (error) {
@@ -191,7 +191,7 @@ async function proxyResponse(requestUrl) {
 
 export default {
   /** @param {Request} request */
-  async fetch(request) {
+  fetch(request) {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS_HEADERS });
     const requestUrl = new URL(request.url);
     const discovery = discoveryResponse(request, requestUrl);
