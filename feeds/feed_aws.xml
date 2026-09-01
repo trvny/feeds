@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://aws.amazon.com/blogs/</id>
   <title>AWS</title>
-  <updated>2026-09-01T16:53:16.351826+00:00</updated>
+  <updated>2026-09-01T21:17:29.885571+00:00</updated>
   <author>
     <name>Amazon Web Services</name>
   </author>
@@ -12,6 +12,61 @@
   <icon>https://aws.amazon.com/favicon.ico</icon>
   <logo>https://aws.amazon.com/favicon.ico</logo>
   <subtitle>AWS announcements, selected blogs, re:Post articles, and AWS CLI v2 releases.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/fc4fe7280ad4281f</id>
+    <title>Amazon CloudWatch Database Insights now supports self-managed PostgreSQL</title>
+    <updated>2026-09-01T19:00:00+00:00</updated>
+    <content>Today, AWS announces support for self-managed PostgreSQL databases in Amazon CloudWatch Database Insights. Using CloudWatch Database Insights, you can now monitor your self-managed PostgreSQL instances running on Amazon EC2, alongside Amazon RDS and Amazon Aurora, to give you a complete view of your database fleet in a single console. Amazon CloudWatch Database Insights is a database observability solution that provides a curated experience to help you monitor database fleet health, diagnose iss</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/database-insights-self-managed-postgresql/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-01T19:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/4f84126d4ace0210</id>
+    <title>AWS CLI 2.36.37</title>
+    <updated>2026-09-01T18:09:52+00:00</updated>
+    <content>api-change:lightsail: This release adds support for the Amazon Lightsail GetProfile API, which returns the profile for the specified account. api-change:mediaconvert: Adds support for AAC passthrough. Adds ManifestCues option to support HLS manifest Cue marker passthrough. Adds playback device compatibility mode for DASH H.265 outputs. Adds TTML caption styling options. Adds interlace mode support for XAVC HD Intra CBG profile. api-change:marketplace-discovery: GetOfferTerms now returns renewalTerm for offers with pre-authorized renewals, exposing maxRenewals, lockoutPeriod, adjustmentDeadline, priceIncrease (fixed percentage or percentage range), and termTemplates (renewal payment schedules). Enables buyers to view renewal pricing and terms. api-change:taxsettings: France and Monaco Additional Info changes api-change:lambda: AWS Lambda now provides configurable control over S3 direct access, allowing you to explicitly enable or disable how functions stream file reads directly from S3 buckets. This gives you flexibility to tune data access behavior based on your workload requirements, independent of memory size. api-change:guardduty: Amazon GuardDuty now supports custom detection rules, including APIs to manage rule associations and organization-level configurations. api-change:kinesis: Amazon Kinesis Data Streams now supports a dry run feature for data-plane APIs to validate the permissions and request parameters. If all checks complete successfully, the API returns a 'DryRunOperationException', confirming the request would have succeeded without the 'DryRun' parameter. api-change:marketplace-agreement: This release adds renewal support for AWS Marketplace private offers. Agreements report whether they renew and, if not, why. Renewal terms add price increases, renewal limits, renewal decision deadlines, and payment schedule templates. SearchAgreements adds filters. api-change:iotsitewise: AWS IoT SiteWise Scenario Discovery now supports mounting Amazon S3 data directly into pipeline task containers via S3 Access Points, and configuring additional ephemeral storage per task. Mount configurations can be overridden at execution time. See the API guide for details. api-change:bedrock-agentcore-control: Online evaluation configurations now support up to 25 evaluators. CloudWatch Logs data sources for online evaluation now support up to 10 log groups. api-change:sesv2: Added support for managing SMIME signing certificates for email identities, including associating, listing, and disassociating certificates. Added the UpdateConfigurationSet operation to configure message security options such as signing scheme.</content>
+    <link href="https://github.com/aws/aws-cli/releases/tag/2.36.37" rel="alternate"/>
+    <category term="AWS CLI v2 Changelog" label="AWS CLI v2 Changelog"/>
+    <published>2026-09-01T18:09:52+00:00</published>
+    <media:group>
+      <media:content url="https://opengraph.githubassets.com/579bcf0b466cb66869736479f50b04690d162ba4d7016486e39dae6cc27906f5/aws/aws-cli" type="image/jpeg" medium="image" height="600" width="1200"/>
+      <media:thumbnail url="https://opengraph.githubassets.com/579bcf0b466cb66869736479f50b04690d162ba4d7016486e39dae6cc27906f5/aws/aws-cli" height="600" width="1200"/>
+    </media:group>
+    <dc:creator>AWS CLI v2 Changelog</dc:creator>
+    <link rel="enclosure" href="https://opengraph.githubassets.com/579bcf0b466cb66869736479f50b04690d162ba4d7016486e39dae6cc27906f5/aws/aws-cli" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/2c96284937530fee</id>
+    <title>Amazon Connect Customer dashboards now support compact mode</title>
+    <updated>2026-09-01T17:00:00+00:00</updated>
+    <content>Amazon Connect Customer now offers compact mode on the analytics dashboards, increasing data density so supervisors can see more of their operational data without scrolling. Compact mode reduces widget size, font, and minimizes filters to maximize screen space. For example, a supervisor on a 13-inch laptop toggles compact mode, which reduces row height, enabling them to view all team agents on the widget without scrolling and spot non-adherent agents faster. Compact mode on dashboards is availab</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/09/connect-dashboards-compact-mode/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-01T17:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/f095f9df2af10029</id>
+    <title>Amazon MWAA supports Apache Airflow version 3.3.1</title>
+    <updated>2026-09-01T15:00:00+00:00</updated>
+    <content>Amazon Managed Workflows for Apache Airflow (MWAA) now supports Apache Airflow version 3.3.1, the latest release of the popular open-source workflow orchestration framework. Amazon MWAA is a managed orchestration service for Apache Airflow that makes it easier to set up and operate end-to-end data pipelines in the cloud. Apache Airflow 3.3 introduces stateful tasks and multi-language support. With the new Task and Asset State Store, tasks can now persist durable state across retries and reruns, </content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-mwaa-apache-airflow-3-3-1/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-01T15:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/807d08906d6f9c80</id>
+    <title>Claude Fable 5.1, Anthropic's new frontier model is now available on AWS</title>
+    <updated>2026-09-01T14:00:00+00:00</updated>
+    <content>Claude Fable 5.1 is generally available on AWS and brings Anthropic's most capable frontier model to all customers. Fable 5.1 delivers frontier intelligence for ambitious tasks across coding, scientific research, and enterprise workflows. A clear improvement over Claude Fable 5, Fable 5.1 is a step up in intelligence on the hardest reasoning tasks, providing better judgement on ambiguous work and fewer confident wrong answers. Claude Mythos 5.1, the same underlying model as Claude Fable 5.1 with</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/09/claude-fable-5-1-aws/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-01T14:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/b3852fedc92a53ee</id>
     <title>Building a governed incident response agent fleet with AWS Agent Registry</title>
@@ -51,6 +106,16 @@
     </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
     <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/7173ee1faa450fa8</id>
+    <title>Amazon RDS Custom now supports the latest CU and GDR updates for Microsoft SQL Server</title>
+    <updated>2026-09-01T07:30:00+00:00</updated>
+    <content>Amazon Relational Database Service (Amazon RDS) Custom for SQL Server now supports the latest Cumulative Updates (CU) and General Distribution Release (GDR) updates for Microsoft SQL Server. This release includes support for SQL Server 2019 CU32+GDR KB5102335 (RDS version 15.00.4480.2.v1) and SQL Server 2022 CU25 + GDR KB5101347 (RDS version 16.00.4262.2.v1). The GDR updates address vulnerabilities described in CVE-2026-47295 , CVE-2026-47296 , CVE-2026-54118 , CVE-2026-55002. For additional inf</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-rds-custom-supports-latest-cu-gdr-microsoft-sql-server/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-01T07:30:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/f967e2721dcb6f3c</id>
@@ -1563,46 +1628,6 @@
     <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/740931890ac24687</id>
-    <title>Generative AI Inference Recommendation for Amazon SageMaker now available in the SageMaker AI Studio</title>
-    <updated>2026-08-20T17:25:00+00:00</updated>
-    <content>Amazon SageMaker AI now offers Generative AI Inference Recommendations in SageMaker AI Studio, giving customers a guided, low-code, no-code path to find the best inference configuration for their workload. This builds on the API-based launch in April 2026, extending the same benchmarking infrastructure to teams that prefer a visual workflow over programmatic access. Deploying generative AI models in production requires finding the right combination of instance type, serving container, and optimi</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/generative-ai-inference-recommendation-for-amazon-sagemaker-now-available-in-the-sagemaker-ai-studio" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T17:25:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/07076cfb5d47702d</id>
-    <title>Amazon Aurora DSQL now supports Amazon CloudWatch Database Insights</title>
-    <updated>2026-08-20T16:00:00+00:00</updated>
-    <content>Amazon Aurora DSQL now features a new Amazon CloudWatch Database Insights metric that delivers per-statement, cluster-level performance monitoring details. Aurora DSQL database insights captures sampled wait states and normalized SQL statements for all active cluster sessions. You can use it to diagnose performance issues with your clusters, and identify the queries consuming the most resources. Aurora DSQL database insights metrics can be used to analyze your cluster performance using Amazon Cl</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/aurora-dsql-cloudwatch-database-insights/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T16:00:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/08845a71d763c0bb</id>
-    <title>AWS Direct Connect introduces inbound prefix controls and higher prefix scale</title>
-    <updated>2026-08-20T15:00:00+00:00</updated>
-    <content>Today, AWS Direct Connect announced inbound prefix controls, a new capability that lets you allocate and manage inbound route-prefix allocations for your private and transit virtual interfaces (VIFs) based on your workload's needs. You can now allocate up to 1,000 prefixes each for IPv4 and IPv6 on your VIFs on dedicated and hosted connections. Previously, Direct Connect VIFs accepted a maximum of 100 route prefixes advertised from your on-premises network to AWS on a private or transit VIF. If </content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/aws-direct-connect-new-prefix-controls" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T15:00:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/84236c78d053fd39</id>
-    <title>Amazon Redshift introduces long-term system table retention with Amazon S3 Tables integration</title>
-    <updated>2026-08-20T15:00:00+00:00</updated>
-    <content>Amazon Redshift now supports long-term retention for system table data through native integration with Amazon S3 Tables. With this feature, you can configure your Redshift system table data retention beyond the current 7-day limit to meet your compliance, auditing, and observability requirements. Once enabled, AWS automatically writes system table data to S3 Tables in Apache Iceberg format and manages partitioning, compaction, and retention. Customers use Redshift system tables to monitor query </content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/redshift-long-term-system-table-retention/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T15:00:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/d7cf70114e462a28</id>
     <title>When to Choose Amazon SageMaker AI Inference Over Amazon Bedrock: A Decision Framework</title>
     <updated>2026-08-20T06:59:19.414000+00:00</updated>
@@ -1691,16 +1716,6 @@
     </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
     <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/55f4aa969a1b568b</id>
-    <title>AWS Marketplace now supports category-based notifications and multi-channel delivery for partners</title>
-    <updated>2026-08-20T00:06:00+00:00</updated>
-    <content>AWS partners can now configure category-based notifications and multi-channel delivery for AWS Marketplace notifications through AWS User Notifications. Previously, partners received their AWS Marketplace notifications through their AWS account’s root email address or custom email aliases, with no way to select notification categories or route each category to the teams responsible for managing it. With this launch, partners can choose which contacts receive each notification category and how th</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/aws-marketplace/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T00:06:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/52f3a36aafed6f0a</id>

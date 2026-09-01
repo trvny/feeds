@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-09-01T16:53:46.369569+00:00</updated>
+  <updated>2026-09-01T21:17:59.957142+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -63,6 +63,21 @@
     <updated>2026-09-01T00:00:00+00:00</updated>
     <content>Beginning September 1, 2026, D1 queries on the Workers Free plan will fail when an account exceeds the daily row read or row write limits . Queries via the Workers Binding API and the REST API will return errors until the limit resets at midnight UTC. Stored data is not affected. You will receive email alerts when the daily limit is reached. The following errors indicate that a limit has been exceeded: Error Description Your account has exceeded D1's free tier daily row read limit. Upgrade to a </content>
     <link href="https://developers.cloudflare.com/changelog/post/2026-09-01-d1-free-tier-limit-enforcement/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-09-01T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/dc53da91184942a0</id>
+    <title>AI Gateway - AI Gateway consolidates monthly usage invoice line items and standardizes model names</title>
+    <updated>2026-09-01T00:00:00+00:00</updated>
+    <content>AI Gateway monthly usage invoices, issued at the beginning of each month for the previous month's usage, now show a single total cost for each model. These invoices no longer break out input and output token quantities and unit prices into separate line items. This change does not apply to invoices for AI Gateway credit purchases. For example, an invoice that previously included these separate line items: anthropic claude-haiku-4-5-20251001 Input Tokens : 40,000 tokens at $0.000001 ($0.04) anthr</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-09-01-billing-and-model-names/" rel="alternate"/>
     <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
     <published>2026-09-01T00:00:00+00:00</published>
     <media:group>
@@ -1246,21 +1261,6 @@ We are working to understand the full impact and mitigate this problem.  More up
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-17T08:58:06+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/4b8fd639104ebea0</id>
-    <title>R2 - New `us` jurisdiction for R2</title>
-    <updated>2026-08-17T00:00:00+00:00</updated>
-    <content>R2 now supports a us jurisdiction , which guarantees that bucket data is stored and processed within the United States. Use this jurisdiction when you need explicit US data residency guarantees. Use the jurisdiction-specific S3 endpoint to create and access buckets in the us jurisdiction: https://&lt;ACCOUNT_ID&gt;.us.r2.cloudflarestorage.com To access a bucket in the us jurisdiction from Workers, set jurisdiction in your R2 binding: { "r2_buckets" : [ { "binding" : "MY_BUCKET" , "bucket_name" : "&lt;YOU</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-17-r2-us-jurisdiction/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-17T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/c5efb020ed64f474</id>
