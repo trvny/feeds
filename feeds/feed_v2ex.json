@@ -8,6 +8,282 @@
   "icon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4e17ecff06ba485f",
+      "url": "https://www.v2ex.com/t/1238793#reply1",
+      "title": "「开源」GitPress，像用 WordPress 一样写作，而文章在你自己的 GitHub 上",
+      "content_text": "这是什么项目？ GitPress 是一个博客后台。你可以像用 WordPress 一样登录、写文章，但正文存在你自己的 GitHub 仓库里。保存后自动编成静态网页，挂在 GitHub Pages 上，且你可以随时换上自己的域名。 官网只是遥控器，哪天即便是 GitPress.net 关停了，你也可以自己通过开源项目自己使用 vercel 0 成本部署一个，然后继续写自己的博客。\n不过我还是建议您使用我们官网，因为官网部署更新的是最及时的。\n如果您怕数据或是账号安全问题的话，那大可放心，因为我这个仓库是直连 vercel 部署的，您可以用 ai 扫描这个仓库是否存在窃取您隐私的部分。 官网地址： https://GitPress.net 开源项目地址： https://github.com/tap6/GitPress.net 如有 bug 请提交 issue 项目示例： 我为什么制作这个项目？ 我之前有一个 WordPress 个人博客，大概用了五六年。每年都要重新买服务器（新购服务器在价格上会便宜很多）、做迁移、再给域名做解析。 累，而且会一再发生。有一次忘了续服务器、也没做迁移。几",
+      "date_published": "2026-09-01T15:55:08Z",
+      "date_modified": "2026-09-01T15:55:08Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://i.imgur.com/NltDwzm.png",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://i.imgur.com/NltDwzm.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e6f22c82ae64bb76",
+      "url": "https://www.v2ex.com/t/1238790#reply0",
+      "title": "Image2Layer：用 AI 将图片转换为可编辑 PSD 图层",
+      "content_text": "最近在做设计和内容制作时，我发现一个很常见的问题：很多图片只有一张扁平化的 JPG 或 PNG 文件，想要修改其中的对象、背景或文字，往往需要重新抠图、建立蒙版，再手动整理图层。 所以我们做了 Image2Layer ，这是一个基于 AI 的图片图层处理工具，目标是帮助用户更快地把普通图片转换成可编辑的设计素材。 Image2Layer 可以做什么？ Image2Layer 的核心功能是 AI image layer separation 。用户上传一张图片后，系统会分析其中的主体、对象、背景和其他视觉元素，并尝试将它们拆分成独立图层，方便后续编辑和复用。 如果你主要需要进行图片格式转换，也可以使用： Image to PSD ：将图片转换为可编辑的 PSD 文件 PNG to PSD ：把 PNG 图片转换成 PSD 图层文件 JPG to PSD ：将 JPG 图片转换为可继续编辑的 PSD 文件 PSD to PNG ：将 PSD 文件导出为 PNG 图片 PSD to JPG ：将 PSD 文件转换为 JPG Text to PSD ：根据文字内容创建 PSD 设计素材 适合哪",
+      "date_published": "2026-09-01T15:41:05Z",
+      "date_modified": "2026-09-01T15:41:05Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/b47a73bd9fb4838f3c88072b1b67bbb2?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/b47a73bd9fb4838f3c88072b1b67bbb2?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/53cf33ef2ed9e0db",
+      "url": "https://www.v2ex.com/t/1238789#reply1",
+      "title": "提取 exe/快捷方式高清图标的小工具，导入原图",
+      "content_text": "提取 exe/快捷方式高清图标的小工具（纯 JS 解析） 快速提取 Windows 软件（ .exe 、 .lnk 快捷方式、 .dll ）的高清图标。 JS 从二进制文件解析原始的 icon 图标、图片， 多尺寸的 icon 也能解析出来。 常规的做法要么到处搜透明 PNG ，要么截图（容易有毛边且分辨率低），要么得在电脑里专门装一个臃肿的图标提取工具（如 Resource Hacker 等）。如果是 macOS/Linux 用户想提取 Windows 软件的图标更是麻烦。 有这个轻量、免安装的网页端在线提取工具： 提取 exe 快捷方式图片 。 🔗 在线体验 提取 exe 快捷方式图片 在线工具 ✨ 核心特性 🔒 纯前端本地解析，零隐私风险 文件均在浏览器本地内存中直接解析二进制 PE 节区与资源， 文件绝不上传至任何后端服务器 ，断网也能跑，大文件或企业内部软件可放心拖入。 📦 支持多种文件类型 支持 Windows 可执行程序（ .exe ）、动态链接库（ .dll ）、快捷方式（ .lnk ）以及多规格图标（ .ico ）。 🖼️ 全尺寸提取 & 高清无损导出 自动解构出内置",
+      "date_published": "2026-09-01T15:28:43Z",
+      "date_modified": "2026-09-01T15:28:43Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/17310cf58dc8252bafec78648a6dd23d?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/17310cf58dc8252bafec78648a6dd23d?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/569d5db6c9adec1c",
+      "url": "https://www.v2ex.com/t/1238784#reply1",
+      "title": "捣鼓的一个安卓端壁纸 APP",
+      "content_text": "上班摸鱼时间，大概半天，使用 hbiulerx 软件，千问提供技术支持，第三方图片 API 提供图源，搞了一个安卓端的壁纸 APP ，非常简陋，但是可以下载图片，给手机换壁纸！自用可以了，只能说略懂！下载地址： https://eproall.lanzouq.com/ipPkD45ru4ri 另一个下载地址： https://eproall.lanzouq.com/iLX6o45rtssh 不知道哪个能用，都试试吧！",
+      "date_published": "2026-09-01T14:43:02Z",
+      "date_modified": "2026-09-01T14:43:02Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/29ec78682d4cc85aa1f2e8ef1780008c?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/29ec78682d4cc85aa1f2e8ef1780008c?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/cbdecd07ec9dd27a",
+      "url": "https://www.v2ex.com/t/1238783#reply0",
+      "title": "我的读书笔记 & 想法记录 & 随机回顾 App，已经支持 macOS 了｜ Booko",
+      "content_text": "花了一个多月时间做 Booko 的 Mac 版本，已经上线了。跟随 Mac 版本的发布，iPhone 和 iPad 也做了很多更新，三端通过 iCloud 同步。 简单介绍下 Booko：这是一个支持把微信读书、Kindle 、苹果图书、得到、豆瓣阅读的划线笔记，导入识别成卡片笔记的产品，按书籍来整理。 同时，它也是一个记录自己想法的产品，可以通过快捷指令、小组件在桌面快速记录，也能随机回顾和重温笔记。 大部分类似 App 只做移动端，但我自己在用 Booko 的过程中，每天有超过 8 小时对着 Mac 。为了能快速在 Mac 上记录和浏览，就一起做了 Mac 版。 虽然目前还没有单独的网页剪藏插件，但通过 Mac 系统 Services ，选中文本右键就能存入 Booko ，非常顺手。 为了更好地管理书籍和笔记，这次也推出了「合集」功能：像 Playlist 一样支持多对多关系，一条笔记或一本书籍可以归入多个合集中，灵活整理。 官网： https://booko.cc App Store： Booko 读书笔记 （也可直接搜索「 Booko 读书笔记」） 欢迎大家体验和反馈交流。",
+      "date_published": "2026-09-01T14:38:49Z",
+      "date_modified": "2026-09-01T14:38:49Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://i.imgur.com/kI4ysGU.jpeg",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://i.imgur.com/kI4ysGU.jpeg",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/dae95635909d4a98",
+      "url": "https://www.v2ex.com/t/1238780#reply4",
+      "title": "Mac M1 钉子户屏蔽 EDGE 浏览器更新",
+      "content_text": "起因 EDGE 浏览器强制更新会导致无法打开，需要不停的拿旧版本去覆盖才能继续使用 对于不想更新系统的人来说简直是折磨\n分享出来免得大家再浪费 token 让 ai 从头写一遍 https://gist.github.com/ctro15547/1c1f50de59efcc7eacf9d1353cd97600 全部 ai 写的，不放心可以 ai 再审一遍或者抄个方案",
+      "date_published": "2026-09-01T14:29:49Z",
+      "date_modified": "2026-09-01T14:29:49Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/2069/da63/262065_large.png?m=1511143771",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/2069/da63/262065_large.png?m=1511143771",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ae10b53a4cdc0436",
+      "url": "https://www.v2ex.com/t/1238779#reply0",
+      "title": "我妈要把我家猫绣成十字绣，找不到合适的图纸工具，于是自己写了一个",
+      "content_text": "起因：我妈绣了十几年十字绣，拿着我家猫的照片问我\"这玩意能不能变成图纸\"。找了一圈现成工具，不是要注册就是要订阅，导出还带水印，于是一怒之下自己撸了一个 → https://crossstitchpatternmaker.app 先说原理，免得显得像个套壳：照片降采样到网格 → 用 CIELAB 空间的 Delta-E 色距匹配到 454 个真实 DMC 线号 → 输出带符号和绞数估算的 PDF 。 技术栈：TanStack Start + Cloudflare Workers + D1/R2 。 但我妈嫌自动配色不如她手挑的线准。程序员 vs 一线业务用户，果然是普世矛盾。 欢迎拍砖，尤其是颜色匹配这块，总觉得还能再准一点，有大佬有相关图片转换算法的也欢迎分享讨论~",
+      "date_published": "2026-09-01T14:28:19Z",
+      "date_modified": "2026-09-01T14:28:19Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/e68275a2af3a17736e8a14691d230950?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/e68275a2af3a17736e8a14691d230950?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7e3545ed26bb6862",
+      "url": "https://www.v2ex.com/t/1238775#reply2",
+      "title": "开发了一款轻量养车记账软件，欢迎油车电车高端人士体验",
+      "content_text": "📱 本地模式 · 数据在手机 — SQLite 存本机，不联网也能记。数据不上传，随时导出带走。 🔗 在线模式 · 全家一本账 — 同一个 token = 同一本账。你和家人各记各的，数据实时互通，换机不丢。 🚗 多车与统计 — 多车管理、分类排行、趋势与环比；电车算每度电成本，油车算每升油成本。 ⏱ 固定费用按月自动计入 — 车位月费这类固定支出只配一次，之后按月自动进统计，不脏明细。 ⚡ 长按图标直接记一笔 — 桌面长按 App 图标，冷启动直达记账表单，记完回到你原来的位置。 🔄 应用内自动更新 — 不上应用商店：启动静默检查，下载校验后一键安装，支持断点续传。 传不了图，下载地址： https://pitstops.top",
+      "date_published": "2026-09-01T13:59:50Z",
+      "date_modified": "2026-09-01T13:59:50Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/c4b5/26d6/172088_large.png?m=1788270062",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/c4b5/26d6/172088_large.png?m=1788270062",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3ad9e68aa6acbda1",
+      "url": "https://www.v2ex.com/t/1238773#reply0",
+      "title": "陕西电信迷惑行为之不解白名单上传限速，没有原因",
+      "content_text": "陕西电信迷惑行为之不解白名单上传限速，没有原因。引援某新闻：铜川电信直播上传限速。 楼主也是受害者之一，现在除了起诉的路都走过了。本地运维是不承认限速，后台也是非 pcdn 标签，只认他们自己的测速。多次投诉不知道是哪个级别的工作人员说是省上限速，只有文件下来，上报工单，回复是不给解，限速也是没有任何原因。真的是完蛋。",
+      "date_published": "2026-09-01T13:50:58Z",
+      "date_modified": "2026-09-01T13:50:58Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/6d06e048bbd060ce61275a7fb8e90fea?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/b938b5c598fa4300",
+      "url": "https://www.v2ex.com/t/1238771",
+      "title": "Claude 送了 3 个 PRO 周卡 需要的请随意领取",
+      "content_text": "<p>今天发现 Claude 送了我三个 PRO 周卡邀请 请大家领取使用</p>\n<p><a href=\"https://claude.ai/referral/571jwmtq0A?s=cowork&amp;v=apps\" rel=\"nofollow\">https://claude.ai/referral/571jwmtq0A?s=cowork&amp;v=apps</a></p>",
+      "date_published": "2026-09-01T13:47:02Z",
+      "date_modified": "2026-09-01T13:47:02Z",
+      "authors": [
+        {
+          "name": "V2EX Claude (johnhuangemc2)"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/6843f5b55702f07702f48e1e1ad35cf1?s=73&d=retro",
+      "tags": [
+        "V2EX Claude (johnhuangemc2)"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/6843f5b55702f07702f48e1e1ad35cf1?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/8deb78da2cc2b62a",
+      "url": "https://www.v2ex.com/t/1238765#reply1",
+      "title": "单条光纤不同运营商，用 wdm 设备，不通",
+      "content_text": "两家运营商弱电井放 WDM 设备，单光纤入户，只能通一条，参考中兴 OLT 原理和哪怕波长不等也兼容的。 [img] [/img] 参考论坛 https://v2ex.com/t/1126721 帖子。",
+      "date_published": "2026-09-01T13:18:08Z",
+      "date_modified": "2026-09-01T13:18:08Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://i.imgur.com/mVzH2L9.jpeg",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://i.imgur.com/mVzH2L9.jpeg",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/7ef9904d119845a6",
+      "url": "https://www.v2ex.com/t/1238758#reply0",
+      "title": "法律草案征求意见-摩托车友可以去提建议",
+      "content_text": "道路交通安全法（修订草案）征求意见 http://www.npc.gov.cn/flcaw/ 截止时间为 2026-09-26 想到 开汽车的 骑电瓶车 摩托车的人 有意见的都可以去提 电瓶车 限速 25 是个槽点 但和这个是国标 道交法里则是限速 15 第五十八条 残疾人机动轮椅车、电动自行车在非机动车道内行驶时，最高时速不得超过十五公里。 摩托车 限摩政策一团乱麻 各地标准不一 在一线城市上班 骑摩托车成本高 汽车 没驾照 想不到啥槽点 另外有个槽点 人大网不支持 https 访问 http://www.npc.gov.cn/",
+      "date_published": "2026-09-01T12:34:24Z",
+      "date_modified": "2026-09-01T12:34:24Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/d5164e3a9c9e0d51220934370bfe8210?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/d5164e3a9c9e0d51220934370bfe8210?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/1265a38d320b4afe",
       "url": "https://www.v2ex.com/t/1238750#reply0",
       "title": "DSH 插件: session to session 让多个会话能互相喊话,不分 live 还是 idle 都能拉起",
@@ -422,52 +698,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5574c6e5cc4bea6e",
-      "url": "https://www.v2ex.com/t/1238643#reply2",
-      "title": "有人试过反代出来阿里云内网才可以用的 docker 镜像吗",
-      "content_text": "目前的 docker 镜像 想找一个能用的好麻烦 没有代理的机器上大家是如何解决的 懒得配置代理就想有一个能直接用的 docker 镜像",
-      "date_published": "2026-09-01T05:12:56Z",
-      "date_modified": "2026-09-01T05:12:56Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/edb7/4af1/545105_xlarge.png?m=1787231152",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/edb7/4af1/545105_xlarge.png?m=1787231152",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c22043cb475b0b4a",
-      "url": "https://www.v2ex.com/t/1238640#reply1",
-      "title": "Quantumult X 配置再次升级焕新升级，内置公益独家维护订阅，开箱即用",
-      "content_text": "Quantumult X 配置再次升级焕新升级，内置公益独家维护订阅，开箱即用 上次发布配置后，感谢各位 V 友的收藏与宝贵建议！\n本次全新升级，焕新配置体验，并内置长期维护的订阅节点，欢迎大家体验与支持。 📱 配置预览 策略列表 策略列表 ✨ 远程配置仓库： 仓库地址： https://github.com/curtinp118/QuantumultX 配置直链： https://cdn.jsdelivr.net/gh/curtinp118/QuantumultX@main/profile/QX_Config.conf 欢迎提交 Issue 和 Pull Request ！ 最后更新 : 2026-09-01 ✨ 主要特性 内置公益订阅 ： 内置公益多地区节点订阅 长期维护更新 DNS 泄漏优化 ： 底层框架清晰，路由规则分流和防 DNS 泄露 智能分流 ：国内直连、国外代理、流媒体、社交等智能分类 地区策略 ：香港、台湾、日本、新加坡、美国、韩国节点自动优选 策略优选 ：支持手动选择、延迟测试、美国节点目标地址哈希 DNS ：使用阿里 DNS 与腾讯 DNS 的 DoH 服务，支持",
-      "date_published": "2026-09-01T04:54:07Z",
-      "date_modified": "2026-09-01T04:54:07Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.jsdelivr.net/gh/curtinp118/QuantumultX@main/icons/home1.jpeg",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.jsdelivr.net/gh/curtinp118/QuantumultX@main/icons/home1.jpeg",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/7b81b01656aeae47",
       "url": "https://www.v2ex.com/t/1238631#reply5",
       "title": "codex 最近 review 效果好差",
@@ -486,98 +716,6 @@
       "attachments": [
         {
           "url": "https://cdn.v2ex.com/gravatar/c98db88a0793a8b6839d9d93e09b5835?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/5b239a19c3b16aae",
-      "url": "https://www.v2ex.com/t/1238629#reply3",
-      "title": "EdgeEver：开源、原生支持 AI/MCP 的自托管「印象笔记」替代方案（支持全平台客户端 + 浏览器剪藏）",
-      "content_text": "大家好！ 作为一个多年的印象笔记（ Evernote ）老用户，我对知识管理工具的核心诉求其实一直很简单： 可靠、响应迅速、经典的三栏结构、随时随地多端随手记 。 但近几年主流笔记的体验大家懂的都懂： 印象笔记 ：功能越来越臃肿，广告和促销满天飞，免费版甚至限制只能登录 2 台设备，数据导出极其繁琐。 Obsidian ：生态极其强大，但对“随时随地随手抓取灵感”的轻量场景稍显厚重，官方同步需要订阅，第三方同步配置成本偏高。 Memos / 闪念胶囊类 ：卡片流很适合碎碎念，但对需要体系化分类和长文沉淀的“三栏工作流”来说，结构组织力稍有不足。 为了找回当年那种纯粹、高效的记录体验，同时结合当下的 AI 工作流，我开发了 EdgeEver ——一个 开源、原生支持 AI/MCP 、零成本自托管的印象笔记替代方案 。 💡 核心特性 1. 经典三栏布局 + 双视图编辑 找回熟悉的 笔记本树 - 笔记列表 - 编辑器 经典三栏工作流，支持无限层级目录。 桌面端支持一键开启 专注模式 ，支持在 所见即所得富文本 与 Markdown 源码 之间无缝切换。 原生支持 Mermaid 流程图/架构",
-      "date_published": "2026-09-01T03:53:25Z",
-      "date_modified": "2026-09-01T03:53:25Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/12de/a8f4/325392_xlarge.png?m=1783271584",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/12de/a8f4/325392_xlarge.png?m=1783271584",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/419669702b10f24f",
-      "url": "https://www.v2ex.com/t/1238625#reply0",
-      "title": "像使用操作系统一样管理集群，像聊天一样完成运维分析",
-      "content_text": "在线体验： https://fbcupchhlacp.sealosbja.site/ 用户名：view 密码：LECQkqcp2tQ5Yh8 开源地址： https://github.com/togettoyou/zke ZKE Console 采用浏览器桌面式交互设计。集群接入管理、组织与资源、访问与审计、容器服务、Helm 应用、项目自定义应用、终端和 AIOps ，都以独立应用的形式呈现。 用户可以从桌面或 Dock 打开应用，自由切换、最小化或最大化窗口，还能保存自己的桌面布局和工作作用域。 这套设计不只是为了看起来像桌面。多集群运维往往不是一条从上到下的固定流程。排查异常工作负载时，通常需要同时查看资源详情、事件、Pod 日志和终端。多窗口可以把这些上下文保留在同一个工作空间里；终端窗口最小化后，会话仍然继续，不会被误当成关闭。 在 ZKE 的 AI 原生环境中，临时分析也可以更直接。想查看“每个 Pod 的 CPU 饱和度图表”，只需告诉 AIOps ，它便能根据需求生成对应的可视化结果。",
-      "date_published": "2026-09-01T03:43:04Z",
-      "date_modified": "2026-09-01T03:43:04Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://i.imgur.com/OQJWarE.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/OQJWarE.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e946d6e82aaca84b",
-      "url": "https://www.v2ex.com/t/1238624#reply0",
-      "title": "做了一个内置 AI 的电子书阅读器 Quill：划词划句直接问 AI，可复用你的 ChatGPT 订阅，无需 API Key",
-      "content_text": "Why? 看书的时候经常要在阅读器和 ChatGPT 之间来回切窗口、复制粘贴，索性做了一个把两者放进同一个窗口的阅读器 —— Quill 。 GitHub （ MIT 开源）： https://github.com/yicheng47/quill 主要功能 划句问 AI ：选中看不懂的段落直接提问，选中内容自动作为上下文，不用复制粘贴 复用 ChatGPT 订阅 ：默认走 OpenAI OAuth 登录，有 ChatGPT 订阅就能用， 不需要 API Key 、不额外花钱 ；也支持 Anthropic / 任意 OpenAI 兼容接口 / 本地 Ollama 点词查释义 ：结合上下文给释义，可一键存入生词本，带间隔重复复习 阅读体验 ：EPUB / PDF ，翻页或滚动模式，字体、行距、边距可调，高亮 + 笔记 + 书签 iCloud 同步 ：Mac 上看到一半，iPhone / iPad 接着看，进度、高亮、生词、设置全同步 截图 书库： 阅读界面（ AI 助手 + 划词释义）： 下载 macOS （ Apple Silicon / Intel ）： Releases ，当前 v",
-      "date_published": "2026-09-01T03:39:46Z",
-      "date_modified": "2026-09-01T03:39:46Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://raw.githubusercontent.com/yicheng47/quill/main/assets/home.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://raw.githubusercontent.com/yicheng47/quill/main/assets/home.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3a8abb9878f5518b",
-      "url": "https://www.v2ex.com/t/1238611#reply0",
-      "title": "做了一个管理海外配置 和 订阅提醒 的 App，上线 2 天有 700+次下载， 7 个订阅",
-      "content_text": "海外账号、手机号和 eSIM 多了以后，我发现最大的问题不是“没有服务可用”，而是完全记不清自己有什么、用在哪里、什么时候续费。 我之前一直用备忘录加截图管理，但时间长了还是很乱，于是做了 NexaID 。 它可以整理海外账号、号码、eSIM 、订阅、支付方式、AI 服务和开发者工具，也可以统计费用、提醒续费和保号。敏感信息留在本机，不会上传。 下面是部分截图： 最主要的功能是 eSIM 管理以及订阅提醒，可以设置多个提前 1~30 天或者自定义时间，可设置 APP 和邮箱接收。 这是第一版，目前只有 iOS ，需要使用外区 AppID 搜索下载 [ NexaID ] 。 介绍： https://card.lengziyu.cn/profile/nexaid 欢迎直接指出问题，或者哪些可以优化的。",
-      "date_published": "2026-09-01T03:20:27Z",
-      "date_modified": "2026-09-01T03:20:27Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://nadmin.lengziyu.cn/images/app/nexaid-app-store-analytics.jpg",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://nadmin.lengziyu.cn/images/app/nexaid-app-store-analytics.jpg",
           "mime_type": "image/jpeg"
         }
       ]
@@ -671,52 +809,6 @@
         {
           "url": "https://cdn.v2ex.com/avatar/9f13/d763/287238_xlarge.png?m=1775805794",
           "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a86d68b533afe274",
-      "url": "https://www.v2ex.com/t/1238598#reply4",
-      "title": "从小红书采集到飞书多维表格，我把这条流程做成了浏览器扩展",
-      "content_text": "神笔智媒｜小红书数据采集助手是一款面向内容运营和市场研究人员的浏览器扩展，支持采集小红书博主、笔记和评论等公开数据，并将结果导出为 Excel 或同步到飞书多维表格 目前谷歌应用市场安装 35 次，日活个位数，纯前端项目，无服务器，需要继续投入吗？ Google Analytics 显示活跃用户 7 个，新用户 8 个，平均每位互动 18 秒，不知道为什么传不了图片 8 月 4 号审核上线，8 月 19 号更新了第二版，插件页面也留了 QQ 和飞书联系方式，但是没有人加我，我想找真实用户聊下他们的真实需求",
-      "date_published": "2026-09-01T02:58:22Z",
-      "date_modified": "2026-09-01T02:58:22Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/f97f209b67b8864facb56dffdfdc3355?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/f97f209b67b8864facb56dffdfdc3355?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/661bae7c108b8461",
-      "url": "https://www.v2ex.com/t/1238594#reply0",
-      "title": "[分享] 做了一个 Drawing Prompts Generator，帮你找到下一个绘画灵感",
-      "content_text": "最近做了一个很简单的小工具： https://drawingpromptsgenerator.com 当你想画点什么，但一时不知道从哪里开始时，可以用它随机生成一个绘画提示词。提示词会组合主题、场景、情绪和画风，也可以锁定喜欢的部分继续生成。 目前支持： 随机生成绘画创意 锁定主题、场景或情绪 一键复制提示词 Plain 、Midjourney 、DALL·E 、Flux 等格式 适合素描练习、每日挑战和 AI 绘图 它不是为了替代创作，只是想给空白页面一个小小的开始。 欢迎大家试用，也想听听大家对提示词质量、功能和页面体验的反馈。",
-      "date_published": "2026-09-01T02:52:00Z",
-      "date_modified": "2026-09-01T02:52:00Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/92069695917ae73a953ecdf233477237?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/92069695917ae73a953ecdf233477237?s=73&d=retro",
-          "mime_type": "image/jpeg"
         }
       ]
     },
@@ -878,75 +970,6 @@
         {
           "url": "https://i.imgur.com/qBcZnfy.png",
           "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/4d156aa30e01b163",
-      "url": "https://www.v2ex.com/t/1238515#reply3",
-      "title": "冒险岛 083",
-      "content_text": "用闲置服务器开了个冒险岛服务，怀旧玩玩 开源地址： https://github.com/BeiDouMS/BeiDou-docker https://github.com/BeiDouMS/BeiDou-Server/releases 如果你不想搭服务器，那就直接下载客户端（ https://github.com/BeiDouMS/BeiDou-Server/releases/download/1.12/BeiDou-ClientV17.7z ）\n解压后编辑 config.ini：\nServerIP_Address=nearu.fun\n打开客户端进入登陆页面，输入任意账号和至少 6 位密码，自动注册登陆。\n尽情享受游戏吧！",
-      "date_published": "2026-08-31T14:15:10Z",
-      "date_modified": "2026-08-31T14:15:10Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://raw.githubusercontent.com/johnny-peters/btc-reborn/refs/heads/main/front-end/screen_shot.png",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://raw.githubusercontent.com/johnny-peters/btc-reborn/refs/heads/main/front-end/screen_shot.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/068f54dfff1acd78",
-      "url": "https://www.v2ex.com/t/1238514#reply0",
-      "title": "AI 影视剧《后西游记》在湖南电视台黄金档播出",
-      "content_text": "AI 影视剧《后西游记》在湖南电视台黄金档播出，这是第一部上电视的影视作品吧？相关的股票也涨了。未来是不是演员也要和程序员一样也要渐渐失业了？",
-      "date_published": "2026-08-31T14:11:49Z",
-      "date_modified": "2026-08-31T14:11:49Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/eabe4255e4a5d53c4b123d4bf1295f82?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/eabe4255e4a5d53c4b123d4bf1295f82?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e6082a783c472ced",
-      "url": "https://www.v2ex.com/t/1238509#reply0",
-      "title": "microduck 这个如何在国内购买？",
-      "content_text": "商品地址： https://pollen-robotics.com/microduck/ 开源项目： https://github.com/pollen-robotics/microduck",
-      "date_published": "2026-08-31T13:59:19Z",
-      "date_modified": "2026-08-31T13:59:19Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/1e0ed085b2167556443e5619b820ac59?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/1e0ed085b2167556443e5619b820ac59?s=73&d=retro",
-          "mime_type": "image/jpeg"
         }
       ]
     },
@@ -1376,29 +1399,6 @@
       "attachments": [
         {
           "url": "https://rssfile.sspai.com/2026/4/23/article/c2b080ab-cf08-9c5a-70ef-54a7bfa9d530.png?imageMogr2/auto-orient/ignore-error/1",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c44932f40bbf1b46",
-      "url": "https://sspai.com/post/89194",
-      "title": "日常使用 Linux 的第六个年头，这些经验希望能打消你的顾虑",
-      "content_text": "不知不觉，我日常使用 Linux 已经有第 6 个年头了。一个词概括，「舒适」。 查看全文",
-      "date_published": "2026-08-27T07:28:44Z",
-      "date_modified": "2026-08-27T07:28:44Z",
-      "authors": [
-        {
-          "name": "sspai.com"
-        }
-      ],
-      "image": "https://rssfile.sspai.com/2024/06/05/4b6eaea97d1c8fe8dd6cbe5f828960ea.png?imageMogr2/auto-orient/ignore-error/1",
-      "tags": [
-        "sspai.com"
-      ],
-      "attachments": [
-        {
-          "url": "https://rssfile.sspai.com/2024/06/05/4b6eaea97d1c8fe8dd6cbe5f828960ea.png?imageMogr2/auto-orient/ignore-error/1",
           "mime_type": "image/png"
         }
       ]

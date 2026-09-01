@@ -8,6 +8,45 @@
   "icon": "https://aws.amazon.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/b3852fedc92a53ee",
+      "url": "https://repost.aws/articles/ARgnKOz3wRSJGUyy0jG0E2XA/building-a-governed-incident-response-agent-fleet-with-aws-agent-registry",
+      "title": "Building a governed incident response agent fleet with AWS Agent Registry",
+      "content_text": "AWS Agent Registry is now generally available, but most teams meet it mid-sprawl: dozens of agents and MCP tools scattered across accounts, with no shared inventory, no cross-team discovery, and no audit trail. This how-to walks operations teams through one concrete AIOps use case, governing an incident response fleet, from creating a gated registry and registering tools to catching shadow agents and discovering tools at runtime.",
+      "date_published": "2026-09-01T13:51:41Z",
+      "date_modified": "2026-09-01T13:51:41Z",
+      "authors": [
+        {
+          "name": "AWS re:Post Articles"
+        }
+      ],
+      "image": "https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png",
+      "tags": [
+        "AWS re:Post Articles"
+      ],
+      "attachments": [
+        {
+          "url": "https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/479cb55ee195e80a",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-cloudwatch-alarms-warmup-period",
+      "title": "Amazon CloudWatch now supports warm-up periods for alarms",
+      "content_text": "Amazon CloudWatch now lets you configure a warm-up period for metric alarms and log alarms, delaying alarm evaluation for a set time after the alarm is created. This reduces noise from missing data while a new resource or service starts up and begins publishing metrics. For example, a team that provisions a new microservice and its alarms together through a CI/CD pipeline can attach a warm-up period so alarms do not page the on-call engineer while the service is still starting up and has not yet",
+      "date_published": "2026-09-01T08:00:00Z",
+      "date_modified": "2026-09-01T08:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/aws/ee226b515b1eb203",
       "url": "https://repost.aws/articles/AR59GEqjtTRRqsQMfPZVIafQ/topic-not-present-in-metadata-after-60000-ms-on-amazon-msk-it-may-be-an-authorization-failure-not-a-missing-topic",
       "title": "\"Topic not present in metadata after 60000 ms\" on Amazon MSK: it may be an authorization failure, not a missing topic",
@@ -99,6 +138,22 @@
       "content_text": "Partner Revenue Measurement User Agent string now supports additional AWS services. Partner Revenue Measurement allows Partners to better understand their AWS revenue impact and product consumption patterns. Previously, the User Agent string capability measured AWS service consumption across select services. With this expansion, Partners can now measure attributed revenue across additional applicable AWS services that log control plane activity in AWS CloudTrail, significantly increasing the vis",
       "date_published": "2026-08-31T22:00:00Z",
       "date_modified": "2026-08-31T22:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/dfc8950bd468e21d",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/mediatailor-analytics-dashboard",
+      "title": "AWS Elemental MediaTailor introduces in-console analytics dashboard for ad monetization and streaming performance",
+      "content_text": "AWS Elemental MediaTailor now includes an analytics dashboard built directly into the AWS Management Console, giving publishers a global and multi-region view of ad monetization and streaming performance — with the ability to compare across regions and drill into individual playback configurations. The dashboard surfaces key business metrics including fill rate, ad impression rate, video completion rate, and impression recovery data — showing publishers exactly how many billable impressions they",
+      "date_published": "2026-08-31T21:35:00Z",
+      "date_modified": "2026-08-31T21:35:00Z",
       "authors": [
         {
           "name": "AWS What's New"
@@ -2611,38 +2666,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/38c8bc23778b40b8",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-bedrock-web-access-web-search/",
-      "title": "Launching External Web Access for Web Search on Amazon Bedrock",
-      "content_text": "Earlier this month, we announced Web Search on Amazon Bedrock , a built-in server-side tool that allows you to ground model responses with current web knowledge, while maintaining data within your secured AWS environment with zero data egress. Today, we are expanding Web Search to enable the external_web_access parameter allowing Web Search to retrieve content directly from the public web so models can ground responses in the latest information. To enable external_web_access, grant the bedrock-w",
-      "date_published": "2026-08-19T23:00:00Z",
-      "date_modified": "2026-08-19T23:00:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/d337ef3340e9e50b",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/web-search-amazon-bedrock/",
-      "title": "Web Search in Amazon Bedrock AgentCore adds domain and published date filtering, expands to Europe and Asia Pacific",
-      "content_text": "Web Search in Amazon Bedrock AgentCore now supports domain filtering and published-date filtering, giving agents per-request control over which web sources and time windows they search. Amazon Bedrock AgentCore provides the infrastructure to build, connect, and optimize AI agents, and Web Search enables those agents to ground responses in current web data. With runtime domain filtering, agents can narrow search results to trusted sources or block unwanted domains on a per-call basis without requ",
-      "date_published": "2026-08-19T22:55:00Z",
-      "date_modified": "2026-08-19T22:55:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/aws/52f3a36aafed6f0a",
       "url": "https://github.com/aws/aws-cli/releases/tag/2.36.27",
       "title": "AWS CLI 2.36.27",
@@ -4121,29 +4144,6 @@
       "content_text": "You raise `socket.receive.buffer.bytes` on your Amazon MSK brokers to 1 MiB or 2 MiB, but the TCP send window your producers observe and their throughput stay the same. This article explains why the broker OS kernel's `SO_RCVBUF` ceiling causes this, how to confirm it with `ss`, and how to resolve it with kernel auto-tuning. It is written for engineers running producers that push large volumes to MSK and cannot fill the available link capacity.",
       "date_published": "2026-08-03T08:39:47Z",
       "date_modified": "2026-08-03T08:39:47Z",
-      "authors": [
-        {
-          "name": "AWS re:Post Articles"
-        }
-      ],
-      "image": "https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png",
-      "tags": [
-        "AWS re:Post Articles"
-      ],
-      "attachments": [
-        {
-          "url": "https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/990dbc3bd4b8f4c9",
-      "url": "https://repost.aws/articles/AR-CnszI7uRBiaPOC8Wn2gbQ/end-to-end-troubleshooting-at-aws-data-transfer-terminal-from-no-connectivity-to-slow-transfers",
-      "title": "End-to-End Troubleshooting at AWS Data Transfer Terminal: From No Connectivity to Slow Transfers",
-      "content_text": "A systematic troubleshooting guide for AWS Data Transfer Terminal, covering physical layer connectivity, DHCP/network issues, and S3 transfer failures. Helps customers diagnose problems on-site during time-limited reservations and escalate effectively with the right diagnostic output.",
-      "date_published": "2026-08-03T07:02:14Z",
-      "date_modified": "2026-08-03T07:02:14Z",
       "authors": [
         {
           "name": "AWS re:Post Articles"
