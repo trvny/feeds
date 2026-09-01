@@ -6,8 +6,8 @@ written to ``feeds/feed_claude.xml``:
     - Claude Blog                 https://claude.com/blog
     - Claude Code                  https://code.claude.com/docs/en/whats-new/rss.xml   (native RSS)
                                    https://code.claude.com/docs/en/changelog/rss.xml   (native RSS)
-    - Claude Platform feed         https://platform.claude.com/docs/en/release-notes/feed.xml
-                                   (native RSS)
+    - Claude Platform feed
+      https://platform.claude.com/docs/en/release-notes/feed.xml (native RSS)
     - Claude Apps Release notes     https://support.claude.com/en/articles/12138966-release-notes  (HTML)
     - Claude Platform system prompts https://platform.claude.com/docs/en/release-notes/system-prompts  (Mintlify .md)
 
@@ -18,7 +18,8 @@ Source handling:
                     the body text up to the next heading is the summary.
   * Status page   — native Atom incident history; each ``<entry>`` is an incident.
   * System prompts — fetched as Mintlify raw markdown (``<path>.md``); each
-                     ``## <model>`` section is dated from the first date inside it.
+                     ``## <model>`` section is dated from the first date
+                     inside it.
 
 History accumulates across hourly runs via the shared JSON cache
 (``cache/claude_posts.json``); entries dedupe by link.

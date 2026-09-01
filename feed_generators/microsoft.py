@@ -37,7 +37,11 @@ SOURCES = [
     ),
     ("Microsoft DevBlogs", "https://devblogs.microsoft.com/feed", 40),
     ("Microsoft Open Source", "https://opensource.microsoft.com/blog/feed/", 40),
-    ("Microsoft MCSCAT", "https://microsoft.github.io/mcscatblog/feed.xml", 40),
+    (
+        "Microsoft MCSCAT",
+        "https://microsoft.github.io/mcscatblog/feed.xml",
+        40,
+    ),
     ("GenAIScript", "https://microsoft.github.io/genaiscript/blog/rss.xml", 40),
     (
         "Microsoft 365 Developer Changelog",

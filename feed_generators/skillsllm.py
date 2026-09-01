@@ -225,7 +225,12 @@ NATIVE_FEEDS = [
         "mintlify-changelog",
         40,
     ),
-    ("Mintlify Blog", "https://www.mintlify.com/feed.xml", "mintlify-blog", 40),
+    (
+        "Mintlify Blog",
+        "https://www.mintlify.com/feed.xml",
+        "mintlify-blog",
+        40,
+    ),
     ("Model Context Protocol", "https://blog.modelcontextprotocol.io/index.xml", "mcp"),
     ("FastMCP", "https://gofastmcp.com/changelog/rss.xml", "fastmcp"),
     (
