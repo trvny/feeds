@@ -25,6 +25,8 @@ Native RSS/Atom feeds (feedparser):
   * Devin Desktop           https://docs.devin.ai/desktop/changelog/rss.xml
   * Hugging Face Blog       https://huggingface.co/blog/feed.xml
   * MindStudio              https://www.mindstudio.ai/rss.xml
+  * Mintlify Changelog      https://www.mintlify.com/docs/changelog/rss.xml
+  * Mintlify Blog           https://www.mintlify.com/feed.xml
 
 Sitemap discovery + per-page detail fetch (no native feed; pages server-render
 real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time``):
@@ -217,6 +219,13 @@ NATIVE_FEEDS = [
     ("Devin Desktop", DEVIN_DESKTOP_RSS_URL, "devin-desktop", 40),
     ("Hugging Face Blog", "https://huggingface.co/blog/feed.xml", "huggingface", 40),
     ("MindStudio", "https://www.mindstudio.ai/rss.xml", "mindstudio", 40),
+    (
+        "Mintlify Changelog",
+        "https://www.mintlify.com/docs/changelog/rss.xml",
+        "mintlify-changelog",
+        40,
+    ),
+    ("Mintlify Blog", "https://www.mintlify.com/feed.xml", "mintlify-blog", 40),
     ("Model Context Protocol", "https://blog.modelcontextprotocol.io/index.xml", "mcp"),
     ("FastMCP", "https://gofastmcp.com/changelog/rss.xml", "fastmcp"),
     (

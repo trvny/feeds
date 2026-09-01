@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-99 feedów · 782 źródeł
+99 feedów · 784 źródeł
 
 ## Spis grup
 
@@ -144,13 +144,12 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 ### ![](https://www.google.com/s2/favicons?domain=platform.claude.com&sz=16) Claude
 `claude` · [feed_claude.xml](../feeds/feed_claude.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=platform.claude.com&sz=16) platform.claude.com (overview) — <https://platform.claude.com/docs/en/release-notes/overview>
-- ![](https://www.google.com/s2/favicons?domain=platform.claude.com&sz=16) platform.claude.com — <https://platform.claude.com/docs/en/release-notes/overview.md>
 - ![](https://www.google.com/s2/favicons?domain=platform.claude.com&sz=16) platform.claude.com (system-prompts) — <https://platform.claude.com/docs/en/release-notes/system-prompts>
 - ![](https://www.google.com/s2/favicons?domain=platform.claude.com&sz=16) platform.claude.com — <https://platform.claude.com/docs/en/release-notes/system-prompts.md>
 - ![](https://www.google.com/s2/favicons?domain=code.claude.com&sz=16) Claude Code — <https://code.claude.com/docs/en/whats-new/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=code.claude.com&sz=16) Claude Code — <https://code.claude.com/docs/en/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=claude.com&sz=16) Claude Cowork — <https://claude.com/docs/cowork/changelog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=platform.claude.com&sz=16) Claude Platform — <https://platform.claude.com/docs/en/release-notes/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=claude.com&sz=16) Blog — <https://claude.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=status.claude.com&sz=16) Status atom — <https://status.claude.com/history.atom>
 - ![](https://www.google.com/s2/favicons?domain=support.claude.com&sz=16) Support release notes — <https://support.claude.com/en/articles/12138966-release-notes>
@@ -221,6 +220,8 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Desktop — <https://docs.devin.ai/desktop/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face Blog — <https://huggingface.co/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.mindstudio.ai&sz=16) MindStudio — <https://www.mindstudio.ai/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.mintlify.com&sz=16) Mintlify Changelog — <https://www.mintlify.com/docs/changelog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.mintlify.com&sz=16) Mintlify Blog — <https://www.mintlify.com/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=blog.modelcontextprotocol.io&sz=16) Model Context Protocol — <https://blog.modelcontextprotocol.io/index.xml>
 - ![](https://www.google.com/s2/favicons?domain=gofastmcp.com&sz=16) FastMCP — <https://gofastmcp.com/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=agentclientprotocol.com&sz=16) Agent Client Protocol — <https://agentclientprotocol.com/updates/rss.xml>
@@ -260,6 +261,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.microsoft.com&sz=16) Microsoft 365 Blog — <https://www.microsoft.com/en-us/microsoft-365/blog/feed/>
 - ![](https://www.google.com/s2/favicons?domain=devblogs.microsoft.com&sz=16) Microsoft DevBlogs — <https://devblogs.microsoft.com/feed>
 - ![](https://www.google.com/s2/favicons?domain=opensource.microsoft.com&sz=16) Microsoft Open Source — <https://opensource.microsoft.com/blog/feed/>
+- ![](https://www.google.com/s2/favicons?domain=microsoft.github.io&sz=16) Microsoft MCSCAT — <https://microsoft.github.io/mcscatblog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=microsoft.github.io&sz=16) GenAIScript — <https://microsoft.github.io/genaiscript/blog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=developer.microsoft.com&sz=16) Microsoft 365 Developer Changelog — <https://developer.microsoft.com/api/changelog/rss>
 - ![](https://www.google.com/s2/favicons?domain=techcommunity.microsoft.com&sz=16) Tech Community — <https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/Community?interaction.style=blog&feeds.replies=false>
