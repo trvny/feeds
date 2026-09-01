@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-09-01T05:43:21.525274+00:00</updated>
+  <updated>2026-09-01T12:08:56.264763+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,305 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/1265a38d320b4afe</id>
+    <title>DSH 插件: session to session 让多个会话能互相喊话,不分 live 还是 idle 都能拉起</title>
+    <updated>2026-09-01T11:58:50+00:00</updated>
+    <content>DSH 插件: session to session 让多个会话能互相喊话,不分 live 还是 idle 都能拉起 发现 DeepSeek Harness(DSH)之后,我习惯开着好几个 session,各管一摊:一个做分析、一个写代码、一个管部署、一个做产品。它们各干各的挺爽,但总有要"接力"的时候——分析结论要交给部署,或者部署干到一半被中断了,后面还得把它喊回来接着干。 DSH 本身没有"会话互聊"的能力。于是我写了个小插件: dsh-s2s 。 它是什么 一个 cordis 插件,让 同一台宿主上的多个 DSH session 互相按名字对话 ,并能把 已结束(done/idle)的静止会话拉起来 再投递。 定位是 同宿主、单进程、零端口 :不是跨机 mesh,不引入 hub / WebSocket / 网络层,就在进程内直接投递。有参照 @dpskh/a2a (跨机 mesh)的实现,但 不是它的 fork ——只借鉴了"空闲→followup 、忙碌→inject"的注入习语,没继承它的 hub/网络层。 怎么用 你不需要记任何工具命令——agent 之间就是 自然对话 </content>
+    <link href="https://www.v2ex.com/t/1238750#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-01T11:58:50+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/56c51007330840bea223cbcb36203a38?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/56c51007330840bea223cbcb36203a38?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/56c51007330840bea223cbcb36203a38?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/cd400c12b392db14</id>
+    <title>做了一个《How to Fish》双语攻略站，整理了 49 种鱼和全成就清单</title>
+    <updated>2026-09-01T11:45:11+00:00</updated>
+    <content>最近看到 How to Fish 的搜索热度上涨，查了一下才发现是 Steam 上新的一款钓鱼冒险游戏。 实际体验之后发现，这个游戏虽然名字很直接，但鱼饵、普通 Lure 、Boss Lure 和剧情道具是几套不同的系统。网上已有一些零散攻略，不过中文资料比较少，而且查某条鱼时经常需要在长表格里来回翻。 所以我做了一个独立攻略站，目前主要包括： 49 种普通鱼、Mini-boss 和剧情 Boss 的查询 按岛屿、鱼饵、价格和类型筛选 Regular / Drip 两套独立收集进度 28 个 Steam 成就清单 五座岛屿的主线流程 Boat Keys 、Boss 、存档、联机和性能问题攻略 英文和简体中文版本 鱼类查询和成就进度会保存在浏览器本地，不需要注册账号。 目前内容主要参考游戏内信息、Steam 官方更新、IGN 和社区攻略，再重新交叉整理。How to Fish 更新得比较快，所以部分价格、掉率和任务细节以后可能还会变化。 项目地址： https://gameplaybook.org/zh-cn/how-to-fish 鱼类和鱼饵查询： https://gameplaybo</content>
+    <link href="https://www.v2ex.com/t/1238748#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-01T11:45:11+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/b8c8d22925896ebca70b67edb7045a94?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/b8c8d22925896ebca70b67edb7045a94?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/b8c8d22925896ebca70b67edb7045a94?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/61f4ecbe180b4036</id>
+    <title>写在女儿上幼儿园第一天</title>
+    <updated>2026-09-01T10:06:38+00:00</updated>
+    <content>今天是 9 月 1 日.
+放在几年前,我不会关注.但今天是我女儿上幼儿园的第一天,我牵着她的手从大门进入到了教室,这一切对她来说都是新鲜的. 我小心问老师“我要走了,需要给娃打招呼吗？” 老师简单让我说下就好了. 隔着玻璃,我看她似懂非懂听着老师的话,这是我第一次感到要放手. 孩子妈,过会来了电话,问有没有哭。女儿没哭,我倒是眼睛红了. 我回想到女儿刚出生时,我对护士说的第一句话就是“宝宝手指脚指正常吗？” 父母永远希望孩子健健康康，
+其它都是锦上添花.</content>
+    <link href="https://www.v2ex.com/t/1238735#reply1" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-09-01T10:06:38+00:00</published>
+    <media:group>
+      <media:content url="https://picui.ogmua.cn/s1/2026/09/01/6a96a35f8702d.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://picui.ogmua.cn/s1/2026/09/01/6a96a35f8702d.webp"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://picui.ogmua.cn/s1/2026/09/01/6a96a35f8702d.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4a8bfedf38c91320</id>
+    <title>社区速递 156 | 满血全功能磁吸转换头与手机 AI 通话的真实体验</title>
+    <updated>2026-09-01T09:00:00+00:00</updated>
+    <content>除了首页时间流和侧栏的精选展位，少数派Matrix社区还有很多优秀内容因条件所限无法得到有效曝光，因此我们决定重启Matrix周报，并在此基础上添加更多社区内容、作者投稿新玩意呈现给大家。上周社区速递 ... 查看全文</content>
+    <link href="https://sspai.com/post/114078" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-09-01T09:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://rssfile.sspai.com/2026/6/30/article/831096df-1239-9d40-8cb1-c42319e8f9f3.png?imageMogr2/auto-orient/ignore-error/1" type="image/png" medium="image"/>
+      <media:thumbnail url="https://rssfile.sspai.com/2026/6/30/article/831096df-1239-9d40-8cb1-c42319e8f9f3.png?imageMogr2/auto-orient/ignore-error/1"/>
+    </media:group>
+    <dc:creator>sspai.com</dc:creator>
+    <link rel="enclosure" href="https://rssfile.sspai.com/2026/6/30/article/831096df-1239-9d40-8cb1-c42319e8f9f3.png?imageMogr2/auto-orient/ignore-error/1" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/058872838693c679</id>
+    <title>做了个网站：中国 307 城房价 / 租金 / 工资，对照国际标准</title>
+    <updated>2026-09-01T08:57:10+00:00</updated>
+    <content>做了一个纯前端小站： 中国楼市监测 👉 https://fangjia.000ooo.ooo 覆盖 307 个城市：4 个直辖市 + 全国全部地级市 + 台湾主要城市 每城三项数据：二手房挂牌均价 / 整租月租金 / 平均工资 对照三项国际标准：房价收入比 3–6 倍、租售比 1:200–300 、房租收入比 ≤30% 可缩放地图 + 城市卡片，点地图上的城市点直接看达标情况 数据每月自动核对更新一次（估算值，口径和来源见页脚） 一个有意思的发现：东北不少城市的房价已经跌到三项国际标准全达标（绿色一片），而一线城市依然 0/3 达标。 欢迎拍砖和提建议。</content>
+    <link href="https://www.v2ex.com/t/1238718#reply21" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-01T08:57:10+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/b56f/a02c/320795_xlarge.png?m=1689052560" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/b56f/a02c/320795_xlarge.png?m=1689052560"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/b56f/a02c/320795_xlarge.png?m=1689052560" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f745bcde4dedb97f</id>
+    <title>坐标 028，四川联通对家宽用户不再提供公网 IPV4 了</title>
+    <updated>2026-09-01T08:46:36+00:00</updated>
+    <content>坐标 028 ，四川联通对家宽用户不再提供公网 IPV4 了，
+影响： 1 、针对 P2P 等软件会非常的不友好，比如电驴这样涉及到可能外面才有资源的就基本上死了； 2 、有所谓的公网 IPV6 ，但是很多 IPV6 地址都无法打开访问，不知道是不是端口被封的原因； 3 、家里面的 NAS 上有文件资料，没办法访问了 ； 4 、如果单纯的科技带来便利的生活与社交这个一般情况下没影响，就怕特殊时候要用科技观看流媒体直播可能就瓦塔了； 5 、连接数腰斩，公网给 6000 ，内网只给 2000 不到。 我目前想法是看四川联通能不能申请到公网 IP ～～ 大家给点意见或者给条路子呢</content>
+    <link href="https://www.v2ex.com/t/1238716#reply3" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-09-01T08:46:36+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/12be/f9a8/108366_large.png?m=1427959491" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/12be/f9a8/108366_large.png?m=1427959491"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/12be/f9a8/108366_large.png?m=1427959491" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a09ee90491355fc0</id>
+    <title>试试我做的这个箭头解密游戏有挑战性吗？</title>
+    <updated>2026-09-01T08:04:38+00:00</updated>
+    <content>关卡难度设计的合理吗 https://arrowpuzzle.app</content>
+    <link href="https://www.v2ex.com/t/1238709#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-01T08:04:38+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/de9f/6e17/842310_xlarge.png?m=1787614646" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/de9f/6e17/842310_xlarge.png?m=1787614646"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/de9f/6e17/842310_xlarge.png?m=1787614646" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/f3851b4e1a01b4fc</id>
+    <title>写代码不一定要真的动手，要的是「写代码的感觉」，所以做了这个</title>
+    <updated>2026-09-01T08:02:45+00:00</updated>
+    <content>也不费 token ，全自动，每天打开看着，感觉心灵已经满足了。
+它兼具屏幕保护，防休眠。还带养生功能。 https://webscreen.net/zh/coding-screensaver</content>
+    <link href="https://www.v2ex.com/t/1238708#reply10" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-01T08:02:45+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/5242fc3511328b84d383eef7d3e97120?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/5242fc3511328b84d383eef7d3e97120?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/5242fc3511328b84d383eef7d3e97120?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e85a006dfa53e01a</id>
+    <title>填个名字，你就能在宇宙里拥有一个专属坐标。</title>
+    <updated>2026-09-01T07:57:03+00:00</updated>
+    <content>活动链接： https://science.nasa.gov/mission/roman-space-telescope/adopt-a-pixel/ 可以是中文名字。 NASA 这次真的把浪漫玩到宇宙里了。 罗曼空间望远镜推出了一个叫 “Adopt a Pixel” 的活动。 他们把望远镜未来拍摄的第一批深空图像，拆分成了大约 3 亿个像素点。 而你，可以免费“认领”其中一个。 操作也很简单，
+进入活动页面，
+填写你的名字和邮箱，
+系统就会随机分配一个 专属于你的宇宙像素 ，
+还会生成一张带有唯一编号的电子证书。 现在你认领的，
+可能看起来只是一个微不足道的小点。 但等到罗曼空间望远镜正式开始观测，
+完整的深空照片传回地球以后，
+你就可以找到：属于你的那一个像素，到底位于宇宙的哪里。 它可能是一片遥远星系，
+可能是一颗恒星旁边，
+也可能只是漆黑宇宙中的一束微光。 宇宙那么大，
+但从这一刻开始，
+至少有一个像素，
+是以你的名字被记住的。</content>
+    <link href="https://www.v2ex.com/t/1238706#reply12" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-09-01T07:57:03+00:00</published>
+    <media:group>
+      <media:content url="https://uu889.com/wp-content/uploads/2026/09/uu889.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://uu889.com/wp-content/uploads/2026/09/uu889.jpg"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://uu889.com/wp-content/uploads/2026/09/uu889.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c8cb990d23b30701</id>
+    <title>[开源] 独立开发创业自用的数据管理系统</title>
+    <updated>2026-09-01T07:35:17+00:00</updated>
+    <content>鉴于上一篇被老鼠屎了，重新发一贴，不配图了，开源版本只有一个后台，想要改文案 Ui 让 AI 自己改就行 PS:有功能建议当然没任何问题，无脑喷就收收吧，什么时候 V 站变的会对着一个开源项目的示例图喷 UI 和文案差了，真是第一次见。 正文： 一个独立开发者，小型 SaaS 团队，或者代理运营团队可用的 AI 数据分析和情报系统 以上这些角色大部分应该都会开发和运营十几个甚至几十个产品。这些产品的各种数据分散在分析工具、支付平台、代码仓库和云基础设施中，每次要把所有数据整体过一次，要经历很长的时间，如果想让 AI 辅助帮忙把数据整理一遍，还得花时间花心思挨个导出再丢给 AI 做分析，非常麻烦。 这就是我遇到的问题和痛点，花了很长时间给自己搞了一个系统来解决这些问题。最近有朋友也有类似的痛点，就把这个项目开源了，并给这个项目命名为 Dashloom 。 Dashloom 会把上述多个数据源的数据标准化到统一的证据层，可以作为统一的数据大盘查看和分析数据，又可以通过 Agent 的能力为数据提供分析洞察，行动建议，定期报告，并且还能通过安装各种 skill 来丰富 agent 的能力。 </content>
+    <link href="https://www.v2ex.com/t/1238696#reply9" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-01T07:35:17+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/83b7/1955/111458_xlarge.png?m=1767332478" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/83b7/1955/111458_xlarge.png?m=1767332478"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/83b7/1955/111458_xlarge.png?m=1767332478" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/506894956a4ffcda</id>
+    <title>线下活动 | 全新 iPhone 发布在即，来与少数派一起看 Apple 发布会</title>
+    <updated>2026-09-01T07:18:43+00:00</updated>
+    <content>北京时间9月10日凌晨，Apple一年一度的秋季特别活动即将拉开帷幕，我们会在Keynote讲演环节中见到新一年度的iPhone、AppleWatch等多个新品。除了备受期待的iPhone18Pro系 ... 查看全文</content>
+    <link href="https://sspai.com/post/114071" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-09-01T07:18:43+00:00</published>
+    <media:group>
+      <media:content url="https://rssfile.sspai.com/2026/9/1/article/e0307cb3-3cb7-ccf3-a01a-41d8c01848d0.jpeg?imageMogr2/auto-orient/ignore-error/1" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://rssfile.sspai.com/2026/9/1/article/e0307cb3-3cb7-ccf3-a01a-41d8c01848d0.jpeg?imageMogr2/auto-orient/ignore-error/1"/>
+    </media:group>
+    <dc:creator>sspai.com</dc:creator>
+    <link rel="enclosure" href="https://rssfile.sspai.com/2026/9/1/article/e0307cb3-3cb7-ccf3-a01a-41d8c01848d0.jpeg?imageMogr2/auto-orient/ignore-error/1" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3b12666ba9bf408b</id>
+    <title>joplin 切到 obsidian, ai code 撸了一个 todo note</title>
+    <updated>2026-09-01T07:07:11+00:00</updated>
+    <content>一直在用 joplin, 最近切到 obsidian, 用着蛮好, 但 joplin 上有个 todo note 的使用体验, 左侧的文件树里允许勾选 note 级别的 todo 完成操作, 在做 todo 管理时用习惯了, 切到 obsidian 想找个类似体验的, 搜到的差不多都是基于是 note 内的 todo 操作. 花了几天时间 ai 撸了一个版本, 蛮好, 用着还成, 插件市场里搜索 todo note 安装启用, 欢迎体验提意见. 基本功能尽量复刻默认文件树, 但给 note 增加了 todo 勾选展示, 且展示的时候, 同目录内, 勾选了的 note 一定是排在 未勾选的 note 的下面 本质上是编辑 note 属性, 增加了一个 todo-note-completed 属性 并做渲染展示 插件地址: https://community.obsidian.md/plugins/todo-note github: https://community.obsidian.md/plugins/todo-note</content>
+    <link href="https://www.v2ex.com/t/1238685#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-01T07:07:11+00:00</published>
+    <media:group>
+      <media:content url="https://i.imgur.com/R3fSGjs.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://i.imgur.com/R3fSGjs.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.imgur.com/R3fSGjs.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/363693050bdfd4cd</id>
+    <title>[国庆出游] 我也是想去威海玩一圈儿，有没有什么需要避坑</title>
+    <updated>2026-09-01T07:02:42+00:00</updated>
+    <content>去过的可以说一下哪些坑吗，纯小白，之前都是家里蹲，想出去看看人头，毕竟也蹲了好多年了，没怎么出去过，没啥旅游经历</content>
+    <link href="https://www.v2ex.com/t/1238680#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-09-01T07:02:42+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/d10e/2f91/660914_xlarge.png?m=1715407113" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/d10e/2f91/660914_xlarge.png?m=1715407113"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/d10e/2f91/660914_xlarge.png?m=1715407113" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/37c410b95918161d</id>
+    <title>开学季｜值得关注的官翻渠道汇总（2026）</title>
+    <updated>2026-09-01T07:00:00+00:00</updated>
+    <content>不管你是大学新生想要购置数码产品，还是即将踏入职场的毕业生租房想要添置小家电，在处于身份和环境转换的新阶段里，都可以试着把钱用在刀刃上、选择性价比更高的产品和销售渠道。 查看全文</content>
+    <link href="https://sspai.com/post/114062" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-09-01T07:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://rssfile.sspai.com/2026/9/1/article/f4b6d74e-f710-4a78-df42-03a96e978361.png?imageMogr2/auto-orient/ignore-error/1" type="image/png" medium="image"/>
+      <media:thumbnail url="https://rssfile.sspai.com/2026/9/1/article/f4b6d74e-f710-4a78-df42-03a96e978361.png?imageMogr2/auto-orient/ignore-error/1"/>
+    </media:group>
+    <dc:creator>sspai.com</dc:creator>
+    <link rel="enclosure" href="https://rssfile.sspai.com/2026/9/1/article/f4b6d74e-f710-4a78-df42-03a96e978361.png?imageMogr2/auto-orient/ignore-error/1" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/900a6d69b2370495</id>
+    <title>AI 半天自动实现的主流网站视图无水印提取</title>
+    <updated>2026-09-01T06:57:51+00:00</updated>
+    <content>https://catsapi.com/labs/media-parser 只能说 AI 还是太强大了。 只把需求告诉他，自己去 github 搜文章，自动实现，当然老规矩是 DeepseekV4 开发初版，gpt5.6-sol 进行完善。 直接让 5.6-sol 开干就是日常 cyberabuse.
+咱也不知道 他的内置审查到底是什么规范，直接干不给干，在原本基础上完善就给干。</content>
+    <link href="https://www.v2ex.com/t/1238678#reply4" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-01T06:57:51+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/ad46/f742/667181_xlarge.png?m=1788254662" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/ad46/f742/667181_xlarge.png?m=1788254662"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/ad46/f742/667181_xlarge.png?m=1788254662" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c8dd00996484f335</id>
+    <title>vibe coding 了一个网页游戏，《修真门派掌门路》</title>
+    <updated>2026-09-01T06:45:49+00:00</updated>
+    <content>https://zhangmenlu.pages.dev/</content>
+    <link href="https://www.v2ex.com/t/1238676#reply5" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-01T06:45:49+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/fdd4f6627641e184263904d54efdb6ea?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/fdd4f6627641e184263904d54efdb6ea?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/fdd4f6627641e184263904d54efdb6ea?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/c347a743c7dd53a6</id>
+    <title>上线了一个：全球 AI 动态简报网站，消息来自 X 一手，支持 TG 频道订阅</title>
+    <updated>2026-09-01T06:16:00+00:00</updated>
+    <content>消息来自 X 官方渠道，如果您想快速了解全球 AI 动态，可以试试： https://ai.xphub.dev/ 可以第一时间知道各家的新模型发布、OpenAI 下次重置、各家模型限免时间。 TG 频道地址是： https://telegram.me/ai_pulse_zh 部分截图：</content>
+    <link href="https://www.v2ex.com/t/1238662#reply6" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-01T06:16:00+00:00</published>
+    <media:group>
+      <media:content url="https://img.rss.ink/2026/09/01/hnoCiaZ3.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://img.rss.ink/2026/09/01/hnoCiaZ3.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://img.rss.ink/2026/09/01/hnoCiaZ3.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0c1392a514883ef3</id>
+    <title>智能终端哪家强</title>
+    <updated>2026-09-01T06:11:12+00:00</updated>
+    <content>我最近体验腾讯云 OrcaTerm 后，比较有感觉。
+以前处理服务器问题，流程很碎：
+打开 SSH → 想命令 → 搜答案 → 复制日志给 AI → 再复制命令回终端。
+现在我会直接在 OrcaTerm 里说需求。
+比如：
+帮我分析磁盘空间，定位占用大的目录。
+AI 会结合当前终端会话给出排查思路和命令；我确认目标机器、命令内容后再执行。终端输出和 AI 分析在同一个工作区同步展示，遇到问题可以继续追问。
+这就是我理解的「意图驱动终端」： 不是 AI 替你乱操作，而是它理解你正在处理的现场，帮你少记命令、少切工具、少复制日志。 另外，这几个点也很打动我： 活动期间 AI Token 免费用
+想体验终端 AI ，不用先为 Token 成本犹豫。用真实服务器、真实日志、真实任务跑一遍，才知道适不适合自己。 多款模型可选
+DeepSeek-V4-Pro 、Hy3 、GLM-5.2 、Kimi-K3 等模型可按任务切换，也支持添加自定义模型。
+查日志、解释报错、生成 Shell 、整理部署步骤，不必被单一模型限制。 不止电脑能用
+OrcaTerm 有 Web 、桌面客户端和微信小程序。
+电脑前</content>
+    <link href="https://www.v2ex.com/t/1238658#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-09-01T06:11:12+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/6431b8b444aed07136e37d5e5869c9b5?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/6431b8b444aed07136e37d5e5869c9b5?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/6431b8b444aed07136e37d5e5869c9b5?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/5574c6e5cc4bea6e</id>
     <title>有人试过反代出来阿里云内网才可以用的 docker 镜像吗</title>
@@ -209,51 +508,6 @@
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/92069695917ae73a953ecdf233477237?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/815865f27176c6c9</id>
-    <title>做了一个指数投资相关的网站，有兴趣的朋友可以试用下</title>
-    <updated>2026-09-01T02:07:46+00:00</updated>
-    <content>做了一个指数投资相关的网站，主要是和 ETF 相关的 网址： https://whatsid.me 注册邀请码：ETF150 ，该邀请码注册送六个月会员 欢迎试用，有任何问题都可以向我反馈</content>
-    <link href="https://www.v2ex.com/t/1238577#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-01T02:07:46+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/ae21a1e131420c5302e612032b83b34b?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/ae21a1e131420c5302e612032b83b34b?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/ae21a1e131420c5302e612032b83b34b?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/24159c760fc6179e</id>
-    <title>做了一个室内设计 AI 小工具，支持基于现实照片生成和精细化编辑，欢迎大家体验！</title>
-    <updated>2026-09-01T01:57:24+00:00</updated>
-    <content>最近开发上线了一个室内设计的 AI 工具 AI Bathroom Design ，主要想解决大家在做房间改造、选择软装风格时，看传统 3D 效果图门槛高、且普通 AI 渲染图无法后期微调的痛点。 项目目前已支持浴室、客厅、卧室、厨房等多种常见空间的生成与设计。 核心功能与特点： 基于真实照片渲染 ：上传现有房间的实拍图，AI 会保留基础结构并重新生成不同风格的设计效果。 多风格与氛围切换 ：内置了多种装修风格（如现代极简、北欧、复古等）以及不同的灯光氛围搭配。 局部精细化编辑 ：在生成初步效果图后，支持对局部细节进行二次修改和编辑，避免“一键生成不满意只能重来”的情况。 产品目前还在持续优化中，感兴趣的朋友可以去 AI Bathroom Design 体验一下。非常欢迎大家试用并提出真实的使用反馈或建议！</content>
-    <link href="https://www.v2ex.com/t/1238575#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-01T01:57:24+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/5957/cd4f/692469_xlarge.png?m=1718283966" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/5957/cd4f/692469_xlarge.png?m=1718283966"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/5957/cd4f/692469_xlarge.png?m=1718283966" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/bd8636dcc3ef2fc1</id>
-    <title>复刻了几个传统棋类游戏</title>
-    <updated>2026-09-01T01:51:54+00:00</updated>
-    <content>象棋 象棋 ： 在线玩 国际象棋 国际象棋 ： 在线玩 五子棋 五子棋 ： 在线玩 黑白棋 黑白棋 ： 在线玩</content>
-    <link href="https://www.v2ex.com/t/1238571#reply7" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-01T01:51:54+00:00</published>
-    <media:group>
-      <media:content url="https://raw.githubusercontent.com/liriliri/tinker-games/master/packages/tinker-chinese-chess/screenshot.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://raw.githubusercontent.com/liriliri/tinker-games/master/packages/tinker-chinese-chess/screenshot.png"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://raw.githubusercontent.com/liriliri/tinker-games/master/packages/tinker-chinese-chess/screenshot.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/4cf6116e920cee18</id>
     <title>中秋国庆中间只需要请 3 天假就可以凑足 13 天超长假期</title>
     <updated>2026-09-01T01:48:32+00:00</updated>
@@ -284,36 +538,6 @@
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/f1d762b2bef8bcae63293ab29dbcb996?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/58c4ff2cb56ff6f7</id>
-    <title>开源了一个 JetBrains IDE 使用的插件，方便 agent 工具对话中使用，大家自取</title>
-    <updated>2026-09-01T01:39:33+00:00</updated>
-    <content>https://github.com/junwindxqw/jetbrains_copy_path_tool</content>
-    <link href="https://www.v2ex.com/t/1238566#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-01T01:39:33+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/1a96/f8b8/513805_large.png?m=1788226763" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/1a96/f8b8/513805_large.png?m=1788226763"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/1a96/f8b8/513805_large.png?m=1788226763" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/4311a3efe974c6e7</id>
-    <title>最近自己做了一个 AI 产品推广网站，主要是给独立开发者用的。</title>
-    <updated>2026-09-01T01:30:30+00:00</updated>
-    <content>平时辛辛苦苦做个 AI 项目，最难的往往不是开发，而是做出来没人知道。 所以搞了这个网站，大家可以免费提交自己的 AI 产品，多个曝光渠道总比没有强。 目前刚上线，也欢迎大家来提交产品、提提意见，一起把它慢慢做起来。 地址： https://ai.wenjingxiezuo.com/</content>
-    <link href="https://www.v2ex.com/t/1238564#reply25" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-01T01:30:30+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/3a78/8bc0/700638_xlarge.png?m=1757502063" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/3a78/8bc0/700638_xlarge.png?m=1757502063"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/3a78/8bc0/700638_xlarge.png?m=1757502063" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/e97140191ade108d</id>
     <title>这里有一个：躺平计算器</title>
     <updated>2026-09-01T01:23:42+00:00</updated>
@@ -329,21 +553,6 @@
     <link rel="enclosure" href="https://picui.ogmua.cn/s1/2026/09/01/6a962749dcd51.webp" type="image/webp" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/da33ab75380a0512</id>
-    <title>头脑风暴</title>
-    <updated>2026-09-01T00:55:57+00:00</updated>
-    <content>有没有好的想法，一块做一个开源好玩的东西，AI 时代降低了开发门槛，凸显了创意的高度，对于常年深耕软硬件领域的我来说，思维还是比较受限，希望大家能给一些思维冲击</content>
-    <link href="https://www.v2ex.com/t/1238548#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-01T00:55:57+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/a6dc1a87bd27fc34ba1a1514ed510388?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/a6dc1a87bd27fc34ba1a1514ed510388?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/a6dc1a87bd27fc34ba1a1514ed510388?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/3194852422178a0c</id>
     <title>派早报：OpenClaw 推出 2.0 版本更新，网易 CC 直播正式停运等</title>
     <updated>2026-09-01T00:17:20+00:00</updated>
@@ -357,36 +566,6 @@
     </media:group>
     <dc:creator>sspai.com</dc:creator>
     <link rel="enclosure" href="https://rssfile.sspai.com/2026/9/1/article/a56bec00-d0a8-6ce1-a6c0-e4433a911dde.png?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/fe77bec5223c5eb3</id>
-    <title>做了一个免费的电影随机推荐工具，求拍砖！</title>
-    <updated>2026-09-01T00:01:53+00:00</updated>
-    <content>新人上手第三个小工具：电影随机推荐工具 最近总是跟对象一起找电影，翻了几十页都找不到想看的内容，最终浪费了大量时间，还没看到想看的 所以灵机一动，想到能不能做一个随机电影推荐工具？选好自己想看的类别和年份，直接让 AI 自己去推荐一部电影打开即看？说做就做，结果搜索发现，已经有不少同类的工具。所以自己也试着参照已有的工具，做了这些功能： 1 、连接 TMDB 的数据库获取电影数据（大概有 100 万部电影），经过 AI 筛选后每次抽取的池子大概是 5 万左右。 2 、除了一般我们看到电影平台里面有的筛选项以外，还设置了一些快捷筛选，专治选择困难，懒人的福音！（比如时长限制在 2 小时内、TMDB 用户精选、喜剧/惊悚/合家欢快捷筛选等） 3 、转盘动效 4 、能直观显示可观看的流媒体平台，不用再去到处找资源。 做完基础功能以后，我又想到，还有一个很有意思的功能可以未来加上：用自然语言描述一部电影，让 AI 去匹配电影。这个功能 coming soon ，即将上线，敬请期待！ 工具目前完全免费，不用登录。考虑到数据库语言和潜在的用户群体，目前还只有 US 英文，多语言需要后续慢慢迭代。 </content>
-    <link href="https://www.v2ex.com/t/1238539#reply8" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-01T00:01:53+00:00</published>
-    <media:group>
-      <media:content url="https://i.v2ex.co/J8cbpmuw.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.v2ex.co/J8cbpmuw.png"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://i.v2ex.co/J8cbpmuw.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/a497b5547b2be866</id>
-    <title>做了一个免费的在线 Grid Maker，给画画/临摹用的</title>
-    <updated>2026-08-31T18:40:50+00:00</updated>
-    <content>最近做了个小工具： Art Grid Maker 主要是给画画、临摹的时候给参考图片加网格。上传图片后可以调整行列数、颜色、线宽、透明度等，然后导出 PNG / JPG / PDF 。 图片处理都在浏览器本地完成，不会上传服务器。 除了 Grid Maker ，还顺手做了一些绘画相关的小工具，比如比例计算、可打印网格、透视网格、Worksheet Maker 等。 目前还在持续完善中，欢迎大家体验，有任何建议或者发现 bug 都可以告诉我 🙏 https://artgridmaker.com/</content>
-    <link href="https://www.v2ex.com/t/1238531#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-31T18:40:50+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/b372/492f/746548_xlarge.png?m=1788201644" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/b372/492f/746548_xlarge.png?m=1788201644"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/b372/492f/746548_xlarge.png?m=1788201644" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/95bb8aa09e44476b</id>
@@ -468,21 +647,6 @@ ServerIP_Address=nearu.fun
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/eabe4255e4a5d53c4b123d4bf1295f82?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/aa99c5c177d872a3</id>
-    <title>[开源] 我开源了独立开发创业自用的数据管理系统</title>
-    <updated>2026-08-31T14:03:37+00:00</updated>
-    <content>一个独立开发者，小型 SaaS 团队，或者代理运营团队可用的 AI 情报系统。 以上这些角色大部分应该都会开发和运营十几个甚至几十个产品。这些产品的各种数据分散在分析工具、支付平台、代码仓库和云基础设施中，每次要把所有数据整体过一次，要经历很长的时间，如果想让 AI 辅助帮忙把数据整理一遍，还得花时间花心思挨个导出再丢给 AI 做分析，非常麻烦。 这就是我遇到的问题和痛点。于是我花了很长时间给自己搞了一个系统来解决这些问题，并且慢慢的打磨了很长时间，最近有朋友也有类似的痛点，于是我又花了一段时间，把这个项目开源了，并给这个项目命名为 Dashloom 。 Dashloom 会把上述多个数据源的数据标准化到统一的证据层，然后 Dashloom Agent 先通过确定性指标和信号雷达找出值得关注的变化，再让你自己的 OpenAI 兼容模型进行分析，生成带证据引用的洞察、行动建议和定期报告。 又可以作为统一的数据大盘查看和分析数据，又可以通过 Agent 的能力为数据提供分析洞察，行动建议，定期报告，并且还能通过安装各种 skill 来丰富 agent 的能力。 支持多个产品的数据隔离，并提</content>
-    <link href="https://www.v2ex.com/t/1238512#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-31T14:03:37+00:00</published>
-    <media:group>
-      <media:content url="https://i.v2ex.co/7wi75Uew.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.v2ex.co/7wi75Uew.png"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://i.v2ex.co/7wi75Uew.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/e6082a783c472ced</id>
     <title>microduck 这个如何在国内购买？</title>
     <updated>2026-08-31T13:59:19+00:00</updated>
@@ -496,101 +660,6 @@ ServerIP_Address=nearu.fun
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/1e0ed085b2167556443e5619b820ac59?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/1122a39cca4d6a8c</id>
-    <title>做了个把多人录音按说话人拆成独立音轨的工具</title>
-    <updated>2026-08-31T13:30:17+00:00</updated>
-    <content>最近做了一个小工具 Seply ，主要解决多人录音里的说话人分离问题。 这里的“分离”不是只在文字稿里标记 Speaker 1 、Speaker 2 ，而是上传一段播客、采访或者会议录音后，实际生成每位说话人的独立音轨，并且保持和原录音的时间轴对齐，方便后续剪辑、转写或者单独处理某个人的声音。 最开始做这个功能，是因为我发现很多 diarization 工具只能告诉你“谁在什么时候说话”，但如果想真正拿到每个人的音频，仍然需要手工剪辑。 目前主要支持： 上传音频或视频
-自动识别或手动设置说话人数
-为每位说话人生成独立 WAV 音轨
-普通对话和重叠语音两种处理模式
-另外做了带说话人和时间轴的语音转文字功能 实际做下来，最难处理的还是多人同时说话。 普通轮流对话的分离效果相对稳定，但遇到抢话、打断或者两个人同时说话时，很难做到完全干净。我后来增加了一个针对重叠语音的 Advanced 模式，效果会好一些，但处理成本也高很多。 所以现在产品里保留了两个模式： Standard：适合大多数轮流说话的播客、采访和会议
-Advanced：适合重叠说话较多、对分离质量要求更高的录音 我没有把它宣传成</content>
-    <link href="https://www.v2ex.com/t/1238504#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-08-31T13:30:17+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/64e4934dc20dfd9b52cc14fcd5b639d0?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/64e4934dc20dfd9b52cc14fcd5b639d0?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/64e4934dc20dfd9b52cc14fcd5b639d0?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/259d571e560ab75d</id>
-    <title>Nothing Phone (2) WIFI 坏了，然后拯救了十几天，最后去官网论坛求救🆘一下吧</title>
-    <updated>2026-08-31T13:23:38+00:00</updated>
-    <content>不知道是否可以解决，就怕是硬件问题。OS 一路从 4.1 - 4.0 - 3.0 - 2.0 都没有解决 WIFI 的问题，而且还把生物识别给刷坏了，应该是把注册刷没了。其它都是没有问题的，看看运气吧。</content>
-    <link href="https://www.v2ex.com/t/1238502#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-31T13:23:38+00:00</published>
-    <media:group>
-      <media:content url="https://i.imgur.com/KaXGDr2.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.imgur.com/KaXGDr2.png"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://i.imgur.com/KaXGDr2.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/c41ed3dcaab9e75c</id>
-    <title>解决 ssh 22 端口被频繁攻击的答案：用 IPV6</title>
-    <updated>2026-08-31T11:57:10+00:00</updated>
-    <content>一.环境： 家里的路由器，公司的路由器，自建服务虚拟机等…… 我经常会使用 ssh 远程管理，又不喜欢更改 22 端口，因为有些软件更改太麻烦，尤其手机端。 二.问题： 虽然已经关闭密码登录，改为密钥登陆，每天被频繁尝试用户名密码至少几百次，看得人心烦，不怕贼偷就怕贼惦记…… 三.曾经用过的方式： 1.禁止 PING,有点效果但不明显，并且自己使用时也很烦，比如简单看一下 ping 的速度。 2.改端口，不能完全解决，如果扫描还是能找到 ssh 端口。 3.更改 ssh 服务的返回提示，开放的系统可以改，但是路由器这类设备没法改，并且也不能完全解决。 4.做登录失败屏蔽 ip ，不完美，至少要失败几次才记录 IP ，持续试验了几个月，路由器里面的 ip 黑名单几百个堆，攻击次数还是没减少，日志里面还是一堆尝试密码的内容。 四.解决 后来突发奇想干脆用 IPV6 ，用 ddns 脚本把二级域名指向到 ipv6 地址。 目前至少三天会重启设备，IPV6 地址会重新获取。 现在所有的设备的日志都干干净净，看起来心情愉悦，强迫症患者的福音。 手机网络是肯定有 IPV6 的！ 五.不适用 如果你</content>
-    <link href="https://www.v2ex.com/t/1238491#reply18" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-31T11:57:10+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/903e/3d25/33972_large.png?m=1656988404" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/903e/3d25/33972_large.png?m=1656988404"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/903e/3d25/33972_large.png?m=1656988404" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/ef3317e97b5ef54d</id>
-    <title>湖南从哪里能搞到便宜的宽带</title>
-    <updated>2026-08-31T11:49:41+00:00</updated>
-    <content>RT ， 最近媳妇给父母拉宽带，发现张家界那边宽带和北京价钱差距不小，融合套餐基本上月消费得 100 元以上了 老人在乡下住着，刚问了运营商，只有电信还有插口，移动和联调的都插满了，因此只能选择电信的了。 v 友们，请问从哪里可以搞到便宜的电信宽带(最好办个新卡，弄融合套餐）， 对速率倒没要求。</content>
-    <link href="https://www.v2ex.com/t/1238489#reply8" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-31T11:49:41+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/0781/ce4c/535086_large.png?m=1665763629" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/0781/ce4c/535086_large.png?m=1665763629"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/0781/ce4c/535086_large.png?m=1665763629" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/cd569ed7c9cec5ea</id>
-    <title>一个在测试阶段的有趣新论坛</title>
-    <updated>2026-08-31T11:40:26+00:00</updated>
-    <content>还在测试阶段，整体还算清新。 https://upsns.com</content>
-    <link href="https://www.v2ex.com/t/1238487#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-31T11:40:26+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.nodeimage.com/i/EtGNWIf76xCXtHxHSFAXbdqudp7ybWOa.webp" type="image/webp" medium="image"/>
-      <media:thumbnail url="https://cdn.nodeimage.com/i/EtGNWIf76xCXtHxHSFAXbdqudp7ybWOa.webp"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.nodeimage.com/i/EtGNWIf76xCXtHxHSFAXbdqudp7ybWOa.webp" type="image/webp" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/2b2f7147ec1e6471</id>
-    <title>箭扣长城一人行</title>
-    <updated>2026-08-31T11:17:46+00:00</updated>
-    <content>心心念念几周了，周末独自去爬了趟箭扣长城。 被野长城的原始风貌彻底征服了。 但原始也意味着危险，接近垂直的攀升和下降，小道旁边的悬崖，随时可能落下的碎石，还有在城墙石上晒太阳的蛇🐍... 免责声明：本贴为体验分享，不构成推荐。野外出行具有自然风险，自愿参与，风险自担。</content>
-    <link href="https://www.v2ex.com/t/1238482#reply5" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-08-31T11:17:46+00:00</published>
-    <media:group>
-      <media:content url="https://i.imgur.com/9PiAa5A.jpeg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://i.imgur.com/9PiAa5A.jpeg"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://i.imgur.com/9PiAa5A.jpeg" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b9e3a0ffdccd5bcb</id>
@@ -919,36 +988,6 @@ Advanced：适合重叠说话较多、对分离质量要求更高的录音 我�
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/3a18cec6bf6fc91d8ba7ed64fbdc2395?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/453fd86a316f6886</id>
-    <title>来自 1997 年的迷你笔记本电脑，东芝 Libretto 50M 怀旧手记</title>
-    <updated>2026-08-27T03:01:42+00:00</updated>
-    <content>Matrix首页推荐Matrix是少数派的写作社区，我们主张分享真实的产品体验，有实用价值的经验与思考。我们会不定期挑选Matrix最优质的文章，展示来自用户的最真实的体验和观点。文章代表作者个人观点 ... 查看全文</content>
-    <link href="https://sspai.com/post/113222" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-08-27T03:01:42+00:00</published>
-    <media:group>
-      <media:content url="https://rssfile.sspai.com/2026/08/08/bd17ee4bd8db613c1fa3139eafeaffc3.jpg?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://rssfile.sspai.com/2026/08/08/bd17ee4bd8db613c1fa3139eafeaffc3.jpg?imageMogr2/auto-orient/format/webp/ignore-error/1"/>
-    </media:group>
-    <dc:creator>sspai.com</dc:creator>
-    <link rel="enclosure" href="https://rssfile.sspai.com/2026/08/08/bd17ee4bd8db613c1fa3139eafeaffc3.jpg?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/465841fc6f056f58</id>
-    <title>派早报：Apple 调整妙控键盘的键帽符号、闪迪推出宝可梦纪念款产品等</title>
-    <updated>2026-08-26T23:33:04+00:00</updated>
-    <content>OpenAI 发布 ChatGPT Admin 插件、Commodore 推出《赛博朋克 2077》主题复古电脑等。 查看全文</content>
-    <link href="https://sspai.com/post/113873" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-08-26T23:33:04+00:00</published>
-    <media:group>
-      <media:content url="https://rssfile.sspai.com/26/08/2026/article/9ea6df87-d79f-457e-2294-f55a56acce4c.jpeg?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://rssfile.sspai.com/26/08/2026/article/9ea6df87-d79f-457e-2294-f55a56acce4c.jpeg?imageMogr2/auto-orient/format/webp/ignore-error/1"/>
-    </media:group>
-    <dc:creator>sspai.com</dc:creator>
-    <link rel="enclosure" href="https://rssfile.sspai.com/26/08/2026/article/9ea6df87-d79f-457e-2294-f55a56acce4c.jpeg?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/be68048d8490d681</id>
     <title>有做中转站的吗，求联系</title>
     <updated>2026-08-26T14:19:08+00:00</updated>
@@ -963,21 +1002,6 @@ Advanced：适合重叠说话较多、对分离质量要求更高的录音 我�
     </media:group>
     <dc:creator>V2EX Claude (superdingdang)</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/d8ff/aa34/416147_large.png?m=1625764986" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/0630053a633176a3</id>
-    <title>开学季 | 这些软件和服务的教育优惠，能帮你省下不少钱</title>
-    <updated>2026-08-26T08:25:44+00:00</updated>
-    <content>学生党到底有哪些专享福利？看这一篇就对了。 查看全文</content>
-    <link href="https://sspai.com/post/68227" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-08-26T08:25:44+00:00</published>
-    <media:group>
-      <media:content url="https://rssfile.sspai.com/9/12/2024/article/b533eda9-a82c-4c57-778c-3bbc7d9d9a2d.jpeg?imageMogr2/auto-orient/ignore-error/1" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://rssfile.sspai.com/9/12/2024/article/b533eda9-a82c-4c57-778c-3bbc7d9d9a2d.jpeg?imageMogr2/auto-orient/ignore-error/1"/>
-    </media:group>
-    <dc:creator>sspai.com</dc:creator>
-    <link rel="enclosure" href="https://rssfile.sspai.com/9/12/2024/article/b533eda9-a82c-4c57-778c-3bbc7d9d9a2d.jpeg?imageMogr2/auto-orient/ignore-error/1" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/4c3cabbded55d444</id>
