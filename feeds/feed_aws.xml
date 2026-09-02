@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://aws.amazon.com/blogs/</id>
   <title>AWS</title>
-  <updated>2026-09-01T21:17:29.885571+00:00</updated>
+  <updated>2026-09-02T00:29:22.590148+00:00</updated>
   <author>
     <name>Amazon Web Services</name>
   </author>
@@ -13,11 +13,56 @@
   <logo>https://aws.amazon.com/favicon.ico</logo>
   <subtitle>AWS announcements, selected blogs, re:Post articles, and AWS CLI v2 releases.</subtitle>
   <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/d028480c2afeffdd</id>
+    <title>Best Practices for Long-Term System Table Retention in Amazon Redshift with Amazon S3 Tables</title>
+    <updated>2026-09-01T23:46:59.743000+00:00</updated>
+    <content>Amazon Redshift system tables capture critical operational signals - query executed, every connection made, every workload pattern. Until recently, this data was retained for only 7 days in-cluster, making long-term observability, compliance auditing, and performance trend analysis difficult without custom workarounds. This article guides database administrators and data engineers through implementing and optimizing the new system table integration with Amazon S3 Tables for extended retention</content>
+    <link href="https://repost.aws/articles/ARBnDzPyYWQnGcysrdD_68gg/best-practices-for-long-term-system-table-retention-in-amazon-redshift-with-amazon-s3-tables" rel="alternate"/>
+    <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
+    <published>2026-09-01T23:46:59.743000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
+    <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/9fcfef48a6804664</id>
+    <title>Amazon Quick now lets you build custom apps with natural language  -</title>
+    <updated>2026-09-01T21:37:00+00:00</updated>
+    <content>Now generally available, Amazon Quick lets you build custom applications by simply describing them in natural language. Create project trackers, customer dashboards, and training portals in minutes instead of months. Whether you're a product manager, finance lead, HR partner, or ops analyst, you can now turn ideas into fully functional apps without writing any code. Tell Quick what you need, and it builds a live, connected application with real-time data from your existing business systems. Quic</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-quick-custom-apps-natural-language/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-01T21:37:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/2b0ab8945974e63a</id>
+    <title>AWS Deadline Cloud now supports sharing job bundles</title>
+    <updated>2026-09-01T20:16:00+00:00</updated>
+    <content>AWS Deadline Cloud now supports sharing job bundles, giving teams a simple way to distribute and reuse render job templates without manual file distribution. Deadline Cloud is a fully managed service that helps teams run compute-intensive workloads in the cloud for visual effects, animation, product design, simulation, and gaming. Job bundles define the jobs you submit to Deadline Cloud, including the job template, parameters, and asset references. Previously, sharing a bundle with teammates mea</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/09/deadline-cloud/job-bundle-sharing" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-01T20:16:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/fc4fe7280ad4281f</id>
     <title>Amazon CloudWatch Database Insights now supports self-managed PostgreSQL</title>
     <updated>2026-09-01T19:00:00+00:00</updated>
     <content>Today, AWS announces support for self-managed PostgreSQL databases in Amazon CloudWatch Database Insights. Using CloudWatch Database Insights, you can now monitor your self-managed PostgreSQL instances running on Amazon EC2, alongside Amazon RDS and Amazon Aurora, to give you a complete view of your database fleet in a single console. Amazon CloudWatch Database Insights is a database observability solution that provides a curated experience to help you monitor database fleet health, diagnose iss</content>
     <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/database-insights-self-managed-postgresql/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-01T19:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/8288e6708cd1d935</id>
+    <title>Amazon Kinesis Data Streams now supports a dry run feature to validate API requests</title>
+    <updated>2026-09-01T19:00:00+00:00</updated>
+    <content>Amazon Kinesis Data Streams now supports a dry run feature to check whether an API request would succeed without executing the operation. Customers can now set the new optional parameter ‘DryRun’ to true in their API requests to validate permissions before interacting with a stream in production. Previously, customers had no safe way to test whether their application had the correct permissions to access a stream. They would often send a request engineered to fail after checking permissions, suc</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-kinesis-data-streams-api/" rel="alternate"/>
     <category term="AWS What's New" label="AWS What's New"/>
     <published>2026-09-01T19:00:00+00:00</published>
     <dc:creator>AWS What's New</dc:creator>
@@ -36,6 +81,16 @@
     </media:group>
     <dc:creator>AWS CLI v2 Changelog</dc:creator>
     <link rel="enclosure" href="https://opengraph.githubassets.com/579bcf0b466cb66869736479f50b04690d162ba4d7016486e39dae6cc27906f5/aws/aws-cli" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/c8e7e3c37923ca5b</id>
+    <title>AWS Backup now supports protecting more than 1,000 Amazon S3 buckets per account</title>
+    <updated>2026-09-01T18:00:00+00:00</updated>
+    <content>AWS Backup now supports backup and restore of more than 1,000 Amazon S3 buckets per account, matching the Amazon S3 bucket quota configured for your account. Previously, AWS Backup for Amazon S3 supported up to 1,000 buckets per account. With this launch, AWS Backup supports backing up all general purpose buckets in your account. Existing backup plans and configurations continue to work with no changes required if you are using default AWS Backup managed policies. For details on the required per</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/09/aws-backup-more-than-1000-s3-buckets/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-01T18:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/2c96284937530fee</id>
@@ -1573,26 +1628,6 @@
     <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/1425590b7e6317fb</id>
-    <title>Amazon EKS now supports certificate authority (CA) rotation with automated lifecycle management</title>
-    <updated>2026-08-20T18:30:00+00:00</updated>
-    <content>Today, Amazon Elastic Kubernetes Service (Amazon EKS) announced certificate authority (CA) rotation, enabling customers to rotate their cluster's CA through a managed lifecycle with automated safeguards. Each Amazon EKS cluster has its own CA that allows encrypted connections to the cluster's Kubernetes API, and now you can rotate the CA before it expires to ensure your cluster remains operational and secure. Amazon EKS clusters created since launch in 2018 have CAs with a 10-year validity perio</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-eks-certificate-authority-ca-rotation-automated-lifecycle-management" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T18:30:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/3fbfe3bdc5fdc4fb</id>
-    <title>Amazon CloudFront now supports Origin Access Control (OAC) for Amazon S3 Multi-Region Access Points</title>
-    <updated>2026-08-20T18:30:00+00:00</updated>
-    <content>Starting today, customers can protect their origins using Amazon S3 Multi-Region Access Points (MRAP) by using CloudFront Origin Access Control (OAC) to only allow access from designated CloudFront distributions. Customers use Amazon S3 MRAP with CloudFront to serve content from a single global endpoint that automatically routes to the closest available replicated bucket across regions during a cache miss, improving performance and resilience for globally distributed users. Previously, customers</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-cloudfront-oac-s3-mrap" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T18:30:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/1041d24cda038e11</id>
     <title>AWS CLI 2.36.28</title>
     <updated>2026-08-20T18:12:51+00:00</updated>
@@ -1606,26 +1641,6 @@
     </media:group>
     <dc:creator>AWS CLI v2 Changelog</dc:creator>
     <link rel="enclosure" href="https://opengraph.githubassets.com/583f8c845f002bb12fac4491535c40dcdc8e6bbbcaea6f6089da16130e8dcf0a/aws/aws-cli" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/e1374fa49df317b7</id>
-    <title>AWS Partner Central agents MCP Server now supports OAuth with AWS Sign-In</title>
-    <updated>2026-08-20T18:02:00+00:00</updated>
-    <content>AWS partners can now access AWS Partner Central agents from tools they already use, such as Amazon Quick and Kiro, using OAuth through AWS Sign-In. Partners can authorize agent access with their existing AWS identities, sign-in methods, IAM permissions, and governance controls without installing or maintaining additional authentication software. Previously, AWS Partners needed to set up an MCP proxy with SigV4 credentials to access Partner Central agents from their existing tools, or sign in to </content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/8/aws-partner-central-mcp/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T18:02:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/7072efce70194d72</id>
-    <title>ARC Region switch adds Amazon RDS Switchover Read Replica execution block</title>
-    <updated>2026-08-20T17:45:00+00:00</updated>
-    <content>Today, we are launching the Amazon RDS Switchover Read Replica execution block in ARC Region switch , which automates recovery orchestration for Amazon RDS databases running Oracle Data Guard in multi-Region workloads. Amazon Application Recovery Controller (ARC) Region switch helps customers orchestrate the failover of their multi-Region applications to achieve a bounded recovery time in the event of a Regional impairment. To recover an Amazon RDS database running Oracle Data Guard during a Reg</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/region-switch-rds-switchover-execution-block/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T17:45:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/d7cf70114e462a28</id>
@@ -2686,21 +2701,6 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     </media:group>
     <dc:creator>AWS News Blog</dc:creator>
     <link rel="enclosure" href="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/08/03/IMG_2179-225x300.jpg" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/8dfde2f40747f6cb</id>
-    <title>Why raising socket.receive.buffer.bytes on Amazon MSK does not improve producer throughput</title>
-    <updated>2026-08-03T08:39:47.980000+00:00</updated>
-    <content>You raise `socket.receive.buffer.bytes` on your Amazon MSK brokers to 1 MiB or 2 MiB, but the TCP send window your producers observe and their throughput stay the same. This article explains why the broker OS kernel's `SO_RCVBUF` ceiling causes this, how to confirm it with `ss`, and how to resolve it with kernel auto-tuning. It is written for engineers running producers that push large volumes to MSK and cannot fill the available link capacity.</content>
-    <link href="https://repost.aws/articles/ARdTYOsEMRRWGjtcuNEH2UAg/why-raising-socket-receive-buffer-bytes-on-amazon-msk-does-not-improve-producer-throughput" rel="alternate"/>
-    <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
-    <published>2026-08-03T08:39:47.980000+00:00</published>
-    <media:group>
-      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
-    </media:group>
-    <dc:creator>AWS re:Post Articles</dc:creator>
-    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/d3cba36faeed7e3d</id>
