@@ -36,6 +36,8 @@ real ``<title>`` / ``<meta description>`` and sometimes ``article:published_time
                         no <lastmod>, per-page article:published_time)
   * Mem0 Research       https://mem0.ai/research     (benchmark/research landing page)
   * Claude Skills Hub   https://claudeskills.info    (/blog posts via sitemap_blog.xml)
+  * OtterlyAI Blog      https://otterly.ai/blog      (/blog posts via Yoast post sitemap)
+  * Flavio Longato      https://www.longato.ch/blog  (GEO/LLM posts via Yoast post sitemap)
 
 Server-rendered listing scrape (no native feed):
   * MCP.so Feed         https://mcp.so/feed
@@ -137,6 +139,8 @@ _SKILLSLLM_NEWS_DATE_RE = re.compile(r"/news/ai-news-(\d{4}-\d{2}-\d{2})")
 _AGENT_ZERO_ARTICLE_RE = re.compile(
     r"^https://www\.agent-zero\.ai/p/articles/[^/?#]+/?$"
 )
+_OTTERLY_BLOG_POST_RE = re.compile(r"^https://otterly\.ai/blog/[^/?#]+/?$")
+_LONGATO_POST_RE = re.compile(r"^https://www\.longato\.ch/(?!blog/?$)[^/?#]+/?$")
 
 # Desktop Commander's sitemap also lists taxonomy/index pages under /blog/;
 # only real posts should become entries.
@@ -209,6 +213,30 @@ SOURCES = [
         "title_suffixes": (" - Agent Zero", " | Agent Zero"),
         "category": lambda loc: "agent-zero",
         "max_candidates": 40,
+    },
+    {
+        "label": "OtterlyAI Blog",
+        "sitemap": "https://otterly.ai/blog/post-sitemap.xml",
+        "include": lambda loc: bool(_OTTERLY_BLOG_POST_RE.match(loc)),
+        "slug_date_re": None,
+        "use_lastmod": True,
+        "title_suffixes": (
+            " - AI Search Visibility Blog | Insights and Data | OtterlyAI",
+            " - OtterlyAI",
+            " | OtterlyAI",
+        ),
+        "category": lambda loc: "otterly-ai-search",
+        "max_candidates": 60,
+    },
+    {
+        "label": "Flavio Longato",
+        "sitemap": "https://www.longato.ch/post-sitemap.xml",
+        "include": lambda loc: bool(_LONGATO_POST_RE.match(loc)),
+        "slug_date_re": None,
+        "use_lastmod": True,
+        "title_suffixes": (" | Flavio Longato", " - Flavio Longato"),
+        "category": lambda loc: "longato-geo",
+        "max_candidates": 50,
     },
 ]
 
@@ -291,8 +319,10 @@ NATIVE_FEEDS = [
 
 
 def doc_sources():
-    """Sources built outside the regular source declarations."""
+    """Canonical pages for sources not exposed as simple URL tuples."""
     return [
+        ("OtterlyAI Blog", "https://otterly.ai/blog/"),
+        ("Flavio Longato", "https://www.longato.ch/blog/"),
         ("Cognition Blog", COGNITION_BLOG_URL),
         ("Cognition Research", COGNITION_RESEARCH_URL),
         ("Devin Release Notes", DEVIN_RELEASE_NOTES_URL),
@@ -929,7 +959,8 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
         "Servers blog, Claude Skills Hub, Agent Zero, Hugging Face, MindStudio, "
-        "Mintlify (blog + changelog), OpenRouter, Upstash, x-cmd, "
+        "Mintlify (blog + changelog), OtterlyAI, Flavio Longato, OpenRouter, "
+        "Upstash, x-cmd, "
         "Graphify (blog + changelog), MCP.so (feed + blog), "
         "AIHubMix (blog + docs + "
         "changelog), LiteLLM (blog + releases), Glama "
