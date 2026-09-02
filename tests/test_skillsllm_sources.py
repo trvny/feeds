@@ -39,6 +39,32 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
         self.assertFalse(source["include"]("https://www.agent-zero.ai/p/articles/?utm_source=sitemap"))
         self.assertFalse(source["include"]("https://www.agent-zero.ai/p/articles/#latest"))
 
+    def test_otterly_and_longato_use_post_sitemaps(self):
+        """GEO/LLM blogs without RSS should use their dated Yoast post sitemaps."""
+        sources = {source["label"]: source for source in skillsllm.SOURCES}
+
+        otterly = sources["OtterlyAI Blog"]
+        self.assertEqual(
+            otterly["sitemap"], "https://otterly.ai/blog/post-sitemap.xml"
+        )
+        self.assertTrue(
+            otterly["include"]("https://otterly.ai/blog/is-geo-replacing-seo/")
+        )
+        self.assertFalse(otterly["include"]("https://otterly.ai/blog/"))
+
+        longato = sources["Flavio Longato"]
+        self.assertEqual(
+            longato["sitemap"], "https://www.longato.ch/post-sitemap.xml"
+        )
+        self.assertTrue(
+            longato["include"]("https://www.longato.ch/llmstxt-2026-june/")
+        )
+        self.assertFalse(longato["include"]("https://www.longato.ch/blog/"))
+
+        documented = dict(skillsllm.doc_sources())
+        self.assertEqual(documented["OtterlyAI Blog"], "https://otterly.ai/blog/")
+        self.assertEqual(documented["Flavio Longato"], "https://www.longato.ch/blog/")
+
     def test_graphify_native_feeds_are_registered(self):
         """Graphify blog and changelog should use their native upstream feeds."""
         feeds = {source[0]: source[1] for source in skillsllm.NATIVE_FEEDS}

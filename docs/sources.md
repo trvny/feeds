@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-100 feedów · 786 źródeł
+100 feedów · 789 źródeł
 
 ## Spis grup
 
@@ -111,6 +111,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.ecb.europa.eu&sz=16) ECB — blog — <https://www.ecb.europa.eu/rss/blog.html>
 - ![](https://www.google.com/s2/favicons?domain=european-union.europa.eu&sz=16) European Union — news — <https://european-union.europa.eu/node/309/rss_en>
 - ![](https://www.google.com/s2/favicons?domain=european-union.europa.eu&sz=16) European Union — priorities — <https://european-union.europa.eu/node/279/rss_en>
+- ![](https://www.google.com/s2/favicons?domain=research-and-innovation.ec.europa.eu&sz=16) European Commission — Research & Innovation — <https://research-and-innovation.ec.europa.eu/node/2/rss_en?f%5B0%5D=topic_topic%3A150>
 - ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Council of the EU — press releases — <https://news.google.com/rss/search?q=site:consilium.europa.eu&hl=en-GB&gl=GB&ceid=GB:en>
 - ![](https://www.google.com/s2/favicons?domain=www.europol.europa.eu&sz=16) Europol — news — <https://www.europol.europa.eu/cms/api/rss/news>
 - ![](https://www.google.com/s2/favicons?domain=www.euspa.europa.eu&sz=16) EUSPA — news — <https://www.euspa.europa.eu/rss.xml>
@@ -206,9 +207,11 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=groq.com&sz=16) Changelog — <https://groq.com/changelog>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) Commits atom — <https://github.com/groq/groq-changelog/commits/main.atom>
 
-### ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) SkillsLLM
+### ![](https://www.google.com/s2/favicons?domain=otterly.ai&sz=16) SkillsLLM
 `skillsllm` · [feed_skillsllm.xml](../feeds/feed_skillsllm.xml)
 
+- ![](https://www.google.com/s2/favicons?domain=otterly.ai&sz=16) OtterlyAI Blog — <https://otterly.ai/blog/>
+- ![](https://www.google.com/s2/favicons?domain=www.longato.ch&sz=16) Flavio Longato — <https://www.longato.ch/blog/>
 - ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) Cognition Blog — <https://cognition.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=cognition.com&sz=16) Cognition Research — <https://cognition.com/research>
 - ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Release Notes — <https://docs.devin.ai/release-notes/overview>
