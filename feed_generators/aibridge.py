@@ -9,8 +9,8 @@ the existing scrapers for Perplexity's Framer sites (Blog/Changelog/Research
 same parsers, separate cache, so this feed stands alone even though the
 sources overlap with feed_perplexity.xml and feed_thebatch.xml. Groq
 (blog/newsroom/changelog + groq-changelog commits) is folded in the same way
-via groq.scrape_all. MiniMax News and the PLLuM blog are scraped from
-their HTML listings.
+via groq.scrape_all. MiniMax Research/Blog, MiniMax News and the PLLuM blog are
+scraped from their HTML listings.
 
 Stability AI: plain /news?format=rss and /news/rss.xml both 301-redirect to
 the client-rendered /news-updates page, dropping the query string — but
@@ -84,6 +84,7 @@ def scrape_answer_ai(known_links):
     return [repair_answer_ai_entry(entry) for entry in entries]
 
 
+MINIMAX_BLOG_URL = "https://www.minimax.io/blog"
 MINIMAX_NEWS_URL = "https://www.minimax.io/news"
 MINIMAX_BASE_URL = "https://www.minimax.io"
 MINIMAX_DETAIL_LIMIT = 30
@@ -97,8 +98,8 @@ _MINIMAX_DATE_RE = re.compile(
     re.IGNORECASE,
 )
 _MINIMAX_LINK_RE = re.compile(
-    r"(?:https?:)?//www\.minimax\.io/news/[A-Za-z0-9][A-Za-z0-9_-]*"
-    r"|(?<![A-Za-z0-9:/])/news/[A-Za-z0-9][A-Za-z0-9_-]*"
+    r"(?:https?:)?//www\.minimax\.io/(?:news|blog)/[A-Za-z0-9][A-Za-z0-9_-]*"
+    r"|(?<![A-Za-z0-9:/])/(?:news|blog)/[A-Za-z0-9][A-Za-z0-9_-]*"
     r"(?![/A-Za-z0-9_-])"
 )
 _MINIMAX_RESERVED_SLUGS = {"page", "tag", "tags", "category", "search"}
@@ -110,13 +111,14 @@ def _minimax_title_from_slug(link):
     return title[:1].upper() + title[1:]
 
 
-def _normalize_minimax_link(href):
+def _normalize_minimax_link(href, section="news"):
     href = (href or "").split("?", 1)[0].split("#", 1)[0].rstrip("/")
-    if href.startswith("//www.minimax.io/news/"):
+    prefix = f"/{section}/"
+    if href.startswith(f"//www.minimax.io{prefix}"):
         href = "https:" + href
-    if re.match(r"^https?://www\.minimax\.io/news/", href):
+    if re.match(rf"^https?://www\.minimax\.io{re.escape(prefix)}", href):
         href = MINIMAX_BASE_URL + href.split("www.minimax.io", 1)[1]
-    elif href.startswith("/news/"):
+    elif href.startswith(prefix):
         href = MINIMAX_BASE_URL + href
     else:
         return None
@@ -204,8 +206,8 @@ def _minimax_entry(link, html, *, full_page=False, fallback_date=True):
     }
 
 
-def scrape_minimax_news(known_links):
-    html = get_html(MINIMAX_NEWS_URL)
+def _scrape_minimax_listing(known_links, listing_url, section):
+    html = get_html(listing_url)
     if not html:
         return []
 
@@ -213,25 +215,25 @@ def scrape_minimax_news(known_links):
     soup = BeautifulSoup(html, "html.parser")
     candidates = {}
     for anchor in soup.select("a[href]"):
-        link = _normalize_minimax_link(anchor.get("href", ""))
+        link = _normalize_minimax_link(anchor.get("href", ""), section)
         if link:
             candidates.setdefault(link, anchor)
 
-    # MiniMax has served the listing both with cards in HTML and with paths
-    # only in its hydrated payload. Only scan the payload fallback when the
-    # normal cards are absent; this keeps unrelated /news/* strings out of the
-    # request queue on ordinary pages.
+    # MiniMax has served listings both with cards in HTML and with paths only
+    # in its hydrated payload. Only scan the payload fallback when cards are
+    # absent, and keep candidates scoped to the requested section.
     hydration_only = not candidates
     if hydration_only:
         scan_html = html.replace("\\/", "/").replace("\\u002F", "/")
         for match in _MINIMAX_LINK_RE.finditer(scan_html):
-            link = _normalize_minimax_link(match.group(0))
+            link = _normalize_minimax_link(match.group(0), section)
             if link:
                 candidates.setdefault(link, None)
 
     if not candidates:
         logger.warning(
-            "  [MiniMax] no news entries matched; layout or rendering may have changed"
+            "  [MiniMax] no %s entries matched; layout or rendering may have changed",
+            section,
         )
         return []
 
@@ -270,20 +272,27 @@ def scrape_minimax_news(known_links):
         entry = _minimax_entry(
             link, article_html, full_page=True, fallback_date=False
         )
-        # Hydration payloads may contain utility /news/* paths. A real MiniMax
-        # news article should carry a publication date; skipping dateless pages
-        # avoids turning such utility routes into feed entries.
+        # Hydration payloads may contain utility paths. Real MiniMax articles
+        # carry a publication date, so dateless pages are ignored here.
         if entry["date"] is not None:
             entries.append(entry)
         if len(entries) >= 40:
             break
 
     if pending and not entries:
-        logger.warning("  [MiniMax] news paths found but no article pages parsed")
+        logger.warning("  [MiniMax] %s paths found but no article pages parsed", section)
         return []
 
     entries.sort(key=lambda entry: entry["date"], reverse=True)
     return entries[:40]
+
+
+def scrape_minimax_news(known_links):
+    return _scrape_minimax_listing(known_links, MINIMAX_NEWS_URL, "news")
+
+
+def scrape_minimax_blog(known_links):
+    return _scrape_minimax_listing(known_links, MINIMAX_BLOG_URL, "blog")
 
 
 # CrewClaw blog has no native feed: a static grid of /blog/<slug> cards whose
@@ -393,7 +402,7 @@ def main(full=False):
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
         "Interconnected, AI Clock, Stability AI, Bielik, Promptowy, Maistry, "
-        "Karpathy (bearblog + old blog), Transformer, MiniMax News, PLLuM, "
+        "Karpathy (bearblog + old blog), Transformer, MiniMax News/Blog, PLLuM, "
         "Perplexity (blog/changelog/research/API changelog), "
         "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
@@ -403,6 +412,7 @@ def main(full=False):
         extra_scrapers=[
             scrape_answer_ai,
             scrape_minimax_news,
+            scrape_minimax_blog,
             scrape_framer_listings,
             scrape_thebatch,
             scrape_dlai_blog,

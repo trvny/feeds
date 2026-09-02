@@ -93,6 +93,34 @@ class AiBridgeTests(unittest.TestCase):
         )
         self.assertEqual(get_html.call_count, 1)
 
+    def test_minimax_blog_scraper_parses_research_cards(self):
+        html = """
+        <main>
+          <a href="/blog/minimax-h3/">
+            <span>2026-07-31</span>
+            <h3>MiniMax H3: An Open Model Breaking the Boundaries Between Tasks and Modalities</h3>
+            <p>General-purpose omni-modal generation model.</p>
+          </a>
+          <a href="/news/company-update">Company news</a>
+        </main>
+        """
+
+        with patch.object(aibridge, "get_html", return_value=html) as get_html:
+            entries = aibridge.scrape_minimax_blog(set())
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["source"], "MiniMax")
+        self.assertEqual(
+            entries[0]["link"], "https://www.minimax.io/blog/minimax-h3"
+        )
+        self.assertEqual(
+            entries[0]["date"], datetime(2026, 7, 31, tzinfo=timezone.utc)
+        )
+        self.assertEqual(
+            entries[0]["description"], "General-purpose omni-modal generation model."
+        )
+        self.assertEqual(get_html.call_count, 1)
+
     def test_minimax_news_scraper_uses_hydration_paths_as_fallback(self):
         listing_html = r'<script>window.__next_f.push(["\/news\/minimax-agent"])</script>'
         article_html = """

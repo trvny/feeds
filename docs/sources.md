@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-100 feedów · 789 źródeł
+100 feedów · 790 źródeł
 
 ## Spis grup
 
@@ -202,6 +202,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.answer.ai&sz=16) Answer ai — <https://www.answer.ai/index.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.answer.ai&sz=16) Answer ai toolcalling — <https://www.answer.ai/posts/2026-01-20-toolcalling.html>
 - ![](https://www.google.com/s2/favicons?domain=crewclaw.com&sz=16) Crewclaw — <https://crewclaw.com/blog>
+- ![](https://www.google.com/s2/favicons?domain=www.minimax.io&sz=16) Minimax blog — <https://www.minimax.io/blog>
 - ![](https://www.google.com/s2/favicons?domain=www.minimax.io&sz=16) Minimax news — <https://www.minimax.io/news>
 - ![](https://www.google.com/s2/favicons?domain=pllum.org.pl&sz=16) Pllum blog — <https://pllum.org.pl/blog>
 - ![](https://www.google.com/s2/favicons?domain=groq.com&sz=16) Changelog — <https://groq.com/changelog>
