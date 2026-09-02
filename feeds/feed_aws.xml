@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://aws.amazon.com/blogs/</id>
   <title>AWS</title>
-  <updated>2026-09-02T11:40:58.801532+00:00</updated>
+  <updated>2026-09-02T16:50:40.880617+00:00</updated>
   <author>
     <name>Amazon Web Services</name>
   </author>
@@ -12,6 +12,31 @@
   <icon>https://aws.amazon.com/favicon.ico</icon>
   <logo>https://aws.amazon.com/favicon.ico</logo>
   <subtitle>AWS announcements, selected blogs, re:Post articles, and AWS CLI v2 releases.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/902cb5450013ff70</id>
+    <title>Best Practices for Using Apache Iceberg v3 Tables in Amazon Redshift</title>
+    <updated>2026-09-02T15:34:17.174000+00:00</updated>
+    <content>Amazon Redshift now supports Apache Iceberg v3 tables, introducing default column values, row lineage tracking, and deletion vectors. These capabilities enable more efficient schema evolution, incremental data pipelines, and faster update/delete performance for data lake workloads. This article guides data engineers and database administrators through implementing, upgrading to, and optimizing Iceberg v3 tables in Amazon Redshift.</content>
+    <link href="https://repost.aws/articles/AR-FbU3jk9T-meYeNxl1brJg/best-practices-for-using-apache-iceberg-v3-tables-in-amazon-redshift" rel="alternate"/>
+    <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
+    <published>2026-09-02T15:34:17.174000+00:00</published>
+    <media:group>
+      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
+    </media:group>
+    <dc:creator>AWS re:Post Articles</dc:creator>
+    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/a0fb5f248879d50a</id>
+    <title>AWS Lambda now supports SnapStart for container image functions</title>
+    <updated>2026-09-02T09:00:00+00:00</updated>
+    <content>Starting today, AWS Lambda supports SnapStart for functions packaged as container images , reducing startup times from several seconds to as low as sub-second. Lambda SnapStart is an opt-in capability that makes it easier for you to build highly responsive and scalable applications without provisioning resources or implementing complex performance optimizations. Customers deploy Lambda functions with container images to align with their organization's container-based deployment standards, or to </content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/07/aws-lambda-snapstart-container/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-02T09:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/07434cab9da7bbb8</id>
     <title>Intermittent session drops through a stateful firewall after enabling a second Local Gateway BGP peer on AWS Outposts</title>
@@ -133,6 +158,16 @@
     <updated>2026-09-01T14:00:00+00:00</updated>
     <content>Claude Fable 5.1 is generally available on AWS and brings Anthropic's most capable frontier model to all customers. Fable 5.1 delivers frontier intelligence for ambitious tasks across coding, scientific research, and enterprise workflows. A clear improvement over Claude Fable 5, Fable 5.1 is a step up in intelligence on the hardest reasoning tasks, providing better judgement on ambiguous work and fewer confident wrong answers. Claude Mythos 5.1, the same underlying model as Claude Fable 5.1 with</content>
     <link href="https://aws.amazon.com/about-aws/whats-new/2026/09/claude-fable-5-1-aws/" rel="alternate"/>
+    <category term="AWS What's New" label="AWS What's New"/>
+    <published>2026-09-01T14:00:00+00:00</published>
+    <dc:creator>AWS What's New</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/aws/a087d8971ffd9d5f</id>
+    <title>Claude Fable 5.1, Anthropic's new frontier model is now available on AWS GovCloud (US)</title>
+    <updated>2026-09-01T14:00:00+00:00</updated>
+    <content>Claude Fable 5.1 is generally available on Amazon Bedrock in AWS GovCloud (US) and brings Anthropic's most capable frontier model to regulated industry customers. Fable 5.1 delivers frontier intelligence for ambitious tasks across coding, scientific research, and enterprise workflows. Claude Fable 5.1 is built for long-running, high-stakes work that runs for hours and spans many applications. It can own more of a software project on its own, handling features across an entire codebase, code revi</content>
+    <link href="https://aws.amazon.com/about-aws/whats-new/2026/09/claude-fable-5-1-aws-govcloud/" rel="alternate"/>
     <category term="AWS What's New" label="AWS What's New"/>
     <published>2026-09-01T14:00:00+00:00</published>
     <dc:creator>AWS What's New</dc:creator>
@@ -1578,16 +1613,6 @@
     <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/c45845bee21a4c30</id>
-    <title>Amazon Timestream for InfluxDB now supports customer managed keys</title>
-    <updated>2026-08-20T20:00:00+00:00</updated>
-    <content>Amazon Timestream for InfluxDB now supports AWS Key Management Service (AWS KMS) customer managed keys for encrypting data at rest in InfluxDB 2 database instances, InfluxDB 2 Read Replicas, and InfluxDB 3 clusters. Customers select a symmetric AWS KMS key when creating a database resource. Timestream for InfluxDB uses the selected key to encrypt the underlying database storage for InfluxDB 2 and InfluxDB 3 resources. The key must be in the same AWS account and AWS Region as the database resourc</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-timestream-influxdb-cmk/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T20:00:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/1f375c3afc249c2f</id>
     <title>Amazon Redshift now supports concurrency scaling of streaming ingestion workloads from Amazon Kinesis data streams</title>
     <updated>2026-08-20T20:00:00+00:00</updated>
@@ -1631,16 +1656,6 @@
     </media:group>
     <dc:creator>AWS re:Post Articles</dc:creator>
     <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/a71fc8ce999b5f2f</id>
-    <title>Amazon EC2 P6-B300 instances are now available in the Asia Pacific (Seoul) Region</title>
-    <updated>2026-08-20T18:31:00+00:00</updated>
-    <content>Starting today, Amazon Elastic Cloud Compute (Amazon EC2) P6-B300 instances are available in the Asia Pacific (Seoul) Region. P6-B300 instances provide 8xNVIDIA Blackwell Ultra GPUs with 2.1 TB high bandwidth GPU memory, 6.4 Tbps EFA networking, 300 Gbps dedicated ENA throughput, and 4 TB of system memory. P6-B300 instances deliver 2x networking bandwidth, 1.5x GPU memory size, and 1.5x GPU TFLOPS (at FP4, without sparsity) compared to P6-B200 instances, making them well suited to train and depl</content>
-    <link href="https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-ec2-p6-b300/" rel="alternate"/>
-    <category term="AWS What's New" label="AWS What's New"/>
-    <published>2026-08-20T18:31:00+00:00</published>
-    <dc:creator>AWS What's New</dc:creator>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/aws/1041d24cda038e11</id>
@@ -2635,21 +2650,6 @@ This article explains how to monitor pod failure status on Fargate-only clusters
     <link href="https://repost.aws/articles/ARbKb6QjnQRBuefvj3Y2cjrA/slack-app-aws-devops-agent-bi-directional-integration" rel="alternate"/>
     <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
     <published>2026-08-03T22:14:56.652000+00:00</published>
-    <media:group>
-      <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
-    </media:group>
-    <dc:creator>AWS re:Post Articles</dc:creator>
-    <link rel="enclosure" href="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/aws/2a6be2b0998df9df</id>
-    <title>Optimize your MediaLive ABR ladder: Identify unused renditions and improve viewer experience using CloudFront access logs</title>
-    <updated>2026-08-03T21:28:37.111000+00:00</updated>
-    <content>Most media customers deploy MediaLive with default ABR rendition ladders without visibility into which renditions viewers actually consume. This article provides a complete, deployable solution to analyze CloudFront access logs via Athena and correlate them with MediaLive HLS output configurations. Customers can identify underused renditions to eliminate (reducing encoding costs by 20-40%) and discover where viewer demand is concentrated to invest in higher-quality renditions that improve viewin</content>
-    <link href="https://repost.aws/articles/ARMisj-p_rTBKWwluSKXHsVw/optimize-your-medialive-abr-ladder-identify-unused-renditions-and-improve-viewer-experience-using-cloudfront-access-logs" rel="alternate"/>
-    <category term="AWS re:Post Articles" label="AWS re:Post Articles"/>
-    <published>2026-08-03T21:28:37.111000+00:00</published>
     <media:group>
       <media:content url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" type="image/png" medium="image"/>
       <media:thumbnail url="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png"/>
