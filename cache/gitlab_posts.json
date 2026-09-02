@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-02T16:54:30.478215+00:00",
+  "last_updated": "2026-09-02T21:17:13.241105+00:00",
   "entries": [
     {
       "title": "Monthly Report January 2022 - Hardware maintenance is hard!",
@@ -2113,6 +2113,15 @@
       "source": "GitLab Blog",
       "image": "https://res.cloudinary.com/about-gitlab-com/image/upload/v1785337625/ifzlc2hyzaxhzmjgyymh.png",
       "entry_id": "tag:trvny.github.io,2024:feedseek/gitlab/5524bad7066ee5be"
+    },
+    {
+      "title": "Critical remote code execution in vm2, a widely used Node.js sandbox library",
+      "link": "https://about.gitlab.com/blog/critical-remote-code-execution-in-vm2/",
+      "date": "2026-09-02T00:00:00+00:00",
+      "description": "GitLab's Threat Research Group found a critical sandbox escape vulnerability in vm2, one of the most widely adopted Node.js sandboxing libraries. The vulnerability uses a configuration copied straight from vm2's own README. We found the flaw, rated CVSS 3.1: 10.0, critical, using our own AI automated tools. Anyone running vm2 Version 3.11.6 or earlier with require.external turned on should treat this as directly exploitable. Once we found the vulnerability, we verified GitLab does not use vm2. W",
+      "source": "GitLab Blog",
+      "image": "https://res.cloudinary.com/about-gitlab-com/image/upload/v1782237704/cj50chkvprjthczevmog.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/gitlab/1caf4c20154ffcf6"
     }
   ]
 }

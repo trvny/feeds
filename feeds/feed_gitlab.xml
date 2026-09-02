@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://about.gitlab.com/</id>
   <title>GitLab</title>
-  <updated>2026-09-02T16:54:30.400271+00:00</updated>
+  <updated>2026-09-02T21:17:13.163415+00:00</updated>
   <author>
     <name>Various</name>
   </author>
@@ -26,6 +26,21 @@
     </media:group>
     <dc:creator>GitLab Blog</dc:creator>
     <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1785337625/ifzlc2hyzaxhzmjgyymh.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/gitlab/1caf4c20154ffcf6</id>
+    <title>Critical remote code execution in vm2, a widely used Node.js sandbox library</title>
+    <updated>2026-09-02T00:00:00+00:00</updated>
+    <content>GitLab's Threat Research Group found a critical sandbox escape vulnerability in vm2, one of the most widely adopted Node.js sandboxing libraries. The vulnerability uses a configuration copied straight from vm2's own README. We found the flaw, rated CVSS 3.1: 10.0, critical, using our own AI automated tools. Anyone running vm2 Version 3.11.6 or earlier with require.external turned on should treat this as directly exploitable. Once we found the vulnerability, we verified GitLab does not use vm2. W</content>
+    <link href="https://about.gitlab.com/blog/critical-remote-code-execution-in-vm2/" rel="alternate"/>
+    <category term="GitLab Blog" label="GitLab Blog"/>
+    <published>2026-09-02T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1782237704/cj50chkvprjthczevmog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1782237704/cj50chkvprjthczevmog.png"/>
+    </media:group>
+    <dc:creator>GitLab Blog</dc:creator>
+    <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1782237704/cj50chkvprjthczevmog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/d25cd152edb6a16a</id>
@@ -667,21 +682,6 @@ one of these versions immediately. GitLab.com is already running the patched ver
     <category term="GitLab Blog" label="GitLab Blog"/>
     <published>2026-07-01T00:00:00+00:00</published>
     <dc:creator>GitLab Blog</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/gitlab/fa1560b251c52f6b</id>
-    <title>Claude Sonnet 5 on GitLab: More reliable, more efficient</title>
-    <updated>2026-06-30T00:00:00+00:00</updated>
-    <content>Anthropic’s Claude Sonnet 5 is now available on GitLab Duo Agent Platform across all tiers and deployment models through GitLab's AI Gateway. Claude Sonnet 5 is built for work that agents assist software teams with every day: multi-step tasks, generating code that holds up under review, and conducting workflows affordably at scale. It’s also the first model in GitLab's evaluation suite to complete all of our benchmark tasks. Sonnet 4.6, its predecessor, completed 93.8% of them. For teams running</content>
-    <link href="https://about.gitlab.com/blog/claude-sonnet-5-on-gitlab/" rel="alternate"/>
-    <category term="GitLab Blog" label="GitLab Blog"/>
-    <published>2026-06-30T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1750098611/Blog/Hero%20Images/Blog/Hero%20Images/blog-hero-banner-1-0178-820x470-fy25_7JlF3WlEkswGQbcTe8DOTB_1750098611370.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://res.cloudinary.com/about-gitlab-com/image/upload/v1750098611/Blog/Hero%20Images/Blog/Hero%20Images/blog-hero-banner-1-0178-820x470-fy25_7JlF3WlEkswGQbcTe8DOTB_1750098611370.png"/>
-    </media:group>
-    <dc:creator>GitLab Blog</dc:creator>
-    <link rel="enclosure" href="https://res.cloudinary.com/about-gitlab-com/image/upload/v1750098611/Blog/Hero%20Images/Blog/Hero%20Images/blog-hero-banner-1-0178-820x470-fy25_7JlF3WlEkswGQbcTe8DOTB_1750098611370.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/gitlab/b04e1cf7e355bac9</id>
