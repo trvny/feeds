@@ -402,7 +402,7 @@ def main(full=False):
         title="AI-bridge",
         subtitle="Combined AI feed: Thinking Machines, Ollama, Mistral, "
         "Interconnected, AI Clock, Stability AI, Bielik, Promptowy, Maistry, "
-        "Karpathy (bearblog + old blog), Transformer, MiniMax News, PLLuM, "
+        "Karpathy (bearblog + old blog), Transformer, MiniMax News/Blog, PLLuM, "
         "Perplexity (blog/changelog/research/API changelog), "
         "The Batch / DeepLearning.AI, and Groq (blog/newsroom/changelog).",
         blog_url="https://thinkingmachines.ai/blog/",
