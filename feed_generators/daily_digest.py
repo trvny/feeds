@@ -12,7 +12,6 @@ Combines small daily JSON APIs into a single Atom feed:
   * Nager.Date Polish public holidays    https://date.nager.at/api/v3/publicholidays/{year}/PL
   * a cat or dog fact with a picture     see CRITTER_FACT_SOURCES below
   * an absurd product of the day         https://anycrap.shop/api/v1/products/random
-  * Urban Dictionary word of the day     https://api.urbandictionary.com/v0/words_of_the_day
 
 Each source is fetched independently so one failure never sinks the run. Entries
 merge into a local cache (dedup by ``guid``) so history accumulates across hourly
@@ -31,10 +30,9 @@ reminder -- each guid-stable so it's written once and never churns. Each entry
 links to the matching Polish Wikipedia article when ``opensearch`` finds one,
 else falls back to the Nager.Date source.
 
-The Urban Dictionary, critter, and anycrap entries don't fit either shape: each
-is one entry a day, with the critter built from two independent APIs (a fact host
-and a picture host) picked per day. All three are skipped outright once the day's
-guid is cached.
+The critter and anycrap entries don't fit either shape: each is one entry a day,
+with the critter built from two independent APIs (a fact host and a picture host)
+picked per day. Both are skipped outright once the day's guid is cached.
 """
 
 import argparse
@@ -174,10 +172,6 @@ CRITTER_PICTURE_SOURCES = {
 # carries only the slug.
 ANYCRAP_RANDOM_URL = "https://anycrap.shop/api/v1/products/random"
 ANYCRAP_PRODUCT_URL = "https://anycrap.shop/product/{slug}"
-
-# Urban Dictionary exposes featured words through its public JSON endpoint.
-URBAN_WOTD_URL = "https://api.urbandictionary.com/v0/words_of_the_day"
-URBAN_HOME = "https://www.urbandictionary.com/"
 
 # Cap the merged feed so the committed XML stays a reasonable size.
 MAX_ENTRIES = 100
@@ -629,56 +623,6 @@ def adapt_anycrap():
     }]
 
 
-def adapt_urban_wotd():
-    """Build one featured Urban Dictionary word for the current day."""
-    data = fetch_json(URBAN_WOTD_URL, retries=2)
-    if not isinstance(data, dict):
-        return []
-
-    items = data.get("list")
-    if not isinstance(items, list) or not items or not isinstance(items[0], dict):
-        logger.warning("Urban Dictionary returned no Word of the Day; continuing")
-        return []
-
-    item = items[0]
-    word = _clean(str(item.get("word") or ""))
-    definition = _clean(str(item.get("definition") or ""))
-    if not word or not definition:
-        logger.warning("Urban Dictionary Word of the Day is missing word/definition")
-        return []
-
-    today = f"{_today_utc():%Y-%m-%d}"
-    date_str = today
-    raw_date = item.get("date")
-    if raw_date:
-        try:
-            date_str = date_parser.parse(str(raw_date)).date().isoformat()
-        except (ValueError, TypeError, OverflowError):
-            logger.warning("Urban Dictionary Word of the Day has an invalid date; using today")
-
-    body = definition
-    example = _clean(str(item.get("example") or ""))
-    author = _clean(str(item.get("author") or ""))
-    if example:
-        body += f"\n\nExample: {example}"
-    if author:
-        body += f"\n\nby {author}"
-
-    link = item.get("permalink")
-    if not isinstance(link, str) or not link.strip():
-        link = f"{URBAN_HOME}define.php?term={quote(word, safe='')}"
-
-    return [{
-        "guid": f"urban_word:{date_str}",
-        "link": link,
-        "title": f"Urban Word of the Day — {word}",
-        "description": body,
-        "date": _day_midnight(date_str),
-        "source": "Urban Dictionary",
-        "category": "urban_word",
-    }]
-
-
 def _cached_guids():
     """Every guid currently in the cache, read once per run.
 
@@ -758,7 +702,6 @@ def collect_entries(full=False):
     day = f"{_today_utc():%Y-%m-%d}"
     known = set() if full else _cached_guids()
     for label, adapter in (
-        ("urban_word", adapt_urban_wotd),
         ("critter", adapt_critter),
         ("anycrap", adapt_anycrap),
     ):
@@ -781,9 +724,9 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.id(f"https://api.viewbits.com/{feed_name}")
     fg.title("Daily Digest")
     fg.subtitle(
-        "Quote, fact, life hack, fortune cookie, joke, headlines, history, and an "
-        "Urban Dictionary word of the day, a cat or dog with a fact and a picture, "
-        "an absurd product, plus Polish public-holiday reminders"
+        "Quote, fact, life hack, fortune cookie, joke, headlines, history, a cat or "
+        "dog with a fact and a picture, an absurd product, plus Polish public-holiday "
+        "reminders"
     )
     # Entries have carried an `image` since backfill_images started running over
     # them, but nothing here ever rendered it, so it lived in the cache and
@@ -830,6 +773,12 @@ def main(full=False):
     else:
         cache = load_cache(FEED_NAME)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
+        cached = [
+            entry
+            for entry in cached
+            if entry.get("category") != "urban_word"
+            and not str(entry.get("guid", "")).startswith("urban_word:")
+        ]
 
     merged = merge_entries(new_entries, cached, id_field="guid", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
