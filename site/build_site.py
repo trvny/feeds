@@ -460,7 +460,7 @@ def build_index(feeds: list[dict], base: str) -> str:
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }}
-    .wrap {{ max-width: 1080px; margin: 0 auto; padding: clamp(28px, 6vw, 72px) clamp(20px, 5vw, 56px) 80px; }}
+    .wrap {{ max-width: 1800px; margin: 0 auto; padding: clamp(28px, 6vw, 72px) clamp(20px, 4vw, 56px) 80px; }}
 
     .kicker {{
       font-family: "IBM Plex Mono", monospace;
@@ -496,7 +496,7 @@ def build_index(feeds: list[dict], base: str) -> str:
     .search:focus {{ border-color: var(--accent); }}
     .search::placeholder {{ color: #a59a8c; }}
 
-    .grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }}
+    .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 16px; }}
 
     .card {{
       background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
