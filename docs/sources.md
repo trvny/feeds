@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-101 feedów · 792 źródła
+101 feedów · 793 źródła
 
 ## Spis grup
 
@@ -887,10 +887,11 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=16) AWS Open Source Blog — <https://aws.amazon.com/blogs/opensource/feed/>
 - ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) CLI releases atom — <https://github.com/aws/aws-cli/releases.atom>
 
-### ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) download-soundtracks
+### ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) Download Soundtracks
 `download-soundtracks` · [feed_download-soundtracks.xml](../feeds/feed_download-soundtracks.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=download-soundtracks.com&sz=16) Blog — <https://download-soundtracks.com/>
+- ![](https://www.google.com/s2/favicons?domain=feeds.trfny.com&sz=16) Proxy — <https://feeds.trfny.com/download-soundtracks>
 
 ### ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Dwutygodnik
 `dwutygodnik` · [feed_dwutygodnik.xml](../feeds/feed_dwutygodnik.xml)
