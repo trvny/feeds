@@ -86,8 +86,8 @@ def _fetch_source() -> bytes | None:
 
 
 def _has_required_atom_text(element: ET._Element, name: str) -> bool:
-    value = element.findtext(f"{ATOM}{name}")
-    return bool(value and value.strip())
+    child = element.find(f"{ATOM}{name}")
+    return bool(child is not None and "".join(child.itertext()).strip())
 
 
 def build_xml(xml: str | bytes) -> bytes | None:
