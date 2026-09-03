@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-100 feedów · 790 źródeł
+100 feedów · 791 źródeł
 
 ## Spis grup
 
@@ -1134,11 +1134,12 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=newsroom.spotify.com&sz=16) Spotify Newsroom — <https://newsroom.spotify.com/feed/>
 - ![](https://www.google.com/s2/favicons?domain=developer.spotify.com&sz=16) Spotify for Developers — <https://developer.spotify.com/rss.xml>
 
-### ![](https://www.google.com/s2/favicons?domain=www.tencentcloud.com&sz=16) Tencent
+### ![](https://www.google.com/s2/favicons?domain=www.tencent.com&sz=16) Tencent
 `tencent` · [feed_tencent.xml](../feeds/feed_tencent.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=www.tencentcloud.com&sz=16) Tencent Cloud Blogs — <https://www.tencentcloud.com/dynamic/blogs/800?lang=en&pg=&from_qcintl=topnav>
-- ![](https://www.google.com/s2/favicons?domain=www.tencentcloud.com&sz=16) Tencent Cloud Press Center — <https://www.tencentcloud.com/dynamic/400?lang=en&pg=&from_qcintl=topnav>
+- ![](https://www.google.com/s2/favicons?domain=www.tencent.com&sz=16) Tencent Newsroom — <https://www.tencent.com/newsroom/>
+- ![](https://www.google.com/s2/favicons?domain=www.tencentcloud.com&sz=16) Tencent Cloud Blogs — <https://www.tencentcloud.com/dynamic/blogs/800>
+- ![](https://www.google.com/s2/favicons?domain=ir.tencentmusic.com&sz=16) Tencent Music Press Releases — <https://ir.tencentmusic.com/Press-Releases?pagetemplate=rss>
 
 ### ![](https://www.google.com/s2/favicons?domain=feeds.feedburner.com&sz=16) Quotes, Sayings and Jokes of the Day
 `theysaidso` · [feed_theysaidso.xml](../feeds/feed_theysaidso.xml)
