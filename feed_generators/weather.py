@@ -5,8 +5,10 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-import xml.etree.ElementTree as ET
 from urllib.parse import urlsplit
+
+import requests
+from lxml import etree as ET
 
 import multi_rss
 from jsonfeed import write_json_feed
@@ -18,6 +20,7 @@ _PUBLISHED_URL = (
     "https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_weather.xml"
 )
 ATOM = "{http://www.w3.org/2005/Atom}"
+MAX_SOURCE_BYTES = 2 * 1024 * 1024
 ET.register_namespace("", "http://www.w3.org/2005/Atom")
 
 
@@ -25,11 +28,46 @@ def doc_sources():
     return [("Pogoda — Kościelec (Atom)", SOURCE_URL)]
 
 
-def build_xml(xml: str) -> bytes | None:
-    """Validate upstream Atom and repoint only its feed-level self URL."""
+def _fetch_source() -> bytes | None:
+    """Fetch the upstream Atom feed without allowing an unbounded response body."""
     try:
-        root = ET.fromstring(xml)
-    except ET.ParseError:
+        with requests.get(
+            SOURCE_URL,
+            headers=multi_rss.PLAIN_HEADERS,
+            timeout=30,
+            stream=True,
+        ) as response:
+            if response.status_code != 200:
+                multi_rss.logger.warning(
+                    "Weather Atom fetch failed (HTTP %s)", response.status_code
+                )
+                return None
+            content_length = response.headers.get("Content-Length")
+            if content_length and int(content_length) > MAX_SOURCE_BYTES:
+                multi_rss.logger.warning("Weather Atom response exceeds size limit")
+                return None
+            chunks: list[bytes] = []
+            total = 0
+            for chunk in response.iter_content(chunk_size=64 * 1024):
+                if not chunk:
+                    continue
+                total += len(chunk)
+                if total > MAX_SOURCE_BYTES:
+                    multi_rss.logger.warning("Weather Atom response exceeds size limit")
+                    return None
+                chunks.append(chunk)
+            return b"".join(chunks)
+    except (requests.RequestException, ValueError) as exc:
+        multi_rss.logger.warning("Weather Atom fetch failed: %s", exc)
+        return None
+
+
+def build_xml(xml: str | bytes) -> bytes | None:
+    """Validate upstream Atom and repoint only its feed-level self URL."""
+    parser = ET.XMLParser(resolve_entities=False, no_network=True, huge_tree=False)
+    try:
+        root = ET.fromstring(xml, parser=parser)
+    except ET.XMLSyntaxError:
         return None
     if root.tag != f"{ATOM}feed" or not root.findall(f"{ATOM}entry"):
         return None
@@ -81,8 +119,7 @@ def save_mirrored_atom(payload: bytes) -> None:
 
 
 def main(full: bool = False) -> bool:
-    del full
-    xml = multi_rss.get_html(SOURCE_URL)
+    xml = _fetch_source()
     if not xml:
         return False
     payload = build_xml(xml)
