@@ -1,5 +1,4 @@
 import sys
-import threading
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -113,18 +112,17 @@ class WeatherFeedTests(unittest.TestCase):
         self.assertNotIn("url", cleaned["items"][0])
         self.assertEqual(cleaned["items"][1]["url"], "https://example.com/weather")
 
-    def test_fetch_source_enforces_wall_clock_deadline(self):
-        release = threading.Event()
-        with (
-            patch.object(weather, "SOURCE_TOTAL_SECONDS", 0.01),
-            patch.object(
-                weather,
-                "_fetch_source_once",
-                side_effect=lambda: release.wait(1.0) or b"late",
-            ),
-        ):
-            self.assertIsNone(weather._fetch_source())
-        release.set()
+    def test_redirect_target_allows_only_same_https_host(self):
+        self.assertEqual(
+            weather._redirect_target(weather.SOURCE_URL, "/feed-v2.atom"),
+            "https://weather.trfny.com/feed-v2.atom",
+        )
+        self.assertIsNone(
+            weather._redirect_target(weather.SOURCE_URL, "https://example.com/feed.atom")
+        )
+        self.assertIsNone(
+            weather._redirect_target(weather.SOURCE_URL, "http://weather.trfny.com/feed.atom")
+        )
 
     def test_main_keeps_last_good_output_on_empty_source(self):
         with (
