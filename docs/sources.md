@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-101 feedów · 792 źródeł
+101 feedów · 792 źródła
 
 ## Spis grup
 
@@ -1249,4 +1249,3 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCaTXcCfYQd_G5VZeNwsYzPg — <https://www.youtube.com/channel/UCaTXcCfYQd_G5VZeNwsYzPg>
 - ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UClhEl4bMD8_escGCCTmRAYg — <https://www.youtube.com/channel/UClhEl4bMD8_escGCCTmRAYg>
 - ![](https://www.google.com/s2/favicons?domain=www.youtube.com&sz=16) YouTube channel UCMmGbcxT0UbVC9VbxoOyP7A — <https://www.youtube.com/channel/UCMmGbcxT0UbVC9VbxoOyP7A>
-

@@ -23,7 +23,6 @@ _PUBLISHED_URL = (
 ATOM = "{http://www.w3.org/2005/Atom}"
 MAX_SOURCE_BYTES = 2 * 1024 * 1024
 SOURCE_TOTAL_SECONDS = 30.0
-ET.register_namespace("", "http://www.w3.org/2005/Atom")
 
 
 def doc_sources():
@@ -71,6 +70,8 @@ def _fetch_source() -> bytes | None:
 
 def build_xml(xml: str | bytes) -> bytes | None:
     """Validate upstream Atom and repoint only its feed-level self URL."""
+    if isinstance(xml, str):
+        xml = xml.encode("utf-8")
     xml_parser = ET.XMLParser(resolve_entities=False, no_network=True, huge_tree=False)
     try:
         root = ET.fromstring(xml, parser=xml_parser)
