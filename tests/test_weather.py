@@ -55,12 +55,37 @@ class WeatherFeedTests(unittest.TestCase):
     def test_build_xml_rejects_entity_declarations(self):
         payload = """<!DOCTYPE feed [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>
 <feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Pogoda</title>
+  <id>tag:travny,2026:weather:koscielec</id>
+  <updated>2026-09-03T08:00:58Z</updated>
   <link rel="self" href="https://weather.trfny.com/feed.atom"/>
-  <entry><id>&xxe;</id></entry>
+  <entry>
+    <title>Kościelec</title>
+    <id>&xxe;</id>
+    <updated>2026-09-03T08:00:58Z</updated>
+  </entry>
 </feed>"""
-        rendered = weather.build_xml(payload)
-        self.assertIsNotNone(rendered)
-        self.assertNotIn(b"root:", rendered)
+        self.assertIsNone(weather.build_xml(payload))
+
+    def test_build_xml_rejects_missing_required_feed_fields(self):
+        for field in ("title", "id", "updated"):
+            with self.subTest(field=field):
+                root = ET.fromstring(SAMPLE)
+                child = root.find(f"{ATOM}{field}")
+                self.assertIsNotNone(child)
+                root.remove(child)
+                self.assertIsNone(weather.build_xml(ET.tostring(root)))
+
+    def test_build_xml_rejects_missing_required_entry_fields(self):
+        for field in ("title", "id", "updated"):
+            with self.subTest(field=field):
+                root = ET.fromstring(SAMPLE)
+                entry = root.find(f"{ATOM}entry")
+                self.assertIsNotNone(entry)
+                child = entry.find(f"{ATOM}{field}")
+                self.assertIsNotNone(child)
+                entry.remove(child)
+                self.assertIsNone(weather.build_xml(ET.tostring(root)))
 
     def test_clean_json_feed_drops_synthetic_tag_url(self):
         doc = {
