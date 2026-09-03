@@ -1,3 +1,4 @@
+import os
 import sys
 import unittest
 from pathlib import Path
@@ -5,11 +6,11 @@ from unittest.mock import call, patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-import download_soundtracks  # noqa: E402
+import download_soundtracks
 
 
 class DownloadSoundtracksTests(unittest.TestCase):
-    """Tests for the direct Download Soundtracks website scraper."""
+    """Tests for the Download Soundtracks website scraper."""
 
     def test_homepage_parser_extracts_post_metadata(self):
         html = """
@@ -100,6 +101,55 @@ class DownloadSoundtracksTests(unittest.TestCase):
 
         self.assertEqual([entry["title"] for entry in entries], ["New Album"])
 
+
+    def test_fetch_prefers_proxy_on_github_actions(self):
+        with (
+            patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}),
+            patch.object(download_soundtracks, "get_html", return_value="proxied") as fetch,
+        ):
+            html = download_soundtracks._fetch_listing_html(2)
+
+        self.assertEqual(html, "proxied")
+        fetch.assert_called_once_with(
+            "https://feeds.trfny.com/download-soundtracks?path=%2Fpage%2F2%2F"
+        )
+
+    def test_fetch_falls_back_to_proxy_outside_actions(self):
+        with (
+            patch.dict(os.environ, {"GITHUB_ACTIONS": ""}),
+            patch.object(download_soundtracks, "get_html", side_effect=[None, "proxied"]) as fetch,
+        ):
+            html = download_soundtracks._fetch_listing_html(1)
+
+        self.assertEqual(html, "proxied")
+        self.assertEqual(
+            fetch.call_args_list,
+            [
+                call(download_soundtracks.BLOG_URL),
+                call("https://feeds.trfny.com/download-soundtracks?path=%2F"),
+            ],
+        )
+
+    def test_fetch_falls_back_after_exception(self):
+        with (
+            patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}),
+            patch.object(
+                download_soundtracks,
+                "get_html",
+                side_effect=[TimeoutError("proxy timeout"), "direct"],
+            ) as fetch,
+        ):
+            html = download_soundtracks._fetch_listing_html(1)
+
+        self.assertEqual(html, "direct")
+        self.assertEqual(
+            fetch.call_args_list,
+            [
+                call("https://feeds.trfny.com/download-soundtracks?path=%2F"),
+                call(download_soundtracks.BLOG_URL),
+            ],
+        )
+
     def test_scraper_reads_website_directly(self):
         html = """
         <article>
@@ -107,7 +157,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         </article>
         """
         with patch.object(
-            download_soundtracks, "get_html", side_effect=[html, None]
+            download_soundtracks, "_fetch_listing_html", side_effect=[html, None]
         ) as website:
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
@@ -115,8 +165,8 @@ class DownloadSoundtracksTests(unittest.TestCase):
         self.assertEqual(
             website.call_args_list,
             [
-                call(download_soundtracks.BLOG_URL),
-                call("https://download-soundtracks.com/page/2/"),
+                call(1),
+                call(2),
             ],
         )
 
@@ -126,7 +176,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         <article><h2><a href="/movie_soundtracks/older/">Older</a></h2></article>
         """
         with patch.object(
-            download_soundtracks, "get_html", side_effect=[html, None]
+            download_soundtracks, "_fetch_listing_html", side_effect=[html, None]
         ):
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
@@ -140,7 +190,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         <article><h2><a href="/game_sountdtracks/second/">Second</a></h2></article>
         """
         with patch.object(
-            download_soundtracks, "get_html", side_effect=[first, second, None]
+            download_soundtracks, "_fetch_listing_html", side_effect=[first, second, None]
         ):
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
@@ -158,7 +208,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         <article><h2><a href="/movie_soundtracks/new/">New</a></h2></article>
         """
         with patch.object(
-            download_soundtracks, "get_html", side_effect=[first, second, None]
+            download_soundtracks, "_fetch_listing_html", side_effect=[first, second, None]
         ):
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
@@ -168,7 +218,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         html = """
         <article><h2><a href="/movie_soundtracks/same/">Same</a></h2></article>
         """
-        with patch.object(download_soundtracks, "get_html", return_value=html) as website:
+        with patch.object(download_soundtracks, "_fetch_listing_html", return_value=html) as website:
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
         self.assertEqual([entry["title"] for entry in entries], ["Same"])
@@ -178,11 +228,11 @@ class DownloadSoundtracksTests(unittest.TestCase):
         html = """
         <article><h2><a href="https://example.com/off-site/">Off site</a></h2></article>
         """
-        with patch.object(download_soundtracks, "get_html", return_value=html) as website:
+        with patch.object(download_soundtracks, "_fetch_listing_html", return_value=html) as website:
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
         self.assertEqual(entries, [])
-        website.assert_called_once_with(download_soundtracks.BLOG_URL)
+        website.assert_called_once_with(1)
 
     def test_scraper_continues_past_one_cached_only_page(self):
         known = "https://download-soundtracks.com/movie_soundtracks/known/"
@@ -193,7 +243,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         <article><h2><a href="/movie_soundtracks/backfill/">Backfill</a></h2></article>
         """
         with patch.object(
-            download_soundtracks, "get_html", side_effect=[first, second, None]
+            download_soundtracks, "_fetch_listing_html", side_effect=[first, second, None]
         ):
             entries = download_soundtracks.scrape_download_soundtracks({known})
 
@@ -209,7 +259,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         <article><h2><a href="{second_link}">Known Two</a></h2></article>
         """
         with patch.object(
-            download_soundtracks, "get_html", side_effect=[first, second]
+            download_soundtracks, "_fetch_listing_html", side_effect=[first, second]
         ) as website:
             entries = download_soundtracks.scrape_download_soundtracks(
                 {first_link, second_link}
@@ -229,7 +279,7 @@ class DownloadSoundtracksTests(unittest.TestCase):
         </article>
         """
         with patch.object(
-            download_soundtracks, "get_html", side_effect=[html, None]
+            download_soundtracks, "_fetch_listing_html", side_effect=[html, None]
         ):
             entries = download_soundtracks.scrape_download_soundtracks({known})
 
@@ -242,11 +292,11 @@ class DownloadSoundtracksTests(unittest.TestCase):
           <p>Account disabled by server administrator due to DMCA request.</p>
         </body></html>
         """
-        with patch.object(download_soundtracks, "get_html", return_value=html) as website:
+        with patch.object(download_soundtracks, "_fetch_listing_html", return_value=html) as website:
             entries = download_soundtracks.scrape_download_soundtracks(set())
 
         self.assertEqual(entries, [])
-        website.assert_called_once_with(download_soundtracks.BLOG_URL)
+        website.assert_called_once_with(1)
 
 
 if __name__ == "__main__":
