@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-100 feedów · 791 źródeł
+101 feedów · 792 źródła
 
 ## Spis grup
 
@@ -1193,6 +1193,11 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.visualcrossing.com&sz=16) Visual Crossing News — <https://www.visualcrossing.com/resources/category/news/feed/>
 - ![](https://www.google.com/s2/favicons?domain=www.visualcrossing.com&sz=16) Visual Crossing Blog — <https://www.visualcrossing.com/resources/category/blog/feed/>
 - ![](https://www.google.com/s2/favicons?domain=www.visualcrossing.com&sz=16) Visual Crossing Documentation — <https://www.visualcrossing.com/resources/category/documentation/feed/>
+
+### ![](https://www.google.com/s2/favicons?domain=weather.trfny.com&sz=16) Pogoda — Kościelec (Chrzanów)
+`weather` · [feed_weather.xml](../feeds/feed_weather.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=weather.trfny.com&sz=16) Pogoda — Kościelec (Atom) — <https://weather.trfny.com/feed.atom>
 
 ### ![](https://www.google.com/s2/favicons?domain=feeds.content.dowjones.io&sz=16) WSJ
 `wsj` · [feed_wsj.xml](../feeds/feed_wsj.xml)
