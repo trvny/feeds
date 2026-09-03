@@ -6,6 +6,7 @@ import argparse
 import json
 import sys
 import time
+from typing import Any
 from urllib.parse import urljoin, urlsplit
 
 import requests
@@ -43,7 +44,7 @@ def _fetch_source() -> bytes | None:
     """Fetch upstream Atom with bounded I/O and same-host redirects."""
     started = time.monotonic()
     current_url = SOURCE_URL
-    timeout = Timeout(total=SOURCE_TOTAL_SECONDS, connect=5, read=5)
+    timeout: Any = Timeout(total=SOURCE_TOTAL_SECONDS, connect=5, read=5)
     for _ in range(4):
         try:
             with requests.get(
