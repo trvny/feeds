@@ -242,14 +242,18 @@ def scrape_feed(
     return entries
 
 
-def apply_per_source_cap(entries, per_source_cap, limit):
+def apply_per_source_cap(
+    entries, per_source_cap, limit, *, group_field="source"
+):
     """Trim to ``limit`` entries while guaranteeing each source a fair share.
 
     Kept as the public name because generators import it directly (skillsllm.py);
     the algorithm itself is :func:`utils.allocate_fair_share`, shared with the
     cache trimmer so the published feed and the dedup state stay consistent.
     """
-    return allocate_fair_share(entries, limit, per_source_cap=per_source_cap)
+    return allocate_fair_share(
+        entries, limit, per_source_cap=per_source_cap, group_field=group_field
+    )
 
 
 def generate_atom_feed(
@@ -415,6 +419,8 @@ def run(
     keep_html=False,
     max_entries=DEFAULT_MAX_ENTRIES,
     per_source_cap=None,
+    allocation_field="source",
+    candidate_limit=None,
     language="en",
     full=False,
     cache_filter=None,
@@ -433,7 +439,9 @@ def run(
     native sources. Extra/custom scrapers remain cache-gated and add-only. Pass
     a mutable ``cache_state`` dict to round-trip non-entry top-level bookkeeping,
     such as resumable pagination cursors. Set ``dedupe_title_field=None`` for
-    sources whose stable URL is the only identity.
+    sources whose stable URL is the only identity. ``allocation_field`` can
+    separate fair-share buckets from provenance; ``candidate_limit`` constrains
+    publication to the newest N merged entries without shrinking the cache.
     """
     cache, cached = _load_run_cache(
         feed_name,
@@ -469,13 +477,25 @@ def run(
     # (steam published 7 of the 20 sources in its cache; cheezburger 4 of 6, with
     # two sources at zero). Round-robin needs no tuning to be fair, so there is
     # no reason to make it opt-in — per_source_cap now only adds a ceiling.
-    feed_items = apply_per_source_cap(merged, per_source_cap, max_entries)
+    candidates = (
+        merged[-candidate_limit:]
+        if candidate_limit is not None and len(merged) > candidate_limit
+        else merged
+    )
+    feed_items = apply_per_source_cap(
+        candidates,
+        per_source_cap,
+        max_entries,
+        group_field=allocation_field,
+    )
 
     # Resolves wrapper links and fills in missing pictures. feed_items holds the
     # same dicts as merged, so what is learned here is kept by the cache below
     # and no URL is ever looked up twice.
     enrich_entries(feed_items, images=image_backfill)
-    save_cache(feed_name, merged, extra=cache_state)
+    save_cache(
+        feed_name, merged, extra=cache_state, group_field=allocation_field
+    )
 
     fg = generate_atom_feed(
         feed_items,

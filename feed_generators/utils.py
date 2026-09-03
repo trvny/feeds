@@ -181,6 +181,7 @@ def allocate_fair_share(
     limit: int,
     per_source_cap=None,
     date_field: str = "date",
+    group_field: str = "source",
 ) -> list[dict]:
     """Pick ``limit`` entries by dealing slots round-robin across sources.
 
@@ -205,15 +206,21 @@ def allocate_fair_share(
       or run dry, a second pass refills whatever slots remain, again round-robin.
       Without that pass a feed would simply shrink whenever a source went quiet.
 
+    ``group_field`` defaults to ``source``. Generators may point it at a stable
+    category field when provenance and allocation buckets are intentionally
+    different, for example one publisher split into many topical communities.
+
     ``entries`` arrives ascending (see :func:`sort_posts_for_feed`); the result is
     returned in the same order, so only membership changes, never feed ordering.
     """
-    if limit is None or len(entries) <= limit:
+    if limit is None:
+        return list(entries)
+    if len(entries) <= limit and not isinstance(per_source_cap, dict):
         return list(entries)
 
     by_source: dict[str, list[dict]] = {}
     for entry in entries:
-        by_source.setdefault(entry.get("source") or "", []).append(entry)
+        by_source.setdefault(entry.get(group_field) or "", []).append(entry)
     for bucket in by_source.values():
         bucket.reverse()  # ascending input -> newest first within each source
 
@@ -251,6 +258,7 @@ def trim_entries(
     entries: list[dict],
     limit: int | None = DEFAULT_CACHE_LIMIT,
     date_field: str = "date",
+    group_field: str = "source",
 ) -> list[dict]:
     """Keep the newest ``limit`` entries, without letting one source starve others.
 
@@ -279,7 +287,9 @@ def trim_entries(
     if len(dated) <= limit:
         return dated + dateless
 
-    return allocate_fair_share(dated, limit, date_field=date_field) + dateless
+    return allocate_fair_share(
+        dated, limit, date_field=date_field, group_field=group_field
+    ) + dateless
 
 
 def save_cache(
@@ -289,6 +299,7 @@ def save_cache(
     limit: int | None = DEFAULT_CACHE_LIMIT,
     date_field: str = "date",
     extra: dict | None = None,
+    group_field: str = "source",
 ) -> None:
     """Save entries to the cache file, serializing datetimes to ISO strings.
 
@@ -300,7 +311,9 @@ def save_cache(
     """
     cache_file = get_cache_file(feed_name)
     original_count = len(entries)
-    entries = trim_entries(entries, limit=limit, date_field=date_field)
+    entries = trim_entries(
+        entries, limit=limit, date_field=date_field, group_field=group_field
+    )
     if len(entries) < original_count:
         logger.info(
             f"Trimmed cache from {original_count} to {len(entries)} entries "
