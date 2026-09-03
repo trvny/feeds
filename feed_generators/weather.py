@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 from urllib.parse import urlsplit
 
 import requests
@@ -21,6 +22,7 @@ _PUBLISHED_URL = (
 )
 ATOM = "{http://www.w3.org/2005/Atom}"
 MAX_SOURCE_BYTES = 2 * 1024 * 1024
+SOURCE_TOTAL_SECONDS = 30.0
 ET.register_namespace("", "http://www.w3.org/2005/Atom")
 
 
@@ -29,13 +31,15 @@ def doc_sources():
 
 
 def _fetch_source() -> bytes | None:
-    """Fetch the upstream Atom feed without allowing an unbounded response body."""
+    """Fetch the upstream Atom feed with redirect, size, and duration limits."""
+    started = time.monotonic()
     try:
         with requests.get(
             SOURCE_URL,
             headers=multi_rss.PLAIN_HEADERS,
-            timeout=30,
+            timeout=(5, 5),
             stream=True,
+            allow_redirects=False,
         ) as response:
             if response.status_code != 200:
                 multi_rss.logger.warning(
@@ -49,6 +53,9 @@ def _fetch_source() -> bytes | None:
             chunks: list[bytes] = []
             total = 0
             for chunk in response.iter_content(chunk_size=64 * 1024):
+                if time.monotonic() - started > SOURCE_TOTAL_SECONDS:
+                    multi_rss.logger.warning("Weather Atom fetch exceeded total deadline")
+                    return None
                 if not chunk:
                     continue
                 total += len(chunk)
@@ -64,9 +71,9 @@ def _fetch_source() -> bytes | None:
 
 def build_xml(xml: str | bytes) -> bytes | None:
     """Validate upstream Atom and repoint only its feed-level self URL."""
-    parser = ET.XMLParser(resolve_entities=False, no_network=True, huge_tree=False)
+    xml_parser = ET.XMLParser(resolve_entities=False, no_network=True, huge_tree=False)
     try:
-        root = ET.fromstring(xml, parser=parser)
+        root = ET.fromstring(xml, parser=xml_parser)
     except ET.XMLSyntaxError:
         return None
     if root.tag != f"{ATOM}feed" or not root.findall(f"{ATOM}entry"):
@@ -119,6 +126,8 @@ def save_mirrored_atom(payload: bytes) -> None:
 
 
 def main(full: bool = False) -> bool:
+    if full:
+        multi_rss.logger.debug("Weather generator received compatibility --full flag")
     xml = _fetch_source()
     if not xml:
         return False
@@ -133,10 +142,10 @@ def main(full: bool = False) -> bool:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
+    cli_parser = argparse.ArgumentParser(
         description="Publish the Kościelec weather Atom feed"
     )
-    parser.add_argument(
+    cli_parser.add_argument(
         "--full", action="store_true", help="Accepted for generator compatibility"
     )
-    sys.exit(0 if main(full=parser.parse_args().full) else 1)
+    sys.exit(0 if main(full=cli_parser.parse_args().full) else 1)
