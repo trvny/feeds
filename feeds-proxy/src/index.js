@@ -1,4 +1,10 @@
 const FETCH_TIMEOUT_MS = 8000;
+const DOWNLOAD_SOUNDTRACKS_TIMEOUT_MS = 20000;
+const DOWNLOAD_SOUNDTRACKS_ORIGIN = "https://download-soundtracks.com";
+const DOWNLOAD_SOUNDTRACKS_HOSTS = new Set(["download-soundtracks.com", "www.download-soundtracks.com"]);
+const DEFAULT_USER_AGENT = "feedseek-reader/2.0";
+const DOWNLOAD_SOUNDTRACKS_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
+const DEFAULT_ACCEPT = "application/atom+xml, application/rss+xml, application/xml, text/xml, application/json, text/plain, text/html;q=0.8, */*;q=0.1";
 const MAX_REDIRECTS = 3;
 const MAX_RESPONSE_BYTES = 2 * 1024 * 1024;
 const BODYLESS_STATUSES = new Set([101, 204, 205, 304]);
@@ -65,18 +71,27 @@ function parseTarget(value, base) {
   return target;
 }
 
-/** @param {URL} initialUrl */
-async function fetchWithRedirects(initialUrl) {
+/**
+ * @param {URL} initialUrl
+ * @param {{timeoutMs?: number, userAgent?: string, allowedHosts?: Set<string>}} [options]
+ */
+async function fetchWithRedirects(initialUrl, options = {}) {
+  const {
+    timeoutMs = FETCH_TIMEOUT_MS,
+    userAgent = DEFAULT_USER_AGENT,
+    allowedHosts = null,
+  } = options;
   let target = initialUrl;
+  const signal = AbortSignal.timeout(timeoutMs);
 
   for (let redirects = 0; redirects <= MAX_REDIRECTS; redirects++) {
     const response = await fetch(target, {
       headers: {
-        "user-agent": "feedseek-reader/2.0",
-        accept: "application/atom+xml, application/rss+xml, application/xml, text/xml, application/json, text/plain, text/html;q=0.8, */*;q=0.1",
+        "user-agent": userAgent,
+        accept: DEFAULT_ACCEPT,
       },
       redirect: "manual",
-      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+      signal,
     });
 
     if (![301, 302, 303, 307, 308].includes(response.status)) return response;
@@ -85,6 +100,9 @@ async function fetchWithRedirects(initialUrl) {
     const location = response.headers.get("location");
     if (!location) throw new Error("bad redirect");
     target = parseTarget(location, target);
+    if (allowedHosts && !allowedHosts.has(target.hostname.toLowerCase())) {
+      throw new Error("bad redirect");
+    }
   }
 
   throw new Error("too many redirects");
@@ -151,6 +169,54 @@ function discoveryResponse(request, requestUrl) {
 }
 
 /** @param {URL} requestUrl */
+function downloadSoundtracksTarget(requestUrl) {
+  const path = requestUrl.searchParams.get("path") || "/";
+  if (!path.startsWith("/") || path.startsWith("//")) throw new Error("bad path");
+  const target = new URL(path, DOWNLOAD_SOUNDTRACKS_ORIGIN);
+  if (target.origin !== DOWNLOAD_SOUNDTRACKS_ORIGIN) throw new Error("bad path");
+  return target;
+}
+
+/** @param {URL} requestUrl */
+async function downloadSoundtracksResponse(requestUrl) {
+  let target = null;
+  try {
+    target = downloadSoundtracksTarget(requestUrl);
+  } catch {
+    return text("bad path", 400);
+  }
+
+  let upstream = null;
+  try {
+    upstream = await fetchWithRedirects(target, {
+      timeoutMs: DOWNLOAD_SOUNDTRACKS_TIMEOUT_MS,
+      userAgent: DOWNLOAD_SOUNDTRACKS_USER_AGENT,
+      allowedHosts: DOWNLOAD_SOUNDTRACKS_HOSTS,
+    });
+  } catch (error) {
+    const message = error instanceof Error && error.name === "TimeoutError"
+      ? "upstream timeout"
+      : error instanceof Error
+        ? error.message
+        : "fetch failed";
+    return text(message, 502);
+  }
+
+  let body = null;
+  try {
+    body = await readLimited(upstream);
+  } catch (error) {
+    return text(error instanceof Error ? error.message : "fetch failed", 502);
+  }
+
+  const headers = new Headers({ ...CORS_HEADERS, ...SECURITY_HEADERS });
+  headers.set("content-type", upstream.headers.get("content-type") || "text/html; charset=utf-8");
+  headers.set("cache-control", upstream.ok ? "public, max-age=300" : "no-store");
+  headers.set("x-robots-tag", "noindex, nofollow");
+  return new Response(body, { status: upstream.status, headers });
+}
+
+/** @param {URL} requestUrl */
 async function proxyResponse(requestUrl) {
   const raw = requestUrl.searchParams.get("url");
   if (!raw) return text("bad url", 400);
@@ -197,6 +263,9 @@ export default {
     const discovery = discoveryResponse(request, requestUrl);
     if (discovery) return discovery;
     if (request.method !== "GET") return text("method not allowed", 405);
+    if (requestUrl.pathname === "/download-soundtracks") {
+      return downloadSoundtracksResponse(requestUrl);
+    }
     return proxyResponse(requestUrl);
   },
 };

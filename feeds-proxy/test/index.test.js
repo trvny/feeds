@@ -17,8 +17,8 @@ async function withFetch(mockFetch, run) {
 }
 
 test("forwards valid HTTPS feeds with cache and security headers", async () => {
-  let seenUrl;
-  let seenInit;
+  let seenUrl = null;
+  let seenInit = null;
 
   await withFetch(async (url, init) => {
     seenUrl = String(url);
@@ -40,6 +40,59 @@ test("forwards valid HTTPS feeds with cache and security headers", async () => {
     assert.equal(seenUrl, "https://example.com/feed.xml");
     assert.equal(seenInit.redirect, "manual");
     assert.equal(seenInit.headers["user-agent"], "feedseek-reader/2.0");
+  });
+});
+
+test("uses the allowlisted Download Soundtracks fetch route", async () => {
+  let seenUrl;
+  let seenInit;
+
+  await withFetch((url, init) => {
+    seenUrl = String(url);
+    seenInit = init;
+    return Promise.resolve(new Response("<html>ok</html>", {
+      status: 200,
+      headers: { "content-type": "text/html; charset=UTF-8" },
+    }));
+  }, async () => {
+    const response = await worker.fetch(new Request(
+      "https://proxy.test/download-soundtracks?path=%2Fpage%2F2%2F",
+    ));
+
+    assert.equal(response.status, 200);
+    assert.equal(await response.text(), "<html>ok</html>");
+    assert.equal(response.headers.get("cache-control"), "public, max-age=300");
+    assert.equal(seenUrl, "https://download-soundtracks.com/page/2/");
+    assert.match(seenInit.headers["user-agent"], /Chrome\/140/);
+    assert.ok(seenInit.signal instanceof AbortSignal);
+  });
+});
+
+test("rejects authority changes in the Download Soundtracks path", async () => {
+  let calls = 0;
+  await withFetch(() => {
+    calls += 1;
+    return Promise.resolve(new Response("unexpected"));
+  }, async () => {
+    const response = await worker.fetch(new Request(
+      "https://proxy.test/download-soundtracks?path=%2F%2Fevil.example%2F",
+    ));
+    assert.equal(response.status, 400);
+    assert.equal(await response.text(), "bad path");
+    assert.equal(calls, 0);
+  });
+});
+
+test("rejects Download Soundtracks redirects to another host", async () => {
+  await withFetch(() => Promise.resolve(new Response(null, {
+    status: 302,
+    headers: { location: "https://example.com/escape" },
+  })), async () => {
+    const response = await worker.fetch(new Request(
+      "https://proxy.test/download-soundtracks?path=%2F",
+    ));
+    assert.equal(response.status, 502);
+    assert.equal(await response.text(), "bad redirect");
   });
 });
 
