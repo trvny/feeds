@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import datetime
 from urllib.parse import quote
@@ -27,6 +28,9 @@ MOLTBOOK_API_URL = (
     f"https://www.moltbook.com/api/v1/posts?sort=new&limit={MOLTBOOK_PAGE_SIZE}"
 )
 MAX_ENTRIES = 250
+CANDIDATE_LIMIT = 1000
+PER_SUBMOLT_CAP = {"": 20}
+ALLOCATION_FIELD = "submolt"
 
 
 def doc_sources():
@@ -53,6 +57,16 @@ def _post_submolt(post: dict) -> str:
     else:
         name = submolt
     return sanitize_xml(f"m/{str(name or 'unknown').strip()}")
+
+
+def _restore_submolt(entry: dict) -> dict:
+    """Backfill the allocation bucket on cache entries written before caps."""
+    if entry.get(ALLOCATION_FIELD):
+        return entry
+    migrated = entry.copy()
+    match = re.search(r"\bm/[\w.-]+", str(entry.get("description") or ""))
+    migrated[ALLOCATION_FIELD] = sanitize_xml(match.group(0)) if match else "m/unknown"
+    return migrated
 
 
 def _post_description(post: dict) -> str:
@@ -114,6 +128,7 @@ def parse_posts(payload: dict, known_links: set[str]) -> list[dict]:
                 "date": _parse_date(post.get("created_at")),
                 "description": _post_description(post),
                 "source": SOURCE_NAME,
+                ALLOCATION_FIELD: _post_submolt(post),
             }
         )
     return entries
@@ -188,15 +203,14 @@ def _append_unique(entries: list[dict], page_entries: list[dict], seen: set[str]
 def fetch_moltbook_pages(
     known_links: set[str], *, fetch=get_html
 ) -> tuple[list[dict], set[str], bool]:
-    """Fetch every page needed to cover the 250-item publication window.
+    """Fetch the recent candidate window used for capped publication.
 
-    Moltbook is deliberately one Feedseek source: submolts remain visible in
-    descriptions but do not participate in the shared round-robin allocator.
-    Therefore the publishable set is exactly the newest ``MAX_ENTRIES`` distinct
-    usable global posts. Scanning that whole window both captures bursts larger
-    than a page and observes moderation for every cached item that can remain
-    visible. A failed cursor page discards the whole batch so cache state never
-    advances across an unobserved gap.
+    Publication is balanced by submolt, but only inside the newest
+    ``CANDIDATE_LIMIT`` usable global posts. Scanning that entire window keeps
+    moderation checks aligned with every item eligible for publication while
+    giving quieter submolts enough room to fill the 250-entry feed. A failed
+    cursor page discards the whole batch so cache state never advances across an
+    unobserved gap.
     """
     entries: list[dict] = []
     moderated_links: set[str] = set()
@@ -205,7 +219,7 @@ def fetch_moltbook_pages(
     seen_cursors: set[str] = set()
     cursor: str | None = None
 
-    while len(usable_links_seen) < MAX_ENTRIES:
+    while len(usable_links_seen) < CANDIDATE_LIMIT:
         if cursor is not None:
             if cursor in seen_cursors:
                 logger.warning("[Moltbook] repeated cursor detected: %s", cursor)
@@ -273,15 +287,19 @@ def main(full: bool = False) -> bool:
         feed_name=FEED_NAME,
         title="Moltbook",
         subtitle=(
-            "Newest non-spam posts from Moltbook, the social network for AI agents, "
-            "with submolt labels preserved in each entry."
+            "Newest non-spam posts from Moltbook, balanced across submolts with "
+            "at most 20 published entries from any one community."
         ),
         blog_url=SITE_URL,
         author="Moltbook agents",
         extra_scrapers=(scrape_prefetched,),
         max_entries=MAX_ENTRIES,
+        per_source_cap=PER_SUBMOLT_CAP,
+        allocation_field=ALLOCATION_FIELD,
+        candidate_limit=CANDIDATE_LIMIT,
         image_backfill=False,
         cache_filter=keep_cached,
+        cache_transform=_restore_submolt,
         dedupe_title_field=None,
         full=full,
     )

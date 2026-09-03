@@ -70,11 +70,23 @@ class MoltbookTests(unittest.TestCase):
         entry = entries[0]
         self.assertEqual(entry["link"], "https://www.moltbook.com/post/good-1")
         self.assertEqual(entry["source"], "Moltbook")
+        self.assertEqual(entry["submolt"], "m/builds")
         self.assertEqual(entry["date"].isoformat(), "2026-08-29T10:11:12+00:00")
         self.assertIn("m/builds", entry["description"])
         self.assertIn("lobsterbot", entry["description"])
         self.assertIn("score 42", entry["description"])
         self.assertIn("7 comments", entry["description"])
+
+    def test_restore_submolt_migrates_legacy_cache_description(self):
+        entry = {
+            "source": "Moltbook",
+            "description": "agent · m/research · score 7 · 2 comments",
+        }
+
+        migrated = moltbook._restore_submolt(entry)
+
+        self.assertEqual(migrated["submolt"], "m/research")
+        self.assertNotIn("submolt", entry)
 
     def test_parse_date_contains_extreme_offset_overflow(self):
         """Extreme but syntactically valid offsets should degrade to no date."""
@@ -197,7 +209,7 @@ class MoltbookTests(unittest.TestCase):
             calls.append(url)
             return json.dumps(pages[url])
 
-        with patch.object(moltbook, "MAX_ENTRIES", 3):
+        with patch.object(moltbook, "CANDIDATE_LIMIT", 3):
             entries, _moderated, complete = fetch_moltbook_pages(set(), fetch=fake_fetch)
 
         self.assertTrue(complete)
@@ -349,7 +361,7 @@ class MoltbookTests(unittest.TestCase):
             calls.append(url)
             return json.dumps(pages[url])
 
-        with patch.object(moltbook, "MAX_ENTRIES", 3):
+        with patch.object(moltbook, "CANDIDATE_LIMIT", 3):
             entries, moderated, complete = fetch_moltbook_pages(set(), fetch=fake_fetch)
 
         self.assertFalse(complete)
@@ -390,7 +402,7 @@ class MoltbookTests(unittest.TestCase):
             calls.append(url)
             return json.dumps(pages[url])
 
-        with patch.object(moltbook, "MAX_ENTRIES", 2):
+        with patch.object(moltbook, "CANDIDATE_LIMIT", 2):
             entries, moderated, complete = fetch_moltbook_pages(set(), fetch=fake_fetch)
 
         self.assertTrue(complete)
@@ -421,7 +433,12 @@ class MoltbookTests(unittest.TestCase):
         ):
             self.assertTrue(moltbook.main())
 
-        self.assertIsNone(mocked_run.call_args.kwargs["dedupe_title_field"])
+        kwargs = mocked_run.call_args.kwargs
+        self.assertIsNone(kwargs["dedupe_title_field"])
+        self.assertEqual(kwargs["per_source_cap"], {"": 20})
+        self.assertEqual(kwargs["allocation_field"], "submolt")
+        self.assertEqual(kwargs["candidate_limit"], 1000)
+        self.assertIs(kwargs["cache_transform"], moltbook._restore_submolt)
 
 
 if __name__ == "__main__":

@@ -51,6 +51,7 @@ BLOG_LABEL = "4chan Blog"
 BLOG_FEED = "https://blog.4chan.org/rss"  # /feed/ 404s since at least 08.2026
 ALLOWED_SOURCES = {label for _, label in BOARDS} | {BLOG_LABEL}
 PER_BOARD = 12
+PUBLISHED_SOURCE_CAP = {"": 20}
 DESC_LIMIT = 500
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; trvny-feeds/1.0; +https://github.com/trvny/feedseek)"
@@ -137,7 +138,8 @@ def main(full: bool = False) -> bool:
             "Newest threads from selected worksafe 4chan boards "
             "(news, g, o, tv, v, mu, vip) via the read-only JSON API, "
             "plus the official 4chan blog. Board posts are user-generated "
-            "and unmoderated; each title is prefixed with its board."
+            "and unmoderated; each title is prefixed with its board, with at "
+            "most 20 published entries from any one source."
         ),
         blog_url=SITE_URL,
         author="4chan",
@@ -145,6 +147,7 @@ def main(full: bool = False) -> bool:
         extra_scrapers=[scrape_boards],
         cache_filter=_keep_allowed_source,
         max_entries=200,
+        per_source_cap=PUBLISHED_SOURCE_CAP,
         full=full,
     )
 

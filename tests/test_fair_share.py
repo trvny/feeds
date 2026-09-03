@@ -97,6 +97,14 @@ class FairShareTests(unittest.TestCase):
         self.assertEqual(tally["editorial"], 20)
         self.assertEqual(len(selected), 25)
 
+    def test_mapping_cap_applies_even_when_feed_is_below_global_limit(self):
+        selected = allocate_fair_share(
+            entries("farm", 12, day=5),
+            limit=100,
+            per_source_cap={"": 3},
+        )
+        self.assertEqual(len(selected), 3)
+
     def test_mapping_default_applies_to_unnamed_sources(self):
         selected = allocate_fair_share(
             ascending(entries("named", 100, day=5), entries("other", 100, day=5)),
@@ -104,6 +112,34 @@ class FairShareTests(unittest.TestCase):
             per_source_cap={"named": 2, "": 3},
         )
         self.assertEqual(counts(selected), {"named": 2, "other": 3})
+
+    def test_alternate_group_field_caps_categories_without_changing_source(self):
+        data = []
+        for group in ("m/general", "m/agents"):
+            for i in range(5):
+                data.append(
+                    {
+                        "date": f"2026-01-01T00:{i:02d}:00+00:00",
+                        "source": "Moltbook",
+                        "submolt": group,
+                        "n": f"{group}-{i}",
+                    }
+                )
+        data.sort(key=lambda entry: entry["date"])
+
+        selected = allocate_fair_share(
+            data,
+            limit=10,
+            per_source_cap={"": 2},
+            group_field="submolt",
+        )
+
+        self.assertEqual(len(selected), 4)
+        self.assertTrue(all(entry["source"] == "Moltbook" for entry in selected))
+        groups = {}
+        for entry in selected:
+            groups[entry["submolt"]] = groups.get(entry["submolt"], 0) + 1
+        self.assertEqual(groups, {"m/agents": 2, "m/general": 2})
 
     def test_result_stays_ascending_by_date(self):
         selected = allocate_fair_share(
