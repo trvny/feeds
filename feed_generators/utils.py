@@ -176,6 +176,24 @@ def source_quota(per_source_cap, source: str) -> int | None:
     return per_source_cap
 
 
+def _deal_fair_share(selected, by_source, order, cursor, limit, ceiling_for) -> None:
+    """Deal one round-robin allocation pass into ``selected``."""
+    progressed = True
+    while len(selected) < limit and progressed:
+        progressed = False
+        for source in order:
+            if len(selected) >= limit:
+                break
+            bucket = by_source[source]
+            index = cursor[source]
+            ceiling = ceiling_for(source)
+            if index >= len(bucket) or (ceiling is not None and index >= ceiling):
+                continue
+            selected.append(bucket[index])
+            cursor[source] = index + 1
+            progressed = True
+
+
 def allocate_fair_share(
     entries: list[dict],
     limit: int,
@@ -229,27 +247,24 @@ def allocate_fair_share(
     order = sorted(by_source)
     cursor = dict.fromkeys(order, 0)
     selected: list[dict] = []
-
-    def deal(ceiling_for) -> None:
-        progressed = True
-        while len(selected) < limit and progressed:
-            progressed = False
-            for source in order:
-                if len(selected) >= limit:
-                    break
-                bucket = by_source[source]
-                index = cursor[source]
-                ceiling = ceiling_for(source)
-                if index >= len(bucket) or (ceiling is not None and index >= ceiling):
-                    continue
-                selected.append(bucket[index])
-                cursor[source] = index + 1
-                progressed = True
-
-    deal(lambda source: source_quota(per_source_cap, source))
+    _deal_fair_share(
+        selected,
+        by_source,
+        order,
+        cursor,
+        limit,
+        lambda source: source_quota(per_source_cap, source),
+    )
     if len(selected) < limit:
         hard = isinstance(per_source_cap, dict)
-        deal(lambda source: source_quota(per_source_cap, source) if hard else None)
+        _deal_fair_share(
+            selected,
+            by_source,
+            order,
+            cursor,
+            limit,
+            lambda source: source_quota(per_source_cap, source) if hard else None,
+        )
 
     return sort_posts_for_feed(selected, date_field=date_field)
 
