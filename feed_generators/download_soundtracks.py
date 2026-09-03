@@ -141,7 +141,11 @@ def _fetch_listing_html(page):
     proxy = _proxy_url(page)
     urls = (proxy, direct) if os.getenv("GITHUB_ACTIONS") == "true" else (direct, proxy)
     for url in urls:
-        html = get_html(url)
+        try:
+            html = get_html(url)
+        except Exception as exc:
+            logger.warning("Download Soundtracks fetch failed for %s: %s", url, exc)
+            continue
         if html:
             return html
     return None

@@ -130,6 +130,26 @@ class DownloadSoundtracksTests(unittest.TestCase):
             ],
         )
 
+    def test_fetch_falls_back_after_exception(self):
+        with (
+            patch.dict(os.environ, {"GITHUB_ACTIONS": "true"}),
+            patch.object(
+                download_soundtracks,
+                "get_html",
+                side_effect=[TimeoutError("proxy timeout"), "direct"],
+            ) as fetch,
+        ):
+            html = download_soundtracks._fetch_listing_html(1)
+
+        self.assertEqual(html, "direct")
+        self.assertEqual(
+            fetch.call_args_list,
+            [
+                call("https://feeds.trfny.com/download-soundtracks?path=%2F"),
+                call(download_soundtracks.BLOG_URL),
+            ],
+        )
+
     def test_scraper_reads_website_directly(self):
         html = """
         <article>
