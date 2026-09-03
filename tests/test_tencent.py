@@ -118,6 +118,20 @@ class TencentFeedTests(unittest.TestCase):
         self.assertEqual([entry["title"] for entry in entries], ["New"])
         self.assertEqual(fetch.call_count, 1)
 
+    def test_collection_ignores_older_entries_after_known_history(self):
+        page = async_html(
+            [
+                {"newsId": "new", "cateId": "800", "title": "New"},
+                {"newsId": "known", "cateId": "800", "title": "Known"},
+                {"newsId": "old", "cateId": "800", "title": "Old"},
+            ],
+            total=24,
+        )
+        known = {"https://www.tencentcloud.com/dynamic/blogs/sample-article/known"}
+        with patch.object(tencent.multi_rss, "get_html", return_value=page):
+            entries = tencent._collect_cloud(known)
+        self.assertEqual([entry["title"] for entry in entries], ["New"])
+
     def test_later_page_failure_discards_partial_cloud_batch(self):
         page_one = async_html(
             [
