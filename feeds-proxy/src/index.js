@@ -82,6 +82,7 @@ async function fetchWithRedirects(initialUrl, options = {}) {
     allowedHosts = null,
   } = options;
   let target = initialUrl;
+  const signal = AbortSignal.timeout(timeoutMs);
 
   for (let redirects = 0; redirects <= MAX_REDIRECTS; redirects++) {
     const response = await fetch(target, {
@@ -90,7 +91,7 @@ async function fetchWithRedirects(initialUrl, options = {}) {
         accept: DEFAULT_ACCEPT,
       },
       redirect: "manual",
-      signal: AbortSignal.timeout(timeoutMs),
+      signal,
     });
 
     if (![301, 302, 303, 307, 308].includes(response.status)) return response;
@@ -178,14 +179,14 @@ function downloadSoundtracksTarget(requestUrl) {
 
 /** @param {URL} requestUrl */
 async function downloadSoundtracksResponse(requestUrl) {
-  let target;
+  let target = null;
   try {
     target = downloadSoundtracksTarget(requestUrl);
   } catch {
     return text("bad path", 400);
   }
 
-  let upstream;
+  let upstream = null;
   try {
     upstream = await fetchWithRedirects(target, {
       timeoutMs: DOWNLOAD_SOUNDTRACKS_TIMEOUT_MS,
@@ -201,7 +202,7 @@ async function downloadSoundtracksResponse(requestUrl) {
     return text(message, 502);
   }
 
-  let body;
+  let body = null;
   try {
     body = await readLimited(upstream);
   } catch (error) {

@@ -17,8 +17,8 @@ async function withFetch(mockFetch, run) {
 }
 
 test("forwards valid HTTPS feeds with cache and security headers", async () => {
-  let seenUrl;
-  let seenInit;
+  let seenUrl = null;
+  let seenInit = null;
 
   await withFetch(async (url, init) => {
     seenUrl = String(url);
@@ -47,13 +47,13 @@ test("uses the allowlisted Download Soundtracks fetch route", async () => {
   let seenUrl;
   let seenInit;
 
-  await withFetch(async (url, init) => {
+  await withFetch((url, init) => {
     seenUrl = String(url);
     seenInit = init;
-    return new Response("<html>ok</html>", {
+    return Promise.resolve(new Response("<html>ok</html>", {
       status: 200,
       headers: { "content-type": "text/html; charset=UTF-8" },
-    });
+    }));
   }, async () => {
     const response = await worker.fetch(new Request(
       "https://proxy.test/download-soundtracks?path=%2Fpage%2F2%2F",
@@ -70,9 +70,9 @@ test("uses the allowlisted Download Soundtracks fetch route", async () => {
 
 test("rejects authority changes in the Download Soundtracks path", async () => {
   let calls = 0;
-  await withFetch(async () => {
+  await withFetch(() => {
     calls += 1;
-    return new Response("unexpected");
+    return Promise.resolve(new Response("unexpected"));
   }, async () => {
     const response = await worker.fetch(new Request(
       "https://proxy.test/download-soundtracks?path=%2F%2Fevil.example%2F",
@@ -84,10 +84,10 @@ test("rejects authority changes in the Download Soundtracks path", async () => {
 });
 
 test("rejects Download Soundtracks redirects to another host", async () => {
-  await withFetch(async () => new Response(null, {
+  await withFetch(() => Promise.resolve(new Response(null, {
     status: 302,
     headers: { location: "https://example.com/escape" },
-  }), async () => {
+  })), async () => {
     const response = await worker.fetch(new Request(
       "https://proxy.test/download-soundtracks?path=%2F",
     ));
