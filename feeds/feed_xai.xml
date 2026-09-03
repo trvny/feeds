@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://x.ai/xai</id>
   <title>xAI</title>
-  <updated>2026-09-03T00:45:52.139583+00:00</updated>
+  <updated>2026-09-03T05:06:59.207831+00:00</updated>
   <author>
     <name>xAI</name>
   </author>
@@ -12,6 +12,20 @@
   <icon>https://x.ai/favicon.ico</icon>
   <logo>https://x.ai/favicon.ico</logo>
   <subtitle>xAI product updates: News, the Grok Build changelog, and the xAI API release notes, plus the X developer API changelog.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/xai/901fd347cdc80f0e</id>
+    <title>grok-imagine-image-quality retirement on November 2</title>
+    <updated>2026-09-01T00:00:00+00:00</updated>
+    <content>On November 2, 2026, grok-imagine-image-quality is retired. Requests to the slug will be served by grok-imagine-image-2.0 with quality set to low , with no change to the request or response shape and at a lower per-image price. grok-imagine-image (1.0) is not affected. See the migration guide.</content>
+    <link href="https://docs.x.ai/developers/release-notes#grok-imagine-image-quality-retirement-on-november-2" rel="alternate"/>
+    <category term="xAI API release notes" label="xAI API release notes"/>
+    <published>2026-09-01T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://docs.x.ai/api/og?t=eyJ0aXRsZSI6IlJlbGVhc2UgTm90ZXMiLCJ2IjoiNiIsInNjb3BlIjoiZGV2ZWxvcGVycyIsInNlY3Rpb24iOiJEZXZlbG9wZXJzIn0.a3LsxY7sMTmFaDWxYIXC3vfwhuOHNfMSK_MPeHXBbR8" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://docs.x.ai/api/og?t=eyJ0aXRsZSI6IlJlbGVhc2UgTm90ZXMiLCJ2IjoiNiIsInNjb3BlIjoiZGV2ZWxvcGVycyIsInNlY3Rpb24iOiJEZXZlbG9wZXJzIn0.a3LsxY7sMTmFaDWxYIXC3vfwhuOHNfMSK_MPeHXBbR8"/>
+    </media:group>
+    <link rel="enclosure" href="https://docs.x.ai/api/og?t=eyJ0aXRsZSI6IlJlbGVhc2UgTm90ZXMiLCJ2IjoiNiIsInNjb3BlIjoiZGV2ZWxvcGVycyIsInNlY3Rpb24iOiJEZXZlbG9wZXJzIn0.a3LsxY7sMTmFaDWxYIXC3vfwhuOHNfMSK_MPeHXBbR8" type="image/jpeg" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/xai/fcd933fe8aea37c9</id>
     <title>Media upload and Post-create size and duration limits</title>
@@ -2790,20 +2804,6 @@
     <updated>2026-05-01T00:00:00+00:00</updated>
     <content>The Context Compaction API is now available. You can shrink long conversations into a shorter context and reuse it in follow-up requests for lower cost, faster time-to-first-token, and sharper responses on long agent loops. For more details, see the Context Compaction docs.</content>
     <link href="https://docs.x.ai/developers/release-notes#context-compaction" rel="alternate"/>
-    <category term="xAI API release notes" label="xAI API release notes"/>
-    <published>2026-05-01T00:00:00+00:00</published>
-    <media:group>
-      <media:content url="https://docs.x.ai/api/og?t=eyJ0aXRsZSI6IlJlbGVhc2UgTm90ZXMiLCJ2IjoiNiIsInNjb3BlIjoiZGV2ZWxvcGVycyIsInNlY3Rpb24iOiJEZXZlbG9wZXJzIn0.a3LsxY7sMTmFaDWxYIXC3vfwhuOHNfMSK_MPeHXBbR8" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://docs.x.ai/api/og?t=eyJ0aXRsZSI6IlJlbGVhc2UgTm90ZXMiLCJ2IjoiNiIsInNjb3BlIjoiZGV2ZWxvcGVycyIsInNlY3Rpb24iOiJEZXZlbG9wZXJzIn0.a3LsxY7sMTmFaDWxYIXC3vfwhuOHNfMSK_MPeHXBbR8"/>
-    </media:group>
-    <link rel="enclosure" href="https://docs.x.ai/api/og?t=eyJ0aXRsZSI6IlJlbGVhc2UgTm90ZXMiLCJ2IjoiNiIsInNjb3BlIjoiZGV2ZWxvcGVycyIsInNlY3Rpb24iOiJEZXZlbG9wZXJzIn0.a3LsxY7sMTmFaDWxYIXC3vfwhuOHNfMSK_MPeHXBbR8" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/xai/ee629024a1e47475</id>
-    <title>Smart Turn for Streaming STT</title>
-    <updated>2026-05-01T00:00:00+00:00</updated>
-    <content>The streaming Speech to Text API now supports Smart Turn end-of-turn detection. When enabled via the smart turn query parameter, an ML model predicts whether the speaker has finished their thought at silence boundaries — reducing false endpointing during dictation, number sequences, and mid-sentence pauses. Use smart turn timeout to set a maximum silence fallback. For more details, see the Smart Turn docs.</content>
-    <link href="https://docs.x.ai/developers/release-notes#smart-turn-for-streaming-stt" rel="alternate"/>
     <category term="xAI API release notes" label="xAI API release notes"/>
     <published>2026-05-01T00:00:00+00:00</published>
     <media:group>
