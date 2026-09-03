@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import threading
 import time
 from urllib.parse import urlsplit
 
@@ -29,7 +30,7 @@ def doc_sources():
     return [("Pogoda — Kościelec (Atom)", SOURCE_URL)]
 
 
-def _fetch_source() -> bytes | None:
+def _fetch_source_once() -> bytes | None:
     """Fetch the upstream Atom feed with redirect, size, and duration limits."""
     started = time.monotonic()
     try:
@@ -66,6 +67,23 @@ def _fetch_source() -> bytes | None:
     except (requests.RequestException, ValueError) as exc:
         multi_rss.logger.warning("Weather Atom fetch failed: %s", exc)
         return None
+
+
+
+def _fetch_source() -> bytes | None:
+    """Fetch within a hard wall-clock deadline, including response headers."""
+    result: list[bytes | None] = []
+
+    def run() -> None:
+        result.append(_fetch_source_once())
+
+    worker = threading.Thread(target=run, daemon=True, name="weather-fetch")
+    worker.start()
+    worker.join(SOURCE_TOTAL_SECONDS)
+    if worker.is_alive():
+        multi_rss.logger.warning("Weather Atom fetch exceeded total deadline")
+        return None
+    return result[0] if result else None
 
 
 def build_xml(xml: str | bytes) -> bytes | None:

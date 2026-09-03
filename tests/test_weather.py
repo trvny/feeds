@@ -1,4 +1,5 @@
 import sys
+import threading
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -71,6 +72,19 @@ class WeatherFeedTests(unittest.TestCase):
         cleaned = weather.clean_json_feed(doc)
         self.assertNotIn("url", cleaned["items"][0])
         self.assertEqual(cleaned["items"][1]["url"], "https://example.com/weather")
+
+    def test_fetch_source_enforces_wall_clock_deadline(self):
+        release = threading.Event()
+        with (
+            patch.object(weather, "SOURCE_TOTAL_SECONDS", 0.01),
+            patch.object(
+                weather,
+                "_fetch_source_once",
+                side_effect=lambda: release.wait(1.0) or b"late",
+            ),
+        ):
+            self.assertIsNone(weather._fetch_source())
+        release.set()
 
     def test_main_keeps_last_good_output_on_empty_source(self):
         with (
