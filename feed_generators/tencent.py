@@ -151,7 +151,7 @@ def _append_fresh_entries(page_entries, *, known_links, seen, collected) -> bool
         link = entry["link"]
         if link in known_links:
             reached_known = True
-            continue
+            break
         if link in seen:
             continue
         seen.add(link)
