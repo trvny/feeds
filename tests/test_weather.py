@@ -45,10 +45,21 @@ class WeatherFeedTests(unittest.TestCase):
             entry.findtext(f"{ATOM}id"),
             "tag:travny,2026:weather:koscielec:current:1",
         )
-        self_link = next(
+        self_links = [
             link for link in root.findall(f"{ATOM}link") if link.get("rel") == "self"
-        )
-        self.assertEqual(self_link.get("href"), weather._PUBLISHED_URL)
+        ]
+        self.assertEqual(len(self_links), 1)
+        self.assertEqual(self_links[0].get("href"), weather._PUBLISHED_URL)
+
+    def test_build_xml_rejects_entity_declarations(self):
+        payload = """<!DOCTYPE feed [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link rel="self" href="https://weather.trfny.com/feed.atom"/>
+  <entry><id>&xxe;</id></entry>
+</feed>"""
+        rendered = weather.build_xml(payload)
+        self.assertIsNotNone(rendered)
+        self.assertNotIn(b"root:", rendered)
 
     def test_clean_json_feed_drops_synthetic_tag_url(self):
         doc = {
@@ -63,7 +74,7 @@ class WeatherFeedTests(unittest.TestCase):
 
     def test_main_keeps_last_good_output_on_empty_source(self):
         with (
-            patch.object(weather.multi_rss, "get_html", return_value="<feed></feed>"),
+            patch.object(weather, "_fetch_source", return_value=b"<feed></feed>"),
             patch.object(weather, "save_mirrored_atom") as save,
         ):
             self.assertFalse(weather.main())
