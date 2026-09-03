@@ -1,32 +1,20 @@
-"""Atom feed scraped directly from Download Soundtracks HTML.
+"""Atom feed scraped from Download Soundtracks HTML.
 
-Disabled in ``feeds.yaml`` (``enabled: false``): the origin sits behind
-Cloudflare and answers **403 to GitHub-hosted runners**, so every scheduled run
-failed the feed health gate even though the site itself is up. Measured
-16.08.2026, the same hour, against ``https://download-soundtracks.com/``:
-
-  * from a residential Polish IP -- HTTP 200, plain ``curl``, no User-Agent needed
-  * from ubuntu-latest on Actions -- HTTP 403 on all four attempts ``get_html``
-    makes (Chrome impersonation and plain requests, twice, with the retry pause)
-
-That rules out the TLS fingerprint and the User-Agent, which is what
-``get_html``'s two-client dance exists to defeat; what is left is the client IP
-range. The block was already hit once and the feed switched off on 02.08.2026;
-it was restored in #262 on 15.08.2026 after a local check, which is exactly the
-check that cannot see this. So **verify from CI, not from a workstation**:
-``workflow_dispatch`` on Update Feeds, or any runner-side request, before
-flipping ``enabled`` back to true.
-
-The scraper itself is fine and is left in place for that day.
+The origin blocks GitHub-hosted runner IPs with HTTP 403 even while normal
+residential requests succeed. Since 03.09.2026 scheduled generation therefore
+uses Feedseek's host-locked ``feeds-proxy`` route on GitHub Actions. Outside
+Actions the scraper keeps the origin as the preferred path and only falls back
+to the proxy if the direct request fails. The proxy route is restricted to
+``download-soundtracks.com`` and was verified live before re-enabling the feed.
 """
 
 import argparse
+import os
 import re
 import sys
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urlencode, urljoin, urlparse
 
 from bs4 import BeautifulSoup
-
 from multi_rss import get_html, parse_date, run
 from utils import normalize_link, sanitize_xml, setup_logging
 
@@ -34,6 +22,7 @@ logger = setup_logging()
 
 FEED_NAME = "download-soundtracks"
 BLOG_URL = "https://download-soundtracks.com/"
+PROXY_URL = "https://feeds.trfny.com/download-soundtracks"
 MAX_ENTRIES = 250
 MAX_PAGES = 25
 MAX_STALE_PAGES = 2
@@ -142,6 +131,22 @@ def _page_url(page):
     return BLOG_URL if page == 1 else urljoin(BLOG_URL, f"page/{page}/")
 
 
+def _proxy_url(page):
+    path = "/" if page == 1 else f"/page/{page}/"
+    return f"{PROXY_URL}?{urlencode({'path': path})}"
+
+
+def _fetch_listing_html(page):
+    direct = _page_url(page)
+    proxy = _proxy_url(page)
+    urls = (proxy, direct) if os.getenv("GITHUB_ACTIONS") == "true" else (direct, proxy)
+    for url in urls:
+        html = get_html(url)
+        if html:
+            return html
+    return None
+
+
 def scrape_download_soundtracks(known_links):
     """Crawl listing pages and return entries oldest-first for Feedseek merging."""
     entries = []
@@ -150,7 +155,7 @@ def scrape_download_soundtracks(known_links):
     stale_pages = 0
 
     for page in range(1, MAX_PAGES + 1):
-        html = get_html(_page_url(page))
+        html = _fetch_listing_html(page)
         if not html:
             break
 
