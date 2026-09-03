@@ -152,19 +152,19 @@ The Android reader/player for these feeds lives in **[twojstar/kanarek](https://
 ## 📰 Mini news
 
 <!--README_FEED:START-->
-- [Urban Word of the Day — Back when I lived in upstate new york](https://www.urbandictionary.com/define.php?term=Back%20when%20I%20lived%20in%20upstate%20new%20york&defid=5432275)
-- [Urban Word of the Day — Salad Days](https://www.urbandictionary.com/define.php?term=Salad%20Days&defid=6122902)
-- [Urban Word of the Day — grebo](https://www.urbandictionary.com/define.php?term=grebo&defid=1975218)
 - [How to Engage with New Media: A Strategic Guide for Nonprofit Organizations](https://carnegieendowment.org/research/2026/08/how-to-engage-with-new-media-a-strategic-guide-for-nonprofit-organizations)
-- [Urban Word of the Day — board chow](https://www.urbandictionary.com/define.php?term=board%20chow&defid=2568411)
-- [Operationalizing AI Sovereignty Through Agency, Interoperability, and Openness](https://carnegieendowment.org/research/2026/09/operationalizing-ai-sovereignty-through-agency-interoperability-and-openness)
+- [Zestaw Lego PlayStation już w sklepach. Mamy pierwsze zdjęcie](https://antyweb.pl/zestaw-lego-playstation-juz-w-sklepach-mamy-pierwsze-zdjecie)
+- [15-letni Adam zginął pod Olkuszem. Bliscy podejrzanego przerwali milczenie - Fakt](https://news.google.com/atom/articles/CBMivAFBVV95cUxOejVDdXZiZEhmVXBrOURFazl2dXZmRGk2MFY5QjZsVXBHcWkwVWJLUHI5WmZNSlpMY0FCRVZ5elI4elozUm5oTFhsSVNVSVgtdWFDV2xPV25weG5SX1pOZGxJS1d3SGM0U0lDaEpjYXd4b25FWmFhMmM0Z09Xbjl2am1waEhoTWhYT2NHeUd1Q28wQVpIMmVnYmE2Xy1zNU5POV9JYW10VUtwU0JMZmNOTXZ6MkdEVi1XZjM3dg?oc=5)
+- [Product of the Day — A Bike That Has A Motor And Protects From The Elements](https://anycrap.shop/product/a-bike-that-has-a-motor-and-protects-from-the-elements)
+- [Cat Fact of the Day](https://github.com/wh-iterabb-it/meowfacts)
+- [Joke of the Day](http://www.laughnet.net/archive/jokes/groan.htm)
 <!--README_FEED:END-->
 
 ## 💬 Quote from the drawer
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝“BASIC is to computer programming as QWERTY is to typing.”— Seymour Papert❞</i>
+<i>❝“There’s no obfuscated Perl contest because it’s pointless.”— Jeff Polk❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
