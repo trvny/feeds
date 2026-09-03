@@ -52,6 +52,21 @@ class WeatherFeedTests(unittest.TestCase):
         self.assertEqual(len(self_links), 1)
         self.assertEqual(self_links[0].get("href"), weather._PUBLISHED_URL)
 
+    def test_build_xml_accepts_xhtml_titles(self):
+        payload = """<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml"><strong>Pogoda</strong></div></title>
+  <id>tag:travny,2026:weather:koscielec</id>
+  <updated>2026-09-03T08:00:58Z</updated>
+  <link rel="self" href="https://weather.trfny.com/feed.atom"/>
+  <entry>
+    <title type="xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Kościelec <strong>18.6°C</strong></div></title>
+    <id>tag:travny,2026:weather:koscielec:current:1</id>
+    <updated>2026-09-03T08:00:58Z</updated>
+  </entry>
+</feed>"""
+        self.assertIsNotNone(weather.build_xml(payload))
+
     def test_build_xml_rejects_entity_declarations(self):
         payload = """<!DOCTYPE feed [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>
 <feed xmlns="http://www.w3.org/2005/Atom">
