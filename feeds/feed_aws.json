@@ -8,6 +8,205 @@
   "icon": "https://aws.amazon.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/bb0d45169651a133",
+      "url": "https://github.com/aws/aws-cli/releases/tag/2.36.39",
+      "title": "AWS CLI 2.36.39",
+      "content_text": "api-change:eks: Deprecate EncryptionConfig resources field. Amazon EKS encrypts all Kubernetes API data with envelope encryption by default for clusters running Kubernetes version 1.28 or higher, so this field no longer affects which resources are encrypted. api-change:socialmessaging: Adding support for WhatsApp Flows with endpoints. api-change:connect: This release enables TagOnCreate for Rule resource on CreateRule API. It also introduces a new field called PreEvaluationFilters to Rule resource, thereby impacting all Create, Update, Describe and Search APIs for Rules api-change:stepfunctions: Updates Step Functions API documentation around CloudTrail, Execution name reuse and sort order of ListExecutions API api-change:bedrock-agentcore-control: AgentCore Identity adds Consent Portal APIs to manage portals that let end users grant OAuth authorization for agents to access resources. AgentCore Evaluation adds trace source selection by log group prefix, custom or source log group result destinations, and metrics namespace customization. api-change:transfer: AWS Transfer Family SFTP Connectors now support specifying an ordered list of AWS Secrets Manager version stages for secret retrieval. This enables seamless credential rotation workflows where external partners may take time to update their systems with new credentials. api-change:guardduty: Adding support for Sequence Activities in GuardDuty Findings api-change:drs: AWS Elastic Disaster Recovery now includes source server architecture in SourceProperties to identify x86 and ARM64 systems. api-change:evs: Amazon EVS now allows users to set, update, and retrieve values for parameters that apply across all EVS Environments in their account at a regional level, such as the VCF License portability core count. api-change:transcribe: Amazon Transcribe now supports specifying up to 29 PII entity types in the ContentRedaction configuration of a StartTranscriptionJob request, allowing all supported entity types to be redacted in a single batch transcription job. api-change:ecs: Adds a critical parameter to the Amazon ECS managed daemon APIs that controls whether a daemon task failure drains the container instance. Non-critical daemon failures no longer drain the instance or block instance registration. api-change:bedrock-agentcore: Adds log group name prefix trace source selection, custom or source log group result destinations, and metrics namespace customization api-change:elbv2: This release adds support for sending TCP resets for Gateway Load Balancer when a flow's idle timeout expires, or when a target becomes unhealthy or is deregistered. This adds updates the CLI documentation.",
+      "date_published": "2026-09-03T18:09:09Z",
+      "date_modified": "2026-09-03T18:09:09Z",
+      "authors": [
+        {
+          "name": "AWS CLI v2 Changelog"
+        }
+      ],
+      "image": "https://opengraph.githubassets.com/8569ca66285e4251f58d2ff2ade98e840605302387481780c999ce685a800f3d/aws/aws-cli",
+      "tags": [
+        "AWS CLI v2 Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://opengraph.githubassets.com/8569ca66285e4251f58d2ff2ade98e840605302387481780c999ce685a800f3d/aws/aws-cli",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/5ddbdf93d92368ca",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/cloudfront-flat-rate-pricing-plans-api/",
+      "title": "Amazon CloudFront announces API support for flat-rate pricing plans",
+      "content_text": "Starting today, customers can subscribe and manage flat-rate pricing plans programmatically using the AWS CLI, AWS SDKs, CloudFormation, CDK, or the PricingPlanManager API. CloudFront flat-rate plans give you one monthly price covering global content delivery, WAF, DDoS, DNS, logging, and edge compute, with no usage-based overage charges regardless of traffic spikes or attacks. Previously, customers could only subscribe to flat-rate pricing plans using the console, which required manual steps wh",
+      "date_published": "2026-09-03T18:00:00Z",
+      "date_modified": "2026-09-03T18:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/366111bc94b0e41f",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-quick-max-5x-usage-power-users/",
+      "title": "Introducing Amazon Quick Max: 5x the usage for power users who want the most out of Quick",
+      "content_text": "Amazon Quick now offers Quick Max, a new plan for power users who want to get the absolute most out of Quick. With 5x the usage and 5x the storage of Plus, Max gives you the room to do more: more agents, more workflows, more of whatever makes Quick yours. With Max, you can run large, concurrent workloads without interruption—all month long. It delivers more value per dollar the more you use it and is available with both monthly and annual billing options. New to Amazon Quick? You can sign up for",
+      "date_published": "2026-09-03T17:17:00Z",
+      "date_modified": "2026-09-03T17:17:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/ac04c624e4a6dd2e",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/aws-gateway-load-balancer-tcp-reset/",
+      "title": "AWS Gateway Load Balancer now supports TCP Reset for faster failure recovery",
+      "content_text": "A WS Gateway Load Balancer (GWLB) now supports sending TCP Reset (RST) packets when a target becomes unhealthy, is deregistered, or when a flow's idle timeout expires. This feature helps reduce traffic interruptions from minutes to seconds by enabling TCP endpoints to quickly detect failed connections and establish new TCP flows through healthy targets. Previously, when a GWLB target failed, existing TCP connections would continue to be forwarded to the unhealthy target (aka fail-open behavior).",
+      "date_published": "2026-09-03T17:00:00Z",
+      "date_modified": "2026-09-03T17:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/a4f83077f2d74b8c",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-workspaces-applications-nvidia-blackwell-gpu-instances/",
+      "title": "Amazon WorkSpaces Applications adds support for NVIDIA Blackwell GPU instances",
+      "content_text": "Amazon WorkSpaces Applications now supports Graphics G7 instances, powered by NVIDIA RTX PRO 4500 Blackwell Server Edition GPUs and Intel Xeon Scalable (6th Gen) processors. G7 instances deliver up to 2.1× better performance for graphics-intensive workloads compared to previous generation G6 instances. With Graphics G7, customers can stream demanding professional applications such as CAD/CAM, 3D rendering, scientific visualization, video editing, and AI-assisted design workflows at higher fideli",
+      "date_published": "2026-09-03T17:00:00Z",
+      "date_modified": "2026-09-03T17:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/5c4adf77eccb8a71",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/redshift-rg-large-single-node",
+      "title": "Amazon Redshift rg.large instances now support single-node clusters",
+      "content_text": "Amazon Redshift rg.large instances, powered by AWS Graviton processors, now support single-node clusters. Single-node support for rg.large clusters is available on P204 or later patch versions. Customers can now create a single-node rg.large cluster for smaller workloads that do not require high availability, offering a cost-effective option to conduct proofs of concept and tests quickly. RG instances deliver up to 2.4x faster performance running data warehouse and data lake workloads when compa",
+      "date_published": "2026-09-03T16:03:00Z",
+      "date_modified": "2026-09-03T16:03:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/60c2752448e0cb94",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-aurora-mysql-multisourcerep-delayedrep/",
+      "title": "Amazon Aurora MySQL now supports multi-source replication and delayed replication",
+      "content_text": "Starting today, Amazon Aurora MySQL supports two new replication capabilities: multi-source replication and delayed replication. Multi-source replication lets a single Aurora MySQL cluster replicate from multiple source databases at the same time, making it easier to consolidate data from separate MySQL databases. This enables critical use-cases, such as merging shards or aggregating data from separate databases (e.g. regional or departmental instances) into a central location for operational wo",
+      "date_published": "2026-09-03T16:00:00Z",
+      "date_modified": "2026-09-03T16:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/b575561ca2b7396a",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/sagemaker-workflows-python-bash/",
+      "title": "Amazon SageMaker Unified Studio Workflows support Python and Bash operators",
+      "content_text": "Amazon SageMaker Unified Studio Workflows now supports PythonOperator and BashOperator, enabling you to run custom Python functions and shell commands directly in your serverless workflows without provisioning separate compute resources. This eliminates the need to offload custom logic to Lambda or ECS for tasks like data transformations or shell script execution. To get started, open a serverless visual workflow in your SageMaker Unified Studio project, search for PythonOperator or BashOperator",
+      "date_published": "2026-09-03T15:00:00Z",
+      "date_modified": "2026-09-03T15:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/ac76782c8142b8ba",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-mwaa-cloudwatch-monitoring/",
+      "title": "Amazon MWAA adds built-in monitoring with Amazon CloudWatch",
+      "content_text": "Amazon Managed Workflows for Apache Airflow (MWAA) now includes a built-in monitoring experience on the environment detail page in the AWS Management Console . A new metrics dashboard displays key Amazon CloudWatch metrics for your environment in one place, and each graph includes an optional toggle to overlay suggested warning ranges, helping you quickly identify conditions that may affect your environment's health and performance. The environment detail page also now shows an alarms table that",
+      "date_published": "2026-09-03T15:00:00Z",
+      "date_modified": "2026-09-03T15:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/1fb9783229a6920e",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/announcing-amazon-linux-2027/",
+      "title": "Amazon Linux 2027 is now available in public preview",
+      "content_text": "Today, AWS announces the public preview of Amazon Linux 2027 (AL2027), the next version of the Amazon Linux operating system, purpose-built for cloud-native workloads on AWS with performance, scale, and security in mind. Built on AL2023's baseline, AL2027 is designed for customers running web applications, databases, containerized microservices, AI/ML workloads, and large-scale infrastructure who need a secure, stable, and AWS-native operating system. AL2027 runs on kernel 7.1+, enables SELinux",
+      "date_published": "2026-09-03T08:00:00Z",
+      "date_modified": "2026-09-03T08:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/5ce00376aea40edc",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-ses-supports-smime-signing",
+      "title": "Amazon SES now supports S/MIME email signing",
+      "content_text": "Amazon Simple Email Service (SES) now supports Secure/Multipurpose Internet Mail Extensions (S/MIME) signing, giving you a way to help recipients verify your emails are authentic. An S/MIME signature lets recipients confirm that a message was sent by the holder of the From address and that its content was not altered in transit. Previously, senders who needed S/MIME had to sign each message themselves before submitting it to SES, adding complexity to their sending. With this feature, you store y",
+      "date_published": "2026-09-03T07:00:00Z",
+      "date_modified": "2026-09-03T07:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/aws/930e092d681cb42a",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/amazon-s3-privatelink-fips-endpoints",
+      "title": "Amazon S3 now supports PrivateLink for FIPS endpoints",
+      "content_text": "Amazon S3 now supports AWS PrivateLink for endpoints that have been validated under the Federal Information Processing Standard (FIPS) 140-3 program. Customers with security and compliance requirements can use FIPS-validated cryptographic modules when connecting to S3 while keeping their traffic within their Virtual Private Cloud (VPC). To get started, create a new or edit an existing interface VPC endpoint for S3 and configure it to use the FIPS S3 endpoint. AWS PrivateLink support for FIPS S3",
+      "date_published": "2026-09-03T04:00:00Z",
+      "date_modified": "2026-09-03T04:00:00Z",
+      "authors": [
+        {
+          "name": "AWS What's New"
+        }
+      ],
+      "tags": [
+        "AWS What's New"
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/aws/0adb85498e49e430",
       "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/aws-transform-fsx-netapp-ontap-support/",
       "title": "AWS Transform announces general availability of Amazon FSx for NetApp ONTAP support",
@@ -493,8 +692,8 @@
       "url": "https://aws.amazon.com/about-aws/whats-new/2026/09/claude-fable-5-1-aws/",
       "title": "Claude Fable 5.1, Anthropic's new frontier model is now available on AWS",
       "content_text": "Claude Fable 5.1 is generally available on AWS and brings Anthropic's most capable frontier model to all customers. Fable 5.1 delivers frontier intelligence for ambitious tasks across coding, scientific research, and enterprise workflows. A clear improvement over Claude Fable 5, Fable 5.1 is a step up in intelligence on the hardest reasoning tasks, providing better judgement on ambiguous work and fewer confident wrong answers. Claude Mythos 5.1, the same underlying model as Claude Fable 5.1 with",
-      "date_published": "2026-09-01T14:00:00Z",
-      "date_modified": "2026-09-01T14:00:00Z",
+      "date_published": "2026-09-01T14:30:00Z",
+      "date_modified": "2026-09-01T14:30:00Z",
       "authors": [
         {
           "name": "AWS What's New"
@@ -2214,86 +2413,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/30161d58d52d34ad",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-gamelift-servers-enhanced-ddos-protection",
-      "title": "Amazon GameLift Servers enhanced DDoS Protection now available",
-      "content_text": "Amazon GameLift Servers now offers Enhanced DDoS Protection, a new layer of protection that defends game servers from common network and transport layer DDoS attacks with no configuration required. Enhanced DDoS Protection is active from the moment you start running game servers on Amazon GameLift Servers , with nothing to enable or opt in to. Enhanced DDoS Protection provides proactive, gaming-optimized traffic shaping mitigations tuned from experience protecting some of the world's largest gam",
-      "date_published": "2026-08-25T00:00:00Z",
-      "date_modified": "2026-08-25T00:00:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/88b327e5024b303e",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-ecs-agent-connectivity-health",
-      "title": "Amazon ECS now automatically detects and repairs container instances with impaired agent connectivity",
-      "content_text": "Amazon Elastic Container Service (Amazon ECS) now automatically detects and repairs container instances, enabling customers to reduce undetected workload failures and improve application availability without manual intervention. With this launch, Amazon ECS continuously monitors agent connectivity across container instances. Infrastructure events such as EBS volume degradation, host thermal events, or network connectivity failures can sever the ECS agent's connection to the ECS control plane. Am",
-      "date_published": "2026-08-24T22:42:00Z",
-      "date_modified": "2026-08-24T22:42:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/827811c42b47021e",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/aws-glue-catalog-federation-iceberg-govcloud/",
-      "title": "AWS Glue now supports catalog federation for remote Apache Iceberg catalogs in AWS GovCloud (US) regions",
-      "content_text": "AWS Glue now supports catalog federation for remote Iceberg REST catalogs in AWS GovCloud (US) Regions. This capability provides direct and secure access to Iceberg tables, stored in Amazon S3 and cataloged in remote catalogs, using AWS analytics engines. With catalog federation, you can federate to Iceberg tables in remote catalogs using your preferred AWS analytics engines, without moving or copying tables. It synchronizes metadata real-time between AWS Glue Data Catalog and the remote catalog",
-      "date_published": "2026-08-24T20:50:00Z",
-      "date_modified": "2026-08-24T20:50:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/3ddeba851705e4f8",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/sagemaker-mlflow-custom-keys",
-      "title": "SageMaker MLflow now supports customer managed keys",
-      "content_text": "SageMaker MLflow now enables customers to encrypt their data using customer-managed keys (CMK) through AWS Key Management Service (KMS). This enhancement allows organizations with strict security and compliance requirements to manage their own encryption keys. With customer-managed keys, you gain enhanced security control and comprehensive audit capabilities through AWS CloudTrail integration. You can encrypt your data with your own KMS keys, trace all data access for security auditing. Customer",
-      "date_published": "2026-08-24T19:26:00Z",
-      "date_modified": "2026-08-24T19:26:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/4fd54886021fc63d",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-eks-multiple-oidc-providers",
-      "title": "Amazon EKS now supports multiple external OIDC identity providers per cluster",
-      "content_text": "Amazon Elastic Kubernetes Service (Amazon EKS) now supports multiple external OpenID Connect (OIDC) identity providers per cluster. You can associate up to 10 OIDC identity providers with a single cluster, giving you more flexibility in how you authenticate users and workloads to your Kubernetes clusters. Many organizations use different identity providers for different user populations, such as employees, contractors, and CI/CD systems. You can now associate each of these providers directly wit",
-      "date_published": "2026-08-24T18:29:00Z",
-      "date_modified": "2026-08-24T18:29:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/aws/39f56cc040720327",
       "url": "https://github.com/aws/aws-cli/releases/tag/2.36.30",
       "title": "AWS CLI 2.36.30",
@@ -2360,102 +2479,6 @@
           "url": "https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2026/08/23/2026-08-24-WIR.png",
           "mime_type": "image/png"
         }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/fba9c5d2a8488b67",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-aurora-postgresql-18-4-17-10-16-14-15-18-14-23/",
-      "title": "Amazon Aurora now supports PostgreSQL 18.4, 17.10, 16.14, 15.18, and 14.23",
-      "content_text": "Amazon Aurora PostgreSQL-Compatible Edition now supports PostgreSQL versions 18.4, 17.10, 16.14, 15.18, and 14.23 which include bug fixes from the PostgreSQL community and Aurora-specific enhancements. We recommend upgrading to the latest minor versions to address known Common Vulnerabilities and Exposures (CVEs) and benefit from these improvements, as detailed in the release notes . You can upgrade your databases during scheduled maintenance windows using automatic minor version upgrades. To si",
-      "date_published": "2026-08-24T16:00:00Z",
-      "date_modified": "2026-08-24T16:00:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/58824d5c618438a0",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-msk-replicator-OAuth-support",
-      "title": "MSK Replicator now supports OAuth 2.0 (SASL/OAUTHBEARER) authentication for replication from external Apache Kafka clusters to Amazon MSK",
-      "content_text": "Amazon MSK Replicator now supports OAuth 2.0 (SASL/OAUTHBEARER) authentication for data replication from external Apache Kafka clusters - including on-premises, self-managed on AWS, or other cloud providers - to Amazon MSK Provisioned clusters . With this capability, external Apache Kafka clusters configured with OAuth/OIDC authentication can now use MSK Replicator to migrate workloads to Amazon MSK, support disaster recovery by using MSK-based clusters as a failover or backup target and enable",
-      "date_published": "2026-08-24T15:00:00Z",
-      "date_modified": "2026-08-24T15:00:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/4445561be7100727",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-sagemaker-hyperpod-ray",
-      "title": "Amazon SageMaker HyperPod enhances support for Ray",
-      "content_text": "Amazon SageMaker HyperPod now enhances support for Ray with built-in observability, resilient training, accelerated inference and managed development environments. Ray is a popular open-source framework for scaling AI workloads on a unified compute layer, from data processing and distributed training to reinforcement learning and model serving. Running Ray on Kubernetes at production scale can be an operational burden: job hangs, low GPU utilization from static team allocations, and multi-step o",
-      "date_published": "2026-08-24T15:00:00Z",
-      "date_modified": "2026-08-24T15:00:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/0b17fec11fc52e31",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/amazon-connect-customer-information/",
-      "title": "Amazon Connect Customer now supports information extraction for agent voice and chat conversations",
-      "content_text": "Amazon Connect Customer now supports information extraction, which automatically captures key data from voice and chat interactions, reducing manual data capture and improving agent and supervisor productivity. Information extraction captures verbatim values like account numbers, reservation IDs, and product names, as well as derived insights inferred from the conversation such as reason for contact, resolution provided, and next steps promised. You define conversational analytics rules for what",
-      "date_published": "2026-08-24T14:46:00Z",
-      "date_modified": "2026-08-24T14:46:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/31151bca2e674bde",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/aws-parallelcluster/",
-      "title": "AWS ParallelCluster 3.16 adds an on-node diagnostics tool",
-      "content_text": "AWS ParallelCluster 3.16 is now generally available with a new on-node diagnostics tool, cluster stability improvements, and an updated HPC and AI/ML software stack. pcluster-diag is a diagnostics tool built into the ParallelCluster AMIs that lets you run diagnostic checks on any cluster node with a single command, and get a structured report that makes it easier to identify issues. This release also hardens the cluster lifecycle with more resilient cluster creation, updates, and image builds. T",
-      "date_published": "2026-08-24T14:00:00Z",
-      "date_modified": "2026-08-24T14:00:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/aws/60cac590fb3b765a",
-      "url": "https://aws.amazon.com/about-aws/whats-new/2026/08/openai-gpt-terra-luna-govcloud/",
-      "title": "OpenAI GPT-5.6 Terra and Luna now available on Amazon Bedrock in AWS GovCloud (US)",
-      "content_text": "GPT-5.6 Terra and Luna are now generally available on Amazon Bedrock in AWS GovCloud (US-West) and AWS GovCloud (US-East), bringing the smartest family of models from OpenAI yet to Bedrock's next-generation inference engine built for high-performance, security and reliability. GPT-5.6 sets a new standard for intelligence and efficiency, allowing you to solve harder problems in less time and with more intelligence per token. The two models span capability tiers from balanced performance (Terra) t",
-      "date_published": "2026-08-24T13:00:00Z",
-      "date_modified": "2026-08-24T13:00:00Z",
-      "authors": [
-        {
-          "name": "AWS What's New"
-        }
-      ],
-      "tags": [
-        "AWS What's New"
       ]
     },
     {
