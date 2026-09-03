@@ -10,6 +10,7 @@ anything else in the account, can point at it.
 
 ## Behavior
 
+- `GET /download-soundtracks?path=/...` is a host-locked fetch path for `download-soundtracks.com`, with a browser user-agent and a 20-second timeout. It exists so scheduled Feedseek generation can avoid origin blocks on GitHub-hosted runner IPs without turning the Worker into a general forward proxy.
 - No `url` param, or non-`https://` target → `400`
 - Upstream fetch fails or times out (8s) → `502`
 - Otherwise: passes through status + body, forces `access-control-allow-origin: *`
