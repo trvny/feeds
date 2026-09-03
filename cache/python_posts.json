@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-02T21:20:36.721429+00:00",
+  "last_updated": "2026-09-03T00:41:40.949045+00:00",
   "entries": [
     {
       "title": "Database Storage Latencies",
@@ -7393,20 +7393,11 @@
     {
       "title": "Graham Dumpleton: Unit testing with wrapture",
       "link": "https://grahamdumpleton.me/posts/2026/09/unit-testing-with-wrapture/",
-      "date": "2026-09-01T21:38:57+00:00",
+      "date": "2026-09-02T00:00:00+00:00",
       "description": "In introducing wrapture I said the one idea everything sits on is to wrap rather than replace. That is easy to say and harder to see the point of, so this post takes a small piece of code and writes tests for it twice, once with unittest.mock and once with wrapture. I am not going to walk through every mock idiom and show its wrapture spelling, since a good part of the time the two are doing the same thing with different syntax, and the comparison page in the documentation already maps one onto ",
       "source": "Planet Python",
       "image": "https://opengraph.githubassets.com/54f11ba6/GrahamDumpleton/wrapture",
       "entry_id": "tag:trvny.github.io,2024:feedseek/python/c2b9d192e571037b"
-    },
-    {
-      "title": "Graham Dumpleton: Recording calls with wrapture",
-      "link": "https://grahamdumpleton.me/posts/2026/09/recording-calls-with-wrapture/",
-      "date": "2026-09-01T21:38:57+00:00",
-      "description": "In unit testing with wrapture the tests leaned on a timeline and a tape to assert on what happened, and I skipped over what those actually are. This post is about the recording side of wrapture: what gets recorded, what one event holds, how a test reads the record back, and the whole-tape views that answer questions about the flow between calls rather than about any one of them. The example is a resource leak, because it is the kind of bug the recording model was made for. Code that acquires a c",
-      "source": "Planet Python",
-      "image": "https://opengraph.githubassets.com/b68845d8/GrahamDumpleton/wrapture",
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/4507f59f40d17a0c"
     },
     {
       "title": "Mark Dufour: Shed Skin restricted-Python-to-C++ compiler v0.9.13 released",
@@ -7535,57 +7526,72 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/python/3f8bd57b69e10ba6"
     },
     {
-      "title": "cdk-dms-replication 0.2.34",
-      "link": "https://pypi.org/project/cdk-dms-replication/0.2.34/",
-      "date": "2026-09-02T20:32:46+00:00",
-      "description": "L3 CDK Constructs for Amazon Database Migration Service (DMS) — pattern construct bundling replication instance, endpoints, and tasks with secure defaults.",
-      "source": "PyPI Updates",
-      "image": "https://pypi.org/static/images/og-card.00947198.webp",
-      "image_width": 1200,
-      "image_height": 630,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/86a0d06b3083be95"
+      "title": "Graham Dumpleton: Recording calls with wrapture",
+      "link": "https://grahamdumpleton.me/posts/2026/09/recording-calls-with-wrapture/",
+      "date": "2026-09-02T21:39:25+00:00",
+      "description": "In unit testing with wrapture the tests leaned on a timeline and a tape to assert on what happened, and I skipped over what those actually are. This post is about the recording side of wrapture: what gets recorded, what one event holds, how a test reads the record back, and the whole-tape views that answer questions about the flow between calls rather than about any one of them. The example is a resource leak, because it is the kind of bug the recording model was made for. Code that acquires a c",
+      "source": "Planet Python",
+      "image": "https://opengraph.githubassets.com/b68845d8/GrahamDumpleton/wrapture",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/4507f59f40d17a0c"
     },
     {
-      "title": "openforecast 0.1.0",
-      "link": "https://pypi.org/project/openforecast/0.1.0/",
-      "date": "2026-09-02T20:32:59+00:00",
-      "description": "Add your description here",
+      "title": "Graham Dumpleton: Phased behaviour in wrapture",
+      "link": "https://grahamdumpleton.me/posts/2026/09/phased-behaviour-in-wrapture/",
+      "date": "2026-09-02T21:39:25+00:00",
+      "description": "Most of what a test configures on a patch holds until the test changes it. Retry logic is the classic case where that is not enough: the code under test keeps calling, and the test needs the behaviour to change on its own as it does. Fail twice and then succeed. Hand out a sequence of canned responses. Run the real thing until it breaks and then fail fast. unittest.mock handles the first two of those with a list passed as side_effect , consumed one entry per call. wrapture models the same idea a",
+      "source": "Planet Python",
+      "image": "https://opengraph.githubassets.com/4f759d91/GrahamDumpleton/wrapture",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/45ab5692992cc33d"
+    },
+    {
+      "title": "attn-gym 0.0.8",
+      "link": "https://pypi.org/project/attn-gym/0.0.8/",
+      "date": "2026-09-03T00:40:10+00:00",
+      "description": "Helpful tools and examples for working with flex-attention",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/efab98670880fc64"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/432f720f3c3ee89b"
     },
     {
-      "title": "mutagent-sdk 0.3.0",
-      "link": "https://pypi.org/project/mutagent-sdk/0.3.0/",
-      "date": "2026-09-02T20:33:06+00:00",
-      "description": "Python SDK for the MutagenT Server API Documentation",
-      "source": "PyPI Updates",
-      "image": "https://pypi.org/static/images/og-card.00947198.webp",
-      "image_width": 1200,
-      "image_height": 630,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/5b3df46ad6857967"
-    },
-    {
-      "title": "standardbots 2.20260731.35",
-      "link": "https://pypi.org/project/standardbots/2.20260731.35/",
-      "date": "2026-09-02T20:33:16+00:00",
-      "description": "Standard Bots RO1 Robotics API",
+      "title": "unifi-network-mcp 0.29.4",
+      "link": "https://pypi.org/project/unifi-network-mcp/0.29.4/",
+      "date": "2026-09-03T00:40:12+00:00",
+      "description": "Unifi Network MCP Server",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/f7c56314da27d1d4"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/a4253bcddac36f9c"
     },
     {
-      "title": "textql-sdk 1.1.17",
-      "link": "https://pypi.org/project/textql-sdk/1.1.17/",
-      "date": "2026-09-02T20:33:21+00:00",
-      "description": "Python Client SDK Generated by Speakeasy.",
+      "title": "cdk-monitoring-constructs 10.3.0",
+      "link": "https://pypi.org/project/cdk-monitoring-constructs/10.3.0/",
+      "date": "2026-09-03T00:40:21+00:00",
+      "description": "cdk-monitoring-constructs",
       "source": "PyPI Updates",
-      "image": "https://pypi.org/static/images/og-card.00947198.webp",
-      "image_width": 1200,
-      "image_height": 630,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/fec2e8e7395a5464"
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/f22ee52701ec2dd1"
+    },
+    {
+      "title": "llm-cost-governor 0.4.5",
+      "link": "https://pypi.org/project/llm-cost-governor/0.4.5/",
+      "date": "2026-09-03T00:40:48+00:00",
+      "description": "Composable pre-call and post-call hooks for LLM API calls: pricing, budgets, cost caps, rate limits, event log, observability.",
+      "source": "PyPI Updates",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/cc655a43dbf5611c"
+    },
+    {
+      "title": "azure-mgmt-containerservice 41.7.0b1",
+      "link": "https://pypi.org/project/azure-mgmt-containerservice/41.7.0b1/",
+      "date": "2026-09-03T00:41:11+00:00",
+      "description": "Microsoft Azure Containerservice Management Client Library for Python",
+      "source": "PyPI Updates",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/ff96b2a022a481ba"
     }
   ]
 }
