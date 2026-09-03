@@ -69,7 +69,6 @@ def _fetch_source_once() -> bytes | None:
         return None
 
 
-
 def _fetch_source() -> bytes | None:
     """Fetch within a hard wall-clock deadline, including response headers."""
     result: list[bytes | None] = []
@@ -86,6 +85,11 @@ def _fetch_source() -> bytes | None:
     return result[0] if result else None
 
 
+def _has_required_atom_text(element: ET._Element, name: str) -> bool:
+    value = element.findtext(f"{ATOM}{name}")
+    return bool(value and value.strip())
+
+
 def build_xml(xml: str | bytes) -> bytes | None:
     """Validate upstream Atom and repoint only its feed-level self URL."""
     if isinstance(xml, str):
@@ -95,7 +99,17 @@ def build_xml(xml: str | bytes) -> bytes | None:
         root = ET.fromstring(xml, parser=xml_parser)
     except ET.XMLSyntaxError:
         return None
-    if root.tag != f"{ATOM}feed" or not root.findall(f"{ATOM}entry"):
+    entries = root.findall(f"{ATOM}entry")
+    if root.tag != f"{ATOM}feed" or not entries:
+        return None
+    required = ("id", "title", "updated")
+    if any(not _has_required_atom_text(root, field) for field in required):
+        return None
+    if any(
+        not _has_required_atom_text(entry, field)
+        for entry in entries
+        for field in required
+    ):
         return None
     self_links = [
         link for link in root.findall(f"{ATOM}link") if link.get("rel") == "self"
