@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-03T05:06:41.341018+00:00",
+  "last_updated": "2026-09-03T11:49:52.071138+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -16022,6 +16022,267 @@
       "source": "V2EX Creative",
       "image": "https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787934204",
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/6c3b153c73cc96a6"
+    },
+    {
+      "title": "各位 [即将] 日进斗金的 iOS 开发者请关注，做了个免费小工具:App Store 一有人付钱,几秒内推到 iPhone / Mac",
+      "link": "https://www.v2ex.com/t/1239186#reply2",
+      "date": "2026-09-03T05:09:15+00:00",
+      "description": "先吐个槽。做 App 的应该都有体会,App Store 的到账数据慢得离谱:销售报表要隔天才出,App Store Connect 后台的数据也是滞后好几个小时的。发了新版本、投了篇推广,最想知道的就是「现在有没有人付钱」,结果只能一遍遍刷后台,刷出来的还是昨天的。 我自己被这个折腾烦了,就做了个小工具叫 Catch:App Store 一有人付钱,几秒内推到你的 iPhone 和 Mac 。新购买、订阅、续订、退款,哪一笔、哪个国家、多少钱,通知里直接写清楚。 原理很简单 Apple 有个 App Store Server Notifications V2:在 App Store Connect 里填一个 URL,每笔交易发生时 Apple 就往这个地址 POST 一条签过名的通知。Catch 做的事就是接住这条通知,验完签,推到你手机上。 几个我自己作为用户会在意的点: 不要 API 密钥,不碰你的账号。 接入只是在 ASC 里贴一个 URL,Catch 拿不到你账号的任何权限,能看到的就只有 Apple 主动推过来的那条交易通知。 每条通知都验签。 通知是 JWS,x5c 证书",
+      "source": "V2EX Creative",
+      "image": "https://catch.app.mahui.me/img/phones.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/8bb8bf8d5c2ebde1"
+    },
+    {
+      "title": "Gemini 3.8 flash 可用了",
+      "link": "https://www.v2ex.com/t/1239187#reply2",
+      "date": "2026-09-03T05:25:27+00:00",
+      "description": "水平咋样不评价。只描述 五个问题，一个 p0 ，两个 p1 ，两个 p2 ，涉及到八个文件一百五十行代码的修改。\n重点：在第一轮修改中只有一处语法错误，执行 test 后，自己改好了。这方面比 3.7 要好，3.7 经常第一轮两三个文件有语法错误",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/gravatar/d562d60c4af0f8920499023b86bc25b0?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/0a863d0e4743b049"
+    },
+    {
+      "title": "做了一个本地 AI 隐私脱敏工具 Remask，送 Pro 授权",
+      "link": "https://www.v2ex.com/t/1239188#reply2",
+      "date": "2026-09-03T05:30:07+00:00",
+      "description": "大家好，最近做了一个本地优先的 AI 隐私保护工具： Remask 项目起因很直接：使用 ChatGPT 、Claude Code 、Codex 或其他 AI 工具时，我们经常会无意中提交姓名、邮箱、客户资料、内部地址、API Key 等敏感信息。 每次手动检查和删除很麻烦，也很容易遗漏。所以我做了一个位于 AI 客户端与服务商之间的本地隐私网关。 Remask 是什么 Remask 会在请求离开设备前，本地识别并替换其中的敏感信息。 例如： 发送前：\n\n请帮我分析 Maya Chen 的客户记录\n邮箱： maya@northwind.dev\n客户编号：AC-2048-771 经过 Remask 后，AI 服务商实际收到： 请帮我分析 <MASK_PERSON> 的客户记录\n邮箱：<MASK_EMAIL>\n客户编号：<MASK_ACCOUNT> AI 仍然能够理解内容结构，但不需要知道真实身份。在支持的响应中，还可以选择把占位符还原成本地原始内容。 目前支持的功能 在本机识别姓名、邮箱、电话、账号、证件、IP 、API Key 、密码等敏感信息 通过正则表达式添加公司内部编号等自定义规",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/7e780f9a5aa6ec01c9ae2fd30fdc664e?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/b1cd4381bf582295"
+    },
+    {
+      "title": "放开来用 Fable 5.0 吧",
+      "link": "https://www.v2ex.com/t/1239193",
+      "date": "2026-09-03T05:47:32+00:00",
+      "description": "<p>指令 <code>claude --model claude-fable-5</code> 或在 claude code 中输入 <code>/model claude-fable-5</code>。</p>\n<p>现在的 Fable 5.1 没感觉到特别强还费 token ，Opus 5.0 已经降智 [Opus 5.0 变成自动化为主，都喜欢照自己的意愿干活，不听指示，只能让 Fable 派活给 opus subagent 干]。Claude Code 能用的强力模型剩下 Fable 5.0 。</p>\n",
+      "source": "V2EX Claude (383394544)",
+      "image": "https://cdn.v2ex.com/avatar/64e2/6a06/199603_xlarge.png?m=1741594861",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/506c20c22e9c88c5"
+    },
+    {
+      "title": "在 macOS 上运行 Linux 程序，不用虚拟机或系统调用转译",
+      "link": "https://www.v2ex.com/t/1239201#reply0",
+      "date": "2026-09-03T06:11:51+00:00",
+      "description": "最近做了个试验，通过在 macOS 上实现与 Linux ABI 下 glibc 兼容的库，通过运行时在加载阶段进行重定向实现。当然这种做法只要应用程序静态链接或者自己调用 sycall 就抓瞎了，所以基本上只能是玩具。 具体见 博客文章： https://blog.akinokae.de/zh-cn/p/magiclibc/ GitHub： https://github.com/AkinoKaede/magiclibc",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/432e/ef3c/596078_xlarge.png?m=1768871556",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/69fb33a5cb50e839"
+    },
+    {
+      "title": "大量印度人资源可授权其 claude/openai 等订阅号 中转站老板看过来",
+      "link": "https://www.v2ex.com/t/1239209#reply3",
+      "date": "2026-09-03T06:28:59+00:00",
+      "description": "![]( ) 你提供这种网站 我这边安排印度人上号 订阅成本印度人出 收益分 75%给到印度人即可 目前已经和一家中转站稳定合作 但他们消耗不完 懂的老板来：V:bW9tb2RhcnJy",
+      "source": "V2EX Play",
+      "image": "https://i.imgur.com/q2NJBPM.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/8542f89ebe58605b"
+    },
+    {
+      "title": "做了个 HDR 照片编辑 App，想找些人帮忙测一下",
+      "link": "https://www.v2ex.com/t/1239213#reply0",
+      "date": "2026-09-03T06:34:20+00:00",
+      "description": "最近一直在折腾 HDR 照片，后来干脆做了个 App ，叫 Nitra 。 SDR 转 HDR 本身不复杂，比较麻烦的是怎么点亮得自然。不同照片的亮度和高光分布差很多，一套参数硬套很容易翻车，所以后来做了个 Smart HDR ，会根据画面和亮度分布自动算一组参数。 不想折腾的话，选张照片基本就可以直接用；想自己调的话，曝光、色彩、高光这些常规参数和 HDR 参数也都有。 后面陆陆续续又加了 RAW 、Live Photo 、批量处理、几种 HDR 格式导出、HDR 直方图，还有一个把 SDR → HDR 点亮过程做成视频的功能。 照片都是本地处理，不上传。 正式版已经扔 App Store 审核了，这几天一直没动，TestFlight 这边还在继续更新，所以想找些人帮忙实际用用。 主要还是想看看不同照片丢进去以后效果怎么样，有没有 Smart HDR 点得很奇怪的情况，调色和导出有没有问题，或者有什么交互用起来比较别扭。 不用专门准备测试图，拿平时自己拍的照片试就行。人像、风景、夜景、手机照片、相机照片都可以。 TestFlight： https://testflight.apple",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/d988ff6fa29beabf3c840b13875d4e43?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/29bd87917e41179f"
+    },
+    {
+      "title": "Android 秒级编译插件 Jugg 开源了，感谢 v 友",
+      "link": "https://www.v2ex.com/t/1239220#reply2",
+      "date": "2026-09-03T06:55:34+00:00",
+      "description": "前情提要： 有没有受 Android 工程编译慢困扰的老安卓，推荐个我自己做的方案 提前找 v 友们试用了一下，收获不少支持和反馈，都优化了一波。现在正式在公司开源了，大家可以直接下载使用，有问题提 issue 或者这里留言都可以，一定服务好大家 Github： https://github.com/tencentmusic/jugg 微信公众号文章： 日常修改，3 秒生效：腾讯音乐 Android 秒编方案 Jugg 开源",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/gravatar/ca735d94f1dbef0c0242df255d94fb10?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/4a552adf30d5d563"
+    },
+    {
+      "title": "做了一个用自然语言修图和生成图片的网站 PicEditor，想请 V 友帮忙体验",
+      "link": "https://www.v2ex.com/t/1239223#reply0",
+      "date": "2026-09-03T06:59:16+00:00",
+      "description": "大家好，最近把 PicEditor 做到了可以公开体验的阶段： https://piceditor.org/ 它是一个浏览器端的 AI 图片编辑和生成工具。和传统修图软件不同，不需要先学图层、选区或蒙版；上传图片后，直接用自然语言描述想改什么即可。 目前支持的主要场景： 替换图片背景、移除不需要的物体 修改画面中的文字、调整颜色和转换风格 从文字生成人像、商品图、海报和插画 支持 GPT Image 2 、Nano Banana 2 和 Nano Banana Pro 首次体验无需注册，下载结果不添加 PicEditor 水印 上传图片和生成结果默认不会公开展示 需要提前说明：首次免费流程之后，继续使用和查看历史记录需要登录；部分模型、高清输出和优先处理需要积分或订阅。 现在最想听听大家对这几个问题的真实反馈： 用一句话描述修改需求的交互是否直观？ 生成速度和结果质量是否符合预期？ 哪一种日常修图需求最值得优先补强？ 欢迎直接试用和拍砖。如果遇到失败、页面不好理解，或者觉得定价不合理，也请直接说。谢谢大家。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/102eaa692d730a5e37a4108243855580?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/658f50c1ec2492ef"
+    },
+    {
+      "title": "TDS REVIEW | 无印良品 MUJI 头戴式蓝牙降噪耳机体验",
+      "link": "https://sspai.com/post/113998",
+      "date": "2026-09-03T07:00:00+00:00",
+      "description": "经过一个季度的使用，聊聊这个此前不会考虑其数码产品的品牌。 查看全文",
+      "source": "sspai.com",
+      "image": "https://rssfile.sspai.com/2026/08/30/220bedd407abff6cc6734d3bd324edb5.jpg?imageMogr2/auto-orient/ignore-error/1",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/fbdb9867f4e2678a"
+    },
+    {
+      "title": "如何“良好教育”拖欠工资的老板",
+      "link": "https://www.v2ex.com/t/1239224#reply1",
+      "date": "2026-09-03T07:03:26+00:00",
+      "description": "已离职 仲裁法性价比太高 靠谁不如靠自己 如何”良好问候“ 来点鬼点子",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/5655/5af9/626041_xlarge.png?m=1724382379",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/20248665a4df3dbe"
+    },
+    {
+      "title": "大家有没有发现很多岗位写着 Remote，点进去才发现只招美国或欧洲的人，所以我做了一个只分享真正可以“Work from anywhere”的职位列表",
+      "link": "https://www.v2ex.com/t/1239225#reply0",
+      "date": "2026-09-03T07:05:41+00:00",
+      "description": "大家找远程工作的时候，有没有遇到过这种情况： 看到一个不错的岗位，标题写着 Remote ，认真读完要求，才在最后发现：只招美国居民、需要欧洲工作许可，或者要求固定时区。 我想找的是： 人在国内，或者换个地方生活，也有机会申请的远程岗位。 所以最近做了一个网站： Real Job Work From Home 。 目前主要做了几件事： 重点收集标注为全球可申请的远程职位。 把职位类型、薪资、技能要求等信息放在列表里，方便先筛一遍。 整理对应公司的简介、规模、行业、官网和 LinkedIn ，方便了解雇主。 申请时直接跳转原招聘页面。 网站用 Astro 做的，还在持续完善。现在最需要打磨的其实是数据质量：招聘平台标注的“全球远程”，有时候也会和职位正文里的要求打架，所以具体限制仍要以原始招聘说明为准。如果你发现这种岗位，也欢迎告诉我。 想请 V 友帮忙看看，也想问一个实际问题： 筛选远程工作时，你最希望提前看到哪个信息：能否在国内申请、时区要求、薪资范围，还是合同和用工方式？ 如果你已经找到过真正不限制地区的远程工作，也欢迎分享渠道和经验。 地址： https://realjobwor",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/df2e/17d0/581272_xlarge.png?m=1760434922",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/fcc08856d963564b"
+    },
+    {
+      "title": "只译：从网页到 PDF，继续打磨一个免费开源的双语阅读工具",
+      "link": "https://www.v2ex.com/t/1239232#reply0",
+      "date": "2026-09-03T07:25:42+00:00",
+      "description": "7 月在 V 站 分享过只译 ，上次在旧帖里补充进展还是 1.6.0 ，现在已经迭代到 1.10.0 了。这段时间除了加入 PDF ，也改了不少日常阅读时会碰到的问题，来和大家汇报一下。 只译是一款免费开源的浏览器翻译扩展。网页、视频字幕、EPUB 和 PDF 都可以在同一套工具里阅读，翻译服务由使用者自己选择。我希望它做好的，是让人能在任何场景中，都能即使得到翻译服务。 网页阅读和划词，都尽量少打断当前内容 网页上的文字并不是都同样重要。只译保留了「识文」和「全页」两种范围：读文章时，优先处理标题、正文和评论，尽量不去翻导航、按钮和推荐；需要覆盖更多内容时，再切到全页。 1.6 之后持续在修这部分。例如 GitHub 、Reddit 、Wikipedia 等，都进行了站点级的规则处理。这些变化没有新增按钮那么显眼，但会直接影响一篇文章的阅读体验。 另一块改动比较大的是划词。遇到一个词或一句话没看懂，现在可以在原页面里查看翻译，也可以用已经配置的 AI 服务进一步解析：单词、短语看释义和语境用法，句子结构、语法点和重点表达，也还可以朗读选中的内容。卡片支持切换服务、重译和复制，尽量减少",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/ead0d8be0cbd8eb16ae96b4d0127cf25?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/b56fa433848fa120"
+    },
+    {
+      "title": "今天突然间发现无法使用 Google Play 给 Claude 充值，大家有碰到吗",
+      "link": "https://www.v2ex.com/t/1239233",
+      "date": "2026-09-03T07:26:22+00:00",
+      "description": "<p>错误提示：You have an existing subscription\nthrough the App Store, please manage it\nin the app.</p>\n",
+      "source": "V2EX Claude (amibb)",
+      "image": "https://cdn.v2ex.com/gravatar/a7554409817f8c3bc7eada785e4093f9?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/c1917d44a995e2c0"
+    },
+    {
+      "title": "我的四个开源项目",
+      "link": "https://www.v2ex.com/t/1239234#reply0",
+      "date": "2026-09-03T07:28:04+00:00",
+      "description": "https://github.com/junwindxqw/cloudflare_web_flomemos 类似 flomo 的笔记 https://github.com/junwindxqw/cloudflare_web_story 电子书阅读平台 https://github.com/junwindxqw/cloudflare_web_bookmark 云书签收藏 https://github.com/junwindxqw/cloudflare_web_it_tool_box 在线 it 工具箱 每个项目都可以直接部署到 cloudflare 的免费服务上。有需要的 B 友们可以拿去使用。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/1a96/f8b8/513805_large.png?m=1788420477",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/52b60d23a2dbca04"
+    },
+    {
+      "title": "用 gpt5.6 做副业的一些探讨",
+      "link": "https://www.v2ex.com/t/1239236#reply11",
+      "date": "2026-09-03T07:39:27+00:00",
+      "description": "现在的 ai 能力已经非常强大了，工作就是编写好提示词文档，扔给 codex 了 脑子里就开始想别的赚钱路子,下面是我尝试过的项目： 1.开中转站，目前开了一个，收入不稳定，可能是我不太擅长推广，好奇那些做中转站的都是买了自己的服务器吗？ 2.开 gpt 代充，依然收入不稳定，偶尔有一两个客源，最多赚个盒饭钱。 3.做 ai 图片生成网站，参考即梦。 全球收美刀，收入依然不稳定， 严重依赖 seo 流量。 4.做 ai 教培，这个收入目前还算稳定，每个月 7k-1w 的入账。 总结： 做产品，最重要的好像不是产品，而是流量（广告营销、社媒、seo ，开源） 做教培，收入稳定，但不够被动，还是以时间换钱 朋友们，这应该如何破局呢？ 你们的副业都是做什么的呢？",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/gravatar/338abfd6e31ad818d97a2a164ed8b9b9?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/a0f034511ba68c0c"
+    },
+    {
+      "title": "一个轻量的在线文字 Logo 编辑器： Text Logo",
+      "link": "https://www.v2ex.com/t/1239237#reply0",
+      "date": "2026-09-03T07:39:50+00:00",
+      "description": "最近做了一个浏览器里的文字 Logo 编辑器，和 V 友分享一下：Text Logo 。 它主要面向需要快速做 wordmark 或 typography logo 的人，不用安装复杂的设计软件，打开浏览器就可以开始编辑。每个字母都能单独调整字体、颜色、大小、旋转和位置，也可以加入图标、几何形状、图片以及纯色或渐变背景。 我比较在意的是可编辑性：可以在图层面板里选择、排序、隐藏、锁定和复制元素，完成后导出 SVG 、PNG 、WebP 或 ICO 。项目还可以保存在本地，之后继续修改。 如果你正在做个人项目或小型品牌，欢迎试试看： https://textlogo.app 目前更想听听大家对字体组合、导出格式和使用流程的建议。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/6c3a/37a7/755972_xlarge.png?m=1767170079",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/7b41499fdfffcace"
+    },
+    {
+      "title": "[开源自荐] EO2Weave：跑在浏览器里的 AI agent，能改本地文件，也能调用网站工具（WebMCP）",
+      "link": "https://www.v2ex.com/t/1239241#reply0",
+      "date": "2026-09-03T07:44:23+00:00",
+      "description": "项目地址 ： https://github.com/nutstore/eo2weave 在线体验 ： https://weave.eo2suite.cn （推荐 Chrome / Edge ） 开源协议 ：MIT 一句话介绍 ：EO2Weave 是一个完全跑在浏览器里的 AI agent 平台——授权本地文件夹后，agent 直接在浏览器内读写你的文件、执行 Python ；装上配套 Chrome 扩展，还能按 WebMCP 标准调用网站暴露的工具。我们不收集任何数据（数据流向详见下方说明）。 为什么值得一试 现在的 AI 编程工具要么是 IDE 插件（得先装环境），要么要把代码传到云端。我们的思路是：浏览器本身已经是个足够强的 agent 运行时。 AI agent 直接读写本地文件夹 ：基于 File System Access API 显式授权，不装任何东西，打开网页就能让它改你的项目 支持 WebMCP 标准 ：配套 Chrome 扩展提供 WebMCP 工具发现——任何网站都能通过标准 API 把能力暴露成 agent 可调用的工具（「网站即 MCP server 」），ag",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/1ee1/369c/445370_xlarge.png?m=1686560868",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/85109c9c62b3e7d6"
+    },
+    {
+      "title": "做了一个 AI 视频生成网站",
+      "link": "https://www.v2ex.com/t/1239258#reply0",
+      "date": "2026-09-03T08:34:49+00:00",
+      "description": "AI 视频模型越来越强了，可玩性越来越好，我做了这个 AI 视频生成网站，接入主流 AI 视频生成模型，欢迎体验！ 网址： https://tovideo.io/",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/79e5fa22e345f69d177893e4efc564fe?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/a1fe41fbd137a406"
+    },
+    {
+      "title": "让本地 Agent 接管远程 Linux ：别让模型套 SSH（daimon-mcp）",
+      "link": "https://www.v2ex.com/t/1239261#reply2",
+      "date": "2026-09-03T08:37:18+00:00",
+      "description": "让本地 Agent 接管 VPS：别让模型套 SSH （ processd-mcp 、daimon-mcp ） 买了台 Debian 小鸡，想让 Claude Code / Codex 直接把 Docker 、nginx 配好。\n最省事的想法是：本地 Agent 每条命令前面套一层 ssh user@vps \"...\" 。\n跑了两天，发现不是「偶尔转义错」，是这条路会系统性把模型用废。 让模型套 SSH ，有两件结构性的事 1. 二次编码，命令更容易写错 Agent 真正想执行的是这一条： grep -E \"error|fail\" /var/log/nginx/error.log | tail -20 套上 SSH 之后，它得生成类似： ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -p 22 user@1.2.3.4 \\\n  \"grep -E \\\"error|fail\\\" /var/log/nginx/error.log | tail -20\" 这里发生了两次编码： 本地 shell 先解析整行 ssh ... \"inner",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/06f58d5831b7fc33139f65cb51cb3473?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/954daed669bae163"
+    },
+    {
+      "title": "[产品自荐] Trancy Air - macOS 与 Windows 全能翻译工具（送会员）",
+      "link": "https://www.v2ex.com/t/1239271#reply1",
+      "date": "2026-09-03T09:05:33+00:00",
+      "description": "做 Trancy 这几年，我们一直围着浏览器扩展打转。但关掉浏览器之后呢？聊天窗口里的一句外语、设计稿上的一行说明、要发出去的一段回复——这些日常里真正卡住我的翻译问题，扩展一个也解决不了。\n所以我们花了两个月做出了 Trancy Air： 以快捷键为核心，随手唤起，即刻解决。 不切窗口，不复制粘贴，让翻译回到它本该在的地方——你正在做事的地方。 静默翻译：写下母语，发出外语 在任何聊天工具、办公软件、浏览器的输入框里打好中文，按下快捷键，原文会被直接替换成译文。\n不用打开翻译网站，不用来回复制，写完即发。回复海外客户、在 Slack 里跟同事沟通、写一封英文邮件，整个过程都不用离开当前窗口。 划词 / 划句翻译：选中就懂 选中单词或句子，用自定义快捷键（比如连按两次 Ctrl ）即刻唤起。 单词 ：AI 释义，讲清在这个语境下到底是什么意思，而不是甩给你一串词典义项 句子 ：发音、语法分析、朗读、收藏一步到位 对比翻译：重要的句子，值得多看一眼 遇到吃不准的句子——合同条款、技术文档、语气微妙的邮件——开启对比翻译，最多可同时调用 5 个翻译引擎并排显示。\n几个引擎的分歧在哪，往往就",
+      "source": "V2EX Creative",
+      "image": "https://static.trancy.org/assets/gif/silent.gif",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/40c5195af129d8a3"
+    },
+    {
+      "title": "陪你慢慢长大",
+      "link": "https://www.v2ex.com/t/1239274#reply1",
+      "date": "2026-09-03T09:18:37+00:00",
+      "description": "陪你慢慢长大 2020 年 · 二月 二月，她出生了。 因为疫情的原因，她和妈妈经常在衡水和北京两地奔波。 记得她四个多月的时候，就已经坐着火车来到北京陪我了。 那时候的她还很小，小到可能还不知道，北京和衡水到底有多远，也不知道火车窗外那些不断向后退去的风景意味着什么。 但从那时候开始，我们一家人的生活，就在一次又一次的相聚和分别中慢慢展开了。 2023 年 · 第一次开车，第一次带你去看更远的地方 年初，我们买了一只小猫。 为了把小猫从老家带到北京，我们不能坐火车，只能自己开车。 因为疫情的原因，之前车一直放在老家，这也是我第一次真正开车上高速。 那天记得大概中午一点出发，250 多公里却开到了晚上七点多才到北京我们住的地方。 那时候是冬天，等到北京的时候，天已经完全黑了。 第一次开这么远的高速，第一次带着小猫，第一次这样开车回北京，当时心里其实还有一点激动。 车来到北京以后，我们就想着，既然有车了，那就应该带着家人到处转转。 以前没有车，北京很多景点都没有好好去过。 于是，我们第一次计划开车去爬长城——慕田峪长城。 后来，我们又开车去了很多地方。 幽谷神潭、冶仙塔，还有天津…… 慢",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/avatar/1db4/4b33/406438_large.png?m=1776148703",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/d99bddff17a0c562"
+    },
+    {
+      "title": "为什么 pdd 老是买完东西给我推送更便宜的同款...",
+      "link": "https://www.v2ex.com/t/1239281#reply8",
+      "date": "2026-09-03T09:33:53+00:00",
+      "description": "39 块钱买了个联想的电推子，还没收到就给我推 37 块钱的同款，虽然两块钱没一点影响，但是心里不得劲啊！ 另外说一下电推子真好用，自己 diy 剃头也挺好玩的，可以完全按照自己想法来，除了后面不太好剃。我觉得买得超级值，好玩好用、一次回本，外观也好看。如果你们购买的话可能不太建议购买联想这款，我拆开看了里面一点防水结构都没做，久了可能电路板会腐蚀，我自己给电路板涂了防水胶。",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/gravatar/91c2088e234cc4c47a2b896116bd31bd?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/856a1f394856b1c8"
+    },
+    {
+      "title": "都没人讨论 小米 18 Fold",
+      "link": "https://www.v2ex.com/t/1239282#reply16",
+      "date": "2026-09-03T09:35:53+00:00",
+      "description": "看来确实比较偏 v2apple 了😅\n有兄弟准备入手的么，听说全系超 1w 了。\n也不知道 app 适配咋样。。。",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/avatar/2da6/22f5/538286_xlarge.png?m=1774500973",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/164462b4540022b3"
+    },
+    {
+      "title": "自定义声音按钮网站",
+      "link": "https://www.v2ex.com/t/1239285#reply0",
+      "date": "2026-09-03T09:52:32+00:00",
+      "description": "https://www.bilibili.com/video/BV15LtZ6xEEu/?vd_source=51c92e3449c93319a5edf7f737a82183",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787934204",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/dc27f079e51dda5d"
+    },
+    {
+      "title": "针对 ToB 市场想做一款 [可视化+AI+低代码] 开发工具，解决 AI 开发收敛工具",
+      "link": "https://www.v2ex.com/t/1239286#reply1",
+      "date": "2026-09-03T10:06:24+00:00",
+      "description": "产品还在设计，目前打算做 AI 开发产品，核心主要是解决 AI 代码开发： 逻辑收敛 代码更新可追踪 逻辑和接口可视化 Review 还在打 demo 阶段，产品还在思考中，看大家有什么想法 https://nocokit.cn/schema/",
+      "source": "V2EX Creative",
+      "image": "http://viz.nocokit.cn/uploads/media/b610f32ecca7c1baae129d79c987103145.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/6b22e79fce8479c2"
+    },
+    {
+      "title": "做了一个把讨厌的人变成卡通然后施加小诅咒的解压网站",
+      "link": "https://www.v2ex.com/t/1239288#reply3",
+      "date": "2026-09-03T10:08:41+00:00",
+      "description": "今天上班又被气到了吧？🤬 我做了个网站：输入那个惹你生气的人的名字（老板、同事、前任都行），他会变成一个卡通土豆、💩或猪，然后你可以： - 👋 扇他 30 下，打出淤青断牙 - 😈 给他施加「湿袜子一整天」「充电线永远插不进」「永远排到最慢的队」这类小诅咒 - 📸 生成一张“泄愤报告”分享卡，发群里让朋友也来出气 纯前端，无登录，不上传任何个人信息，名字只存在你自己的浏览器里。 地址： https://hatetoons.com 欢迎来揍 Kevin 一顿出出气，也欢迎提意见，我每天都在改。",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/c3f3847fcd991f35fdb893c08008d7be?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/c1254fb0348a3025"
+    },
+    {
+      "title": "新玩意 251｜少数派的编辑们最近买了啥？",
+      "link": "https://sspai.com/post/114154",
+      "date": "2026-09-03T10:18:06+00:00",
+      "description": "关于栏目很多读者都会好奇少数派的编辑们到底平时都「买了啥」。我们希望通过「编辑部的新玩意」介绍编辑部成员们最近在用的新奇产品，让他们自己来谈谈这些新玩意的使用体验究竟如何。@什么陈：洗手间置物架参考价 ... 查看全文",
+      "source": "sspai.com",
+      "image": "https://rssfile.sspai.com/2026/4/23/article/c2b080ab-cf08-9c5a-70ef-54a7bfa9d530.png?imageMogr2/auto-orient/ignore-error/1",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/a9f33eb89c42a14d"
+    },
+    {
+      "title": "在网页端通过 Link(招行双币信用卡) 成功支付 X Premium",
+      "link": "https://www.v2ex.com/t/1239292#reply1",
+      "date": "2026-09-03T10:28:00+00:00",
+      "description": "大概一个月以前用的时候，一直失败，询问招行客服是否银行限制了，被告知卡片未被限制。意识到可能是我自己用 RackNerd 搭的梯子的问题。 今天换成了 WGetcloud 的美国结点（我几乎一直使用的是美国结点），尝试支付了一下 X Premium ，成功了。正好，网页版本没有苹果税，还便宜了几块钱。 另外我发现 ChatGPT 、Claude 都能可以使用这个支付方式。但是目前只在 Apple 中订阅过 ChatGPT 和 Claude ，点击订阅的时候，均能显示出 Link 支付方式，不知道能不能在网页上成功订阅。如果能成功订阅，那是不是意味着可以多个账号开通订阅？ Claude 订阅页面",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/avatar/83db/495c/554382_xlarge.png?m=1782970802",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/f537c4662aa823ff"
     }
   ]
 }
