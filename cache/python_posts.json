@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-04T16:40:26.427926+00:00",
+  "last_updated": "2026-09-04T19:13:58.610539+00:00",
   "entries": [
     {
       "title": "Database Storage Latencies",
@@ -7615,6 +7615,15 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/python/5f15cabb8d7948b4"
     },
     {
+      "title": "Bob Belderbos: Why does Alembic need an import you never use?",
+      "link": "https://belderbos.dev/blog/what-table-true-does-sqlmodel/",
+      "date": "2026-09-04T00:00:00+00:00",
+      "description": "A coaching session this week surfaced a good question: Alembic autogenerate only works if you import your models first, even though you never reference them. Ruff flags the import as unused. So why is it there? Instead of just adding # noqa: F401 , I stopped and followed the call path into SQLModel and SQLAlchemy. The answer is a nice example of Python metaprogramming : importing the module executes the class definition, and the class definition registers its table with SQLAlchemy's metadata. Th",
+      "source": "Planet Python",
+      "image": "https://belderbos.dev/images/og/what-table-true-does-sqlmodel.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/2159a4685819df65"
+    },
+    {
       "title": "pyflowlauncher 1.2.1",
       "link": "https://pypi.org/project/pyflowlauncher/1.2.1/",
       "date": "2026-09-04T00:24:26+00:00",
@@ -7693,54 +7702,73 @@
       "entry_id": "tag:trvny.github.io,2024:feedseek/python/3bd944ff39f27465"
     },
     {
-      "title": "denver-tool 1.6.0",
-      "link": "https://pypi.org/project/denver-tool/1.6.0/",
-      "date": "2026-09-04T16:37:44+00:00",
-      "description": "Development Environments as code -- reproducible, flexible, simple and fast",
-      "source": "PyPI Updates",
-      "image": null,
-      "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/111e901d5c6745bc"
+      "title": "Python Morsels: Creating temporary files in Python",
+      "link": "https://www.pythonmorsels.com/temporary-files/",
+      "date": "2026-09-04T14:30:00+00:00",
+      "description": "How to create temporary files and directories in Python using the tempfile module's NamedTemporaryFile and TemporaryDirectory . Table of contents Making a temporary file Leaving temporary files open Making a temporary directory You probably want a named file Create temporary files with tempfile Making a temporary file To make a temporary file in Python, you can use the NamedTemporaryFile context manager from the tempfile module in Python's standard library: from tempfile import NamedTemporaryFil",
+      "source": "Planet Python",
+      "image": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F2196808272-1faa9c1ea9afcbdca269693a805ce48bc95f4cbecfd1a1a5856668254582c2d2-d_1920x1080%3F%26region%3Dus&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/99144686f06e02b0"
     },
     {
-      "title": "GameSentenceMiner 2026.9.0",
-      "link": "https://pypi.org/project/gamesentenceminer/2026.9.0/",
-      "date": "2026-09-04T16:38:37+00:00",
-      "description": "A tool for mining sentences from games. Update: Dependencies, replay buffer based line searching, and bug fixes.",
-      "source": "PyPI Updates",
+      "title": "Your Guide to Hardware Acceleration & Compute Infrastructure at PyTorch Conference North America 2026",
+      "link": "https://pytorch.org/blog/your-guide-to-hardware-acceleration-compute-infrastructure-at-pytorch-conference-north-america-2026/",
+      "date": "2026-09-04T17:45:31+00:00",
+      "description": "TL:DR PyTorch Conference North America 2026 (San Jose, October 20–21) is packed with sessions on getting PyTorch to run fast, portably, and reliably across an increasingly diverse silicon landscape –...",
+      "source": "PyTorch",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/642c122078aa09c0"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/def7a51367852dc9"
     },
     {
-      "title": "koi-fish 2.2.0",
-      "link": "https://pypi.org/project/koi-fish/2.2.0/",
-      "date": "2026-09-04T16:38:53+00:00",
-      "description": "CLI task runner & automation tool",
+      "title": "files-com 1.6.460",
+      "link": "https://pypi.org/project/files-com/1.6.460/",
+      "date": "2026-09-04T19:13:24+00:00",
+      "description": "Python bindings for the Files.com API",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/2f56edf9f28445be"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/5eec2a1563a96450"
     },
     {
-      "title": "multi-storage-client 1.1.0",
-      "link": "https://pypi.org/project/multi-storage-client/1.1.0/",
-      "date": "2026-09-04T16:38:59+00:00",
-      "description": "Unified high-performance Python client for object and file stores.",
+      "title": "c2pa-python 0.37.10",
+      "link": "https://pypi.org/project/c2pa-python/0.37.10/",
+      "date": "2026-09-04T19:13:26+00:00",
+      "description": "Python bindings for the C2PA Content Authenticity Initiative (CAI) library",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/b22c9ef8265824ef"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/9dfc8c95bb4ade8e"
     },
     {
-      "title": "lesson-book 0.1.2",
-      "link": "https://pypi.org/project/lesson-book/0.1.2/",
-      "date": "2026-09-04T16:40:00+00:00",
-      "description": "Local-first, deterministic mistake ledger for trading: record costs and tags, then match similar situations before you act.",
+      "title": "wincurl3 120.4",
+      "link": "https://pypi.org/project/wincurl3/120.4/",
+      "date": "2026-09-04T19:13:36+00:00",
+      "description": "A fast-paced multiplayer curling game.",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/c51833923a51df01"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/a50530e559bb8dd1"
+    },
+    {
+      "title": "nkscan 0.10.0",
+      "link": "https://pypi.org/project/nkscan/0.10.0/",
+      "date": "2026-09-04T19:13:39+00:00",
+      "description": "A platform-agnostic, performant interface to Nikon film scanners",
+      "source": "PyPI Updates",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/205c992cdbcba172"
+    },
+    {
+      "title": "mcpgawk 0.1.35",
+      "link": "https://pypi.org/project/mcpgawk/0.1.35/",
+      "date": "2026-09-04T19:13:50+00:00",
+      "description": "One gateway in front of every MCP server your agents can reach — every call checked against a baseline you approved. Local-first: nothing leaves your machine.",
+      "source": "PyPI Updates",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/66ddec248960b546"
     }
   ]
 }

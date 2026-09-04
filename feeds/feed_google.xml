@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.google/</id>
   <title>Google Blogs</title>
-  <updated>2026-09-04T16:38:04.199250+00:00</updated>
+  <updated>2026-09-04T19:10:29.462157+00:00</updated>
   <author>
     <name>Google</name>
   </author>
@@ -306,6 +306,414 @@
       <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Lyria_social.max-600x600.format-webp.webp"/>
     </media:group>
     <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Lyria_social.max-600x600.format-webp.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>https://cloud.google.com/blog/topics/developers-practitioners/not-all-llm-workloads-are-equal-benchmarking-tpu-performance-on-classification-vs-generation</id>
+    <title>Not All LLM Workloads Are Equal: Benchmarking TPU Performance on Classification vs. Generation</title>
+    <updated>2026-09-04T15:36:00+00:00</updated>
+    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Moving Large Language Models (LLMs) from experimental prototypes into enterprise production exposes a critical truth: your infrastructure dictates both your performance ceilings and your unit economics. Standard hardware benchmarks often ignore a fundamental reality—not all LLM requests stress the silicon in the same way. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In this post, we dive into a comprehensive benchmarking exercise comparing Gemma 3 12B and Gemma 3 27B on Google Cloud TPU v6e to answer a crucial architectural question: &lt;/span&gt;&lt;span style="font-style: italic; vertical-align: baseline;"&gt;How does TPU infrastructure actually perform when tasked with structurally distinct workloads at scale?&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Key Findings and Suggestions&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Before diving into the methodology, here are the critical takeaways for architects deploying Gemma 3 on TPU v6e:&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;The Generation Performance Wall&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For decode-heavy generation tasks, the Gemma 3 27B model hits a strict performance wall past 64 concurrent users, plateauing at a 4.12x normalized throughput multiplier at 128 users. In contrast, the 12B model scales up to an 8.19x multiplier. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong&gt;Suggestion&lt;/strong&gt;: If your workload requires high-concurrency generation, downsize to the 12B model, or set strict pod-autoscaling limits capping concurrent requests at 64 per replica for the 27B model.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;The Classification Parity&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For prefill-heavy classification tasks, model parameter size matters significantly less. Both the 12B and 27B models achieve similar peak scaling (around 6.0x to 6.4x normalized throughput at 128 users) without saturating the TPUs.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong&gt;Suggestion&lt;/strong&gt;: You can safely deploy larger, more capable models for summarization or classification workflows without paying a throughput penalty. The average --max-num-seqs or --max-model-len should be kept judiciously based on the average user load and average tokens per request, without which there might be request drops.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Designing Around the Wall&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Hardware saturation manifests as severe latency spikes and silent request dropouts. To mitigate this, do not rely on standard CPU/Memory scaling triggers. Instead, scale based on  End-to-End (E2E) latency metrics, and implement aggressive vLLM bucket padding optimizations (VLLM_TPU_BUCKET_PADDING_GAP) to conserve memory.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;The Architecture Setup&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The inference stack can be divided into three core pillars:&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;1. Infrastructure: GKE &amp;amp; TPU&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;The foundation of our deployment is a Google Kubernetes Engine (GKE) Autopilot cluster. Connected to this is a single-host TPU v6e node pool configured with a 2x2 chip topology.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;2. Software &amp;amp; Tools: vllm&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For the serving framework, we leveraged vllm via &lt;/span&gt;&lt;a href="https://github.com/vllm-project/tpu-inference" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;vllm-project/tpu-inference&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong style="vertical-align: baseline;"&gt;3. Models: Gemma 3 12B and 27B&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We evaluated two highly capable open-weights models: Gemma 3 12B and Gemma 3 27B. These models were accessed via HuggingFace.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;The Workloads: Classification vs. Generation&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Not all LLM requests stress the system equally. We benchmarked two distinct scenarios: Classification and Generation, across 16, 32, 64, and 128 concurrent users:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Classification (High Input, Low Output):&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; This use case mimics an e-commerce compliance task. The prompt includes large blocks of product rules, item descriptions, and OCR-extracted text. The output is exceptionally small—typically just classifying an item as "Allow" or "Prohibit". Input Sequence Length (ISL) is ~4,000 tokens and Output Sequence Length (OSL) is ~10 tokens.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong style="vertical-align: baseline;"&gt;Generation (Low/Medium Input, High Output): &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;This use case mimics long-form text generation. The prompt requests a detailed, analytical policy brief on the future of AI in the labor market. The model spends the majority of its time decoding and streaming out hundreds of tokens. Input Sequence Length (ISL) is 500 tokens and Output Sequence Length (OSL) is ~1,000 tokens.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Results and Observations&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;We measured metrics like Throughput (requests/sec), End-to-End Latency and the results provided some fascinating insights into how parameter size and hardware bandwidth interact. To ensure architectural consistency, every benchmark was executed using the &lt;/span&gt;&lt;a href="https://github.com/vllm-project/tpu-inference" rel="noopener" target="_blank"&gt;&lt;span style="vertical-align: baseline;"&gt;vllm-project/tpu-inference&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; hardware plugin, leveraging a standardized global serving configuration of &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;max-model-len=128000&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;,&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; max-num-batched-tokens=8192&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;,&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;and&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt; max-num-seqs=512&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Generation Scaling Divergence&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In Generation tasks, both models perform similarly up to 64 concurrent users. However, at 128 concurrent users, the Gemma 3 12B model shows significantly better scaling, achieving an 8.19x normalized throughput multiplier compared to a 4.12x plateau for the Gemma 3 27B model (normalized against the Gemma 3 12B baseline at 16 users). This suggests that the larger 27B model hits memory or compute limits much earlier under high generation loads.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table border="1" style="border-collapse: collapse; width: 96.2054%; height: 206px;"&gt;
+&lt;thead&gt;
+&lt;tr style="background-color: #d2e3fc; text-align: center;"&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Concurrent Users&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Gemma 3 12B Throughput (req/s)&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Gemma 3 27B Throughput (req/s)&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;16 users&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.00 x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.05 x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;32 users&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.98 x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.97 x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;64 users&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;2.96 x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;4.00 x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;128 users&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;8.19 x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 33.3738%;"&gt;&lt;span style="vertical-align: baseline;"&gt;4.12 x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="generation_scaling" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/generation_scaling.max-1000x1000.jpg" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-aside"&gt;&lt;dl&gt;
+    &lt;dt&gt;aside_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;title&amp;#x27;, &amp;#x27;Pro Tip → Metrics Inflation at High Concurrency&amp;#x27;), (&amp;#x27;body&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f23aff0a910&amp;gt;), (&amp;#x27;btn_text&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;href&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;image&amp;#x27;, None)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Classification Performance Parity&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;In Classification tasks, there is negligible difference in scaling behavior between the Gemma 3 12B and Gemma 3 27B models. Both models operate efficiently within the hardware's capacity and scale well, reaching peak normalized throughputs of approximately 6.04x to 6.37x at 128 concurrent users (normalized against the Gemma 3 12B baseline at 16 users).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table border="1"&gt;
+&lt;thead&gt;
+&lt;tr style="text-align: center; background-color: #d2e3fc;"&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Concurrent Users&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Gemma 3 12B Throughput (req/s)&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;strong style="vertical-align: baseline;"&gt;Gemma 3 27B Throughput (req/s)&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;16 users&lt;/span&gt;&lt;/td&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.00 x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;0.76x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;32 users&lt;/span&gt;&lt;/td&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.18x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.53x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;64 users&lt;/span&gt;&lt;/td&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;2.04x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;3.15x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;128 users&lt;/span&gt;&lt;/td&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;6.37x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="border: 1px solid #000000; padding: 16px;"&gt;&lt;span style="vertical-align: baseline;"&gt;6.04x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="classification_perf_table_image2" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/classification_perf_table_image2.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h3&gt;&lt;span style="vertical-align: baseline;"&gt;Latency Threshold Analysis&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;End-to-End (E2E) latency exhibits different scaling behaviors depending on the model size and task. When using identical serving hyperparameters (--max-num-seqs=512), the Gemma 3 12B model's Classification latency roughly doubles when moving from 32 users to 64 users, indicating resource contention. However, for the larger Gemma 3 27B model, Classification latency remains relatively flat between 32 and 64 users before doubling at the 128-user mark. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;
+&lt;div style="color: #5f6368; width: 100%;"&gt;&lt;table border="1" style="border-collapse: collapse; width: 97.2684%; height: 182px;"&gt;
+&lt;thead&gt;
+&lt;tr style="background-color: #d2e3fc; text-align: center;"&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;strong&gt;Model&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;strong&gt;Task&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;strong&gt;16 Users&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;strong&gt;32 Users&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;strong&gt;64 Users&lt;/strong&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;strong&gt;128 Users&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Gemma 3 12B&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Generation&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.00x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.13x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.40x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.70x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Gemma 3 12B&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Classification&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.00x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;0.99x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.79x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;2.90x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Gemma 3 27B&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Generation&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.20x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.68x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;2.93x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;3.33x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Gemma 3 27B&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;Classification&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.20x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.95x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;1.95x&lt;/span&gt;&lt;/td&gt;
+&lt;td style="width: 16.6204%;"&gt;&lt;span style="vertical-align: baseline;"&gt;3.88x&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class="block-image_full_width"&gt;
+
+
+
+
+
+
+  
+    &lt;div class="article-module h-c-page"&gt;
+      &lt;div class="h-c-grid"&gt;
+  
+
+    &lt;figure class="article-image--large
+      
+      
+        h-c-grid__col
+        h-c-grid__col--6 h-c-grid__col--offset-3
+        
+        
+      "&gt;
+
+      
+      
+        
+        &lt;img alt="latency threshold_image3" src="https://storage.googleapis.com/gweb-cloudblog-publish/images/latency_threshold_image3.max-1000x1000.png" /&gt;
+        
+        &lt;/a&gt;
+      
+    &lt;/figure&gt;
+
+  
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+
+
+
+&lt;/div&gt;
+&lt;div class="block-aside"&gt;&lt;dl&gt;
+    &lt;dt&gt;aside_block&lt;/dt&gt;
+    &lt;dd&gt;&amp;lt;ListValue: [StructValue([(&amp;#x27;title&amp;#x27;, &amp;#x27;A Crucial TPU Optimization Technique&amp;#x27;), (&amp;#x27;body&amp;#x27;, &amp;lt;wagtail.rich_text.RichText object at 0x7f23aff0ac10&amp;gt;), (&amp;#x27;btn_text&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;href&amp;#x27;, &amp;#x27;&amp;#x27;), (&amp;#x27;image&amp;#x27;, None)])]&amp;gt;&lt;/dd&gt;
+&lt;/dl&gt;&lt;/div&gt;
+&lt;div class="block-paragraph_advanced"&gt;&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Conclusion&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Benchmarking Gemma 3 12B and 27B models on Google Cloud TPU v6e architecture reveals that raw parameter count is not the sole predictor of inference performance; rather, the interaction between the serving framework, hardware topology, and workload token ratios dictates efficiency. For generation tasks (low input, high output), the 12B model proves superior at high concurrency, sustaining an 8.19x relative throughput multiplier where the 27B model saturates at 4.12x. Conversely, for prefill-heavy classification tasks, both models perform similarly, allowing organizations to deploy larger models without a severe scaling penalty. Our evaluation also mapped exact hardware saturation thresholds—such as End-to-End latency doubling at 64 users for classification and hitting a cliff at 128 users for generation—enabling precise, data-driven auto-scaling triggers rather than costly over-provisioning. Ultimately, achieving these peak metrics requires aggressive tuning of vllm parameters, such as adjusting batched tokens and configuring TPU-specific bucket padding to prevent compute waste, proving that cost-effective AI infrastructure must strictly align model selection and serving configurations to the unique input/output profiles of production workloads.&lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Ready to scale your LLM workloads?&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Don't let unoptimized infrastructure bottleneck your enterprise AI rollouts. Now that you know how different workload shapes impact hardware saturation, it's time to put these insights into practice:&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong&gt;Use these benchmarks to right-size your production architecture&lt;/strong&gt;. &lt;/span&gt;&lt;span style="vertical-align: baseline;"&gt;Safely leverage the larger Gemma 3 27B for prefill-heavy classification tasks without a throughput penalty, but consider switching to the 12B model to maintain linear scaling for decode-heavy generation at high concurrency.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong&gt;Deploy using &lt;/strong&gt;&lt;/span&gt;&lt;strong&gt;&lt;a href="https://docs.cloud.google.com/kubernetes-engine/docs/tutorials/serve-vllm-tpu"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Kubernetes Engine (GKE) &lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; with TPU v6e node pools to build a highly scalable, managed AI foundation and dedicated &lt;/span&gt;&lt;a href="https://github.com/vllm-project/tpu-inference" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;vllm-project/tpu-inference&lt;/span&gt;&lt;/a&gt;&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;strong&gt; hardware plugin&lt;/strong&gt;. Alternatively, you can also deploy via &lt;/span&gt;&lt;a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/open-models/vllm/use-vllm-tpu"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Model Garden on Gemini Enterprise Agent Platform&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; or you can spin up &lt;/span&gt;&lt;a href="https://github.com/AI-Hypercomputer/tpu-recipes/tree/main/inference/trillium/vLLM" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;TPU VMs&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; for serving Gemma 3 models.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Have you encountered similar performance walls in your own production deployments? Share your scaling strategies, ask questions, and join the discussion in the &lt;/span&gt;&lt;a href="https://www.googlecloudcommunity.com/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Google Cloud Community forums&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;&lt;/div&gt;</content>
+    <link href="https://cloud.google.com/blog/topics/developers-practitioners/not-all-llm-workloads-are-equal-benchmarking-tpu-performance-on-classification-vs-generation" rel="alternate"/>
+    <category term="Google Cloud"/>
+    <published>2026-09-04T15:36:00+00:00</published>
+    <media:group>
+      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/hero_2_fvBime0.max-600x600.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/hero_2_fvBime0.max-600x600.jpg"/>
+    </media:group>
+    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/hero_2_fvBime0.max-600x600.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>https://docs.cloud.google.com/release-notes#September_04_2026</id>
+    <title>Cloud Release Notes — September 04, 2026</title>
+    <updated>2026-09-04T07:00:00+00:00</updated>
+    <content type="html">&lt;h2 class="release-note-product-title"&gt;Cloud SQL for SQL Server&lt;/h2&gt;
+&lt;h3&gt;Feature&lt;/h3&gt;
+&lt;p&gt;Cloud SQL for SQL Server now supports connecting to instances
+with write endpoints using the Cloud SQL Auth Proxy or Cloud SQL language
+connectors. When you configure the proxy or a language connector with a
+write endpoint DNS name, connections are redirected automatically to the new
+primary instance during replica failover or switchover.&lt;/p&gt;
+&lt;p&gt;For more information, see
+&lt;a href="https://docs.cloud.google.com/sql/docs/sqlserver/connect-to-instance-using-write-endpoint"&gt;Connect to an instance using a write endpoint&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 class="release-note-product-title"&gt;Gemini&lt;/h2&gt;
+&lt;h3&gt;Announcement&lt;/h3&gt;
+&lt;p&gt;New subscriptions for Gemini Code Assist can no longer be purchased through the
+Google Cloud console using billing accounts that don't have an active
+Gemini Code Assist subscription. Billing accounts that currently have an active
+Gemini Code Assist subscription are unaffected.&lt;/p&gt;
+&lt;p&gt;For billing accounts that don't have an active Gemini Code Assist
+subscription, you can obtain a new Gemini Code Assist subscription by
+&lt;a href="https://cloud.google.com/contact"&gt;contacting Google Cloud sales&lt;/a&gt;.
+For alternative AI developer tools, use Antigravity, which is available through
+eligible &lt;a href="https://docs.cloud.google.com/gemini/enterprise/docs/ai-developer-tools-overview"&gt;Gemini Enterprise subscriptions&lt;/a&gt;
+and through &lt;a href="https://antigravity.google/docs/enterprise/#gemini-enterprise-agent-platform-api-setup"&gt;Gemini Enterprise Agent Platform&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Announcement&lt;/h3&gt;
+&lt;p&gt;New subscriptions for Gemini Code Assist can no longer be purchased through the
+Google Cloud console using billing accounts that don't have an active
+Gemini Code Assist subscription. Billing accounts that currently have an active
+Gemini Code Assist subscription are unaffected.&lt;/p&gt;
+&lt;p&gt;For billing accounts that don't have an active Gemini Code Assist
+subscription, you can obtain a new Gemini Code Assist subscription by
+&lt;a href="https://cloud.google.com/contact"&gt;contacting Google Cloud sales&lt;/a&gt;.
+For alternative AI developer tools, use Antigravity, which is available through
+eligible &lt;a href="https://docs.cloud.google.com/gemini/enterprise/docs/ai-developer-tools-overview"&gt;Gemini Enterprise subscriptions&lt;/a&gt;
+and through &lt;a href="https://antigravity.google/docs/enterprise/#gemini-enterprise-agent-platform-api-setup"&gt;Gemini Enterprise Agent Platform&lt;/a&gt;.&lt;/p&gt;</content>
+    <link href="https://docs.cloud.google.com/release-notes#September_04_2026" rel="alternate"/>
+    <category term="Cloud Release Notes"/>
+    <published>2026-09-04T07:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png"/>
+    </media:group>
+    <link rel="enclosure" href="https://docs.cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>https://blog.google/intl/pl-pl/nowosci-produktowe/youtube/laczymy-tworcow-marki-i-widzow-zakupy-na-youtube-wkraczaja-do-polski</id>
@@ -28508,58 +28916,5 @@ available for all regions.&lt;/p&gt;</content>
       <media:thumbnail url="https://lh3.googleusercontent.com/esSD0-kSrZ8K07XxNkSKL3OGlcx1Cf3M-qiQut0q_vArHMiK2L1CpUIGVkjuQrhu_m0g8UMVflVQpDp7VFAJSubDdCjSXsPJPDeK-PUtaPbqA8W1=w528-h297-n-nu-rw-lo"/>
     </media:group>
     <link rel="enclosure" href="https://lh3.googleusercontent.com/esSD0-kSrZ8K07XxNkSKL3OGlcx1Cf3M-qiQut0q_vArHMiK2L1CpUIGVkjuQrhu_m0g8UMVflVQpDp7VFAJSubDdCjSXsPJPDeK-PUtaPbqA8W1=w528-h297-n-nu-rw-lo" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>https://blog.google/products-and-platforms/platforms/android/world-emoji-day-noto-3d</id>
-    <title>Designing emoji for the way we communicate today</title>
-    <updated>2026-07-17T14:25:00+00:00</updated>
-    <content type="html">A series of emoji's: pancakes, tennis, sloth, fried egg, squidthumbs up</content>
-    <link href="https://blog.google/products-and-platforms/platforms/android/world-emoji-day-noto-3d" rel="alternate"/>
-    <category term="The Keyword"/>
-    <published>2026-07-17T14:25:00+00:00</published>
-    <media:group>
-      <media:content url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/emoji_blog_social.max-600x600.format-webp.webp" type="image/webp" medium="image"/>
-      <media:thumbnail url="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/emoji_blog_social.max-600x600.format-webp.webp"/>
-    </media:group>
-    <link rel="enclosure" href="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/emoji_blog_social.max-600x600.format-webp.webp" type="image/webp" length="0"/>
-  </entry>
-  <entry>
-    <id>https://cloud.google.com/blog/topics/developers-practitioners/guide-to-ai-tokenomics-eleven-principles-for-token-efficient-software-engineering</id>
-    <title>Guide to AI Tokenomics: Eleven Principles for Token Efficient Software Engineering</title>
-    <updated>2026-07-17T09:14:00+00:00</updated>
-    <content type="html">&lt;div class="block-paragraph_advanced"&gt;&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Optimizing token consumption is key to keeping &lt;/span&gt;&lt;a href="http://antigravity.google" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;AI coding assistants&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt; fast and accurate. You might not be writing every line of code any more, but now you’re responsible for directing those coding assistants to focus on getting the most out of each token. Context bloat increases latency and causes models to forget instructions or hallucinate, it also costs money and drives human attention away from the problems that actually matter. Structured habits help you maintain a fast, precise, and productive feedback loop.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;1. Start with a balanced model&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;When you are unsure, &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;start with &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;the default &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Gemini 3.5 Flash&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; (&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Medium &lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;reasoning). Gauge complexity as you go. Scale up to larger models or higher reasoning if a task fails, seems to take too many hops, or needs complex design.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;2. Use skills from the beginning&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Avoid explaining your workflow, testing rules, or environment in every prompt. Ask around, find online, or package your own reusable skills with &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;SKILL.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; files and scripts. &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;The agent triggers them automatically, keeping prompts clean&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; and avoiding unnecessarily searching for online docs or inspecting local code and environment.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;3. Automate with scripts and CLI tools&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;For repetitive chores like formatting many files or extracting log data, have the agent create simple local tools. Use official CLI tools for setup, linting, and testing. Run read-only commands to research the codebase before writing code, &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;avoiding long trial-and-error loops&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;4. Delegate output-heavy tasks&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Delegate output-heavy tasks, like &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;deep research&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; or separating frontend and backend work, to sub-agents. Once their work is done, you only reconcile the final results, rather than the full trajectory.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;5. Divide and conquer&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;David Rensin wrote “&lt;/span&gt;&lt;a href="https://research.google/pubs/elephants-goldfish-and-the-new-golden-age-of-software-engineering/" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;Elephants, Goldfish and the New Golden Age of Software Engineering&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;” that explains how to use high-reasoning, long-context sessions ("&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Elephant&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;") to generate a detailed execution plan (the "&lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;Goldfish&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;"). Execute that plan in a clean, low-token session. Checkpoint your progress often with commits or artifacts so you can restart from a clean state when context fills up.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;6. Shift verification left&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Automate testing early. Run local builds and &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;unit and functional tests before doing UI testing&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt;. Tell the agent to perform the expensive smoke-test in the browser right before handoff. Save expensive verification loops for the very end of the milestone.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;7. Undo when adrift&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If the agent drifts and you know the fix, &lt;/span&gt;&lt;strong style="vertical-align: baseline;"&gt;use the Undo button&lt;/strong&gt;&lt;span style="vertical-align: baseline;"&gt; in the trajectory thread or revert your files. Do not pile corrective prompts on top of a broken state, which poisons the context.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;8. Be specific with context&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Be specific rather than micro-managing. A clear instruction with a few spelling errors is better than a grammatically accurate broad request. Similarly, pointing the agent to the exact file, section, or error you care about (with an obvious &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;// SHOULD BE X, NOT Y, FIX THIS&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; annotation) instead of sending it on an open-ended search in a 10k log quest goes a long way. Whenever possible, use &lt;/span&gt;&lt;a href="https://antigravity.google/docs/artifact-review" rel="noopener" target="_blank"&gt;&lt;span style="text-decoration: underline; vertical-align: baseline;"&gt;inline comments&lt;/span&gt;&lt;/a&gt;&lt;span style="vertical-align: baseline;"&gt;, so the agent knows exactly where you want the fix.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;9. Iterate on rules&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If you keep correcting the agent's behavior, update your global rules in &lt;/span&gt;&lt;code style="vertical-align: baseline;"&gt;AGENTS.md&lt;/code&gt;&lt;span style="vertical-align: baseline;"&gt; or edit the skill. Fix the instructions instead of prompting the agent repeatedly, so the change persists.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;10. Avoid uncontrolled loops&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Supervisor loops that scan projects for pending work can find optimizations, but they can easily burn your entire token budget. If you run loops, set strict limits and stop conditions. High autonomy requires tighter guardrails and better evaluations. Do not let agents poll status in a loop; use event-driven wakeups. &lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;11. Start new sessions for each new topic&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;If you are continuing on the same topic, using the same chat can allow the agent to reuse the existing context, but if you are changing the topic, start a new chat. The agent will be able to provide better answers with fewer tokens if it only pulls in the context that it needs.&lt;/span&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span style="vertical-align: baseline;"&gt;Prioritize and spend wisely&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Tokens aren’t infinite. Behind every LLM call is a real, physical machine doing work to produce output for you. Prioritize the projects and features you care about.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="vertical-align: baseline;"&gt;Token optimization is about directing the AI's attention. By using a tiered approach you keep development fast and output sharp, while optimizing spending. We hope these 11 principles will inspire you to find the right balance between steering and automation in your AI sessions.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;</content>
-    <link href="https://cloud.google.com/blog/topics/developers-practitioners/guide-to-ai-tokenomics-eleven-principles-for-token-efficient-software-engineering" rel="alternate"/>
-    <category term="Google Cloud"/>
-    <published>2026-07-17T09:14:00+00:00</published>
-    <media:group>
-      <media:content url="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_Steampunk_AI_Tokenomics_Header.max-600x600.jpg" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_Steampunk_AI_Tokenomics_Header.max-600x600.jpg"/>
-    </media:group>
-    <link rel="enclosure" href="https://storage.googleapis.com/gweb-cloudblog-publish/images/4_Steampunk_AI_Tokenomics_Header.max-600x600.jpg" type="image/jpeg" length="0"/>
   </entry>
 </feed>
