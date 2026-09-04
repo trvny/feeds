@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://blog.cloudflare.com/</id>
   <title>Cloudflare</title>
-  <updated>2026-09-04T19:07:41.992478+00:00</updated>
+  <updated>2026-09-04T22:34:38.821246+00:00</updated>
   <author>
     <name>Cloudflare</name>
   </author>
@@ -12,6 +12,28 @@
   <icon>https://blog.cloudflare.com/favicon.ico</icon>
   <logo>https://blog.cloudflare.com/favicon.ico</logo>
   <subtitle>Combined Cloudflare feed: the Cloudflare Blog, the developer Changelog, Community top topics, Status incidents, and Cloudflare Research publications.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/a23b3d625c6ff1fd</id>
+    <title>Elevated number of R2 503 errors in Eastern North America region</title>
+    <updated>2026-09-04T21:27:22+00:00</updated>
+    <content>Sep 4 , 21:27 UTC Identified - The cause of this issue has been identified and a fix is being implemented. Sep 4 , 21:10 UTC Investigating - Cloudflare is investigating issues with R2 buckets in Eastern North America.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/ftvf8c3m4mv5" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-09-04T21:27:22+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/e2409bcefb0a022b</id>
+    <title>Zero Trust Dashboard - Posture Check Visibility Issue</title>
+    <updated>2026-09-04T20:07:56+00:00</updated>
+    <content>Sep 4 , 20:07 UTC Resolved - An effective fix for this issue has been implemented and this incident is now resolved. Sep 4 , 19:55 UTC Identified - Cloudflare is aware of, and implementing a fix for individual device posture checks not showing on the Devices Page.  Device posture checks in the meantime can be inspected through the Logs -&gt; Posture Logs.  
+
+This is purely a dashboard visibility issue— firewall policies are not impacted.</content>
+    <link href="https://www.cloudflarestatus.com/incidents/6ztvhhp2ll11" rel="alternate"/>
+    <category term="Cloudflare Status" label="Cloudflare Status"/>
+    <published>2026-09-04T20:07:56+00:00</published>
+    <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/8ca474c3276c77c9</id>
     <title>Cache Purging Errors</title>
@@ -41,6 +63,21 @@
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-09-04T02:48:37+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/cloudflare/570b6ff3d263ddba</id>
+    <title>Workers - Deploy larger Workers — up to 64 MiB for both free and paid plans</title>
+    <updated>2026-09-04T00:00:00+00:00</updated>
+    <content>You can now deploy Workers with larger dependencies, heavier frameworks, and more code without hitting size limits. When you deploy a Worker, Wrangler bundles your code and compresses it before uploading. Previously, Cloudflare checked that compressed size and rejected deploys over 3 MB (Free) or 10 MB (Paid). That limit has been removed. Cloudflare now only checks the uncompressed size of your bundle, which is 64 MiB across all plans. To check your Worker's bundle size before deploying: wrangle</content>
+    <link href="https://developers.cloudflare.com/changelog/post/2026-09-04-increased-worker-size-limit/" rel="alternate"/>
+    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
+    <published>2026-09-04T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
+    </media:group>
+    <dc:creator>Cloudflare Changelog</dc:creator>
+    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/2992a92dac4e74c4</id>
@@ -1302,21 +1339,6 @@ We are working to understand the full impact and mitigate this problem.  More up
     <link rel="enclosure" href="https://blog.cloudflare.com/_emdash/api/media/file/01M00XZZC7473CXRW6EF1Z69ZW.png" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/893fa998ab47d0a7</id>
-    <title>Cloudflare One Client - Cloudflare One Client for macOS (version 2026.7.1343.0)</title>
-    <updated>2026-08-19T15:58:18+00:00</updated>
-    <content>A new GA release for the macOS Cloudflare One Client is now available on the stable releases downloads page . This release introduces multiple features from our previous beta release into stable release, including: When reauthentication is needed for any reason, the notifications are clearer and reduce the actions needed to get you back to work by redirecting to the browser for authentication instead of the app window when necessary. When a network is blocking or otherwise not supportive of HTTP</content>
-    <link href="https://developers.cloudflare.com/changelog/post/2026-08-19-warp-macos-ga/" rel="alternate"/>
-    <category term="Cloudflare Changelog" label="Cloudflare Changelog"/>
-    <published>2026-08-19T15:58:18+00:00</published>
-    <media:group>
-      <media:content url="https://developers.cloudflare.com/og-changelog.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://developers.cloudflare.com/og-changelog.png"/>
-    </media:group>
-    <dc:creator>Cloudflare Changelog</dc:creator>
-    <link rel="enclosure" href="https://developers.cloudflare.com/og-changelog.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/cloudflare/4d93ad4e7fc680c5</id>
     <title>Increased Errors for Durable Objects in the Hong Kong region</title>
     <updated>2026-08-19T07:20:23+00:00</updated>
@@ -1379,26 +1401,6 @@ We are working to understand the full impact and mitigate this problem.  More up
     <link href="https://www.cloudflarestatus.com/incidents/p19kmglclwy4" rel="alternate"/>
     <category term="Cloudflare Status" label="Cloudflare Status"/>
     <published>2026-08-17T19:25:39+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/5d6a503935bb978e</id>
-    <title>Cloudflare Lists Bulk Actions failing</title>
-    <updated>2026-08-17T12:29:28+00:00</updated>
-    <content>Aug 17 , 12:29 UTC Resolved - This incident has been resolved. Aug 17 , 12:18 UTC Monitoring - A fix has been implemented and we are monitoring the results. Aug 17 , 12:04 UTC Identified - The issue has been identified and a fix is being implemented. Aug 17 , 11:52 UTC Investigating - Cloudflare is aware of, and investigating, an increase in the number of errors generated when attempting bulk actions against lists.  Further updates to follow.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/2hxsrlmxlf5h" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-17T12:29:28+00:00</published>
-    <dc:creator>Cloudflare Status</dc:creator>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/cloudflare/3884b44157d6ba00</id>
-    <title>Increased Errors for Durable Objects</title>
-    <updated>2026-08-17T08:58:06+00:00</updated>
-    <content>Aug 17 , 08:58 UTC Resolved - This incident has been resolved. Aug 17 , 07:47 UTC Investigating - Cloudflare is investigating issues causing an increase of errors for Durable Objects and downstream services in Singapore. We are working to analyse and mitigate this problem. More updates to follow shortly.</content>
-    <link href="https://www.cloudflarestatus.com/incidents/w1d9976ls02m" rel="alternate"/>
-    <category term="Cloudflare Status" label="Cloudflare Status"/>
-    <published>2026-08-17T08:58:06+00:00</published>
     <dc:creator>Cloudflare Status</dc:creator>
   </entry>
   <entry>
