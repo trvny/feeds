@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-04T11:52:22.306360+00:00",
+  "last_updated": "2026-09-04T16:44:24.626821+00:00",
   "entries": [
     {
       "title": "reddit 被墙了吗，在手机上用 Apollo 客户端无法显示内容，浏览器无法打开？",
@@ -16796,6 +16796,78 @@
       "source": "V2EX Play",
       "image": "https://cdn.v2ex.com/gravatar/0344b43a67721463995cc1163609a89b?s=73&d=retro",
       "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/0e62f674aaa6e671"
+    },
+    {
+      "title": "libcr 项目组开发的免费应用 crShare 1.6.0 上架微软应用商店",
+      "link": "https://www.v2ex.com/t/1239575#reply0",
+      "date": "2026-09-04T12:10:36+00:00",
+      "description": "微软应用商店： https://apps.microsoft.com/store/detail/9MWSSWF3H9LC?cid=DevShareMCLPCS Linux 版本下载： https://github.com/libcr/crShare/releases crShare 是一款 C++开发的轻量级用于局域网分享的 HTTPS 服务器，自带 GUI 管理界面 更多免费应用 可以访问： https://libcr.github.io 下载/上传的 WEBUI QuickShare - crShare 自创的按 topic 的分享模式",
+      "source": "V2EX Creative",
+      "image": "https://i.imgur.com/2SaLGfn.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/af829e20ac6aac31"
+    },
+    {
+      "title": "Seahelm：用 libghostty 写的 macOS 原生 agent 控制台，管多个 Claude Code / Codex",
+      "link": "https://www.v2ex.com/t/1239577#reply1",
+      "date": "2026-09-04T12:22:41+00:00",
+      "description": "做了大半年，自己每天在用，拿出来分享一下。 解决的问题 同时开五六个 Claude Code / Codex 在不同 git worktree 里干活的时候，我不知道该看哪个窗口。终端长得都一样，只能一个个切过去看最后一行输出。 tmux 能管窗口，但它不知道「 agent 在等你确认」这件事。对 tmux 来说，卡在权限询问的 Claude 和正在写代码的 Claude 没有区别。 怎么做的 终端渲染直接嵌 libghostty （ Ghostty 的 C 接口），Swift + AppKit ，不是 Electron 。会话持久化用 zmx ，退出 App 或者重启之后 agent 还在原地。每个 repo 一个 tab ，每个 worktree 一张卡片，卡片上只显示 running / waiting / broken 三种状态。 状态判断是一个优先级梯子：进程退出状态 > OSC 133 shell 集成标记 > 文本正则匹配。正则那一层是数据驱动的，每个 agent 一份 JSON manifest ，可以在 ~/.config/seahelm/agents/ 下覆盖。 C",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/57596745c8a1cad48668968f003dc83b?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/c817849efc52962d"
+    },
+    {
+      "title": "DeepSeek 弄了个额度管理小工具",
+      "link": "https://www.v2ex.com/t/1239582#reply2",
+      "date": "2026-09-04T13:17:29+00:00",
+      "description": "到期自动使用额度功能还不错，不然某些订阅等你重置后第一次使用才开始计算下一周",
+      "source": "V2EX Creative",
+      "image": "https://i.imgur.com/JMQ3RNT.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/e685abf23e8b2b9b"
+    },
+    {
+      "title": "对脑科学有兴趣的朋友看过来：分享自己 vibe 的一个教育向 3D 作品",
+      "link": "https://www.v2ex.com/t/1239583#reply2",
+      "date": "2026-09-04T13:18:55+00:00",
+      "description": "细佬是脑科学博士一枚，除了 research 还是想做一些对社会有意义的 education 相关的项目，当 AI 代替思考和工作时候，它真的可能在摧毁下一代的科学家 这个项目之前做好但因为读博比较忙，没时间宣传和完善，最近文章改完了又有时间继续 vibe 了， 总的来说，初衷是想兼顾专业性和科普性，也方便对脑科学感兴趣或者有志向的人学习 如果觉得有意思或者做的还可以，欢迎 star 或者帮忙宣传 hhh https://hughyau.com/brain/",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/gravatar/a7abfabb5fb6f7723b895e7946dfa1e2?s=73&d=retro",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/a1818defdc3e37f2"
+    },
+    {
+      "title": "做了一个专门找“真正全球远程职位”的小网站，欢迎拍砖",
+      "link": "https://www.v2ex.com/t/1239587#reply1",
+      "date": "2026-09-04T13:49:24+00:00",
+      "description": "大家好，最近做了一个很小的远程职位网站： https://realjobworkfromhome.com/?utm_source=v2ex&utm_medium=community&utm_campaign=launch 起因是我在找远程工作时，经常遇到一个问题：职位标题写着 Remote ，点进去才发现只招美国、欧洲某些国家，或者要求固定时区重叠。 所以这个网站不追求职位数量，主要聚焦一种岗位：招聘信息中没有国家、地区或指定时区限制，理论上可以从世界各地申请。 目前有这些功能： - 按职位名称和公司搜索 - 按开发、产品、设计、市场等分类筛选 - 展示薪资、合同类型和截止时间（原始职位提供时） - 直接跳转到雇主招聘页面申请 - 每周邮件精选 网站是英文的，因为目标用户是全球求职者。技术上使用 Astro 做静态生成，职位和公司都有独立页面。 我不想把它包装成“最大的远程职位站”，方向反而是少而明确：尽量减少点进去才发现自己不能申请的情况。 想请 V 友帮忙拍砖，尤其想听听： 1. 你判断一个远程职位能不能申请时，最想第一眼看到什么信息？ 2. 你会更在意国家限制、时区、薪资，还是雇",
+      "source": "V2EX Creative",
+      "image": "https://cdn.v2ex.com/avatar/df2e/17d0/581272_xlarge.png?m=1760434922",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/ba9d33bb08dcd1c0"
+    },
+    {
+      "title": "从 0 到 1 实现 agent harness 的视频教程，欢迎大家点赞收藏",
+      "link": "https://www.v2ex.com/t/1239588#reply0",
+      "date": "2026-09-04T13:49:49+00:00",
+      "description": "我在 b 站开了个坑，打算用 9 期视频从 0 到 1 实现一个 agent harness 。每期视频会落脚于 harness 的一个功能，例如第一期视频就是循环上下文，第二期视频是 harness 工具的实现。每期视频会从原理讲解到代码实现，事无巨细的为大家介绍 harness 的设计。欢迎大家点赞收藏，也欢迎大家提出宝贵的意见或建议，目前已上两期视频，明天更新第 3 期视频。 https://www.bilibili.com/video/BV1aata6UEzA/",
+      "source": "V2EX Play",
+      "image": "https://cdn.v2ex.com/avatar/f76e/27f3/466616_large.png?m=1613201920",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/68294891bc13cb90"
+    },
+    {
+      "title": "Asus ZenWiFi BT8 怎样？",
+      "link": "https://www.v2ex.com/t/1239590#reply0",
+      "date": "2026-09-04T13:52:46+00:00",
+      "description": "大伙儿有没有用过 Asus ZenWiFi BT8 的？感觉怎样？ Tri-band WiFi 7 (802.11be) Smart AiMesh Extendable Router, 6 GHz WiFi, 14 Gbps, Coverage up to 5900 sq. ft. (2pk), Dual 2.5G Ports, Up to 3 SSIDs for IoT Devices, Parental Controls & VPNs, Advanced Network Security",
+      "source": "V2EX Play",
+      "image": "https://dlcdnwebimgs.asus.com/gain/616c23a2-6c60-4b46-bae2-9efb94aa03cb/w692",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/43dc287d79bea18d"
+    },
+    {
+      "title": "GPT 生产图片提示额度已经消耗完",
+      "link": "https://www.v2ex.com/t/1239599#reply0",
+      "date": "2026-09-04T15:42:44+00:00",
+      "description": "ChatGPT 网页端图片生成是不是有 bug ？ 我手机端可以正常生成图片，但网页端一直提示“稍后创建此图像，或升级套餐立即创建”，就是生成不了。 而且我最近基本没怎么用图片生成功能，感觉也不像是额度用完了。 有人遇到一样的问题吗？",
+      "source": "V2EX Play",
+      "image": "https://i.imgur.com/phhty7o.png",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/v2ex/78e73dcb870cdca0"
     }
   ]
 }
