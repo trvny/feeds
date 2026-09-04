@@ -8,6 +8,75 @@
   "icon": "https://blogs.oracle.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/oracle/43adc86051f3c3c9",
+      "url": "https://blogs.oracle.com/cloud-infrastructure/deploying-replicated-m3db-on-oke-grafana",
+      "title": "Deploying a Replicated M3DB Cluster on Oracle Kubernetes Engine with Grafana Observability",
+      "content_text": "Introduction Part 1: Building Btrfs-Backed Storage on Oracle Kubernetes Engine: Manual and Automated Approaches established the storage foundation: dedicated OCI Block Volumes attached to Oracle Kubernetes Engine (OKE) workers, formatted with Btrfs, mounted independently of the worker boot disks, and prepared through a reusable automated workflow. Part 2 builds on that foundation by introducing the […]",
+      "date_published": "2026-09-03T22:15:00Z",
+      "date_modified": "2026-09-03T22:15:00Z",
+      "authors": [
+        {
+          "name": "Oracle Cloud Infrastructure"
+        }
+      ],
+      "image": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/part2.png",
+      "tags": [
+        "Oracle Cloud Infrastructure"
+      ],
+      "attachments": [
+        {
+          "url": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/part2.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/oracle/1986bc73782d9782",
+      "url": "https://blogs.oracle.com/cloud-infrastructure/btrfs-storage-on-oke-manual-automation",
+      "title": "Building Btrfs-Backed Storage on Oracle Kubernetes Engine: Manual and Automated Approaches",
+      "content_text": "Introduction Observability workloads can generate sustained time-series writes and place significant demands on persistent storage. Running these workloads on Kubernetes introduces an additional challenge: the database needs durable, predictable storage while Kubernetes continues to manage compute, scheduling, and application lifecycle. To evaluate this storage pattern, a Btrfs-backed storage architecture was implemented and validated on Oracle […]",
+      "date_published": "2026-09-03T22:14:00Z",
+      "date_modified": "2026-09-03T22:14:00Z",
+      "authors": [
+        {
+          "name": "Oracle Cloud Infrastructure"
+        }
+      ],
+      "image": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/part1.png",
+      "tags": [
+        "Oracle Cloud Infrastructure"
+      ],
+      "attachments": [
+        {
+          "url": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/part1.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/oracle/1fd2754bdb023649",
+      "url": "https://blogs.oracle.com/cloud-infrastructure/securing-postgresql-on-oci-a-defense-in-depth-approach",
+      "title": "Securing PostgreSQL on OCI: A Defense-in-Depth Approach",
+      "content_text": "Discover how OCI Fully Managed PostgreSQL Service combines multiple layers of security to help protect your PostgreSQL workloads. As PostgreSQL continues to gain popularity across the open-source ecosystem, organizations are increasingly adopting it for business-critical and enterprise workloads. With this growing adoption, security has become just as important as performance, scalability, and availability. Organizations also […]",
+      "date_published": "2026-09-03T22:00:00Z",
+      "date_modified": "2026-09-03T22:00:00Z",
+      "authors": [
+        {
+          "name": "Oracle Cloud Infrastructure"
+        }
+      ],
+      "image": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/PostgreSQL-1.png",
+      "tags": [
+        "Oracle Cloud Infrastructure"
+      ],
+      "attachments": [
+        {
+          "url": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/PostgreSQL-1.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/oracle/f36aa9fbf7c86017",
       "url": "https://forums.oracle.com/ords/apexds/post/always-free-tenancy-invalid-username-or-password-after-pass-6127",
       "title": "Always Free tenancy - &quot;invalid username or password&quot; after password reset, no support path",
@@ -188,6 +257,29 @@
         {
           "url": "https://blogs.oracle.com/developers/wp-content/uploads/sites/129/2026/09/Building-an-agent-harness-that-survives-production-scaled.png",
           "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/oracle/7a2237f1e4e45c8b",
+      "url": "https://www.oracle.com/news/announcement/oracle-and-bloom-energy-announce-support-for-roadrunner-food-bank-es-2026-09-03/",
+      "title": "Oracle y Bloom Energy anuncian una donación de 400 000 dólares en apoyo a Roadrunner Food Bank para mejorar el acceso a los alimentos en Santa Teresa y Sunland Park",
+      "content_text": "Oracle y Bloom Energy anuncian una donación de 400 000 dólares en apoyo a Roadrunner Food Bank para mejorar el acceso a los alimentos en Santa Teresa y Sunland Park",
+      "date_published": "2026-09-03T13:00:00Z",
+      "date_modified": "2026-09-03T13:00:00Z",
+      "authors": [
+        {
+          "name": "Oracle Press Releases"
+        }
+      ],
+      "image": "https://www.oracle.com/a/pr/img/og-social-rudy.jpg",
+      "tags": [
+        "Oracle Press Releases"
+      ],
+      "attachments": [
+        {
+          "url": "https://www.oracle.com/a/pr/img/og-social-rudy.jpg",
+          "mime_type": "image/jpeg"
         }
       ]
     },
@@ -1365,29 +1457,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/oracle/1bea063dcb010615",
-      "url": "https://blogs.oracle.com/cloud-infrastructure/oke-incident-postmortem-autopilot-openclaw-genai",
-      "title": "From OKE Alerts to RCA Drafts: Building a Guardrailed OpenClaw Incident Assistant on OCI",
-      "content_text": "Event-driven, read-only RCA with OpenClaw and OCI Generative AI The operational problem An OKE incident commonly begins with a symptom rather than a diagnosis. A pod enters CrashLoopBackOff, a rollout stops progressing, readiness probes fail, or application replicas become unavailable. The initial alert identifies the affected resource, but it rarely provides the sequence of events, […]",
-      "date_published": "2026-08-19T15:00:00Z",
-      "date_modified": "2026-08-19T15:00:00Z",
-      "authors": [
-        {
-          "name": "Oracle Cloud Infrastructure"
-        }
-      ],
-      "image": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/Picture2.png",
-      "tags": [
-        "Oracle Cloud Infrastructure"
-      ],
-      "attachments": [
-        {
-          "url": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/08/Picture2.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/oracle/b058a35b6a66d9b4",
       "url": "https://www.oracle.com/news/announcement/oracle-health-expands-clinical-ai-agent-with-automated-coding-dictation-chart-review-2026-08-19/",
       "title": "Oracle Health Expands Clinical AI Agent with Automated Coding, Dictation, and Chart Review",
@@ -1434,29 +1503,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/oracle/19b8a0a7662a5f14",
-      "url": "https://blogs.oracle.com/cloud-infrastructure/oke-now-supports-node-pool-kubernetes-version-rollback",
-      "title": "OKE Now Supports Node Pool Kubernetes Version Rollback",
-      "content_text": "Oracle Cloud Infrastructure Kubernetes Engine (OKE) now supports rolling back a node pool to an earlier Kubernetes version, helping simplify recovery when issues occur after an upgrade.  Before this release, recovery required creating a replacement node pool, migrating workloads, draining the old nodes, and deleting the original node pool. Customers can now select an earlier […]",
-      "date_published": "2026-08-18T20:00:00Z",
-      "date_modified": "2026-08-18T20:00:00Z",
-      "authors": [
-        {
-          "name": "Oracle Cloud Infrastructure"
-        }
-      ],
-      "image": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2025/12/social-og-oci-logo-1200x1200-1.jpg",
-      "tags": [
-        "Oracle Cloud Infrastructure"
-      ],
-      "attachments": [
-        {
-          "url": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2025/12/social-og-oci-logo-1200x1200-1.jpg",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/oracle/571ed6d98916c156",
       "url": "https://blogs.oracle.com/developers/how-to-build-a-rest-api-for-an-ai-application",
       "title": "How to Build a REST API for an AI Application",
@@ -1475,29 +1521,6 @@
       "attachments": [
         {
           "url": "https://blogs.oracle.com/developers/wp-content/uploads/sites/129/2026/08/rest-api-for-ai-application.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/oracle/3c8103a00a33586f",
-      "url": "https://blogs.oracle.com/cloud-infrastructure/new-oci-service-limit-increase-experience",
-      "title": "Announcing the New OCI Service Limit Increase Experience",
-      "content_text": "At Oracle Cloud Infrastructure (OCI), we’re continuously working to simplify and improve the way customers interact with cloud operations and support workflows. Today, we’re excited to introduce the new OCI Service Limit Increase experience — a modernized, streamlined workflow designed to make requesting service limit increases faster, easier, and more transparent. A Simpler, Smarter Experience […]",
-      "date_published": "2026-08-17T10:24:00Z",
-      "date_modified": "2026-08-17T10:24:00Z",
-      "authors": [
-        {
-          "name": "Oracle Cloud Infrastructure"
-        }
-      ],
-      "image": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/07/Announcing-the-New-OCI-Service-Limit-Increase-Experience.png",
-      "tags": [
-        "Oracle Cloud Infrastructure"
-      ],
-      "attachments": [
-        {
-          "url": "https://blogs.oracle.com/cloud-infrastructure/wp-content/uploads/sites/83/2026/07/Announcing-the-New-OCI-Service-Limit-Increase-Experience.png",
           "mime_type": "image/png"
         }
       ]
@@ -2004,29 +2027,6 @@
       "attachments": [
         {
           "url": "https://www.oracle.com/a/pr/img/og-social-oracle-scholarships.jpg",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/oracle/8f6922cfa37e66f7",
-      "url": "https://www.oracle.com/news/announcement/oracle-to-make-gemini-models-available-2026-07-30/",
-      "title": "オラクル、数千社のエンタープライズ・アプリケーションのお客様にGeminiモデルを提供へ",
-      "content_text": "オラクル、数千社のエンタープライズ・アプリケーションのお客様にGeminiモデルを提供へ",
-      "date_published": "2026-08-06T13:00:00Z",
-      "date_modified": "2026-08-06T13:00:00Z",
-      "authors": [
-        {
-          "name": "Oracle Press Releases"
-        }
-      ],
-      "image": "https://www.oracle.com/a/pr/img/og-social-oracle-google.jpg",
-      "tags": [
-        "Oracle Press Releases"
-      ],
-      "attachments": [
-        {
-          "url": "https://www.oracle.com/a/pr/img/og-social-oracle-google.jpg",
           "mime_type": "image/jpeg"
         }
       ]
