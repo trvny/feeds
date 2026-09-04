@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-03T21:23:20.907916+00:00",
+  "last_updated": "2026-09-04T00:25:47.177608+00:00",
   "entries": [
     {
       "title": "Database Storage Latencies",
@@ -7502,20 +7502,11 @@
     {
       "title": "Graham Dumpleton: Recording calls with wrapture",
       "link": "https://grahamdumpleton.me/posts/2026/09/recording-calls-with-wrapture/",
-      "date": "2026-09-02T21:39:25+00:00",
+      "date": "2026-09-03T00:00:00+00:00",
       "description": "In unit testing with wrapture the tests leaned on a timeline and a tape to assert on what happened, and I skipped over what those actually are. This post is about the recording side of wrapture: what gets recorded, what one event holds, how a test reads the record back, and the whole-tape views that answer questions about the flow between calls rather than about any one of them. The example is a resource leak, because it is the kind of bug the recording model was made for. Code that acquires a c",
       "source": "Planet Python",
       "image": "https://opengraph.githubassets.com/b68845d8/GrahamDumpleton/wrapture",
       "entry_id": "tag:trvny.github.io,2024:feedseek/python/4507f59f40d17a0c"
-    },
-    {
-      "title": "Graham Dumpleton: Phased behaviour in wrapture",
-      "link": "https://grahamdumpleton.me/posts/2026/09/phased-behaviour-in-wrapture/",
-      "date": "2026-09-02T21:39:25+00:00",
-      "description": "Most of what a test configures on a patch holds until the test changes it. Retry logic is the classic case where that is not enough: the code under test keeps calling, and the test needs the behaviour to change on its own as it does. Fail twice and then succeed. Hand out a sequence of canned responses. Run the real thing until it breaks and then fail fast. unittest.mock handles the first two of those with a list passed as side_effect , consumed one entry per call. wrapture models the same idea a",
-      "source": "Planet Python",
-      "image": "https://opengraph.githubassets.com/4f759d91/GrahamDumpleton/wrapture",
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/45ab5692992cc33d"
     },
     {
       "title": "attn-gym 0.0.8",
@@ -7606,54 +7597,72 @@
       "image": "https://pydevtools.com/images/social-share-default.png"
     },
     {
-      "title": "aegis-latent-sdk 4.1.2",
-      "link": "https://pypi.org/project/aegis-latent-sdk/4.1.2/",
-      "date": "2026-09-03T21:22:47+00:00",
-      "description": "Typed Aegis gateway clients and portable MMR proof verification",
-      "source": "PyPI Updates",
-      "image": null,
-      "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/70e6ddd27918a5f9"
+      "title": "Graham Dumpleton: Phased behaviour in wrapture",
+      "link": "https://grahamdumpleton.me/posts/2026/09/phased-behaviour-in-wrapture/",
+      "date": "2026-09-03T21:39:53+00:00",
+      "description": "Most of what a test configures on a patch holds until the test changes it. Retry logic is the classic case where that is not enough: the code under test keeps calling, and the test needs the behaviour to change on its own as it does. Fail twice and then succeed. Hand out a sequence of canned responses. Run the real thing until it breaks and then fail fast. unittest.mock handles the first two of those with a list passed as side_effect , consumed one entry per call. wrapture models the same idea a",
+      "source": "Planet Python",
+      "image": "https://opengraph.githubassets.com/4f759d91/GrahamDumpleton/wrapture",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/45ab5692992cc33d"
     },
     {
-      "title": "alphafold-sovereign-mcp 1.4.9",
-      "link": "https://pypi.org/project/alphafold-sovereign-mcp/1.4.9/",
-      "date": "2026-09-03T21:22:55+00:00",
-      "description": "MCP server wrapping AlphaFold DB and 8 other biomedical data sources, with a local SQLite knowledge graph.",
-      "source": "PyPI Updates",
-      "image": null,
-      "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/0b9ce9fb00fe6613"
+      "title": "Graham Dumpleton: Beyond callables in wrapture",
+      "link": "https://grahamdumpleton.me/posts/2026/09/beyond-callables-in-wrapture/",
+      "date": "2026-09-03T21:39:53+00:00",
+      "description": "Every example in this series so far has wrapped a call. A binding named a method, and what flowed through the call was recorded or changed. Plenty of what a test needs to control is not a call, though. An outcome stored in an attribute, an environment variable that must be set or missing, a settings dict that other modules imported by reference at import time, a formatter looked up in a registry, and a generator whose interesting behaviour is spread over its consumption. unittest.mock and pytest",
+      "source": "Planet Python",
+      "image": "https://opengraph.githubassets.com/cecfc53e/GrahamDumpleton/wrapture",
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/5f15cabb8d7948b4"
     },
     {
-      "title": "hol-guard 3.0.61",
-      "link": "https://pypi.org/project/hol-guard/3.0.61/",
-      "date": "2026-09-03T21:22:55+00:00",
-      "description": "Open-source antivirus and runtime protection for AI agents, tools, MCP servers, plugins, skills, and package installs.",
+      "title": "pyflowlauncher 1.2.1",
+      "link": "https://pypi.org/project/pyflowlauncher/1.2.1/",
+      "date": "2026-09-04T00:24:26+00:00",
+      "description": "Python library to help build Flow Launcher plugins.",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/b8795f5f4c58c5e1"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/2a406bd25a830ebc"
     },
     {
-      "title": "knockapi 1.30.0",
-      "link": "https://pypi.org/project/knockapi/1.30.0/",
-      "date": "2026-09-03T21:22:59+00:00",
-      "description": "The official Python library for the knock API",
+      "title": "code-mower 1.0.4",
+      "link": "https://pypi.org/project/code-mower/1.0.4/",
+      "date": "2026-09-04T00:24:42+00:00",
+      "description": "Multi-reviewer AI code audit orchestration",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/491331c6f033a553"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/1c1a0a29420141e4"
     },
     {
-      "title": "folder2uf2 0.1.0",
-      "link": "https://pypi.org/project/folder2uf2/0.1.0/",
-      "date": "2026-09-03T21:23:04+00:00",
-      "description": "Ship a CircuitPython project as one file: a self-extracting code.py, a UF2 for RP2, or an image for ESP32",
+      "title": "pybank-slip 0.2.4",
+      "link": "https://pypi.org/project/pybank-slip/0.2.4/",
+      "date": "2026-09-04T00:25:03+00:00",
+      "description": "A framework-agnostic Python library to manage Brazilian bank slips (boletos) across multiple banks.",
       "source": "PyPI Updates",
       "image": null,
       "image_checked": true,
-      "entry_id": "tag:trvny.github.io,2024:feedseek/python/1c968dd67285e040"
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/b4284e98ac40d60b"
+    },
+    {
+      "title": "entigram-ai 2.4.0",
+      "link": "https://pypi.org/project/entigram-ai/2.4.0/",
+      "date": "2026-09-04T00:25:03+00:00",
+      "description": "Schema-first semantic governance layer for enterprise agents",
+      "source": "PyPI Updates",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/93e02aa143f402dc"
+    },
+    {
+      "title": "domonic 1.6.0",
+      "link": "https://pypi.org/project/domonic/1.6.0/",
+      "date": "2026-09-04T00:25:19+00:00",
+      "description": "Python DOM toolkit for HTML generation, SVG/XML, CSS selectors, XPath, Web APIs, and JavaScript-like scripting.",
+      "source": "PyPI Updates",
+      "image": null,
+      "image_checked": true,
+      "entry_id": "tag:trvny.github.io,2024:feedseek/python/ea1d7c97ee3a9da2"
     }
   ]
 }
