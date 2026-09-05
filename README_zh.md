@@ -9,7 +9,7 @@
 **自动更新并增强 RSS/Atom + JSON feed：既为没有 feed 的网站补齐，也把已有的原生 feed 做得更好。**
 
 [![feeds CI](https://img.shields.io/github/actions/workflow/status/trvny/feedseek/update-feeds.yml?label=feeds%20CI&logo=githubactions&logoColor=white&color=d6541a&style=flat-square)](https://github.com/trvny/feedseek/actions/workflows/update-feeds.yml)
-[![feeds](https://img.shields.io/badge/feeds-101-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
+[![feeds](https://img.shields.io/badge/feeds-104-d6541a?style=flat-square&logo=rss&logoColor=white)](feeds.yaml)
 [![pages](https://img.shields.io/github/deployments/trvny/feedseek/github-pages?label=pages&logo=github&logoColor=white&color=d6541a&style=flat-square)](https://trvny.github.io/feedseek/)
 [![last commit](https://img.shields.io/github/last-commit/trvny/feedseek?color=d6541a&logo=git&logoColor=white&style=flat-square)](https://github.com/trvny/feedseek/commits/main)
 [![license](https://img.shields.io/github/license/trvny/feedseek?color=d6541a&style=flat-square)](LICENSE)  
