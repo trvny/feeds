@@ -1,9 +1,12 @@
 const FETCH_TIMEOUT_MS = 8000;
 const DOWNLOAD_SOUNDTRACKS_TIMEOUT_MS = 20000;
+const THIRTEEN37X_TIMEOUT_MS = 10000;
 const DOWNLOAD_SOUNDTRACKS_ORIGIN = "https://download-soundtracks.com";
 const DOWNLOAD_SOUNDTRACKS_HOSTS = new Set(["download-soundtracks.com", "www.download-soundtracks.com"]);
+const THIRTEEN37X_ORIGINS = ["https://1337x.to", "https://x1337x.cc"];
+const THIRTEEN37X_HOSTS = new Set(THIRTEEN37X_ORIGINS.map((origin) => new URL(origin).hostname));
 const DEFAULT_USER_AGENT = "feedseek-reader/2.0";
-const DOWNLOAD_SOUNDTRACKS_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
+const BROWSER_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
 const DEFAULT_ACCEPT = "application/atom+xml, application/rss+xml, application/xml, text/xml, application/json, text/plain, text/html;q=0.8, */*;q=0.1";
 const MAX_REDIRECTS = 3;
 const MAX_RESPONSE_BYTES = 2 * 1024 * 1024;
@@ -190,7 +193,7 @@ async function downloadSoundtracksResponse(requestUrl) {
   try {
     upstream = await fetchWithRedirects(target, {
       timeoutMs: DOWNLOAD_SOUNDTRACKS_TIMEOUT_MS,
-      userAgent: DOWNLOAD_SOUNDTRACKS_USER_AGENT,
+      userAgent: BROWSER_USER_AGENT,
       allowedHosts: DOWNLOAD_SOUNDTRACKS_HOSTS,
     });
   } catch (error) {
@@ -214,6 +217,53 @@ async function downloadSoundtracksResponse(requestUrl) {
   headers.set("cache-control", upstream.ok ? "public, max-age=300" : "no-store");
   headers.set("x-robots-tag", "noindex, nofollow");
   return new Response(body, { status: upstream.status, headers });
+}
+
+async function thirteen37xResponse() {
+  let lastUpstream = null;
+  let lastError = null;
+
+  for (const origin of THIRTEEN37X_ORIGINS) {
+    try {
+      const upstream = await fetchWithRedirects(new URL("/trending", origin), {
+        timeoutMs: THIRTEEN37X_TIMEOUT_MS,
+        userAgent: BROWSER_USER_AGENT,
+        allowedHosts: THIRTEEN37X_HOSTS,
+      });
+      if (upstream.ok) {
+        const body = await readLimited(upstream);
+        const headers = new Headers({ ...CORS_HEADERS, ...SECURITY_HEADERS });
+        headers.set("content-type", upstream.headers.get("content-type") || "text/html; charset=utf-8");
+        headers.set("cache-control", "public, max-age=300");
+        headers.set("x-robots-tag", "noindex, nofollow");
+        return new Response(body, { status: upstream.status, headers });
+      }
+      lastUpstream = upstream;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  if (lastUpstream) {
+    let body = null;
+    try {
+      body = await readLimited(lastUpstream);
+    } catch (error) {
+      return text(error instanceof Error ? error.message : "fetch failed", 502);
+    }
+    const headers = new Headers({ ...CORS_HEADERS, ...SECURITY_HEADERS });
+    headers.set("content-type", lastUpstream.headers.get("content-type") || "text/html; charset=utf-8");
+    headers.set("cache-control", "no-store");
+    headers.set("x-robots-tag", "noindex, nofollow");
+    return new Response(body, { status: lastUpstream.status, headers });
+  }
+
+  const message = lastError instanceof Error && lastError.name === "TimeoutError"
+    ? "upstream timeout"
+    : lastError instanceof Error
+      ? lastError.message
+      : "fetch failed";
+  return text(message, 502);
 }
 
 /** @param {URL} requestUrl */
@@ -265,6 +315,9 @@ export default {
     if (request.method !== "GET") return text("method not allowed", 405);
     if (requestUrl.pathname === "/download-soundtracks") {
       return downloadSoundtracksResponse(requestUrl);
+    }
+    if (requestUrl.pathname === "/1337x") {
+      return thirteen37xResponse();
     }
     return proxyResponse(requestUrl);
   },

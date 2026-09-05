@@ -68,6 +68,30 @@ test("uses the allowlisted Download Soundtracks fetch route", async () => {
   });
 });
 
+test("uses the host-locked 1337x route with browser headers and mirror fallback", async () => {
+  const calls = [];
+
+  await withFetch((url, init) => {
+    calls.push({ url: String(url), init });
+    if (calls.length === 1) return Promise.resolve(new Response("blocked", { status: 403 }));
+    return Promise.resolve(new Response("<html>trending</html>", {
+      status: 200,
+      headers: { "content-type": "text/html; charset=UTF-8" },
+    }));
+  }, async () => {
+    const response = await worker.fetch(new Request("https://proxy.test/1337x"));
+
+    assert.equal(response.status, 200);
+    assert.equal(await response.text(), "<html>trending</html>");
+    assert.deepEqual(calls.map((call) => call.url), [
+      "https://1337x.to/trending",
+      "https://x1337x.cc/trending",
+    ]);
+    assert.match(calls[0].init.headers["user-agent"], /Chrome\/140/);
+    assert.equal(response.headers.get("cache-control"), "public, max-age=300");
+  });
+});
+
 test("rejects authority changes in the Download Soundtracks path", async () => {
   let calls = 0;
   await withFetch(() => {
