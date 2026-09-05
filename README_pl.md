@@ -53,17 +53,17 @@ Androidowy czytnik/player tych feedów to osobny projekt: **[twojstar/kanarek](h
 <!--README_FEED:START-->
 - [How to Engage with New Media: A Strategic Guide for Nonprofit Organizations](https://carnegieendowment.org/research/2026/08/how-to-engage-with-new-media-a-strategic-guide-for-nonprofit-organizations)
 - [How the U.S. Export-Import Bank Can Finally Join the Fight Against Climate Change](https://carnegieendowment.org/research/2026/09/renewable-energy-investment-united-states-exim-export-import-bank)
-- [Wrześniowe Soboty Agatowe. Na polach w Rudnie można wykopać swój skarb. Całe rodziny ruszyły na poszukiwania z młotkami i motykami - Dziennik Polski](https://news.google.com/atom/articles/CBMigwJBVV95cUxORHJrU3lQU0JreFdBeEY2ZEswazltaW1wN2ExV3N2RUpCLXdaT3dEdXRHLTlDcjdSTzlwZWhjaEx3cU5iT1lSeUFCY1ROc090SUk4cFhCVFNYYzFLQkU0YWVCX0hiUGR2YURRc0J0V1B5YmZveWVVbWFnbndQSnQ0NzZBVGs4UTdWYUV5QUZwTTJlcjc5UXhyU19faUVTY3JUQWlhNHkteGZ1Xzg2TlZoR1hIb1FRbjZ6dHZOMkF0YXF4eHlxaUp3eGVhcTczd3dCdTBxLUhYQmd6R0QyazQ3aXBWSGdsMktqX1JBUUMxT0Nud1hlMTJqWFBFc1JuMjA0OEVv?oc=5)
-- [WOW! Ten zwiastun jest tak dobry, że twórcy muszą udowadniać, że to nie sztuczna inteligencja](https://antyweb.pl/wow-ten-zwiastun-jest-tak-dobry-ze-tworcy-musza-udowadniac-ze-to-nie-sztuczna-inteligencja)
-- [Ubisoft nie uczy się nawet na własnych sukcesach. Heroes III Remake to obnaża](https://antyweb.pl/ubisoft-nie-uczy-sie-nawet-na-wlasnych-sukcesach-heroes-iii-remake-to-obnaza)
-- [Nietrzeźwy pieszy wbiegł na czerwonym świetle. Potrącenie na ulicy Dąbrowskiego - oswiecimonline.pl](https://news.google.com/atom/articles/CBMirgFBVV95cUxOQlBRWS1jVlNiRnBoQkFaYjJOTVZQS1VSLVhReFo0ZXF4QVMwUTFjaW00MWdHdnNEWHE3Zm9wQkEyTEczaGIyalQzSzJOZ2ZlVGJYb2xQaVREWEZMck55WXQyR0xNSURob0kxNFNKd0lTUzYtUzZxX1pPZkFSTGNMcmJHTmFSUE9La1hyWHNrTFZRLTBGbVdKUnFsd1RWTl9Tc010S2pvcG1FN2VUQVE?oc=5)
+- [Darmowa telewizja na YouTube: ponad 210 oficjalnych kanałów na żywo z Polski i świata, sprawdzanych codziennie](https://promptowy.com/darmowa-telewizja-na-youtube-lista-kanalow-na-zywo/)
+- [Przegląd AI: 5 września 2026](https://promptowy.com/przeglad-ai-2026-09-05/)
+- [Zamknięcie dnia: Kto traci, gdy AI robi wszystko za nas](https://promptowy.com/zamkniecie-dnia-kto-traci-gdy-ai-robi-wszystko-za-nas/)
+- [Putin says US-Russia contacts beneficial as talks begin with Witkoff and Kushner](https://www.reuters.com/world/europe/putin-says-us-russia-contacts-beneficial-talks-begin-with-witkoff-kushner-2026-09-05/)
 <!--README_FEED:END-->
 
 ## 💬 Cytat z szuflady
 
 <!-- markdownlint-disable MD033 -->
 <!--STARTS_HERE_QUOTE_README-->
-<i>❝Hard disks are so sensitive to vibration, that just screaming at them diminishes their performance.❞</i>
+<i>❝IMDb is one of the oldest websites on the internet, and began on Usenet in 1990 as a list of “actresses with beautiful eyes.”❞</i>
 <!--ENDS_HERE_QUOTE_README-->
 <!-- markdownlint-enable MD033 -->
 
