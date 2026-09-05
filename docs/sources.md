@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-101 feedów · 793 źródła
+104 feedów · 796 źródeł
 
 ## Spis grup
 
@@ -922,6 +922,21 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) GOG Pressroom — <https://www.gog.com/pressroom/feed/>
 - ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) GOG News (PL) — <https://www.gog.com/pl/news/feed>
 - ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) GOG News (EN) — <https://www.gog.com/en/news/feed>
+
+### ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face — Blog
+`hf_blog` · [feed_hf_blog.xml](../feeds/feed_hf_blog.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face Blog — <https://huggingface.co/blog/feed.xml>
+
+### ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face — Posts
+`hf_posts` · [feed_hf_posts.xml](../feeds/feed_hf_posts.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Posts — <https://huggingface.co/posts>
+
+### ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face — Trending Papers
+`hf_trending_papers` · [feed_hf_trending_papers.xml](../feeds/feed_hf_trending_papers.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Trending papers — <https://huggingface.co/papers/trending>
 
 ### ![](https://www.google.com/s2/favicons?domain=support.hp.com&sz=16) HP Newsroom
 `hp` · [feed_hp.xml](../feeds/feed_hp.xml)

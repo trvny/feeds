@@ -8,6 +8,397 @@
   "icon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/13ce2985c3ee6ba1",
+      "url": "https://www.v2ex.com/t/1239711#reply0",
+      "title": "做了两个给 AI Agent 用的基础设施项目： gVisor 沙箱 + 可验证的网站部署，求挑刺",
+      "content_text": "最近在补 AI Agent 最容易被一句“工具调用成功”带过的两块基础设施： 执行边界 ：Agent 能跑 shell ，不代表应该碰到宿主机。 交付证据 ：控制器返回成功，不代表用户真的能访问网站。 于是拆成了两个 MIT 开源项目： Sandbox ：每个 Runtime 都是 Kubernetes 上的 gVisor Pod ，默认 non-root 、只读根文件系统、无 ServiceAccount token 、default-deny NetworkPolicy 。Control Plane 或 Runtime 不可用时直接失败，不会偷偷降级到宿主机执行。 Site ：Agent 通过 HTTP / CLI / MCP 提交部署，Operator 等工作负载 Ready 后，会自己请求真实地址，把 HTTP 状态码和响应体 SHA-256 写入 status.verification 。也就是把 “deployed” 从一句话变成可检查的测量结果。 Sandbox 在本地参考环境里的实测：冷启动 p50 2.497s / p95 2.789s ，热执行 p50 35.72m",
+      "date_published": "2026-09-05T10:43:46Z",
+      "date_modified": "2026-09-05T10:43:46Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/7a11/716a/235508_xlarge.png?m=1788604201",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/7a11/716a/235508_xlarge.png?m=1788604201",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c8dcefa810ebe006",
+      "url": "https://www.v2ex.com/t/1239708#reply1",
+      "title": "因为自己爱炒股，我做了一个跨市场跟单工具，支持 Web 和 APP",
+      "content_text": "大家好，我自己平时很喜欢炒股和研究交易，也会关注加密货币、美股、黄金、原油这些市场。 平时使用各大交易所的跟单功能时，我发现热门交易员经常有跟单名额限制，平台展示的数据也不够完整，很难真正看清交易员的长期表现、持仓风格和风险；跟单产生收益后，通常还需要给带单员分润。 这些限制让我一直觉得不够自由，也是我后来决定开发 HyperCopy 的主要原因。 所以我开发了 HyperCopy ，希望把“发现交易员—分析表现—监控动态—执行跟单”放进一个产品里。 主要功能有： 发现和筛选交易员 可以根据盈亏、收益率、胜率、最大回撤、夏普比率、持仓方向、杠杆和交易频率等指标筛选交易员，尽量避免只看短期收益排行榜就盲目跟单。 查看交易员历史表现 支持查看当前持仓、最近成交、历史交易、盈亏曲线、仓位分布和风险指标，先了解交易风格，再决定是否跟单。 自动跟单和立即跟单 可以指定交易员自动跟单，也可以看到实时持仓后手动选择立即跟单。开仓后还能根据设置继续跟随加仓、减仓和平仓。 仓位与风险控制 支持按资产比例、仓位比例或固定金额跟单，并可设置止盈止损、最大仓位、滑点保护和保证金保护等参数。不同市场的具体选项会",
+      "date_published": "2026-09-05T09:29:05Z",
+      "date_modified": "2026-09-05T09:29:05Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/9456/7c83/314191_xlarge.png?m=1788600031",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/9456/7c83/314191_xlarge.png?m=1788600031",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/718b3f8916e593dd",
+      "url": "https://www.v2ex.com/t/1239707#reply11",
+      "title": "汇流直播，一个 Apple 全家桶的直播聚合观看 app，上架 Apple Store，抽奖了",
+      "content_text": "官网 https://conflux.kami.asia Apple Store 地址 https://apps.apple.com/hk/app/id6787873453 特性 apple 全家桶，多端 icloud  自动同步数据和配置 支持看弹幕，并且还能发送弹幕（抖音调研中） 云端开播通知，主播开播后，1 分钟内收到推送 自定义弹幕样式、热词显示、屏蔽关键词正则等自定义能力 iOS 画中画并支持画中画弹幕 iOS 支持 3 套好看的主题 macOS 支持新窗口打开，并置顶，摸鱼神器 免费版可以体验核心能力，完整版解锁全部能力 想直接购买懒得等开奖的朋友，也可以直接私信我索要 5 折券，折扣后仅需 2.49 美元 macOS 端 iOS 端 tvOS 端",
+      "date_published": "2026-09-05T09:21:51Z",
+      "date_modified": "2026-09-05T09:21:51Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://conflux.kami.asia/danmaku-compose.webp",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://conflux.kami.asia/danmaku-compose.webp",
+          "mime_type": "image/webp"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/de60da6311753efc",
+      "url": "https://www.v2ex.com/t/1239704#reply0",
+      "title": "做了一个各种论坛福利发放频道",
+      "content_text": "创建了一个各种论坛可以白嫖的推送资源\n大家支持一下呀，有 nodeseek ，nodeloc ， linux.do/sb , V2 ，烧饼等等\n只有你想不到，各种资源均有\n支持地址： https://t.me/+BtI24ge3SgE1Yzk0",
+      "date_published": "2026-09-05T09:17:24Z",
+      "date_modified": "2026-09-05T09:17:24Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/cd6a/3674/45118_xlarge.png?m=1784184263",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/cd6a/3674/45118_xlarge.png?m=1784184263",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/fd8146dfc1025b69",
+      "url": "https://www.v2ex.com/t/1239695#reply0",
+      "title": "有没有用成都广电宽带的，说说感受",
+      "content_text": "最近电信宽带到期，看到广电 500M 288 一年，上传 100M 以上，有点心动，听闻广电宽带质量看地区，有木有用过成都广电的朋友谈谈感受\n另外听说出口是联通，访问海外问题大不？",
+      "date_published": "2026-09-05T08:31:01Z",
+      "date_modified": "2026-09-05T08:31:01Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/b0522d4b8cf866206eea156f0d4f91c8?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/b0522d4b8cf866206eea156f0d4f91c8?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0177154ca29c4853",
+      "url": "https://www.v2ex.com/t/1239694#reply5",
+      "title": "我的电视-一个看电视直播的软件分享",
+      "content_text": "这个项目是参考了 WebViewTV 这个项目的，再用 AI 改造而来，deepseek 花了我几十块😐😐😐 和原版对比全部移除了无关页面，只有最纯粹的换台功能 另一个最核心的优势是：内置了火狐 v144 内核，很多老电视的 webview 内核老旧，用这类软件播放官网基本上都要升级 webview 。或者安装腾讯 x5 内核 这个直接离线内置。所以安装即用，不需要升级 webview ，也不用折腾安装 x5 核心要求就一个：功能上做减法 https://github.com/zwc456baby/my-tv-webview",
+      "date_published": "2026-09-05T08:20:01Z",
+      "date_modified": "2026-09-05T08:20:01Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/6a102347d6eab60e3d5eeabd146cbb7d?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/6a102347d6eab60e3d5eeabd146cbb7d?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/af1a4e8f1722df82",
+      "url": "https://www.v2ex.com/t/1239692#reply1",
+      "title": "最近写了个 Jellyfin 调用 mpv 播放的小工具",
+      "content_text": "最近写了个 Jellyfin 调用 mpv 播放的小工具 GitHub： https://github.com/TnZzZHlp/jellyfin_mpv 它会把本机 mpv 注册成 Jellyfin 的「播放到」设备，之后可以直接在浏览器选择设备后拉起 mpv 播放 类似 https://github.com/jellyfin/jellyfin-mpv-shim 但是比这个更轻更快并且没有自带 mpv 注意使用前需要先安装 mpv ，并将 mpv.exe 所在目录加入系统 PATH 环境变量 目前支持： 播放 / 暂停 / 跳转 / 音量 / 倍速等远程控制 音轨、字幕切换 播放进度同步 Trickplay 进度条缩略图 MediaSegments 自动跳片头 / 片尾 Direct Play ，必要时走 Jellyfin 转码 F9 手动或自动调整码率 Windows 托盘运行 目前主要在 Windows 下使用，项目还在继续完善，欢迎试用和提 Issue",
+      "date_published": "2026-09-05T08:17:29Z",
+      "date_modified": "2026-09-05T08:17:29Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://image.800008.best/2026-09-05%2016-09-05_compressed.gif",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://image.800008.best/2026-09-05%2016-09-05_compressed.gif",
+          "mime_type": "image/gif"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3bbcb5f6f3f10db1",
+      "url": "https://www.v2ex.com/t/1239691#reply0",
+      "title": "分享一个 Minecraft 像素圆、椭圆和穹顶生成工具",
+      "content_text": "最近用到一个比较方便的 Minecraft 建筑辅助工具，可以生成像素圆、椭圆和穹顶，并根据尺寸直接查看方块布局： https://pixelcirclebuilder.com/ 画圆形建筑、竞技场、塔楼或者穹顶时，不用再自己反复计算每一层该放多少方块。尺寸可以调整，生成后照着网格搭建就行。",
+      "date_published": "2026-09-05T08:16:58Z",
+      "date_modified": "2026-09-05T08:16:58Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/de03291c7c29f37ab071cd210332e6b5?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/de03291c7c29f37ab071cd210332e6b5?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/570dba0d7818d4bd",
+      "url": "https://sspai.com/post/114040",
+      "title": "最值得买的顶级公路车？TREK 八代 Madone 评测",
+      "content_text": "它没有卷到极致的轻量化，也没有最极端的气动数据，但综合实力稳稳站在顶级公路车的第一梯队。 查看全文",
+      "date_published": "2026-09-05T08:00:01Z",
+      "date_modified": "2026-09-05T08:00:01Z",
+      "authors": [
+        {
+          "name": "sspai.com"
+        }
+      ],
+      "image": "https://rssfile.sspai.com/2026/08/31/80ba831babcef78184f6467458e9fc93.jpg?imageMogr2/auto-orient/ignore-error/1",
+      "tags": [
+        "sspai.com"
+      ],
+      "attachments": [
+        {
+          "url": "https://rssfile.sspai.com/2026/08/31/80ba831babcef78184f6467458e9fc93.jpg?imageMogr2/auto-orient/ignore-error/1",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/616f3178c386a21c",
+      "url": "https://www.v2ex.com/t/1239686#reply3",
+      "title": "岁时 · Sundial：一个把时间放在看得见的地方的 App（ iPhone / iPad / Mac）",
+      "content_text": "做了一年多，岁时终于三端都上架了。它做的事很简单： 不倒数，不提醒，只让你看见自己在这一天、这一年、这一生里走到了哪。 为什么做它 市面上的「倒数日」类 App 基本都是数字：还剩 120 天、还剩 3 小时。数字看一眼就忘，也不会有什么感觉。 我想要的是「位置感」。像日晷一样，没有数字，只有一根杆、一道影、一圈刻度。看影子落在哪，就知道现在是一天里的哪。 所以岁时只有三种状态： 已过、当下、未至 。已过是墨色，未至是浅灰，当下那一格是赭红。整个界面就靠这三个颜色说话。 今年：每一天都是一棵树 今年 365 格，每格一天。样式有 26 款，方块、圆点、松树、竖条都有。松树这款是我自己最常用的：春绿、夏深、秋黄、冬灰，一年过完刚好从枯到枯。 底部一行小字是一句四字成语，每天换，算是一个小彩蛋。 一生：三万多个格子 填一个出生日期，一生就摊开在一个屏幕里。我 36 岁，45%。这一页我不常看，但每次看都会安静一会儿。 iPad 和桌面组件 组件是这个 App 真正的主场，因为「看一眼」这件事本来就不该需要打开 App 。 小 / 中 / 大三种尺寸，今日、本周、本月、本季、今年、农历年、一",
+      "date_published": "2026-09-05T07:39:19Z",
+      "date_modified": "2026-09-05T07:39:19Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://i.imgur.com/3l21g7f.png",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://i.imgur.com/3l21g7f.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2f8470b58327135a",
+      "url": "https://www.v2ex.com/t/1239684#reply0",
+      "title": "[避雷流氓雷鸟电视] 雷鸟电视的流氓视频屏保删除教程",
+      "content_text": "我家的雷鸟电视一直没升级，也一直没广告，屏保也一直是关着的，最近几天突然 1 分钟后自动出现什么视频屏保，里面推送了一堆视频推广广告。屏保我确定是一直都是关着的。也就是这个什么视频屏保根本不受用户控制。 我等他视频屏保出来的时候 adb 抓了一下活动窗口，发现是 com.tcl.vod 里的 com.tcl.vod.player.activity.ScreenSaverVideoActivity\n还有一个什么艺术画廊也是疑点 com.tcl.appreciate.art 都可以删了 pm uninstall -k --user 0 com.tcl.appreciate.art\npm uninstall -k --user 0 com.tcl.vod 顺便清理了一堆广告相关的包 com.tcl.bootadservice\ncom.tcl.c2dm.client\ncom.tcl.tvsmartalbum\ncom.tcl.logkit 以及一堆鸡肋 app\ncom.tcl.gamecenter\ncom.tcl.ffeducation\ncom.tcl.ffkaraoke\ncom.audiocn",
+      "date_published": "2026-09-05T07:30:32Z",
+      "date_modified": "2026-09-05T07:30:32Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/4b03494f14d916e2d6345c541001e672?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/4b03494f14d916e2d6345c541001e672?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/561b9831ae758a19",
+      "url": "https://www.v2ex.com/t/1239683#reply3",
+      "title": "大家遇到过移动流量境外 443 全部被墙的情况吗？",
+      "content_text": "这几天总共触发了两次。两台服务器均为 NaïveProxy 协议（按照 gh 官方文档部署，但是部署在了 windows server 上面，反代了常见的开源论坛/网盘等类似的可以自部署的网页） 两次触发分别为我和同事，完全隔离的 sim 卡以及设备。现象如下：\n同事为使用 naive 的 windows v150 客户端。使用 chatgpt 桌面端一段时间后出现断链。断开连接后用浏览器简单测试发现 所有境外 443 端口全部超时 。包括新加坡阿里云( z.ai )，日本微软云和美国谷歌云上的正常网站，当然还有服务器自身。而 80 端口 http ，22 端口 ssh 均正常。同时境内 443 正常。\n持续 5 分钟左右后恢复。随后同事的移动网络至今未能复现。 同样的，我的这次触发使用 naive 的 android v150 客户端，几乎是在建立之后就直接被阻断了。同样的 所有境外 443 端口全部超时 。80 端口 http ，22 端口 ssh 均正常。同时境内 443 正常。同样 5 分钟恢复并无法复现。 请问各位有遇到过相同/类似情况的吗？是移动已经对 naive 有稳定探",
+      "date_published": "2026-09-05T07:26:46Z",
+      "date_modified": "2026-09-05T07:26:46Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/d3acca912e67716a54a369484385a8a9?s=73&d=retro",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/d3acca912e67716a54a369484385a8a9?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ea14f148b694ced4",
+      "url": "https://www.v2ex.com/t/1239680#reply2",
+      "title": "上线了一个做 APP 市场图的小网站",
+      "content_text": "做完 APP 要做市场图，这个对习惯 coding 的程序员是个小小的挑战，正好想练手做个完整的小 SaaS：登录、积分、导出、支付整条链路跑一遍。就顺手把这个痛点做成了 StoreShot 。 用法很简单：上传截图 → 选模板和设备框 → 改一下标题文案 → 导出符合 App Store / Google Play 尺寸的图。不需要设计基础，也不用再开 Figma 。 免费注册送 3 次导出，够试一轮。 网站： https://www.storeshot.studio 还很早期，模板和设备也不全。欢迎拍砖，尤其是独立开发者真正上架时还会卡在哪一步。",
+      "date_published": "2026-09-05T06:50:45Z",
+      "date_modified": "2026-09-05T06:50:45Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/4a44d13cee969e91fee6788a4c3c7288?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/4a44d13cee969e91fee6788a4c3c7288?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/29401c276fce2b40",
+      "url": "https://www.v2ex.com/t/1239678#reply5",
+      "title": "我肝了几个通宵, 做了个资讯聚合.",
+      "content_text": "资讯聚合应用已经非常非常多了。 但在我看来，这类应用的本质其实很简单： 内容 + 排版 真正重要的，是 信息源质量 与 阅读体验 。 所以，我肝了几个通宵，做了一个自己真正想用的资讯聚合。 应用链接在此 我想做的 我不太希望它变成一个功能越来越复杂的信息平台。 相比各种推荐算法、社交功能，我更在意的是： 信息源是否值得信任 内容能不能快速获取 信息流是否足够清晰 阅读起来是否舒服 所以目前的设计，尽量回归最原始的阅读方式。 目前的特点 本地保存信息流 信息流数据全部保存在本地 IndexedDB 。 服务器不记录用户的信息流内容，也不需要依赖服务器保存你的阅读数据。 卡片式排版 采用卡片式的信息流设计，并通过简单的配色区分不同的信息层级。 尽量减少视觉干扰，让内容重新成为主角。 更新提示 当信息源有新的内容时，右上角会出现更新提示。 点击即可获取最新信息，不主动打断当前阅读。 信息源公开 通过 网站地图 可以查看当前应用所采用的信息源。 我希望信息从哪里来，是一件透明的事情。 现在的状态 目前这个应用已经初步满足了我心里想要的样子。 当然它不一定适合所有人。 毕竟每个人对资讯、排版和阅",
+      "date_published": "2026-09-05T06:33:35Z",
+      "date_modified": "2026-09-05T06:33:35Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://i.imgur.com/LRx692e.png",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://i.imgur.com/LRx692e.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/91f2e886f8049d97",
+      "url": "https://www.v2ex.com/t/1239676#reply3",
+      "title": "ChatGPT 手机无法远程访问",
+      "content_text": "ChatGPT 手机无法远程访问\n电脑端 ChatGPT 可以正常使用，远程控制添加设备配置会提示无法启用远程控制请重试，关机重启也不行",
+      "date_published": "2026-09-05T06:24:12Z",
+      "date_modified": "2026-09-05T06:24:12Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/e90618c2f94dcf6fcc913b067da110ec?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/e90618c2f94dcf6fcc913b067da110ec?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/93016397022c11af",
+      "url": "https://www.v2ex.com/t/1239674#reply0",
+      "title": "[分享创造] 做了个手机远程接管本机 Codex / Claude 的工具，求真实吐槽",
+      "content_text": "最近用 Codex 的远程连接功能 但是总是断连，加载速度也很慢，所以做了个工具，如果你有有多个设备，而且电脑上用不同 Agent 干活还需要远程控制的，可以试试，任务还是跑在自己的电脑上，继续用本机的项目和环境。 地址： https://link.harmopath.com 想听听大家的意见，这比你现在用的远程方案省事吗？如果折腾一圈还不如原来的方式，也欢迎直接吐槽。",
+      "date_published": "2026-09-05T06:09:22Z",
+      "date_modified": "2026-09-05T06:09:22Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/a823a2b14cc3aaeefb2e5e65231ab5c5?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/a823a2b14cc3aaeefb2e5e65231ab5c5?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/23e72f6fdcfaa46a",
+      "url": "https://www.v2ex.com/t/1239666#reply11",
+      "title": "arm 转 X86 求推荐性价比高的小主机",
+      "content_text": "主要就是跑翻墙",
+      "date_published": "2026-09-05T05:29:01Z",
+      "date_modified": "2026-09-05T05:29:01Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/avatar/2b48/30a2/18392_xlarge.png?m=1755746557",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/avatar/2b48/30a2/18392_xlarge.png?m=1755746557",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/ba35e4849c6e5eee",
       "url": "https://www.v2ex.com/t/1239661#reply2",
       "title": "我写了一个 Obsidian 配置同步工具",
@@ -238,52 +629,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0cfa768ab1bee122",
-      "url": "https://www.v2ex.com/t/1239606#reply0",
-      "title": "[开源分享] R20 量化系统 v7.0.0 里程碑更新版本，支持全维度自定义与每 6 小时自进化",
-      "content_text": "⚡ 项目名称 ：R20 Quantum Trader 🏷️ 当前版本 ：v7.0.0 (Evolution Architecture & Strategy Overhaul) 💻 GitHub 仓库 ： https://github.com/555cute/r20-quantum-trader 🌐 在线只读实盘大屏 ： https://www.r20.cn/ 🌐 在线介绍文档 ： https://www.r20.cn/docs 📜 开源协议 ：MIT License （ 100% 完整开源，无任何隐藏收费） 各位做交易和研究 AI Agent 的开发者朋友们好！ 经常折腾加密量化或 AI Agent 炒币的朋友可能都有同感：传统的网格或者静态均线策略在单边市容易被爆锤；而直接接入大模型做交易，又经常遇到 “模型频繁在 15M 噪音里被插针扫损、无序割肉” ，或者 “市面上的开源工具参数全写死在代码里，想换个模型、改个提示词、加个风控规则跟动大手术一样” 。 在历经实盘本金磨损的血泪教训后，我将 R20 Quantum Trader 彻底重构成 v7.0.0 重大版本并完整开源。 它的核",
-      "date_published": "2026-09-04T18:33:11Z",
-      "date_modified": "2026-09-04T18:33:11Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://raw.githubusercontent.com/555cute/r20-quantum-trader/main/docs/images/dashboard_trading.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://raw.githubusercontent.com/555cute/r20-quantum-trader/main/docs/images/dashboard_trading.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/54f7bd6260fc67d4",
-      "url": "https://www.v2ex.com/t/1239605#reply0",
-      "title": "casbin-gateway：支持 29 个 Agent 的桌面端管理助手，支持一键切换 LLM API、审计、权限、版本管理、多开，顺便帮你验一验中转商有没有偷换模型",
-      "content_text": "一、起因 我机器上现在同时装着 Claude Code 、Codex CLI 、Cursor 、Gemini CLI 、opencode……每装一个新的，就多一份要伺候的配置： 换个中转商，要挨个去改 ~/.claude/settings.json 、 ~/.codex/config.toml 、 ~/.gemini/settings.json ，格式还都不一样； 同一个 MCP Server 要在每个 Agent 里各装一遍，装完还想不起来到底哪几个装了； 这个月到底烧了多少钱？每家后台各看各的，本地跑的那些根本没人统计； 买的是「 Claude Opus 无限量」，实打实给你的是什么模型，你其实并不知道。 装 Agent 的时候是爽的，管 Agent 的时候是崩溃的。所以有了 Casbin Gateway ： 一个本地的 Agent 管理助手 ，把机器上所有编程 Agent 收进同一个面板。 Apache 2.0 ，Go + React ，单个二进制，装完就是一个本地 App ，支持 Windows 、Linux 、macOS 全平台。 GitHub: https://github",
-      "date_published": "2026-09-04T18:28:30Z",
-      "date_modified": "2026-09-04T18:28:30Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/a57e/91d7/541867_large.png?m=1788546177",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/a57e/91d7/541867_large.png?m=1788546177",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/78e73dcb870cdca0",
       "url": "https://www.v2ex.com/t/1239599#reply0",
       "title": "GPT 生产图片提示额度已经消耗完",
@@ -376,121 +721,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ba9d33bb08dcd1c0",
-      "url": "https://www.v2ex.com/t/1239587#reply1",
-      "title": "做了一个专门找“真正全球远程职位”的小网站，欢迎拍砖",
-      "content_text": "大家好，最近做了一个很小的远程职位网站： https://realjobworkfromhome.com/?utm_source=v2ex&utm_medium=community&utm_campaign=launch 起因是我在找远程工作时，经常遇到一个问题：职位标题写着 Remote ，点进去才发现只招美国、欧洲某些国家，或者要求固定时区重叠。 所以这个网站不追求职位数量，主要聚焦一种岗位：招聘信息中没有国家、地区或指定时区限制，理论上可以从世界各地申请。 目前有这些功能： - 按职位名称和公司搜索 - 按开发、产品、设计、市场等分类筛选 - 展示薪资、合同类型和截止时间（原始职位提供时） - 直接跳转到雇主招聘页面申请 - 每周邮件精选 网站是英文的，因为目标用户是全球求职者。技术上使用 Astro 做静态生成，职位和公司都有独立页面。 我不想把它包装成“最大的远程职位站”，方向反而是少而明确：尽量减少点进去才发现自己不能申请的情况。 想请 V 友帮忙拍砖，尤其想听听： 1. 你判断一个远程职位能不能申请时，最想第一眼看到什么信息？ 2. 你会更在意国家限制、时区、薪资，还是雇",
-      "date_published": "2026-09-04T13:49:24Z",
-      "date_modified": "2026-09-04T13:49:24Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/df2e/17d0/581272_xlarge.png?m=1760434922",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/df2e/17d0/581272_xlarge.png?m=1760434922",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/a1818defdc3e37f2",
-      "url": "https://www.v2ex.com/t/1239583#reply2",
-      "title": "对脑科学有兴趣的朋友看过来：分享自己 vibe 的一个教育向 3D 作品",
-      "content_text": "细佬是脑科学博士一枚，除了 research 还是想做一些对社会有意义的 education 相关的项目，当 AI 代替思考和工作时候，它真的可能在摧毁下一代的科学家 这个项目之前做好但因为读博比较忙，没时间宣传和完善，最近文章改完了又有时间继续 vibe 了， 总的来说，初衷是想兼顾专业性和科普性，也方便对脑科学感兴趣或者有志向的人学习 如果觉得有意思或者做的还可以，欢迎 star 或者帮忙宣传 hhh https://hughyau.com/brain/",
-      "date_published": "2026-09-04T13:18:55Z",
-      "date_modified": "2026-09-04T13:18:55Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/a7abfabb5fb6f7723b895e7946dfa1e2?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/a7abfabb5fb6f7723b895e7946dfa1e2?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/e685abf23e8b2b9b",
-      "url": "https://www.v2ex.com/t/1239582#reply2",
-      "title": "DeepSeek 弄了个额度管理小工具",
-      "content_text": "到期自动使用额度功能还不错，不然某些订阅等你重置后第一次使用才开始计算下一周",
-      "date_published": "2026-09-04T13:17:29Z",
-      "date_modified": "2026-09-04T13:17:29Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://i.imgur.com/JMQ3RNT.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/JMQ3RNT.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c817849efc52962d",
-      "url": "https://www.v2ex.com/t/1239577#reply1",
-      "title": "Seahelm：用 libghostty 写的 macOS 原生 agent 控制台，管多个 Claude Code / Codex",
-      "content_text": "做了大半年，自己每天在用，拿出来分享一下。 解决的问题 同时开五六个 Claude Code / Codex 在不同 git worktree 里干活的时候，我不知道该看哪个窗口。终端长得都一样，只能一个个切过去看最后一行输出。 tmux 能管窗口，但它不知道「 agent 在等你确认」这件事。对 tmux 来说，卡在权限询问的 Claude 和正在写代码的 Claude 没有区别。 怎么做的 终端渲染直接嵌 libghostty （ Ghostty 的 C 接口），Swift + AppKit ，不是 Electron 。会话持久化用 zmx ，退出 App 或者重启之后 agent 还在原地。每个 repo 一个 tab ，每个 worktree 一张卡片，卡片上只显示 running / waiting / broken 三种状态。 状态判断是一个优先级梯子：进程退出状态 > OSC 133 shell 集成标记 > 文本正则匹配。正则那一层是数据驱动的，每个 agent 一份 JSON manifest ，可以在 ~/.config/seahelm/agents/ 下覆盖。 C",
-      "date_published": "2026-09-04T12:22:41Z",
-      "date_modified": "2026-09-04T12:22:41Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/57596745c8a1cad48668968f003dc83b?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/57596745c8a1cad48668968f003dc83b?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/af829e20ac6aac31",
-      "url": "https://www.v2ex.com/t/1239575#reply0",
-      "title": "libcr 项目组开发的免费应用 crShare 1.6.0 上架微软应用商店",
-      "content_text": "微软应用商店： https://apps.microsoft.com/store/detail/9MWSSWF3H9LC?cid=DevShareMCLPCS Linux 版本下载： https://github.com/libcr/crShare/releases crShare 是一款 C++开发的轻量级用于局域网分享的 HTTPS 服务器，自带 GUI 管理界面 更多免费应用 可以访问： https://libcr.github.io 下载/上传的 WEBUI QuickShare - crShare 自创的按 topic 的分享模式",
-      "date_published": "2026-09-04T12:10:36Z",
-      "date_modified": "2026-09-04T12:10:36Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://i.imgur.com/2SaLGfn.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/2SaLGfn.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/0e62f674aaa6e671",
       "url": "https://www.v2ex.com/t/1239573#reply4",
       "title": "中国移动的 IPV6 太拉胯了",
@@ -514,52 +744,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3c64f8d5c024bfd0",
-      "url": "https://www.v2ex.com/t/1239569#reply0",
-      "title": "自己捣鼓的安卓端壁纸 APP2.0 来了",
-      "content_text": "如题，话不多说看链接\n通过百度网盘分享的文件：Ywallpap…\n链接: https://pan.baidu.com/s/1Xw1aZwxT_oggKq9CZSwQ9g?pwd=d94c 提取码:d94c\n复制这段内容打开「百度网盘 APP 即可获取」\n更新：可以自定义填写第三方图片 api 可设置壁纸，自动换壁纸 https://imgapi.cn/cos2.php https://imgapi.cn/cos.php https://imgapi.cn/api.php?zd=mobile&fl=suiji",
-      "date_published": "2026-09-04T10:45:28Z",
-      "date_modified": "2026-09-04T10:45:28Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/29ec78682d4cc85aa1f2e8ef1780008c?s=73&d=retro",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/29ec78682d4cc85aa1f2e8ef1780008c?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/3d76fe7ad838de7c",
-      "url": "https://www.v2ex.com/t/1239568#reply0",
-      "title": "分享一个 1.1k star 的 A 股开源工具：免注册、免 API Key，行情 / 回测 / 选股 / AI 解读一条龙",
-      "content_text": "大家好，分享一个我一直在维护的开源项目 easy-tdx ，最近过了 1.1k star ，MIT 协议，今天来发个迟到的介绍帖。 起因 做 A 股研究最烦的不是策略，是数据：行情平台要注册、要会员、接口按次收费；通达信客户端数据全，但锁在自己的软件里。这个项目的思路很简单——通达信的 TCP 协议是公开可逆的，那就自己实现一遍，把数据解放出来。 它是什么 一个纯 Python 的 A 股量化工具箱， pip install easy-tdx 就能用： 行情 ：K 线 / 五档报价 / 分时 / 逐笔成交 / 板块 / 资金流，通达信协议直连，不需要装通达信客户端 回测 ：内置 54 个策略、Walk-Forward 样本外验证、一条龙评估、25 项绩效指标、S-D 五档评级 选股 ：策略翻转到全市场扫描，也有按多周期涨幅的强势股排名 AI 解读 ：回测报告自动组装成提示词发给你自己的模型（ DeepSeek / GLM / Kimi / Ollama 本地都行），返回大白话解读和信心分 Web 终端 ： easy-tdx serve 起一个本地看板，行业/概念热力图、异动雷达、期货持",
-      "date_published": "2026-09-04T10:37:48Z",
-      "date_modified": "2026-09-04T10:37:48Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://raw.githubusercontent.com/handsomejustin/easy_tdx/main/docs/web-ui-page-hy1.png",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://raw.githubusercontent.com/handsomejustin/easy_tdx/main/docs/web-ui-page-hy1.png",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/10d0710124c0380e",
       "url": "https://sspai.com/post/114175",
       "title": "本周看什么 | 最近值得一看的 8 部作品",
@@ -578,52 +762,6 @@
       "attachments": [
         {
           "url": "https://rssfile.sspai.com/2026/9/4/article/6acb4950-74ad-b52f-d26b-12785f7fe349.png?imageMogr2/auto-orient/ignore-error/1",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/ebacfca24bb7bbf3",
-      "url": "https://www.v2ex.com/t/1239547#reply0",
-      "title": "免费的 p2p 传输器，求测试用户",
-      "content_text": "一个在线工具，磨了好久，快被各种状态搞疯了，求大家帮忙测。 主要功能：点对点文件与文字通过链接传输、链接带有接力功能、以及可与发送方互动。主要目的是解决假设有一台新机，在没有装任何应用以及不便的情况下，如何通过另一台设备把文件或应该传输到新机。 功能有点过时了，不过还想看看能不能有啥新点子来赋能一下，比如我目前想到的一个是“先到先得”，想初步解决产品打新时，如果有发优惠码的需求，但不知道哪个码被用了的场景。 https://this2.link/",
-      "date_published": "2026-09-04T09:10:43Z",
-      "date_modified": "2026-09-04T09:10:43Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/7371/5099/35174_xlarge.png?m=1784601375",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/7371/5099/35174_xlarge.png?m=1784601375",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/fbd8a82003672089",
-      "url": "https://www.v2ex.com/t/1239545#reply1",
-      "title": "pi-remote-和 vscode 一样的 remote 体验",
-      "content_text": "项目地址: https://github.com/lanyi1998/pi-remote 如果要在远程机器上使用 pi ，是相当麻烦的，需要安装 Node 环境，然后再安装 Pi 。还需要配置 API key ，可能还有网络环境等。如果有本地常用的 Skill ，还要再同步 Skill 配置 API 。 于是我开发了这个项目，只需要在目标机器上运行一个单文件，然后即可在本地的派上连接上远程机器，将本地派的读写文件、Bash 等功能完全 RPC 到远程机器，就如同在本地机器上一样使用 pi 。",
-      "date_published": "2026-09-04T09:09:12Z",
-      "date_modified": "2026-09-04T09:09:12Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/8386/6535/294746_xlarge.png?m=1785823074",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/8386/6535/294746_xlarge.png?m=1785823074",
           "mime_type": "image/png"
         }
       ]
@@ -675,29 +813,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/30c99d5b241153cb",
-      "url": "https://www.v2ex.com/t/1239532#reply22",
-      "title": "特朗普嘎了？",
-      "content_text": "X 上面传的有鼻子有眼的，不知道真假",
-      "date_published": "2026-09-04T08:25:29Z",
-      "date_modified": "2026-09-04T08:25:29Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/58eddae924b27b2940d5b5d3ead1193c?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/58eddae924b27b2940d5b5d3ead1193c?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/cdf2ba72ddaec81c",
       "url": "https://sspai.com/post/114110",
       "title": "新学期，新气象：正版软件 & 付费栏目限时优惠",
@@ -721,52 +836,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/be57f029ca700df1",
-      "url": "https://www.v2ex.com/t/1239503#reply0",
-      "title": "这个网页上的类似液态玻璃的效果能获取到 Chrome 上的元素",
-      "content_text": "https://cleanshot.com/share/4b1y1MP9 不过试了让这个贴近 Chrome 边缘，不会获取到 Chrome 之外的元素。",
-      "date_published": "2026-09-04T07:08:23Z",
-      "date_modified": "2026-09-04T07:08:23Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/ef71/2edc/315449_xlarge.png?m=1779673625",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/ef71/2edc/315449_xlarge.png?m=1779673625",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/d7dc63f5d8951996",
-      "url": "https://www.v2ex.com/t/1239498#reply14",
-      "title": "最近学游泳，改变了一个刻板印象",
-      "content_text": "以前总觉得去健身房的都是年轻人，最近学游泳才发现，居然游泳比较多的是大叔，大妈，之前暑假的时候学生比较多，最近暑假结束了，我平时都是上午去游，基本每次都至少有一半是大叔大妈。有些是在学习的，有些是本身就会在锻炼的。 今天在休息的时候听到旁边两人聊天，都是 58 岁的。 改变了我对健身房的刻板印象。 后来想一想也很合理，因为这个年纪的退休的大叔大妈正是有时间，有精力，有钱的时候。",
-      "date_published": "2026-09-04T07:05:07Z",
-      "date_modified": "2026-09-04T07:05:07Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/4cbff4c7930b204f83f75dec96b7a582?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/4cbff4c7930b204f83f75dec96b7a582?s=73&d=retro",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/deac47bddafd9da3",
       "url": "https://sspai.com/post/114117",
       "title": "开学季 | 超级闹钟、算教学周、统计作业：三条快捷指令让学校生活轻松一点",
@@ -785,52 +854,6 @@
       "attachments": [
         {
           "url": "https://rssfile.sspai.com/2026/09/03/81959ef27b1e2ee4e129bc4048a9d531.jpeg?imageMogr2/auto-orient/ignore-error/1",
-          "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/2829ddf9b50cf6b0",
-      "url": "https://www.v2ex.com/t/1239497#reply19",
-      "title": "大佬们只翻墙用 AppleTV 靠谱吗？家里的 arm 盒子太闹心了",
-      "content_text": "隔三差五有点小毛病，想弄个 AppleTV 装 Loon",
-      "date_published": "2026-09-04T07:00:17Z",
-      "date_modified": "2026-09-04T07:00:17Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/2b48/30a2/18392_xlarge.png?m=1755746557",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/2b48/30a2/18392_xlarge.png?m=1755746557",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/0c6efb00d7a58a6e",
-      "url": "https://www.v2ex.com/t/1239493#reply0",
-      "title": "在 Nous Portal 上使用 Hermes Agent，首次付费月享 15 美元优惠",
-      "content_text": "Nous Portal 提供数百个模型，享受 20% 折扣，80% 折扣的 GPT-5.6 Luna 和 Luna Pro ，独家免费模型。\n在 Nous Portal 上使用 Hermes Agent ，首次付费月享 15 美元优惠 👇 https://portal.nousresearch.com/r/zale-zhong-689e07",
-      "date_published": "2026-09-04T06:51:57Z",
-      "date_modified": "2026-09-04T06:51:57Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/gravatar/5a9bb2180b7fdb5c543b55902345d873?s=73&d=retro",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/gravatar/5a9bb2180b7fdb5c543b55902345d873?s=73&d=retro",
           "mime_type": "image/jpeg"
         }
       ]
@@ -1338,29 +1361,6 @@
         {
           "url": "https://rssfile.sspai.com/2026/6/30/article/831096df-1239-9d40-8cb1-c42319e8f9f3.png?imageMogr2/auto-orient/ignore-error/1",
           "mime_type": "image/png"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/506894956a4ffcda",
-      "url": "https://sspai.com/post/114071",
-      "title": "线下活动 | 全新 iPhone 发布在即，来与少数派一起看 Apple 发布会",
-      "content_text": "北京时间9月10日凌晨，Apple一年一度的秋季特别活动即将拉开帷幕，我们会在Keynote讲演环节中见到新一年度的iPhone、AppleWatch等多个新品。除了备受期待的iPhone18Pro系 ... 查看全文",
-      "date_published": "2026-09-01T07:18:43Z",
-      "date_modified": "2026-09-01T07:18:43Z",
-      "authors": [
-        {
-          "name": "sspai.com"
-        }
-      ],
-      "image": "https://rssfile.sspai.com/2026/9/1/article/e0307cb3-3cb7-ccf3-a01a-41d8c01848d0.jpeg?imageMogr2/auto-orient/ignore-error/1",
-      "tags": [
-        "sspai.com"
-      ],
-      "attachments": [
-        {
-          "url": "https://rssfile.sspai.com/2026/9/1/article/e0307cb3-3cb7-ccf3-a01a-41d8c01848d0.jpeg?imageMogr2/auto-orient/ignore-error/1",
-          "mime_type": "image/jpeg"
         }
       ]
     },
