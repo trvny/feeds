@@ -159,11 +159,15 @@ class RealGeneratorTests(unittest.TestCase):
         self.assertEqual(self.counts("olx_group.py"), 5)
 
     def test_a_composed_generator_inherits_what_it_scrapes(self):
-        # anthropic imports _anthropic_base; aibridge imports groq's
-        # and perplexity's scrapers as functions, not as modules.
+        # aibridge imports groq's and perplexity's scrapers as functions,
+        # not as modules.
         urls = [url for _, url in ds.sources_by_import("aibridge.py")]
         self.assertTrue(any(is_host(url, "groq.com") for url in urls))
         self.assertTrue(any(is_host(url, "perplexity.ai") for url in urls))
+
+    def test_anthropic_lists_sources_from_its_private_base(self):
+        urls = [url for _, url in ds.sources_by_import("anthropic.py")]
+        self.assertIn("https://red.anthropic.com/", urls)
 
     def test_registered_source_urls_have_single_owner(self):
         """One upstream URL should feed one public aggregate, not several."""

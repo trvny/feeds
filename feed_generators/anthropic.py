@@ -20,8 +20,8 @@ from utils import (
     load_cache,
     merge_entries,
     sanitize_xml,
-    save_cache,
     save_atom_feed,
+    save_cache,
     sort_posts_for_feed,
     stable_fallback_date,
 )
@@ -41,7 +41,7 @@ ALIGNMENT_YEAR_RE = re.compile(r"^/(20\d{2})/")
 MONTH_YEAR_RE = re.compile(r"^([A-Z][a-z]+)\s+(20\d{2})$")
 BIBTEX_DATE_RE = re.compile(
     r"year\s*=\s*\{(20\d{2})\}.*?month\s*=\s*\{([A-Za-z]+)\}.*?day\s*=\s*\{(\d{1,2})\}",
-    re.S | re.I,
+    re.DOTALL | re.IGNORECASE,
 )
 
 
@@ -270,6 +270,11 @@ def _feed_entry(entry):
     return rendered
 
 
+def doc_sources():
+    """Expose the private base module's non-tabular source to generated docs."""
+    return [(anthropic_base.RED_LABEL, anthropic_base.RED_BASE)]
+
+
 def main(full=False):
     if full:
         logger.info("Full reset requested; ignoring existing cache")
@@ -318,8 +323,7 @@ def main(full=False):
     # This registered wrapper historically published raw links as entry IDs.
     persist_entry_ids(FEED_NAME, merged, make_entry_id=lambda _feed, link: link)
 
-    limit = anthropic_base.MAX_ENTRIES
-    feed_items = merged[-limit:] if len(merged) > limit else merged
+    feed_items = merged[-anthropic_base.MAX_ENTRIES :]
 
     enrich_entries(feed_items)
     save_cache(FEED_NAME, merged)

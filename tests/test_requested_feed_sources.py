@@ -4,12 +4,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
+import _google_ai_studio as google_ai_studio  # noqa: E402
 import anthropic  # noqa: E402
 import claude  # noqa: E402
 import github  # noqa: E402
 import google  # noqa: E402
 import huggingface  # noqa: E402
-import _google_ai_studio as google_ai_studio  # noqa: E402
 import microsoft  # noqa: E402
 import python  # noqa: E402
 import rutracker  # noqa: E402
