@@ -270,6 +270,18 @@ def _feed_entry(entry):
     return rendered
 
 
+def _select_feed_items(entries, limit):
+    """Rank retryable undated rows by their render-time fallback before slicing."""
+    if len(entries) <= limit:
+        return list(entries)
+    originals = {entry["link"]: entry for entry in entries}
+    ranked = sort_posts_for_feed(
+        [_feed_entry(entry) for entry in entries],
+        date_field="date",
+    )
+    return [originals[entry["link"]] for entry in ranked[-limit:]]
+
+
 def doc_sources():
     """Expose the public aggregate's sources with their canonical labels."""
     core = [(label, url) for label, url, *_ in anthropic_base.SOURCES]
@@ -329,7 +341,7 @@ def main(full=False):
     # This registered wrapper historically published raw links as entry IDs.
     persist_entry_ids(FEED_NAME, merged, make_entry_id=lambda _feed, link: link)
 
-    feed_items = merged[-anthropic_base.MAX_ENTRIES :]
+    feed_items = _select_feed_items(merged, anthropic_base.MAX_ENTRIES)
 
     enrich_entries(feed_items)
     save_cache(FEED_NAME, merged)
