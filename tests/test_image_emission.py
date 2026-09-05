@@ -12,7 +12,7 @@ Counting imports of ``article_image`` cannot see this and never could: the
 enrichment arrives through ``enrich.py`` and ``multi_rss.py``. What settles it
 is whether the generator that *asks* for an image also *emits* one - either in
 its own file, or in the builder it delegates to. Delegation is common here
-(``anthropic_with_alignment`` hands its entries to ``anthropic.generate_atom_feed``),
+(``anthropic`` hands its entries to ``_anthropic_base.generate_atom_feed``),
 so the check follows it rather than treating it as a miss.
 """
 

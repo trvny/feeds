@@ -281,9 +281,9 @@ def _hook_pairs(module) -> list:
 def _generator_modules(module) -> list:
     """Sibling generator modules this one composes on.
 
-    anthropic_with_alignment is the shape that matters: it imports anthropic and
-    adds one scraper, so reading only its own globals reported the feed as
-    having a single source. FEED_NAME is what marks a module as a generator
+    anthropic is the shape that matters: it composes _anthropic_base and adds
+    alignment/interpretability scrapers, so reading only its own globals would
+    miss the base sources. FEED_NAME is what marks a module as a generator
     rather than shared plumbing like utils or multi_rss.
     """
     found, seen = [], set()

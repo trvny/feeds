@@ -110,7 +110,7 @@ feeds_foobar2000_full: ## Generate combined Atom feed for foobar2000 (full reset
 
 .PHONY: feeds_anthropic
 feeds_anthropic: ## Generate only the Anthropic feed (news/research/engineering/red/alignment)
-	$(PY) feed_generators/anthropic_with_alignment.py
+	$(PY) feed_generators/anthropic.py
 
 .PHONY: feeds_cloudflare
 feeds_cloudflare: ## Generate only the Cloudflare feed (blog/changelog/community/research)

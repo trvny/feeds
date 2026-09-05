@@ -23,7 +23,6 @@ Native RSS/Atom feeds (feedparser):
   * LobeHub (blog)          https://lobehub.com/blog/feed
   * AI Skill Market         https://aiskill.market/rss.xml
   * Devin Desktop           https://docs.devin.ai/desktop/changelog/rss.xml
-  * Hugging Face Blog       https://huggingface.co/blog/feed.xml
   * MindStudio              https://www.mindstudio.ai/rss.xml
   * Mintlify Changelog      https://www.mintlify.com/docs/changelog/rss.xml
   * Mintlify Blog           https://www.mintlify.com/feed.xml
@@ -101,7 +100,7 @@ from dateutil import parser as date_parser
 from enrich import enrich_entries
 from feedgen.feed import FeedGenerator
 from multi_rss import apply_per_source_cap, get_html
-from skillsllm_aihubmix import AIHUBMIX_DOC_SOURCES, collect_aihubmix_blog
+from _skillsllm_aihubmix import AIHUBMIX_DOC_SOURCES, collect_aihubmix_blog
 from utils import (
     add_entry_media,
     dedupe_entries,
@@ -245,7 +244,6 @@ SOURCES = [
 # discovery. (label, url, category)
 NATIVE_FEEDS = [
     ("Devin Desktop", DEVIN_DESKTOP_RSS_URL, "devin-desktop", 40),
-    ("Hugging Face Blog", "https://huggingface.co/blog/feed.xml", "huggingface", 40),
     ("MindStudio", "https://www.mindstudio.ai/rss.xml", "mindstudio", 40),
     (
         "Mintlify Changelog",
@@ -360,6 +358,9 @@ _LOBEHUB_LEGACY_PREFIXES = (
     "https://lobehub.com/pl/changelog/",
 )
 
+# Hugging Face now has one dedicated combined feed; retire the old copy here.
+_RETIRED_CACHE_SOURCES = {"Hugging Face Blog"}
+
 
 def _active_cached_entries(entries):
     """Exclude invalid or retired cached rows before source migrations."""
@@ -369,6 +370,8 @@ def _active_cached_entries(entries):
         if not isinstance(link, str) or not link:
             continue
         if link.startswith(_LOBEHUB_LEGACY_PREFIXES):
+            continue
+        if entry.get("source") in _RETIRED_CACHE_SOURCES:
             continue
         kept.append(entry)
     return kept
@@ -958,7 +961,7 @@ def generate_atom_feed(entries, feed_name=FEED_NAME):
     fg.subtitle(
         "AI tooling news and guides: SkillsLLM, Desktop Commander, Model Context "
         "Protocol, FastMCP, Agent Client Protocol, Pieces, ClaudePluginHub, MCP "
-        "Servers blog, Claude Skills Hub, Agent Zero, Hugging Face, MindStudio, "
+        "Servers blog, Claude Skills Hub, Agent Zero, MindStudio, "
         "Mintlify (blog + changelog), OtterlyAI, Flavio Longato, OpenRouter, "
         "Upstash, x-cmd, "
         "Graphify (blog + changelog), MCP.so (feed + blog), "

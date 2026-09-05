@@ -1,23 +1,34 @@
-"""Shared Hugging Face HTML adapters for standalone Feedseek feeds."""
+"""One combined Hugging Face feed: Blog, community Posts, and Trending Papers."""
 
 from __future__ import annotations
 
+import argparse
 import re
+import sys
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
-
-from multi_rss import get_html, parse_date
-from utils import sanitize_xml, setup_logging
+from multi_rss import get_html, parse_date, run
+from utils import favicon_proxy, sanitize_xml, setup_logging
 
 logger = setup_logging()
 
+FEED_NAME = "huggingface"
 BASE_URL = "https://huggingface.co"
+BLOG_URL = f"{BASE_URL}/blog"
+BLOG_FEED_URL = f"{BLOG_URL}/feed.xml"
 POSTS_URL = f"{BASE_URL}/posts"
 TRENDING_PAPERS_URL = f"{BASE_URL}/papers/trending"
+BLOG_SOURCE = "Hugging Face Blog"
 POSTS_SOURCE = "Hugging Face Posts"
 TRENDING_SOURCE = "Hugging Face Trending Papers"
 DESC_LIMIT = 700
+
+SOURCES = [(BLOG_SOURCE, BLOG_FEED_URL, 100)]
+_SCRAPED_SOURCES = [
+    (POSTS_SOURCE, POSTS_URL),
+    (TRENDING_SOURCE, TRENDING_PAPERS_URL),
+]
 
 _POST_LINK_RE = re.compile(r"^/posts/[^/]+/\d+(?:[/?#]|$)")
 _PAPER_LINK_RE = re.compile(r"^/papers/[^/?#]+(?:[/?#]|$)")
@@ -144,21 +155,52 @@ def parse_trending_papers(html: str, known_links=()) -> list[dict]:
     return entries
 
 
-def collect_posts(known_links) -> list[dict]:
-    html = get_html(POSTS_URL)
+def _collect_html(url, source, card_kind, parser, known_links) -> list[dict]:
+    """Fetch one HTML source and report when it has no new matching cards."""
+    html = get_html(url)
     if not html:
         return []
-    entries = parse_posts(html, known_links)
+    entries = parser(html, known_links)
     if not entries:
-        logger.warning("[%s] no new post cards matched", POSTS_SOURCE)
+        logger.warning("[%s] no new %s cards matched", source, card_kind)
     return entries
+
+
+def collect_posts(known_links) -> list[dict]:
+    return _collect_html(POSTS_URL, POSTS_SOURCE, "post", parse_posts, known_links)
 
 
 def collect_trending_papers(known_links) -> list[dict]:
-    html = get_html(TRENDING_PAPERS_URL)
-    if not html:
-        return []
-    entries = parse_trending_papers(html, known_links)
-    if not entries:
-        logger.warning("[%s] no new paper cards matched", TRENDING_SOURCE)
-    return entries
+    return _collect_html(
+        TRENDING_PAPERS_URL,
+        TRENDING_SOURCE,
+        "paper",
+        parse_trending_papers,
+        known_links,
+    )
+
+
+def doc_sources():
+    """Expose all three Hugging Face surfaces to generated source docs."""
+    return [(label, url) for label, url, *_ in SOURCES] + _SCRAPED_SOURCES
+
+
+def main(full=False):
+    return run(
+        feed_name=FEED_NAME,
+        title="Hugging Face",
+        subtitle="Hugging Face Blog, community Posts, and Trending Papers in one feed.",
+        blog_url=BASE_URL,
+        author="Hugging Face",
+        sources=SOURCES,
+        extra_scrapers=(collect_posts, collect_trending_papers),
+        max_entries=300,
+        icon=favicon_proxy("huggingface.co"),
+        full=full,
+    )
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Generate the combined Hugging Face feed")
+    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild")
+    sys.exit(0 if main(full=parser.parse_args().full) else 1)

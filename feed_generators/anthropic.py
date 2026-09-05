@@ -1,309 +1,361 @@
-"""Anthropic feed generator.
-
-Aggregates Anthropic's three article streams into one **Atom** feed written to
-``feeds/feed_anthropic.xml``:
-
-    - Anthropic Newsroom      https://www.anthropic.com/news
-    - Anthropic Research      https://www.anthropic.com/research
-    - Anthropic Engineering   https://www.anthropic.com/engineering
-
-The listing pages render article cards in static HTML (no JS), so a plain
-``requests`` fetch is enough. Titles and summaries are read from each article's
-``og:title`` / ``og:description`` meta tags; the publish date comes from the
-listing card. History accumulates across hourly runs via the shared JSON cache
-(``cache/anthropic_posts.json``); only links not already cached trigger a
-per-article metadata fetch, so steady-state runs are cheap.
-"""
+"""Anthropic aggregate with Alignment Science and Interpretability included."""
 
 import argparse
+import json
 import re
 import sys
 import time
+from urllib.parse import urljoin, urlparse
 
-import pytz
+import _anthropic_base as anthropic_base
+import feedparser
 from bs4 import BeautifulSoup
-from dateutil import parser as date_parser
-from feedgen.feed import FeedGenerator
-
-from entry_identity import entry_id_for, persist_entry_ids
-
 from enrich import enrich_entries
+from entry_identity import persist_entry_ids
 from utils import (
-    add_entry_media,
-    setup_feed_extensions,
     dedupe_entries,
     deserialize_entries,
+    feedparser_entry_image,
     fetch_page,
     load_cache,
     merge_entries,
     sanitize_xml,
     save_atom_feed,
     save_cache,
-    setup_feed_links,
-    setup_logging,
     sort_posts_for_feed,
+    stable_fallback_date,
 )
 
-logger = setup_logging()
+logger = anthropic_base.logger
 
 FEED_NAME = "anthropic"
-BLOG_URL = "https://www.anthropic.com/"
-
-# (source label, listing URL, site base, href prefix)
-SOURCES = [
-    ("Anthropic Newsroom", "https://www.anthropic.com/news", "https://www.anthropic.com", "/news/"),
-    ("Anthropic Research", "https://www.anthropic.com/research", "https://www.anthropic.com", "/research/"),
-    ("Anthropic Engineering", "https://www.anthropic.com/engineering", "https://www.anthropic.com", "/engineering/"),
-]
-
-# The research listing also links team/index pages, which are not articles.
-RESEARCH_SKIP = re.compile(r"^/research/(team/|$)")
-
-# red.anthropic.com is a static blog; posts live under /<year>/<slug>/.
-RED_BASE = "https://red.anthropic.com/"
-RED_LABEL = "Anthropic Red"
-RED_HREF_RE = re.compile(r"^(?:\./)?(20\d\d)/[^?#]+")
-
-# Human dates in cards, e.g. "May 28, 2026" / "Apr 08, 2026".
-DATE_RE = re.compile(r"([A-Z][a-z]{2,8}\.?\s+\d{1,2},\s+\d{4})")
-
-# Default og:description served site-wide on some anthropic.com pages; not a
-# real per-article summary, so we drop it.
-ANTHROPIC_BOILERPLATE = "Anthropic is an AI safety and research company"
-
-# Polite delay between per-article metadata fetches.
-SLEEP_BETWEEN = 0.4
-
-# Cap the merged feed so the committed XML stays a reasonable size.
-MAX_ENTRIES = 100
+SOURCES = anthropic_base.SOURCES
+BLOG_URL = anthropic_base.BLOG_URL
+ALIGNMENT_URL = "https://alignment.anthropic.com/"
+ALIGNMENT_LABEL = "Anthropic Alignment Science"
+TRANSFORMER_CIRCUITS_FEED_URL = "https://transformer-circuits.pub/feed.xml"
+TRANSFORMER_CIRCUITS_LABEL = "Anthropic Interpretability"
+PRESERVE_MISSING_DATE = "_feedseek_preserve_missing_date"
+ALIGNMENT_PATH_RE = re.compile(r"^/20\d{2}/[^/?#]+/?$")
+ALIGNMENT_YEAR_RE = re.compile(r"^/(20\d{2})/")
+MONTH_YEAR_RE = re.compile(r"^([A-Z][a-z]+)\s+(20\d{2})$")
+BIBTEX_DATE_RE = re.compile(
+    r"year\s*=\s*\{(20\d{2})\}.*?month\s*=\s*\{([A-Za-z]+)\}.*?day\s*=\s*\{(\d{1,2})\}",
+    re.DOTALL | re.IGNORECASE,
+)
 
 
-def parse_date(date_str):
-    """Parse a date string into a UTC datetime, or None on failure."""
-    try:
-        dt = date_parser.parse(date_str)
-        if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=pytz.UTC)
-        return dt.astimezone(pytz.UTC)
-    except (ValueError, TypeError, OverflowError) as e:
-        logger.warning(f"Could not parse date '{date_str}': {e}")
-        return None
-
-
-def title_from_slug(href):
-    """Last-resort title derived from the URL slug."""
-    slug = href.rstrip("/").split("/")[-1]
-    return slug.replace("-", " ").replace("_", " ").strip().capitalize()
-
-
-def _meta(soup, *keys):
-    for key in keys:
-        tag = soup.find("meta", property=key) or soup.find("meta", attrs={"name": key})
-        if tag and tag.get("content"):
-            return tag["content"].strip()
+def _json_date(value):
+    """Find datePublished/dateCreated recursively in JSON-LD."""
+    if isinstance(value, dict):
+        for key in ("datePublished", "dateCreated", "uploadDate"):
+            if value.get(key):
+                return value[key]
+        for child in value.values():
+            found = _json_date(child)
+            if found:
+                return found
+    elif isinstance(value, list):
+        for child in value:
+            found = _json_date(child)
+            if found:
+                return found
     return None
 
 
-def fetch_article_meta(url):
-    """Return {'title', 'summary'} for an anthropic.com article via meta tags."""
-    title = summary = image = None
+def _alignment_date(soup, fallback=None):
+    for key in ("article:published_time", "datePublished", "date"):
+        value = anthropic_base._meta(soup, key)
+        parsed = anthropic_base.parse_date(value) if value else None
+        if parsed:
+            return parsed
+
+    time_el = soup.find("time", datetime=True)
+    if time_el:
+        parsed = anthropic_base.parse_date(time_el.get("datetime"))
+        if parsed:
+            return parsed
+
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            value = _json_date(json.loads(script.string or script.get_text()))
+        except (TypeError, ValueError):
+            continue
+        parsed = anthropic_base.parse_date(value) if value else None
+        if parsed:
+            return parsed
+
+    text = soup.get_text(" ", strip=True)
+    match = anthropic_base.DATE_RE.search(text)
+    if match:
+        parsed = anthropic_base.parse_date(match.group(1))
+        if parsed:
+            return parsed
+
+    match = BIBTEX_DATE_RE.search(text)
+    if match:
+        parsed = anthropic_base.parse_date(
+            f"{match.group(2)} {match.group(3)}, {match.group(1)}"
+        )
+        if parsed:
+            return parsed
+
+    return fallback
+
+
+def _alignment_meta(url, fallback_date=None):
     try:
         soup = BeautifulSoup(fetch_page(url), "html.parser")
-        title = _meta(soup, "og:title", "twitter:title")
+        title_el = soup.find("h1")
+        title = anthropic_base._meta(soup, "og:title", "twitter:title")
+        title = title or (title_el.get_text(" ", strip=True) if title_el else None)
         if title:
-            title = re.split(r"\s[\\|]\s", title)[0].strip()
-        summary = _meta(soup, "og:description", "description")
-        if summary and summary.startswith(ANTHROPIC_BOILERPLATE):
-            summary = None
-        image = _meta(soup, "og:image", "twitter:image")
-    except Exception as e:
-        logger.warning(f"Could not fetch article meta for {url}: {e}")
-    time.sleep(SLEEP_BETWEEN)
-    return {"title": title, "summary": summary, "image": image}
+            title = re.split(r"\s[|]\s", title)[0].strip()
+        summary = anthropic_base._meta(soup, "og:description", "description")
+        image = anthropic_base._meta(soup, "og:image", "twitter:image")
+        date = _alignment_date(soup, fallback=fallback_date)
+        return {"title": title, "summary": summary, "image": image, "date": date}
+    except Exception as exc:
+        logger.warning("Could not fetch alignment article %s: %s", url, exc)
+        return {"title": None, "summary": None, "image": None, "date": fallback_date}
+    finally:
+        time.sleep(anthropic_base.SLEEP_BETWEEN)
 
 
-def scrape_source(label, listing_url, base, prefix, known_links):
-    """Scrape an Anthropic listing page; skip links already in the cache."""
-    entries = []
-    try:
-        soup = BeautifulSoup(fetch_page(listing_url), "html.parser")
-    except Exception as e:
-        logger.warning(f"Could not fetch {listing_url}: {e}")
-        return entries
+def _month_start(text):
+    match = MONTH_YEAR_RE.fullmatch(re.sub(r"\s+", " ", text or "").strip())
+    if not match:
+        return None
+    return anthropic_base.parse_date(f"{match.group(1)} 1, {match.group(2)}")
 
+
+def _alignment_index(soup):
+    """Yield article links with the month heading that precedes each card.
+
+    Month labels are plain text in the current site markup rather than stable
+    heading elements. Walking text nodes keeps document order without depending
+    on whether the label is rendered as an h2, div, paragraph, or span.
+    """
+    fallback_date = None
     seen = set()
-    for a in soup.find_all("a", href=True):
-        href = a["href"]
-        if not href.startswith(prefix) or href == prefix or href in seen:
+    for node in soup.find_all(string=True):
+        text = re.sub(r"\s+", " ", str(node)).strip()
+        month_date = _month_start(text)
+        if month_date:
+            fallback_date = month_date
             continue
-        if prefix == "/research/" and RESEARCH_SKIP.match(href):
+
+        anchor = node.find_parent("a", href=True)
+        if anchor is None:
             continue
-        seen.add(href)
-
-        text = a.get_text(" ", strip=True)
-        m = DATE_RE.search(text)
-        if not m:  # cards without a date aren't real articles
+        href = (anchor.get("href") or "").strip()
+        link = urljoin(ALIGNMENT_URL, href)
+        parsed = urlparse(link)
+        if parsed.netloc != "alignment.anthropic.com" or not ALIGNMENT_PATH_RE.match(
+            parsed.path
+        ):
             continue
-        date_obj = parse_date(m.group(1))
-        link = href if href.startswith("http") else base + href
-
-        if link in known_links:
-            continue  # already cached, no need to refetch metadata
-
-        meta = fetch_article_meta(link)
-        title = sanitize_xml(meta["title"] or title_from_slug(href))
-        summary = sanitize_xml(meta["summary"] or title)
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": date_obj,
-            "description": summary,
-            "source": label,
-            "image": meta.get("image"),
-        })
-        logger.info(f"  [{label}] {title}")
-    return entries
-
-
-def fetch_red_article(url):
-    """Return {'title', 'date', 'summary'} for a red.anthropic.com post."""
-    title = summary = image = None
-    date_obj = None
-    try:
-        soup = BeautifulSoup(fetch_page(url), "html.parser")
-        h1 = soup.find("h1")
-        if h1:
-            title = h1.get_text(" ", strip=True)
-        # Publish date is the first full date appearing after the title.
-        scope = h1.find_all_next(string=DATE_RE) if h1 else soup.find_all(string=DATE_RE)
-        for s in scope:
-            m = DATE_RE.search(str(s))
-            if m:
-                date_obj = parse_date(m.group(1))
-                break
-        summary = _meta(soup, "og:description", "description")
-        image = _meta(soup, "og:image", "twitter:image")
-    except Exception as e:
-        logger.warning(f"Could not fetch red article {url}: {e}")
-    time.sleep(SLEEP_BETWEEN)
-    return {"title": title, "date": date_obj, "summary": summary, "image": image}
-
-
-def scrape_red(known_links):
-    """Scrape the red.anthropic.com index; fetch metadata for new posts only."""
-    entries = []
-    try:
-        soup = BeautifulSoup(fetch_page(RED_BASE), "html.parser")
-    except Exception as e:
-        logger.warning(f"Could not fetch {RED_BASE}: {e}")
-        return entries
-
-    seen = set()
-    for a in soup.find_all("a", href=True):
-        href = a["href"]
-        if href.startswith("http"):
-            continue  # external / cross-site links in the index
-        if not RED_HREF_RE.match(href):
-            continue
-        link = RED_BASE + href.lstrip("./")
+        link = f"https://alignment.anthropic.com{parsed.path}"
         if link in seen:
             continue
         seen.add(link)
-        if link in known_links:
+        yield link, fallback_date
+
+
+def _year_fallback(link):
+    path = urlparse(link or "").path
+    match = ALIGNMENT_YEAR_RE.match(path)
+    return anthropic_base.parse_date(f"January 1, {match.group(1)}") if match else None
+
+
+def _new_alignment_entry(link, meta, fallback_date):
+    parsed = urlparse(link)
+    title = sanitize_xml(meta["title"] or anthropic_base.title_from_slug(parsed.path))
+    return {
+        "title": title,
+        "link": link,
+        "date": meta["date"] or fallback_date or _year_fallback(link),
+        "description": sanitize_xml(meta["summary"] or title),
+        "source": ALIGNMENT_LABEL,
+        "image": meta["image"],
+    }
+
+
+def _refresh_alignment_entry(cached, meta, fallback_date):
+    """Merge a recovered date without discarding richer cached metadata."""
+    refreshed = dict(cached)
+    refreshed["date"] = meta["date"] or fallback_date or _year_fallback(
+        refreshed.get("link")
+    )
+    refreshed.pop(PRESERVE_MISSING_DATE, None)
+    if meta["title"]:
+        refreshed["title"] = sanitize_xml(meta["title"])
+    if meta["summary"]:
+        refreshed["description"] = sanitize_xml(meta["summary"])
+    if meta["image"]:
+        refreshed["image"] = meta["image"]
+    refreshed["source"] = ALIGNMENT_LABEL
+    return refreshed
+
+
+def scrape_alignment(known_links, refresh_entries=None):
+    """Scrape new posts and refresh cached entries that still lack dates."""
+    try:
+        soup = BeautifulSoup(fetch_page(ALIGNMENT_URL), "html.parser")
+    except Exception as exc:
+        logger.warning("Could not fetch %s: %s", ALIGNMENT_URL, exc)
+        return []
+
+    refresh_entries = refresh_entries or {}
+    entries = []
+    for link, fallback_date in _alignment_index(soup):
+        cached = refresh_entries.get(link)
+        if link in known_links and cached is None:
             continue
 
-        meta = fetch_red_article(link)
-        title = sanitize_xml(meta["title"] or title_from_slug(href))
-        summary = sanitize_xml(meta["summary"] or title)
-        entries.append({
-            "title": title,
-            "link": link,
-            "date": meta["date"],
-            "description": summary,
-            "source": RED_LABEL,
-            "image": meta.get("image"),
-        })
-        logger.info(f"  [{RED_LABEL}] {title}")
+        meta = _alignment_meta(
+            link,
+            fallback_date=fallback_date or _year_fallback(link),
+        )
+        entry = (
+            _refresh_alignment_entry(cached, meta, fallback_date)
+            if cached is not None
+            else _new_alignment_entry(link, meta, fallback_date)
+        )
+        entries.append(entry)
+        logger.info("  [%s] %s", ALIGNMENT_LABEL, entry["title"])
+
     return entries
 
 
-def scrape_all(known_links):
-    """Collect new entries from every source, skipping already-cached links."""
-    new_entries = []
-    for label, listing, base, prefix in SOURCES:
-        logger.info(f"Scraping {label} ...")
-        new_entries += scrape_source(label, listing, base, prefix, known_links)
-    logger.info(f"Scraping {RED_LABEL} ...")
-    new_entries += scrape_red(known_links)
-    return new_entries
+def scrape_transformer_circuits(known_links):
+    """Collect Anthropic Interpretability posts from its native Atom feed."""
+    try:
+        raw = fetch_page(TRANSFORMER_CIRCUITS_FEED_URL)
+    except Exception as exc:
+        logger.warning("Could not fetch %s: %s", TRANSFORMER_CIRCUITS_FEED_URL, exc)
+        return []
+
+    parsed = feedparser.parse(raw)
+    entries = []
+    for item in parsed.entries:
+        try:
+            link = (item.get("link") or "").strip()
+            title = sanitize_xml((item.get("title") or "").strip())
+            if not link or not title or link in known_links:
+                continue
+            date = anthropic_base.parse_date(item.get("published") or item.get("updated"))
+            entries.append(
+                {
+                    "title": title,
+                    "link": link,
+                    "date": date or stable_fallback_date(link),
+                    "description": sanitize_xml(item.get("summary") or "") or title,
+                    "source": TRANSFORMER_CIRCUITS_LABEL,
+                    "image": feedparser_entry_image(item),
+                }
+            )
+        except Exception as exc:
+            logger.warning("[%s] skipping an entry: %s", TRANSFORMER_CIRCUITS_LABEL, exc)
+    logger.info("[%s] parsed %d entries", TRANSFORMER_CIRCUITS_LABEL, len(entries))
+    return entries
 
 
-def generate_atom_feed(articles, feed_name=FEED_NAME):
-    """Build an Atom FeedGenerator from the merged article list."""
-    fg = FeedGenerator()
-    fg.id(f"https://www.anthropic.com/{feed_name}")
-    fg.title("Anthropic")
-    fg.subtitle("Anthropic Newsroom, Research, and Engineering posts in one feed.")
-    setup_feed_links(fg, BLOG_URL, feed_name)
-    fg.language("en")
-    fg.author({"name": "Anthropic"})
-    setup_feed_extensions(fg)
+def _feed_entry(entry):
+    """Render retryable cache rows with a stable year fallback, without persisting it."""
+    if entry.get("date") is not None or not entry.get(PRESERVE_MISSING_DATE):
+        return entry
+    rendered = dict(entry)
+    rendered["date"] = _year_fallback(rendered.get("link"))
+    return rendered
 
-    for article in articles:
-        fe = fg.add_entry()
-        fe.id(entry_id_for(feed_name, article))
-        fe.title(article["title"])
-        fe.link(href=article["link"])
-        source = article.get("source")
-        if source:
-            fe.category(term=source, label=source)
-        fe.description(article.get("description") or article["title"])
-        if article.get("date"):
-            fe.published(article["date"])
-            fe.updated(article["date"])
-        add_entry_media(fe, article.get("image"))
 
-    logger.info("Generated Atom feed")
-    return fg
+def _select_feed_items(entries, limit):
+    """Rank retryable undated rows by their render-time fallback before slicing."""
+    if len(entries) <= limit:
+        return list(entries)
+    originals = {entry["link"]: entry for entry in entries}
+    ranked = sort_posts_for_feed(
+        [_feed_entry(entry) for entry in entries],
+        date_field="date",
+    )
+    return [originals[entry["link"]] for entry in ranked[-limit:]]
+
+
+def doc_sources():
+    """Expose the public aggregate's sources with their canonical labels."""
+    core = [(label, url) for label, url, *_ in anthropic_base.SOURCES]
+    return [
+        *core,
+        (anthropic_base.RED_LABEL, anthropic_base.RED_BASE),
+        (ALIGNMENT_LABEL, ALIGNMENT_URL),
+        (TRANSFORMER_CIRCUITS_LABEL, TRANSFORMER_CIRCUITS_FEED_URL),
+    ]
 
 
 def main(full=False):
-    """Scrape every source, merge with cache, and write the Atom feed."""
     if full:
-        logger.info("Full reset requested — ignoring existing cache")
+        logger.info("Full reset requested; ignoring existing cache")
         cached = []
+        undated_alignment_entries = {}
     else:
         cache = load_cache(FEED_NAME)
         cached = deserialize_entries(cache.get("entries", []), date_field="date")
+        undated_alignment_entries = {
+            entry["link"]: entry
+            for entry in cached
+            if entry.get("source") == ALIGNMENT_LABEL and not entry.get("date")
+        }
+        for entry in undated_alignment_entries.values():
+            entry[PRESERVE_MISSING_DATE] = True
 
-    known_links = {e["link"] for e in cached}
-    new_articles = scrape_all(known_links)
+    known_links = {entry["link"] for entry in cached}
+    new_articles = anthropic_base.scrape_all(known_links)
+    alignment_articles = scrape_alignment(
+        known_links,
+        refresh_entries=undated_alignment_entries,
+    )
+    transformer_circuits_articles = scrape_transformer_circuits(known_links)
+    refreshed_links = {entry["link"] for entry in alignment_articles}
+    if refreshed_links:
+        cached = [
+            entry
+            for entry in cached
+            if not (
+                entry.get("source") == ALIGNMENT_LABEL
+                and entry.get("link") in refreshed_links
+            )
+        ]
+    new_articles += alignment_articles + transformer_circuits_articles
 
     if not new_articles and not cached:
-        logger.warning("No articles collected — skipping write to avoid an empty feed")
+        logger.warning("No articles collected; skipping write to avoid an empty feed")
         return False
 
     merged = merge_entries(new_articles, cached, id_field="link", date_field="date")
-    enrich_entries(merged)
-    merged = dedupe_entries(merged, id_field="link", title_field="title", date_field="date")
+    merged = dedupe_entries(
+        merged, id_field="link", title_field="title", date_field="date"
+    )
     merged = sort_posts_for_feed(merged, date_field="date")
 
-    # Keep full (deduplicated) history in the cache so already-seen links are
-    # never re-evaluated on later runs; only the rendered feed is capped.
-    # These two feeds historically published the raw link as the Atom entry ID.
-    # Persist that exact legacy ID before switching the renderer to durable IDs.
+    # This registered wrapper historically published raw links as entry IDs.
     persist_entry_ids(FEED_NAME, merged, make_entry_id=lambda _feed, link: link)
+
+    feed_items = _select_feed_items(merged, anthropic_base.MAX_ENTRIES)
+
+    enrich_entries(feed_items)
     save_cache(FEED_NAME, merged)
-
-    feed_items = merged[-MAX_ENTRIES:] if len(merged) > MAX_ENTRIES else merged
-
-    fg = generate_atom_feed(feed_items)
+    fg = anthropic_base.generate_atom_feed([_feed_entry(entry) for entry in feed_items])
+    fg.subtitle(
+        "Anthropic Newsroom, Research, Engineering, Red, Alignment Science, and Interpretability posts in one feed."
+    )
     save_atom_feed(fg, FEED_NAME)
     return True
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate the Anthropic Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
-    args = parser.parse_args()
-    sys.exit(0 if main(full=args.full) else 1)
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
+    sys.exit(0 if main(full=parser.parse_args().full) else 1)

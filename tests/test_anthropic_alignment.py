@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-import anthropic_with_alignment as alignment  # noqa: E402
+import anthropic as alignment  # noqa: E402
 
 
 class AnthropicAlignmentTests(unittest.TestCase):
@@ -105,6 +105,35 @@ class AnthropicAlignmentTests(unittest.TestCase):
         self.assertEqual(entries[0]["description"], "Fresh summary")
         self.assertEqual(entries[0]["source"], alignment.TRANSFORMER_CIRCUITS_LABEL)
 
+    def test_feed_selection_ranks_retryable_fallback_before_limit(self):
+        recent = {
+            "title": "Recent dated article",
+            "link": "https://www.anthropic.com/news/recent",
+            "date": alignment.anthropic_base.parse_date("September 1, 2026"),
+            "description": "Recent",
+            "source": "Anthropic Newsroom",
+        }
+        undated = [
+            {
+                "title": f"Retryable {i}",
+                "link": f"https://alignment.anthropic.com/2025/retry-{i}/",
+                "date": None,
+                "description": "Cached",
+                "source": alignment.ALIGNMENT_LABEL,
+                alignment.PRESERVE_MISSING_DATE: True,
+            }
+            for i in range(alignment.anthropic_base.MAX_ENTRIES + 5)
+        ]
+        merged = alignment.sort_posts_for_feed([recent, *undated], date_field="date")
+
+        selected = alignment._select_feed_items(
+            merged, alignment.anthropic_base.MAX_ENTRIES
+        )
+
+        self.assertEqual(len(selected), alignment.anthropic_base.MAX_ENTRIES)
+        self.assertIn(recent["link"], {entry["link"] for entry in selected})
+        self.assertTrue(all(entry["date"] is None for entry in undated))
+
     def test_failed_index_keeps_cached_entry_undated_for_retry(self):
         cached = {
             "title": "Old",
@@ -123,7 +152,7 @@ class AnthropicAlignmentTests(unittest.TestCase):
             patch.object(alignment, "scrape_transformer_circuits", return_value=[]),
             patch.object(alignment, "save_cache") as save_cache,
             patch.object(alignment.anthropic_base, "generate_atom_feed", return_value=feed) as generate,
-            patch.object(alignment.anthropic_base, "save_atom_feed") as save_feed,
+            patch.object(alignment, "save_atom_feed") as save_feed,
         ):
             self.assertTrue(alignment.main())
 

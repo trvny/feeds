@@ -159,11 +159,36 @@ class RealGeneratorTests(unittest.TestCase):
         self.assertEqual(self.counts("olx_group.py"), 5)
 
     def test_a_composed_generator_inherits_what_it_scrapes(self):
-        # anthropic_with_alignment imports anthropic; aibridge imports groq's
-        # and perplexity's scrapers as functions, not as modules.
+        # aibridge imports groq's and perplexity's scrapers as functions,
+        # not as modules.
         urls = [url for _, url in ds.sources_by_import("aibridge.py")]
         self.assertTrue(any(is_host(url, "groq.com") for url in urls))
         self.assertTrue(any(is_host(url, "perplexity.ai") for url in urls))
+
+    def test_anthropic_lists_sources_from_its_private_base(self):
+        sources = ds.sources_by_import("anthropic.py")
+        self.assertEqual(sources[0], ("Anthropic Newsroom", "https://www.anthropic.com/news"))
+        by_label = dict(sources)
+        self.assertEqual(by_label["Anthropic Red"], "https://red.anthropic.com/")
+        self.assertEqual(by_label["Anthropic Alignment Science"], "https://alignment.anthropic.com/")
+        self.assertEqual(
+            by_label["Anthropic Interpretability"],
+            "https://transformer-circuits.pub/feed.xml",
+        )
+
+    def test_registered_source_urls_have_single_owner(self):
+        """One upstream URL should feed one public aggregate, not several."""
+        feeds = ds.load_yaml_feeds()
+        owners = {}
+        for feed_name, config in feeds.items():
+            pairs, _ = ds.collect_sources(feed_name, config)
+            for label, url in pairs:
+                owners.setdefault(url, []).append((feed_name, label))
+
+        duplicates = {
+            url: rows for url, rows in owners.items() if len({feed for feed, _ in rows}) > 1
+        }
+        self.assertEqual({}, duplicates)
 
 
 if __name__ == "__main__":

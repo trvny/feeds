@@ -4,11 +4,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
+import _google_ai_studio as google_ai_studio  # noqa: E402
 import anthropic  # noqa: E402
 import claude  # noqa: E402
 import github  # noqa: E402
 import google  # noqa: E402
-import google_ai_studio  # noqa: E402
+import huggingface  # noqa: E402
 import microsoft  # noqa: E402
 import python  # noqa: E402
 import rutracker  # noqa: E402
@@ -22,10 +23,22 @@ class RequestedFeedSourcesTests(unittest.TestCase):
 
     def test_skillsllm_native_feeds_include_requested_sources(self):
         urls = {source[1] for source in skillsllm.NATIVE_FEEDS}
-        self.assertIn("https://huggingface.co/blog/feed.xml", urls)
+        self.assertNotIn("https://huggingface.co/blog/feed.xml", urls)
         self.assertIn("https://www.mindstudio.ai/rss.xml", urls)
         self.assertIn("https://www.mintlify.com/docs/changelog/rss.xml", urls)
         self.assertIn("https://www.mintlify.com/feed.xml", urls)
+
+    def test_huggingface_owns_its_blog_source(self):
+        sources = dict(huggingface.doc_sources())
+        self.assertEqual(
+            sources["Hugging Face Blog"],
+            "https://huggingface.co/blog/feed.xml",
+        )
+        self.assertEqual(sources["Hugging Face Posts"], "https://huggingface.co/posts")
+        self.assertEqual(
+            sources["Hugging Face Trending Papers"],
+            "https://huggingface.co/papers/trending",
+        )
 
     def test_claude_includes_platform_release_notes_feed(self):
         urls = {source[1] for source in claude.RSS_SOURCES}

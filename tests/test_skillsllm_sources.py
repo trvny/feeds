@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
 import saas
 import skillsllm
-from skillsllm_aihubmix import (
+from _skillsllm_aihubmix import (
     AIHUBMIX_BLOG_URL,
     AIHUBMIX_CHANGELOG_LABEL,
     AIHUBMIX_DOCS_SOURCE,
@@ -104,6 +104,7 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
                 "source": "LobeHub Changelog",
             },
             {"link": "https://lobehub.com/blog/current-post", "source": "LobeHub Blog"},
+            {"link": "https://huggingface.co/blog/old-post", "source": "Hugging Face Blog"},
             {"link": "https://example.com/pl/blog/keep", "source": "Other"},
         ]
         kept = skillsllm._active_cached_entries(entries)
