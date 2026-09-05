@@ -14,7 +14,7 @@ from utils import sanitize_xml
 FEED_NAME = "openoffice"
 FEED_TITLE = "OPENOFFICE"
 BLOG_URL = "https://www.onlyoffice.com/blog"
-BLOG_API_URL = "https://www.onlyoffice.com/blog/api/load-more-posts"
+_BLOG_API_URL = "https://www.onlyoffice.com/blog/api/load-more-posts"
 CHANGELOG_URL = "https://api.onlyoffice.com/changelog/"
 CHANGELOG_RSS = "https://api.onlyoffice.com/changelog/rss.xml"
 MAX_ENTRIES = 220
@@ -137,7 +137,7 @@ def _fetch_more_posts(cursor: str) -> tuple[list[dict], bool, str | None] | None
     }
     try:
         response = requests.post(
-            BLOG_API_URL,
+            _BLOG_API_URL,
             data=json.dumps(body, separators=(",", ":")),
             headers=_POST_HEADERS,
             timeout=30,

@@ -9,7 +9,7 @@ Google News RSS proxy instead — the same workaround this repo already uses for
 Cloudflare-challenged sites. That yields Polish-language EP coverage restricted
 to ``europarl.europa.eu/news`` rather than the raw per-committee feeds.
 
-Everything else is native RSS:
+Most other sources are native RSS:
 
   * European Commission press corner, Polish and English. The API endpoint
     (``/presscorner/api/rss?language=..``) is the only one that answers; the
@@ -20,10 +20,11 @@ Everything else is native RSS:
     first.
   * The Union's own news and priorities channels, the European Commission's
     Research & Innovation topic feed, EU agencies (Europol, EUSPA,
-    Interoperable Europe) and independent EU-affairs commentary (ECFR,
-    European Law Blog, UNIO, EUbusiness). Institutional sources additionally
-    carry an ``official`` category term, so a reader can separate
-    institutional communication from third-party analysis.
+    Interoperable Europe) and independent EU-affairs commentary (ECFR, UNIO,
+    EUbusiness). European Law Blog's published ``/rss.xml`` now 404s, so that
+    source is covered through a site-scoped Google News RSS query too.
+    Institutional sources additionally carry an ``official`` category term, so
+    a reader can separate institutional communication from third-party analysis.
 
 The Council (consilium.europa.eu) 403s both clients from a datacenter IP, so it
 too arrives through the Google News proxy. The EEA and Court of Justice feed
@@ -83,7 +84,14 @@ SOURCES = [
         15,
     ),
     ("ECFR", "https://ecfr.eu/feed/", 25),
-    ("European Law Blog", "https://www.europeanlawblog.eu/rss.xml", 25),
+    (
+        "European Law Blog",
+        (
+            "https://news.google.com/rss/search"
+            "?q=site:europeanlawblog.eu&hl=en&gl=US&ceid=US:en"
+        ),
+        25,
+    ),
     ("Official Blog of UNIO", "https://officialblogofunio.com/feed/", 15),
     ("EUbusiness", "https://www.eubusiness.com/feed/", 20),
 ]

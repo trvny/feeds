@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-102 feedów · 794 źródła
+102 feedów · 791 źródeł
 
 ## Spis grup
 
@@ -46,7 +46,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 `pap` · [feed_pap.xml](../feeds/feed_pap.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=pap-mediaroom.pl&sz=16) PAP Mediaroom — <https://pap-mediaroom.pl/rss.xml>
-- ![](https://www.google.com/s2/favicons?domain=naukawpolsce.pl&sz=16) Nauka w Polsce — <https://naukawpolsce.pl/all/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) Nauka w Polsce — <https://news.google.com/rss/search?q=site:naukawpolsce.pl&hl=pl&gl=PL&ceid=PL:pl>
 - ![](https://www.google.com/s2/favicons?domain=zdrowie.pap.pl&sz=16) PAP Zdrowie — <https://zdrowie.pap.pl/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=samorzad.pap.pl&sz=16) Serwis Samorzadowy — <https://samorzad.pap.pl/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=biznes.pap.pl&sz=16) PAP Biznes — <https://biznes.pap.pl/rss>
@@ -62,7 +62,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.tvp.pl&sz=16) TVP Moto — <https://www.tvp.pl/82263271/moto>
 - ![](https://www.google.com/s2/favicons?domain=www.tvp.info&sz=16) TVP Info — <http://www.tvp.info/tvp.info/rss+xml.php>
 - ![](https://www.google.com/s2/favicons?domain=sport.tvp.pl&sz=16) TVP Sport — <https://sport.tvp.pl/rss>
-- ![](https://www.google.com/s2/favicons?domain=www.tvp.pl&sz=16) Portal — <https://www.tvp.pl/api/platform>
 
 ### ![](https://www.google.com/s2/favicons?domain=spidersweb.pl&sz=16) Spider's Web
 `spidersweb` · [feed_spidersweb.xml](../feeds/feed_spidersweb.xml)
@@ -117,7 +116,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.euspa.europa.eu&sz=16) EUSPA — news — <https://www.euspa.europa.eu/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=interoperable-europe.ec.europa.eu&sz=16) Interoperable Europe — EUPL — <https://interoperable-europe.ec.europa.eu/collection/eupl/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=ecfr.eu&sz=16) ECFR — <https://ecfr.eu/feed/>
-- ![](https://www.google.com/s2/favicons?domain=www.europeanlawblog.eu&sz=16) European Law Blog — <https://www.europeanlawblog.eu/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=news.google.com&sz=16) European Law Blog — <https://news.google.com/rss/search?q=site:europeanlawblog.eu&hl=en&gl=US&ceid=US:en>
 - ![](https://www.google.com/s2/favicons?domain=officialblogofunio.com&sz=16) Official Blog of UNIO — <https://officialblogofunio.com/feed/>
 - ![](https://www.google.com/s2/favicons?domain=www.eubusiness.com&sz=16) EUbusiness — <https://www.eubusiness.com/feed/>
 
@@ -494,7 +493,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=blog.postman.com&sz=16) Postman — <https://blog.postman.com/feed/>
 - ![](https://www.google.com/s2/favicons?domain=exa.ai&sz=16) Exa Changelog — <https://exa.ai/docs/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.home-assistant.io&sz=16) Home Assistant — <https://www.home-assistant.io/atom.xml>
-- ![](https://www.google.com/s2/favicons?domain=upstash.com&sz=16) Upstash Workflow Changelog — <https://upstash.com/docs/workflow/changelog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=github.com&sz=16) Upstash Workflow Releases — <https://github.com/upstash/workflow-js/releases.atom>
 - ![](https://www.google.com/s2/favicons?domain=cursor.com&sz=16) Cursor Changelog — <https://cursor.com/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.coderabbit.ai&sz=16) CodeRabbit Blog — <https://www.coderabbit.ai/feed>
 - ![](https://www.google.com/s2/favicons?domain=docs.coderabbit.ai&sz=16) CodeRabbit Changelog — <https://docs.coderabbit.ai/changelog/rss.xml>
@@ -537,8 +536,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=air-quality-api.open-meteo.com&sz=16) AIR quality — <https://air-quality-api.open-meteo.com/v1/air-quality?latitude=50.13133&longitude=19.41654&current=european_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone,ammonia,uv_index,dust,aerosol_optical_depth,ragweed_pollen,olive_pollen,mugwort_pollen,grass_pollen,birch_pollen,alder_pollen&timezone=auto&forecast_days=1>
 - ![](https://www.google.com/s2/favicons?domain=api.open-meteo.com&sz=16) Forecast — <https://api.open-meteo.com/v1/forecast?latitude=50.13133&longitude=19.41654&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,rain_sum,showers_sum,snowfall_sum,precipitation_sum,precipitation_probability_max,precipitation_hours,daylight_duration,sunshine_duration,apparent_temperature_max,apparent_temperature_min,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,temperature_2m_mean,cape_mean&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,wind_speed_10m,wind_direction_10m,wind_gusts_10m,snowfall,showers,rain,precipitation,weather_code,cloud_cover,pressure_msl,surface_pressure&models=best_match&timezone=auto&forecast_days=7>
-- ![](https://www.google.com/s2/favicons?domain=satellite-api.open-meteo.com&sz=16) Satellite url tmpl — <https://satellite-api.open-meteo.com>
-- ![](https://www.google.com/s2/favicons?domain=open-meteo.com&sz=16) Site — <https://open-meteo.com/>
+- ![](https://www.google.com/s2/favicons?domain=open-meteo.com&sz=16) Satellite docs — <https://open-meteo.com/en/docs/satellite-radiation-api>
 
 ### ![](https://www.google.com/s2/favicons?domain=www.accuweather.com&sz=16) AccuWeather News
 `accuweather` · [feed_accuweather.xml](../feeds/feed_accuweather.xml)
@@ -865,7 +863,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=1337x.to&sz=16) 1337x.to (trending) — <https://1337x.to/trending>
 - ![](https://www.google.com/s2/favicons?domain=x1337x.cc&sz=16) x1337x.cc (trending) — <https://x1337x.cc/trending>
-- ![](https://www.google.com/s2/favicons?domain=feeds.trfny.com&sz=16) feeds.trfny.com — <https://feeds.trfny.com/?url=https%3A%2F%2F1337x.to%2Ftrending>
+- ![](https://www.google.com/s2/favicons?domain=feeds.trfny.com&sz=16) Proxy — <https://feeds.trfny.com/1337x>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.arxiv.org&sz=16) arXiv
 `arxiv` · [feed_arxiv.xml](../feeds/feed_arxiv.xml)
@@ -1032,7 +1030,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.onlyoffice.com&sz=16) ONLYOFFICE Blog — <https://www.onlyoffice.com/blog>
 - ![](https://www.google.com/s2/favicons?domain=api.onlyoffice.com&sz=16) ONLYOFFICE API Changelog — <https://api.onlyoffice.com/changelog/>
 - ![](https://www.google.com/s2/favicons?domain=api.onlyoffice.com&sz=16) ONLYOFFICE API Changelog — <https://api.onlyoffice.com/changelog/rss.xml>
-- ![](https://www.google.com/s2/favicons?domain=www.onlyoffice.com&sz=16) Blog — <https://www.onlyoffice.com/blog/api/load-more-posts>
 
 ### ![](https://www.google.com/s2/favicons?domain=creativecommons.org&sz=16) Open Source
 `opensource` · [feed_opensource.xml](../feeds/feed_opensource.xml)

@@ -45,7 +45,7 @@ PER_SOURCE_QUOTA = {
     "TVP Sport": 25,
 }
 
-PORTAL_API = "https://www.tvp.pl/api/platform"
+_PORTAL_API = "https://www.tvp.pl/api/platform"
 PER_SECTION = 30
 
 SOURCES = [
@@ -88,7 +88,7 @@ def _resolve_block_id(section_url):
     if "grid" in (params.get("type") or ""):
         return page_id
 
-    listing = get_html(f"{PORTAL_API}/block/list?id={page_id}")
+    listing = get_html(f"{_PORTAL_API}/block/list?id={page_id}")
     if not listing:
         return None
     try:
@@ -106,7 +106,7 @@ def _scrape_section(label, section_url, known_links):
     block_id = _resolve_block_id(section_url)
     if not block_id:
         return entries
-    body = get_html(f"{PORTAL_API}/block?id={block_id}")
+    body = get_html(f"{_PORTAL_API}/block?id={block_id}")
     if not body:
         return entries
     try:
