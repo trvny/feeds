@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://huggingface.co/posts</id>
   <title>Hugging Face — Posts</title>
-  <updated>2026-09-05T20:45:11.712668+00:00</updated>
+  <updated>2026-09-05T21:27:57.638622+00:00</updated>
   <author>
     <name>Hugging Face</name>
   </author>
@@ -12,6 +12,21 @@
   <icon>https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64</icon>
   <logo>https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=256</logo>
   <subtitle>Community posts published on the Hugging Face Hub.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/hf_posts/b7c95e882553791f</id>
+    <title>I added recurrent depth, a gated memory, and Squeeze-and-Excitation to a chess network with no search. Same one forward pass, no tree — a deeper claim about what three architectural changes buy together.</title>
+    <updated>2026-09-05T21:27:57.193139+00:00</updated>
+    <content>I added recurrent depth, a gated memory, and Squeeze-and-Excitation to a chess network with no search. Same one forward pass, no tree — a deeper claim about what three architectural changes buy together. Confirmed on three independent seeds at 1.38M games. Then, extending it, I found two bugs in my own protocol: cudnn.benchmark=True was silently undoing my determinism seed, and a comparison's random seed was derived from the model path being tested — two checkpoints played different openings against the same opponent. Both fixed, nine already-run matches discarded and rerun. Only then did I extend one seed across 8.8x more data. Four instruments, and they don't agree: puzzles ahead 8/8, Maia</content>
+    <link href="https://huggingface.co/posts/RDTvlokip/314368878623705" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <published>2026-09-05T21:27:57.193139+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/RDTvlokip/314368878623705.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/RDTvlokip/314368878623705.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/RDTvlokip/314368878623705.png" type="image/png" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/hf_posts/2b3e0b6321c6d90e</id>
     <title>We're releasing BananaMind Arena.</title>

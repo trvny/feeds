@@ -8,6 +8,29 @@
   "icon": "https://www.google.com/s2/favicons?domain=huggingface.co&sz=256",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/hf_posts/b7c95e882553791f",
+      "url": "https://huggingface.co/posts/RDTvlokip/314368878623705",
+      "title": "I added recurrent depth, a gated memory, and Squeeze-and-Excitation to a chess network with no search. Same one forward pass, no tree — a deeper claim about what three architectural changes buy together.",
+      "content_text": "I added recurrent depth, a gated memory, and Squeeze-and-Excitation to a chess network with no search. Same one forward pass, no tree — a deeper claim about what three architectural changes buy together. Confirmed on three independent seeds at 1.38M games. Then, extending it, I found two bugs in my own protocol: cudnn.benchmark=True was silently undoing my determinism seed, and a comparison's random seed was derived from the model path being tested — two checkpoints played different openings against the same opponent. Both fixed, nine already-run matches discarded and rerun. Only then did I extend one seed across 8.8x more data. Four instruments, and they don't agree: puzzles ahead 8/8, Maia",
+      "date_published": "2026-09-05T21:27:57Z",
+      "date_modified": "2026-09-05T21:27:57Z",
+      "authors": [
+        {
+          "name": "Hugging Face Posts"
+        }
+      ],
+      "image": "https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/RDTvlokip/314368878623705.png",
+      "tags": [
+        "Hugging Face Posts"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/RDTvlokip/314368878623705.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/hf_posts/2b3e0b6321c6d90e",
       "url": "https://huggingface.co/posts/Banaxi-Tech/604641364573015",
       "title": "We're releasing BananaMind Arena.",
