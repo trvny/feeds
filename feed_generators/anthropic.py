@@ -271,8 +271,14 @@ def _feed_entry(entry):
 
 
 def doc_sources():
-    """Expose the private base module's non-tabular source to generated docs."""
-    return [(anthropic_base.RED_LABEL, anthropic_base.RED_BASE)]
+    """Expose the public aggregate's sources with their canonical labels."""
+    core = [(label, url) for label, url, *_ in anthropic_base.SOURCES]
+    return [
+        *core,
+        (anthropic_base.RED_LABEL, anthropic_base.RED_BASE),
+        (ALIGNMENT_LABEL, ALIGNMENT_URL),
+        (TRANSFORMER_CIRCUITS_LABEL, TRANSFORMER_CIRCUITS_FEED_URL),
+    ]
 
 
 def main(full=False):

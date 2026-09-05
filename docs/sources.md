@@ -138,9 +138,9 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic Newsroom — <https://www.anthropic.com/news>
 - ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic Research — <https://www.anthropic.com/research>
 - ![](https://www.google.com/s2/favicons?domain=www.anthropic.com&sz=16) Anthropic Engineering — <https://www.anthropic.com/engineering>
-- ![](https://www.google.com/s2/favicons?domain=alignment.anthropic.com&sz=16) Alignment — <https://alignment.anthropic.com/>
-- ![](https://www.google.com/s2/favicons?domain=transformer-circuits.pub&sz=16) Transformer circuits — <https://transformer-circuits.pub/feed.xml>
-- ![](https://www.google.com/s2/favicons?domain=red.anthropic.com&sz=16) RED base — <https://red.anthropic.com/>
+- ![](https://www.google.com/s2/favicons?domain=red.anthropic.com&sz=16) Anthropic Red — <https://red.anthropic.com/>
+- ![](https://www.google.com/s2/favicons?domain=alignment.anthropic.com&sz=16) Anthropic Alignment Science — <https://alignment.anthropic.com/>
+- ![](https://www.google.com/s2/favicons?domain=transformer-circuits.pub&sz=16) Anthropic Interpretability — <https://transformer-circuits.pub/feed.xml>
 
 ### ![](https://www.google.com/s2/favicons?domain=platform.claude.com&sz=16) Claude
 `claude` · [feed_claude.xml](../feeds/feed_claude.xml)
