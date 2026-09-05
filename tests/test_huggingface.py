@@ -68,6 +68,13 @@ class HuggingFaceTrendingPapersTests(unittest.TestCase):
             parse_trending_papers(html)[0]["date"].date().isoformat(), "2026-08-18"
         )
 
+    def test_parse_trending_papers_ignores_incidental_summary_date(self):
+        html = """
+        <article><a href="/papers/2608.3"></a><h3>Paper C</h3>
+        <p>Evaluated on Aug 18, 2026 against a later benchmark.</p></article>
+        """
+        self.assertIsNone(parse_trending_papers(html)[0]["date"])
+
     def test_parse_trending_papers_deduplicates_repeated_cards(self):
         card = """
         <article><a href="/papers/2608.1"></a><h3>Paper A</h3>
