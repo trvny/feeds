@@ -181,12 +181,21 @@ class RealGeneratorTests(unittest.TestCase):
         tvp = {url for _, url in ds.sources_by_import("tvp.py")}
         open_meteo = {url for _, url in ds.sources_by_import("open_meteo.py")}
 
-        self.assertNotIn(
-            "https://www.onlyoffice.com/blog/api/load-more-posts",
-            openoffice,
+        self.assertFalse(
+            any(
+                url.startswith("https://www.onlyoffice.com/blog/api/")
+                for url in openoffice
+            )
         )
-        self.assertNotIn("https://www.tvp.pl/api/platform", tvp)
-        self.assertNotIn("https://satellite-api.open-meteo.com", open_meteo)
+        self.assertFalse(
+            any(url.startswith("https://www.tvp.pl/api/") for url in tvp)
+        )
+        self.assertFalse(
+            any(
+                url.startswith("https://satellite-api.open-meteo.com")
+                for url in open_meteo
+            )
+        )
         self.assertIn(
             "https://open-meteo.com/en/docs/satellite-radiation-api",
             open_meteo,
