@@ -27,7 +27,7 @@ class HuggingFacePostsTests(unittest.TestCase):
         self.assertEqual(
             entries[0]["image"], "https://cdn-uploads.huggingface.co/demo.png"
         )
-        self.assertIsNone(entries[0]["date"])
+        self.assertIsNotNone(entries[0]["date"].tzinfo)
 
     def test_parse_posts_skips_known_links(self):
         link = "https://huggingface.co/posts/alice/123"
