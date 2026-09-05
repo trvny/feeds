@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+from datetime import datetime, timezone
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
@@ -34,6 +35,7 @@ def parse_posts(html: str, known_links=()) -> list[dict]:
     known = set(known_links)
     entries = []
     seen = set()
+    first_seen = datetime.now(timezone.utc)
 
     for article in soup.find_all("article", id=True):
         link_el = article.find("a", href=_POST_LINK_RE)
@@ -61,7 +63,7 @@ def parse_posts(html: str, known_links=()) -> list[dict]:
             {
                 "title": title,
                 "link": link,
-                "date": None,
+                "date": first_seen,
                 "description": description,
                 "source": POSTS_SOURCE,
                 "image": image_el.get("src") if image_el else None,
