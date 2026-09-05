@@ -3,6 +3,7 @@
 Use `AGENTS.md` as the repository-wide source of truth. Apply the nearest path-specific `.github/instructions/*.instructions.md` when one matches the changed files.
 
 For code review:
+
 - Focus on concrete regressions introduced by the PR: correctness, security/privacy, data loss, races/lifecycle/resource leaks, compatibility, and violations of repository contracts.
 - Treat CI, build, lint, and test failures as actionable only when they are caused by the diff.
 - Avoid generic style or preference comments already enforced by formatters or linters unless they reveal a real defect.
