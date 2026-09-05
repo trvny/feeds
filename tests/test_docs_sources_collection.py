@@ -183,18 +183,20 @@ class RealGeneratorTests(unittest.TestCase):
 
         self.assertFalse(
             any(
-                url.startswith("https://www.onlyoffice.com/blog/api/")
+                is_host(url, "onlyoffice.com")
+                and urlsplit(url).path.startswith("/blog/api/")
                 for url in openoffice
             )
         )
         self.assertFalse(
-            any(url.startswith("https://www.tvp.pl/api/") for url in tvp)
+            any(
+                is_host(url, "tvp.pl")
+                and urlsplit(url).path.startswith("/api/")
+                for url in tvp
+            )
         )
         self.assertFalse(
-            any(
-                url.startswith("https://satellite-api.open-meteo.com")
-                for url in open_meteo
-            )
+            any(is_host(url, "satellite-api.open-meteo.com") for url in open_meteo)
         )
         self.assertIn(
             "https://open-meteo.com/en/docs/satellite-radiation-api",
