@@ -11,9 +11,9 @@
       "id": "tag:trvny.github.io,2024:feedseek/cloudflare/a23b3d625c6ff1fd",
       "url": "https://www.cloudflarestatus.com/incidents/ftvf8c3m4mv5",
       "title": "Elevated number of R2 503 errors in Eastern North America region",
-      "content_text": "Sep 4 , 21:27 UTC Identified - The cause of this issue has been identified and a fix is being implemented. Sep 4 , 21:10 UTC Investigating - Cloudflare is investigating issues with R2 buckets in Eastern North America.",
-      "date_published": "2026-09-04T21:27:22Z",
-      "date_modified": "2026-09-04T21:27:22Z",
+      "content_text": "Sep 5 , 00:13 UTC Monitoring - A fix has been implemented and we are monitoring the results. Sep 4 , 21:27 UTC Identified - The cause of this issue has been identified and a fix is being implemented. Sep 4 , 21:10 UTC Investigating - Cloudflare is investigating issues with R2 buckets in Eastern North America.",
+      "date_published": "2026-09-05T00:13:58Z",
+      "date_modified": "2026-09-05T00:13:58Z",
       "authors": [
         {
           "name": "Cloudflare Status"
@@ -372,6 +372,29 @@
       "attachments": [
         {
           "url": "https://developers.cloudflare.com/cdn-cgi/image/onerror=redirect,width=3308,height=1916,format=webp/_astro/cursor-cloud-agents-self-hosted-pool.XNeWCXB2.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/68b2b58d3a1633de",
+      "url": "https://developers.cloudflare.com/changelog/post/2026-09-02-python-workers-web-framework-support/",
+      "title": "Workers - Python Workers now support WSGI web frameworks like Django and Flask",
+      "content_text": "Python web frameworks following the Web Server Gateway Interface (WSGI) ↗ or Asynchronous Server Gateway Interface (ASGI) ↗ specification can now be used in Python Workers. Using web frameworks with Python Workers Based on the web framework you are using, you can use either wsgi or asgi from the workers module. WSGI frameworks For WSGI frameworks like Django or Flask: from workers import wsgi from django.core.wsgi import get_wsgi_application app = get_wsgi_application() Default = wsgi.entrypoint",
+      "date_published": "2026-09-02T00:00:00Z",
+      "date_modified": "2026-09-02T00:00:00Z",
+      "authors": [
+        {
+          "name": "Cloudflare Changelog"
+        }
+      ],
+      "image": "https://developers.cloudflare.com/og-changelog.png",
+      "tags": [
+        "Cloudflare Changelog"
+      ],
+      "attachments": [
+        {
+          "url": "https://developers.cloudflare.com/og-changelog.png",
           "mime_type": "image/png"
         }
       ]
@@ -1827,29 +1850,6 @@
       ],
       "tags": [
         "Cloudflare Status"
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/cloudflare/19d8f86fa8eaea5c",
-      "url": "https://developers.cloudflare.com/changelog/post/2026-08-20-oauth-optional-scopes/",
-      "title": "Cloudflare Fundamentals - Optional OAuth scopes",
-      "content_text": "We're announcing the GA of Optional OAuth Scopes. OAuth client developers can now classify configured scopes as required or optional in the Cloudflare dashboard. By default, all configured scopes remain required . What's New Optional Scopes: OAuth clients can now mark configured scopes as optional, allowing applications to request them without requiring users to approve them. Scope Selection: On the consent screen, users must grant required scopes but can decline optional scopes. This helps cust",
-      "date_published": "2026-08-20T00:00:00Z",
-      "date_modified": "2026-08-20T00:00:00Z",
-      "authors": [
-        {
-          "name": "Cloudflare Changelog"
-        }
-      ],
-      "image": "https://developers.cloudflare.com/og-changelog.png",
-      "tags": [
-        "Cloudflare Changelog"
-      ],
-      "attachments": [
-        {
-          "url": "https://developers.cloudflare.com/og-changelog.png",
-          "mime_type": "image/png"
-        }
       ]
     },
     {
