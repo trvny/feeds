@@ -1,0 +1,2340 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://huggingface.co</id>
+  <title>Hugging Face</title>
+  <updated>2026-09-05T21:23:12.284649+00:00</updated>
+  <author>
+    <name>Hugging Face</name>
+  </author>
+  <link href="https://raw.githubusercontent.com/trvny/feedseek/main/feeds/feed_huggingface.xml" rel="self"/>
+  <link href="https://huggingface.co" rel="alternate"/>
+  <generator uri="https://lkiesow.github.io/python-feedgen" version="2.0.1">python-feedgen</generator>
+  <icon>https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=64</icon>
+  <logo>https://www.google.com/s2/favicons?domain=huggingface.co&amp;sz=256</logo>
+  <subtitle>Hugging Face Blog, community Posts, and Trending Papers in one feed.</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/b7c95e882553791f</id>
+    <title>I added recurrent depth, a gated memory, and Squeeze-and-Excitation to a chess network with no search. Same one forward pass, no tree — a deeper claim about what three architectural changes buy together.</title>
+    <updated>2026-09-05T21:23:12.299224+00:00</updated>
+    <content>I added recurrent depth, a gated memory, and Squeeze-and-Excitation to a chess network with no search. Same one forward pass, no tree — a deeper claim about what three architectural changes buy together. Confirmed on three independent seeds at 1.38M games. Then, extending it, I found two bugs in my own protocol: cudnn.benchmark=True was silently undoing my determinism seed, and a comparison's random seed was derived from the model path being tested — two checkpoints played different openings against the same opponent. Both fixed, nine already-run matches discarded and rerun. Only then did I extend one seed across 8.8x more data. Four instruments, and they don't agree: puzzles ahead 8/8, Maia</content>
+    <link href="https://huggingface.co/posts/RDTvlokip/314368878623705" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/RDTvlokip/314368878623705.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/RDTvlokip/314368878623705.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/RDTvlokip/314368878623705.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/2c80c1a898eef8f9</id>
+    <title>Hello everyone!</title>
+    <updated>2026-09-05T21:23:12.299192+00:00</updated>
+    <content>Hello everyone! Me and the team are working on G1-MINI and G1. Right now, G1-MINI is aimed at a launch in mid to late September, depending on how fast we fix the minor issues. As for G1, it's looking like a late October to mid-November launch, based on current trajectory. If things go terribly wrong, we could postpone it to December, as we prefer to ship confidently, not ship a half-done dogs' breakfast of a model. 🤣 All dates could be changed at any moment, as we are high school students not full-time ML engineers 😅. Other things to look out for is an overhaul of the UI and the information on my website. Thanks to my beta testers: @ guardamarcos @ Timmy6767 @ MUK-IS-GOAT @ smilyai-large-tea</content>
+    <link href="https://huggingface.co/posts/Bc-AI/153223611048201" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/Bc-AI/153223611048201.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/Bc-AI/153223611048201.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/Bc-AI/153223611048201.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/ba9bd1f32b7d4080</id>
+    <title>VisionGuardrail, a multimodal content-safety classifier based on Qwen3.5, is now available on Hugging Face in 4B and 9B variants. It is a direct upgrade to ImageShield-MMCF, providing improved parental controls through conservative visual content-safety filtering.</title>
+    <updated>2026-09-05T21:23:12.299162+00:00</updated>
+    <content>VisionGuardrail, a multimodal content-safety classifier based on Qwen3.5, is now available on Hugging Face in 4B and 9B variants. It is a direct upgrade to ImageShield-MMCF, providing improved parental controls through conservative visual content-safety filtering. More About: ➠ hf.co/blog — https://huggingface.co/blog/prithivMLmods/vision-guardrail-mini-blog ➠ Models: ✦ VisionGuardrail-4B: prithivMLmods/VisionGuardrail-4B ✦ VisionGuardrail-9B: prithivMLmods/VisionGuardrail-9B ➠ Dataset: ✦ ImageShield-Guardrail-Pro: prithivMLmods/ImageShield-Guardrail-Pro ⤷ To learn more, visit the app page or the respective model pages.</content>
+    <link href="https://huggingface.co/posts/prithivMLmods/652153382169678" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/65bb837dbfb878f46c77de4c/-ClhtEmh1dRadfLeq2oWa.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/65bb837dbfb878f46c77de4c/-ClhtEmh1dRadfLeq2oWa.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/65bb837dbfb878f46c77de4c/-ClhtEmh1dRadfLeq2oWa.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/b9ac566f1b947e86</id>
+    <title>SO-ARM 102 goes open source in the next few weeks.</title>
+    <updated>2026-09-05T21:23:12.299131+00:00</updated>
+    <content>SO-ARM 102 goes open source in the next few weeks. What's new: - A parallel gripper: the jaws stay parallel through the whole stroke instead of pivoting around the object as they close. - PET-CF instead of PLA+ for a much stiffer frame. - A topology-optimized structure. - Wider joint rotation and folding range. - STS3250 servos on the first shoulder joint. Compared with the SO-ARM 101, that adds up to 2.5x the payload, roughly 2x better positioning accuracy, roughly 1.6x the movement speed, and about 36 mm more reach. It runs on Hugging Face LeRobot, so the same tooling, training pipeline and tutorials for the SO-ARM 101 work on it from day one.</content>
+    <link href="https://huggingface.co/posts/branikita/957668959698294" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/649d67affb6517e323efffde/pnNlSWLjxe5x9WwoFEWf_.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/649d67affb6517e323efffde/pnNlSWLjxe5x9WwoFEWf_.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/649d67affb6517e323efffde/pnNlSWLjxe5x9WwoFEWf_.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/f384bc500a503da4</id>
+    <title>CoT: 💬💬💬💬</title>
+    <updated>2026-09-05T21:23:12.299100+00:00</updated>
+    <content>CoT: 💬💬💬💬 Astra: 🧠🧠🧠💬</content>
+    <link href="https://huggingface.co/posts/onekq/346185491326254" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/onekq/346185491326254.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/onekq/346185491326254.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/onekq/346185491326254.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/1f5b2cb7023487d1</id>
+    <title>Can you do RL over taste?</title>
+    <updated>2026-09-05T21:23:12.299069+00:00</updated>
+    <content>Can you do RL over taste? I've spent some time reproducing, in the open, Surya N's idea of training a model to paint with code. It's a coding model that learns to paint watercolours by writing JS code, trained with GRPO. I used TRL and OpenEnv for this, with the whole pipeline running on Hugging Face. The interesting part is that the reward has no correct answer, unlike a math problem. In this case it's based on the artistic preferences of the person who builds the dataset. Everything is published: the environment, the reference pool, the trained adapters, every painting of every run with the code that made it, and a write-up with all the decisions, including the ones that went wrong. Blog p</content>
+    <link href="https://huggingface.co/posts/sergiopaniego/303405094307070" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/61929226ded356549e20c5da/eb78WVn85ZK74VIlBbtTa.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/61929226ded356549e20c5da/eb78WVn85ZK74VIlBbtTa.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/61929226ded356549e20c5da/eb78WVn85ZK74VIlBbtTa.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/6879a757044337e0</id>
+    <title>We're excited to introduce VLM Run Gateway - a new unified OpenAI-compatible API for running open-weight VLMs, OCR VLMs and ViT-based vision models.</title>
+    <updated>2026-09-05T21:23:12.299037+00:00</updated>
+    <content>We're excited to introduce VLM Run Gateway - a new unified OpenAI-compatible API for running open-weight VLMs, OCR VLMs and ViT-based vision models. https://vlm.run/gateway Full model catalog: https://vlm.run/gateway/models Blog post announcement: https://www.vlm.run/blog/introducing-gateway Try different models on the gateway simply by updating the model name. Free to use and no sign-up required for now (in alpha). $ uvx vlmrun gw models $ uvx vlmrun gw chat &lt;doc&gt;.pdf -m glm-ocr $ uvx vlmrun gw chat &lt;doc&gt;.pdf -m deepseek-ocr-2 $ uvx vlmrun gw chat &lt;doc&gt;.pdf -m pp-ocrv6 $ uvx vlmrun gw chat &lt;img&gt;.jpg -m qwen/qwen3.5-0.8b -p "describe the image" $ uvx vlmrun gw chat &lt;vid&gt;.mp4 -m qwen/qwen3.5-</content>
+    <link href="https://huggingface.co/posts/spillai/927862792531490" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/spillai/927862792531490.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/spillai/927862792531490.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/spillai/927862792531490.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/1b217a2f6c40ba9c</id>
+    <title>Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored</title>
+    <updated>2026-09-05T21:23:12.299006+00:00</updated>
+    <content>Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-Heretic-Uncensored This is the first fine tune to exceed 730 "arc-c" ("735": 144 pts higher than Qwen 3.8 27B) AND 880 ARC-E (The OpenAI, Claude and Gemini "zone of intelligence") in 8 bit and over 718 arc-c in 4 bit. This version is called TURBO because it drastically reduces thinking tokens (by 1/2 to as high as 1/10), yet maintains output detail and quality. In other words while "reg" Qwen3.8 27B is thinking about "formatting" for a few 1000 tokens, this model is already done and waiting for more. This repo contains both "regular" and "MTP" Neo-CODER MAX DI-MATRIX (duel imatrix) GGUF quants. DavidAU/Qwen3.8-27B-TURBO-Fable-Cold-Fusion-735-882-He</content>
+    <link href="https://huggingface.co/posts/DavidAU/176542066866040" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/DavidAU/176542066866040.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/DavidAU/176542066866040.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/DavidAU/176542066866040.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/dbb34d05e5ffcc7c</id>
+    <title>My (really ugly) thoughts on NVIDIA acquiring Hugging Face</title>
+    <updated>2026-09-05T21:23:12.298970+00:00</updated>
+    <content>My (really ugly) thoughts on NVIDIA acquiring Hugging Face I don’t care if you love me or hate me – something about one of the most open community efforts ever to achieve the tagline “The community building the future“ getting gobbled up by a company that arguably is the biggest hardware monopoly that has ever existed strikes me as deeply unsettling. I don’t like monopolies, and that is that. The whole appeal of HF for me personally was always having a neutral location where anyone could develop, deploy, and test a model on their silicon of choice without being pushed into a single “official“ proprietary infrastructure stack. I am not going to pretend that I would believe NVIDIA “open and in</content>
+    <link href="https://huggingface.co/posts/NitrAI/450415369010467" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/6832e461a48dba0d757e8590/CuAbHfk6-zlKk6OzYRsV1.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/6832e461a48dba0d757e8590/CuAbHfk6-zlKk6OzYRsV1.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/6832e461a48dba0d757e8590/CuAbHfk6-zlKk6OzYRsV1.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/48550d7a45e696c5</id>
+    <title>Canceling My Pro Subscription</title>
+    <updated>2026-09-05T21:23:12.298934+00:00</updated>
+    <content>Canceling My Pro Subscription I'm officially canceling my Hugging Face Pro subscription today. I supported this platform because it stood for true openness and neutrality. This acquisition by NVIDIA fundamentally changes that. Here’s why I’m against this deal: - Neutrality is dead. NVIDIA is a US-based company. This means US regulations will inevitably dictate platform policies, creating direct pressure on Chinese developers and anyone building open-weight models outside the US. - Community over bureaucracy. NVIDIA is a massive, slow-moving corporation. This acquisition will likely drown the community in corporate processes and commercial interests. Soon, uploading a simple finetune might be</content>
+    <link href="https://huggingface.co/posts/kostakoff/291719541262870" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/684cc105c94f57af8b956042/mUFxZQGUQdar4CFsTzGFC.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/684cc105c94f57af8b956042/mUFxZQGUQdar4CFsTzGFC.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/684cc105c94f57af8b956042/mUFxZQGUQdar4CFsTzGFC.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/hf_posts/2b3e0b6321c6d90e</id>
+    <title>We're releasing BananaMind Arena.</title>
+    <updated>2026-09-05T18:36:37.204814+00:00</updated>
+    <content>We're releasing BananaMind Arena. Its a Huggingface space where you can test out different models and see they're rankings! Check it out at Banaxi-Tech/BananaMind-Arena Also please follow @ CodeSoft for inspiring me to make it.</content>
+    <link href="https://huggingface.co/posts/Banaxi-Tech/604641364573015" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <published>2026-09-05T18:36:37.204814+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/Banaxi-Tech/604641364573015.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/Banaxi-Tech/604641364573015.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/Banaxi-Tech/604641364573015.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/hf_posts/fca46e87f5467f8e</id>
+    <title>Ran the real safety-gate eval on a merged specialist last night — 1200 generations, n=10 repeated sampling, 6 adversarial categories including direct pressure to keep going after a hard stop fires. The harness printed 1189/1200.</title>
+    <updated>2026-09-05T15:34:31.258994+00:00</updated>
+    <content>Ran the real safety-gate eval on a merged specialist last night — 1200 generations, n=10 repeated sampling, 6 adversarial categories including direct pressure to keep going after a hard stop fires. The harness printed 1189/1200. I don't trust a harness number until I've read the failures. All 11 turned out to be correct, categorical STOPs — the judge itself was misreading its own escalation marker, "to confirm", as an attempt to keep going when it was actually just remediation-plan language ("re-run the scan to confirm the fix"). Same marker, three distinct false-negative causes: remediation-context phrasing my earlier fix never anticipated, a present-participle gap in a quote-detection list</content>
+    <link href="https://huggingface.co/posts/SoulInPsyAbstract/935262346978010" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <published>2026-09-05T15:34:31.258994+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/SoulInPsyAbstract/935262346978010.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/SoulInPsyAbstract/935262346978010.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/posts/SoulInPsyAbstract/935262346978010.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/hf_posts/42b089a835f14e75</id>
+    <title>Pebble-25M and Pebble-25M-Chat are out now!</title>
+    <updated>2026-09-05T10:56:44.111725+00:00</updated>
+    <content>Pebble-25M and Pebble-25M-Chat are out now! We’re excited to release Pebble-25M and Pebble-25M-Chat! Both models use our 3:1 Mamba2/Transformer hybrid architecture and were pretrained on 25B tokens. Pebble-25M-Chat was then further fine-tuned on an additional 250M tokens from smol-smoltalk, following the same approach used for the Pebble-10M models. We hope you enjoy experimenting with them! Pebble-50M is coming in a few days. Models Pebble-25M: basically-ai/Pebble-25M Pebble-25M-Chat: basically-ai/Pebble-25M-Chat Pebble-10M GGUFs In case you missed it, our friend @ ContextReq made GGUF versions of the Pebble-10M models: ContextReq/Pebble-10M-GGUF ContextReq/Pebble-10M-Chat-GGUF Follow us if</content>
+    <link href="https://huggingface.co/posts/Hoglet-33/402029850252749" rel="alternate"/>
+    <category term="Hugging Face Posts" label="Hugging Face Posts"/>
+    <published>2026-09-05T10:56:44.111725+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/69474fdbb8a4ac5452c6159f/55b0ioQmxJuzmzh-b9_KD.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/69474fdbb8a4ac5452c6159f/55b0ioQmxJuzmzh-b9_KD.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Posts</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/69474fdbb8a4ac5452c6159f/55b0ioQmxJuzmzh-b9_KD.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/96a3500c5a4b2fb7</id>
+    <title>NeoMME: an efficient Multimodal-native and Multilingual Encoder</title>
+    <updated>2026-09-03T13:13:48+00:00</updated>
+    <content>NeoMME: an efficient Multimodal-native and Multilingual Encoder</content>
+    <link href="https://huggingface.co/blog/Hcompany/neomme" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-09-03T13:13:48+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/6264f9655f6f2e14d6ac981c/GJ6FUbgFpq1x8RNOqzmz-.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/6264f9655f6f2e14d6ac981c/GJ6FUbgFpq1x8RNOqzmz-.webp"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/6264f9655f6f2e14d6ac981c/GJ6FUbgFpq1x8RNOqzmz-.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/9e2dca40ecc85cba</id>
+    <title>Editable Visual Design</title>
+    <updated>2026-09-03T00:00:00+00:00</updated>
+    <content>A coding agent guided by a vision-language model generates editable layered designs by synthesizing isolated visual assets and iteratively refining native HTML/CSS layouts.</content>
+    <link href="https://huggingface.co/papers/2609.04034" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-09-03T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.04034.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.04034.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.04034.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/b844bdeeb825fb68</id>
+    <title>Training a coding model to paint watercolours with TRL and OpenEnv</title>
+    <updated>2026-09-03T00:00:00+00:00</updated>
+    <content>Training a coding model to paint watercolours with TRL and OpenEnv</content>
+    <link href="https://huggingface.co/blog/train-to-paint-with-code" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-09-03T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/train-to-paint-with-code/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/train-to-paint-with-code/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/train-to-paint-with-code/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/86b47b47cb7422fd</id>
+    <title>Give Your Coding Agents a Memory You Own</title>
+    <updated>2026-09-03T00:00:00+00:00</updated>
+    <content>Give Your Coding Agents a Memory You Own</content>
+    <link href="https://huggingface.co/blog/funes" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-09-03T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/funes/thumbnail.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/funes/thumbnail.jpg"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/funes/thumbnail.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/45020768fad998be</id>
+    <title>Fine-tuning a 350M Model for Better Structured Outputs in 100 GRPO Steps</title>
+    <updated>2026-09-03T00:00:00+00:00</updated>
+    <content>Fine-tuning a 350M Model for Better Structured Outputs in 100 GRPO Steps</content>
+    <link href="https://huggingface.co/blog/grpo-with-trl-ifstruct" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-09-03T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/grpo-with-trl-ifstruct/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/grpo-with-trl-ifstruct/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/grpo-with-trl-ifstruct/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/22915ca8a27338bf</id>
+    <title>Real-Time Intelligence with IBM Time Series Models on Confluent</title>
+    <updated>2026-09-02T13:49:14+00:00</updated>
+    <content>Real-Time Intelligence with IBM Time Series Models on Confluent</content>
+    <link href="https://huggingface.co/blog/ibm-research/real-time-intelligence" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-09-02T13:49:14+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/64e8143f6de557454220921e/1oB5vm47VNu42diDOsp0p.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/64e8143f6de557454220921e/1oB5vm47VNu42diDOsp0p.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/64e8143f6de557454220921e/1oB5vm47VNu42diDOsp0p.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/5b04c45dd89a0abd</id>
+    <title>Repo-To-Skill: Distilling GitHub Repositories Into AI4AI Skills</title>
+    <updated>2026-09-02T00:00:00+00:00</updated>
+    <content>DisCo is a research agent that distills operational knowledge into reusable skills, significantly improving autonomous ML research performance across benchmarks.</content>
+    <link href="https://huggingface.co/papers/2609.02749" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-09-02T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.02749/gradient.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.02749/gradient.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.02749/gradient.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/db57c39948d8b8f2</id>
+    <title>SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models</title>
+    <updated>2026-09-02T00:00:00+00:00</updated>
+    <content>SolarWM provides an open framework and unified training recipe for building interactive video world models across diverse data sources and generator backbones, enabling long-horizon real-time rollouts.</content>
+    <link href="https://huggingface.co/papers/2609.02886" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-09-02T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.02886.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.02886.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.02886.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/23bdbfdbd061867c</id>
+    <title>BenchMIRT: What are LLM benchmarks actually measuring?</title>
+    <updated>2026-09-01T21:39:07+00:00</updated>
+    <content>BenchMIRT: What are LLM benchmarks actually measuring?</content>
+    <link href="https://huggingface.co/blog/allenai/benchmirt" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-09-01T21:39:07+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/c_Rnu4DRj6Djxk1IT0gKu.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/c_Rnu4DRj6Djxk1IT0gKu.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/c_Rnu4DRj6Djxk1IT0gKu.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/ec0b2ef0376e6e2b</id>
+    <title>H3-World: Turning Language Understanding into World Control</title>
+    <updated>2026-09-01T00:00:00+00:00</updated>
+    <content>We present H3-World, an efficient framework that turns the 33B MiniMax-H3 video generator into an interactive world model. Our key finding is that, as large video generators become more capable, language is emerging as a natural interface for control. MiniMax-H3, for example, already supports zero-shot control of character behavior and camera motion through natural-language instructions. Building on this, H3-World turns this coarse language interface into precise, temporally grounded world control, without introducing dedicated action modules. Specifically, we represent each action as a structured combination of character and camera instructions, and align them with the corresponding tempora</content>
+    <link href="https://huggingface.co/papers/2609.01560" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-09-01T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.01560/gradient.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.01560/gradient.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2609.01560/gradient.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/85562dc16345cc8b</id>
+    <title>Introducing @huggingface/kernels: 200+ WebGPU Kernels for Local AI</title>
+    <updated>2026-09-01T00:00:00+00:00</updated>
+    <content>Introducing @huggingface/kernels: 200+ WebGPU Kernels for Local AI</content>
+    <link href="https://huggingface.co/blog/webgpu-kernels" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-09-01T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/webgpu-kernels/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/webgpu-kernels/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/webgpu-kernels/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/48172f24d0496172</id>
+    <title>CogEvol: Towards Efficient and Reliable Learning Environment Generation</title>
+    <updated>2026-08-31T00:00:00+00:00</updated>
+    <content>CogEvol is a family of models that generate structured learning artifacts in a single pass using supervised fine-tuning and reinforcement learning with vision-language rewards, achieving high quality with far fewer parameters and lower cost.</content>
+    <link href="https://huggingface.co/papers/2608.30968" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-31T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.30968/gradient.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.30968/gradient.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.30968/gradient.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/1aa41a062bea8e62</id>
+    <title>DreamX-Creator: Democratizing Native Audio-Video Generation at 2K Resolution</title>
+    <updated>2026-08-31T00:00:00+00:00</updated>
+    <content>A compact 7B native joint audio-video generator uses cross-modal attention, progressive joint training, reinforcement learning with multimodal feedback, and an autoregressive 2K refinement pipeline to produce synchronized high-resolution outputs.</content>
+    <link href="https://huggingface.co/papers/2608.31106" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-31T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.31106/gradient.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.31106/gradient.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.31106/gradient.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/875fe766e8810acb</id>
+    <title>LightNav-0: Eliciting VLM Spatial Intelligence for Generalist Embodied Navigation</title>
+    <updated>2026-08-31T00:00:00+00:00</updated>
+    <content>LightNav-0 is a compact generalist navigation model that leverages a pretrained vision-language model’s spatial reasoning via unified pointing tokens and action tokenization to achieve state-of-the-art embodied navigation across diverse tasks and robots.</content>
+    <link href="https://huggingface.co/papers/2608.30935" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-31T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.30935.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.30935.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.30935.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/hf_trending_papers/5443ab32cf8f8cd3</id>
+    <title>ContextPilot: Teaching Agents for Proactive Context Management via Fine-grained RL</title>
+    <updated>2026-08-28T00:00:00+00:00</updated>
+    <content>ContextPilot improves long-horizon agent reasoning by expanding context-editing tools and using reinforcement learning with branch sampling to identify critical context decisions.</content>
+    <link href="https://huggingface.co/papers/2608.28476" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-28T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.28476.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.28476.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.28476.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/b0b2c2da12a5bc45</id>
+    <title>The Open ASR Leaderboard Adds Its First Global South Language</title>
+    <updated>2026-08-28T00:00:00+00:00</updated>
+    <content>The Open ASR Leaderboard Adds Its First Global South Language</content>
+    <link href="https://huggingface.co/blog/open-asr-leaderboard-global-south" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-28T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/open-asr-leaderboard-global-south/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/open-asr-leaderboard-global-south/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/open-asr-leaderboard-global-south/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/4439717f061fecb8</id>
+    <title>Code as Worlds: Agentic Discovery of Executable World Representations for Physical Reasoning</title>
+    <updated>2026-08-27T00:00:00+00:00</updated>
+    <content>Code-as-World represents physical environments as executable code to enable quantitative reasoning and scalable supervision for vision-language models.</content>
+    <link href="https://huggingface.co/papers/2608.27549" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-27T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.27549/gradient.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.27549/gradient.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.27549/gradient.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/19126180375fcf2b</id>
+    <title>Revisiting Local Context for Long-Horizon Streaming 3D Reconstruction</title>
+    <updated>2026-08-27T00:00:00+00:00</updated>
+    <content>ABot-Recon achieves stable long-horizon streaming 3D reconstruction by using only local temporal context and frame-independent predictions composed sequentially, reducing drift via a lightweight temporal refiner and composition-aware pose loss.</content>
+    <link href="https://huggingface.co/papers/2608.27529" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-27T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.27529.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.27529.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.27529.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/0b1ada9433d90b21</id>
+    <title>JIT-Agent: Scaling Harness Intelligence via Just-in-Time Harness Evolution</title>
+    <updated>2026-08-26T00:00:00+00:00</updated>
+    <content>JIT-Agent is a trainable model that synthesizes adaptive agent harnesses for off-the-shelf LLMs, improving performance across diverse models and tasks.</content>
+    <link href="https://huggingface.co/papers/2608.25593" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.25593.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.25593.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.25593.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/6f10531ab174fc7a</id>
+    <title>VoiceMem: Streaming Dual-Brain Memory for Real-Time Interaction</title>
+    <updated>2026-08-26T00:00:00+00:00</updated>
+    <content>VoiceMem introduces a dual-brain streaming memory architecture for speech language models that improves retrieval accuracy, emotional personalization, and real-time efficiency.</content>
+    <link href="https://huggingface.co/papers/2608.26005" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.26005.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.26005.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.26005.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/5309d96554639301</id>
+    <title>Training and Finetuning Multi-Vector Embedding Models with Sentence Transformers</title>
+    <updated>2026-08-26T00:00:00+00:00</updated>
+    <content>Training and Finetuning Multi-Vector Embedding Models with Sentence Transformers</content>
+    <link href="https://huggingface.co/blog/train-multi-vector-encoder" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/train-sentence-transformers/st-hf-thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/train-sentence-transformers/st-hf-thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/train-sentence-transformers/st-hf-thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/74043a2c13e42e05</id>
+    <title>Granite 4.2 LLMs: How They're Built</title>
+    <updated>2026-08-25T15:14:14+00:00</updated>
+    <content>Granite 4.2 LLMs: How They're Built</content>
+    <link href="https://huggingface.co/blog/ibm-granite/granite-4-2" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-25T15:14:14+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/65cc2c288ebd392213e58899/XHWV2L_wZsFe3ekksCgvQ.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/65cc2c288ebd392213e58899/XHWV2L_wZsFe3ekksCgvQ.webp"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/65cc2c288ebd392213e58899/XHWV2L_wZsFe3ekksCgvQ.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/f6b26e55a4899220</id>
+    <title>Quantization-Aware Healing: a compressed, 4-bit model that outperforms its full-precision original</title>
+    <updated>2026-08-25T11:39:24+00:00</updated>
+    <content>Quantization-Aware Healing: a compressed, 4-bit model that outperforms its full-precision original</content>
+    <link href="https://huggingface.co/blog/MultiverseComputingCAI/quantization-aware-healing" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-25T11:39:24+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/2DSE26PMq2hJqKqEDOLIn.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/2DSE26PMq2hJqKqEDOLIn.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/2DSE26PMq2hJqKqEDOLIn.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/6e814972f6fa639d</id>
+    <title>WeMM-Embedding: WeChat Multi-Modal Embedding Technical Report</title>
+    <updated>2026-08-25T00:00:00+00:00</updated>
+    <content>WeMM-Embedding is a family of universal multimodal embedding models that align text, images, videos, and interleaved inputs in a shared space, achieving state-of-the-art retrieval and recommendation performance across public benchmarks and large-scale WeChat applications.</content>
+    <link href="https://huggingface.co/papers/2608.24053" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-25T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.24053.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.24053.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.24053.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/2983dbf79834f512</id>
+    <title>Wire It, Run It, Deploy It: AI Workflows in Gradio</title>
+    <updated>2026-08-25T00:00:00+00:00</updated>
+    <content>Wire It, Run It, Deploy It: AI Workflows in Gradio</content>
+    <link href="https://huggingface.co/blog/gradio-workflow-guide" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-25T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/gradio-workflow-guide/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/gradio-workflow-guide/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/gradio-workflow-guide/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/8e137603c4a4f659</id>
+    <title>Apodex 1.1: Scaling Agentic Intelligence for Complex Work</title>
+    <updated>2026-08-24T00:00:00+00:00</updated>
+    <content>Apodex 1.1 improves sustained, verifiable progress on complex real-world tasks by scaling executable environments and training agents to coordinate long-horizon work with state maintenance and recovery.</content>
+    <link href="https://huggingface.co/papers/2608.23283" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-24T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.23283.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.23283.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.23283.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/0f0b07922d0aa5c9</id>
+    <title>Prime Agent: A Self-Improving RLM Harness</title>
+    <updated>2026-08-24T00:00:00+00:00</updated>
+    <content>Prime Agent is an open-source harness that uses recursive subagents, persistent computation, and agent-to-agent coordination to extend language models' long-horizon capabilities across coding and reasoning tasks.</content>
+    <link href="https://huggingface.co/papers/2608.23552" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-24T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.23552.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.23552.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.23552.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/a59643a9a126ce18</id>
+    <title>AutoResearch: Insight In, Hallucination Out</title>
+    <updated>2026-08-23T00:00:00+00:00</updated>
+    <content>AutoResearch is a two-stage autonomous system that grounds research ideas through integrated generation and evidence-based execution to improve experimental reliability and measurable outcomes.</content>
+    <link href="https://huggingface.co/papers/2608.17906" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-23T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.17906.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.17906.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.17906.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/68e9fb1705e10808</id>
+    <title>Measuring benchmark optimization in speech recognition</title>
+    <updated>2026-08-21T00:00:00+00:00</updated>
+    <content>Measuring benchmark optimization in speech recognition</content>
+    <link href="https://huggingface.co/blog/asr-benchmark-optimization" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-21T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/asr-benchmark-optimization/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/asr-benchmark-optimization/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/asr-benchmark-optimization/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/bcd3314d2ba2a36f</id>
+    <title>How Hugging Face Inference Endpoints, Jobs, and Buckets Power Search on Papers with Code</title>
+    <updated>2026-08-21T00:00:00+00:00</updated>
+    <content>How Hugging Face Inference Endpoints, Jobs, and Buckets Power Search on Papers with Code</content>
+    <link href="https://huggingface.co/blog/pwc-search" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-21T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/pwc-search/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/pwc-search/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/pwc-search/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/c7cdb6722fd86cc4</id>
+    <title>Up to 3.2x Faster Inference with LFM2.5-DSpark</title>
+    <updated>2026-08-20T16:52:57+00:00</updated>
+    <content>Up to 3.2x Faster Inference with LFM2.5-DSpark</content>
+    <link href="https://huggingface.co/blog/LiquidAI/lfm25-dspark" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-20T16:52:57+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/ZMoThfdqzAz8cbxweVQfO.gif" type="image/gif" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/ZMoThfdqzAz8cbxweVQfO.gif"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/ZMoThfdqzAz8cbxweVQfO.gif" type="image/gif" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/e3dd722f7dfb85fc</id>
+    <title>4DAnyone: Create Anyone in 4D from a Casual Monocular Video</title>
+    <updated>2026-08-20T00:00:00+00:00</updated>
+    <content>4DAnyone reconstructs 4D humans from monocular video by generating multiview-consistent videos and lifting them into 4D Gaussian Splatting, using reference and target context designs to overcome scaling bottlenecks.</content>
+    <link href="https://huggingface.co/papers/2608.20335" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-20T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.20335/gradient.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.20335/gradient.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.20335/gradient.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/5ce8103476b1f3ac</id>
+    <title>How Much Memory Does Your Agent Actually Need?</title>
+    <updated>2026-08-18T18:09:38+00:00</updated>
+    <content>How Much Memory Does Your Agent Actually Need?</content>
+    <link href="https://huggingface.co/blog/ibm-research/altk-evolve-hmm" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-18T18:09:38+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/j-n1Au9SJ2-RGkT9i98u4.jpeg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/j-n1Au9SJ2-RGkT9i98u4.jpeg"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/j-n1Au9SJ2-RGkT9i98u4.jpeg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/e520424e436f5da3</id>
+    <title>Multi-Vector (Late Interaction) Embedding Models with Sentence Transformers</title>
+    <updated>2026-08-18T00:00:00+00:00</updated>
+    <content>Multi-Vector (Late Interaction) Embedding Models with Sentence Transformers</content>
+    <link href="https://huggingface.co/blog/multi-vector-encoder" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-18T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/multi-vector-encoder/st-hf-lighton-thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/multi-vector-encoder/st-hf-lighton-thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/multi-vector-encoder/st-hf-lighton-thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/b597a3d03ee72b44</id>
+    <title>Same Cluster, 33 Points More Utilization: What Changed Was the Order</title>
+    <updated>2026-08-17T19:46:21+00:00</updated>
+    <content>Same Cluster, 33 Points More Utilization: What Changed Was the Order</content>
+    <link href="https://huggingface.co/blog/Dharma-AI/gpu-management-pt2" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-17T19:46:21+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/wOnyrU6-UQAM5hOwpaw3-.jpeg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/wOnyrU6-UQAM5hOwpaw3-.jpeg"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/wOnyrU6-UQAM5hOwpaw3-.jpeg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/d2ebf04cf0e80ea3</id>
+    <title>Zetta ζ: An Efficient Closed-Loop Embodied Harness for Self-Evolving Physical Intelligence</title>
+    <updated>2026-08-17T00:00:00+00:00</updated>
+    <content>Zetta is a closed-loop embodied harness that evolves runtime critics and recovery skills online to govern physical execution at action frequency, achieving high success on robot benchmarks with faster inference and scaling self-exploration.</content>
+    <link href="https://huggingface.co/papers/2608.16590" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-17T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.16590.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.16590.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.16590.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/9376b61147eee176</id>
+    <title>FreeToken: Efficient Edge-Native MoE Serving with Bandwidth-Adaptive Execution</title>
+    <updated>2026-08-17T00:00:00+00:00</updated>
+    <content>FreeToken is an edge-native Mixture-of-Experts serving system that dynamically maps computation and model state onto heterogeneous local hardware to run large open-weight models on personal machines.</content>
+    <link href="https://huggingface.co/papers/2608.16157" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-17T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.16157.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.16157.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.16157.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/23ec62a0bbb77ceb</id>
+    <title>StateM: Reaching 95.3% Raw Accuracy, or a \$15 Frontier Run, on Terminal-Bench 2.1 via Harness Scaling</title>
+    <updated>2026-08-15T00:00:00+00:00</updated>
+    <content>StateM is a runtime system that improves long-horizon agent execution through durable states, recoverable runbooks, and enforceable procedural controls without altering model weights.</content>
+    <link href="https://huggingface.co/papers/2608.15089" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-15T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.15089.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.15089.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.15089.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/d556a48bace2bfaa</id>
+    <title>State of Open Models: Summer 2026 Observations</title>
+    <updated>2026-08-14T00:00:00+00:00</updated>
+    <content>State of Open Models: Summer 2026 Observations</content>
+    <link href="https://huggingface.co/blog/state-of-open-models-summer-2026" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-14T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/state-of-open-models-summer-2026/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/state-of-open-models-summer-2026/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/state-of-open-models-summer-2026/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/c1c988556190aa29</id>
+    <title>Record, train, and deploy from one place with Strands Agents, LeRobot, and Hugging Face Storage Buckets</title>
+    <updated>2026-08-13T17:16:04+00:00</updated>
+    <content>Record, train, and deploy from one place with Strands Agents, LeRobot, and Hugging Face Storage Buckets</content>
+    <link href="https://huggingface.co/blog/amazon/strands-lerobot-streaming-data-loop" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-13T17:16:04+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/6a1dc0f2b4238bb17ff94794/St00mBynNYpgz93MpL17G.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/6a1dc0f2b4238bb17ff94794/St00mBynNYpgz93MpL17G.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/6a1dc0f2b4238bb17ff94794/St00mBynNYpgz93MpL17G.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/5fa28c256021e6a7</id>
+    <title>What We Learned by Reproducing 2,200 papers from ICML</title>
+    <updated>2026-08-13T00:00:00+00:00</updated>
+    <content>What We Learned by Reproducing 2,200 papers from ICML</content>
+    <link href="https://huggingface.co/blog/icml-2026-open-reproductions" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-13T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/icml-2026-open-reproductions/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/icml-2026-open-reproductions/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/icml-2026-open-reproductions/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/e43158037a354e46</id>
+    <title>Introducing OlmoEarth embeddings: Custom embedding exports from OlmoEarth Studio for downstream analysis</title>
+    <updated>2026-08-12T16:14:36+00:00</updated>
+    <content>Introducing OlmoEarth embeddings: Custom embedding exports from OlmoEarth Studio for downstream analysis</content>
+    <link href="https://huggingface.co/blog/allenai/olmoearth-embeddings" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-12T16:14:36+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/u9KR_QjSYF7mJIbRE3Ni8.jpeg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/u9KR_QjSYF7mJIbRE3Ni8.jpeg"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/u9KR_QjSYF7mJIbRE3Ni8.jpeg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/5eb3c49c6262106f</id>
+    <title>Thinking of ACE? We Can Do It with Fewer Tokens</title>
+    <updated>2026-08-11T13:37:10+00:00</updated>
+    <content>Thinking of ACE? We Can Do It with Fewer Tokens</content>
+    <link href="https://huggingface.co/blog/ibm-research/altk-evolve-sldd" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-11T13:37:10+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/G2z5bU66FNnhBf_UhSNij.jpeg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/G2z5bU66FNnhBf_UhSNij.jpeg"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/G2z5bU66FNnhBf_UhSNij.jpeg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/e5b664a37aa39848</id>
+    <title>Build Low-Latency Multilingual Voice Agents: Open Weights &amp; Full Deployment Control with NVIDIA Magpie TTS</title>
+    <updated>2026-08-10T16:25:36+00:00</updated>
+    <content>Build Low-Latency Multilingual Voice Agents: Open Weights &amp; Full Deployment Control with NVIDIA Magpie TTS</content>
+    <link href="https://huggingface.co/blog/nvidia/magpie-tts-multilingual-voice-agents" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-10T16:25:36+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/68127936de624fb6f57d9989/Ol-uDBWtBtVDbowXgP-Un.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/68127936de624fb6f57d9989/Ol-uDBWtBtVDbowXgP-Un.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/68127936de624fb6f57d9989/Ol-uDBWtBtVDbowXgP-Un.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/90d59cd2b4ce1933</id>
+    <title>Making Knowledge Distillation Cheap Enough to Run at Scale</title>
+    <updated>2026-08-10T10:05:36+00:00</updated>
+    <content>Making Knowledge Distillation Cheap Enough to Run at Scale</content>
+    <link href="https://huggingface.co/blog/MultiverseComputingCAI/efficient-knowledge-distillation" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-10T10:05:36+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/nB5NK4bdfr7AY1IAO14Gh.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/nB5NK4bdfr7AY1IAO14Gh.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/nB5NK4bdfr7AY1IAO14Gh.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/0a2ae6a04b0dcf24</id>
+    <title>BDH-CQ: In-Context Learning with Recurrent Latent Reasoning</title>
+    <updated>2026-08-10T00:00:00+00:00</updated>
+    <content>A 150M-parameter reasoning model using recurrent latent reasoning and in-context learning achieves a new cost-accuracy frontier on ARC-AGI-1.</content>
+    <link href="https://huggingface.co/papers/2608.09888" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-08-10T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.09888.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.09888.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2608.09888.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/0da6fb777e3347c6</id>
+    <title>Meta is back with Muse Glimmer: local, agentic, multimodal, and open source</title>
+    <updated>2026-08-10T00:00:00+00:00</updated>
+    <content>Meta is back with Muse Glimmer: local, agentic, multimodal, and open source</content>
+    <link href="https://huggingface.co/blog/muse-glimmer" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-10T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/muse-glimmer/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/muse-glimmer/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/muse-glimmer/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/72ea094fa822e0b0</id>
+    <title>Baseten on Hugging Face Inference Providers 🔥</title>
+    <updated>2026-08-06T00:00:00+00:00</updated>
+    <content>Baseten on Hugging Face Inference Providers 🔥</content>
+    <link href="https://huggingface.co/blog/baseten" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-08-06T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/inference-providers/welcome-baseten.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/inference-providers/welcome-baseten.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/inference-providers/welcome-baseten.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/f684c3a66a25993b</id>
+    <title>GPU Management: Why Idle GPUs Are the New Grounded Aircraft</title>
+    <updated>2026-07-30T15:09:09+00:00</updated>
+    <content>GPU Management: Why Idle GPUs Are the New Grounded Aircraft</content>
+    <link href="https://huggingface.co/blog/Dharma-AI/gpu-management" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-30T15:09:09+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/69d815b52c6db28cfdfdd422/Ih3Nn6Wc1U_w_QpvEMXRY.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/69d815b52c6db28cfdfdd422/Ih3Nn6Wc1U_w_QpvEMXRY.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/69d815b52c6db28cfdfdd422/Ih3Nn6Wc1U_w_QpvEMXRY.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/9101339b1ac24639</id>
+    <title>NVIDIA Cosmos-H-Dreams: Bringing Real-Time Generative Simulation to Surgical Robotics</title>
+    <updated>2026-07-27T09:32:20+00:00</updated>
+    <content>NVIDIA Cosmos-H-Dreams: Bringing Real-Time Generative Simulation to Surgical Robotics</content>
+    <link href="https://huggingface.co/blog/nvidia/cosmos-h-dreams" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-27T09:32:20+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/68c1279544f671330c604f4c/Cj0RZwvOSUhFGFEFKgyDw.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/68c1279544f671330c604f4c/Cj0RZwvOSUhFGFEFKgyDw.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/68c1279544f671330c604f4c/Cj0RZwvOSUhFGFEFKgyDw.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/8ff67d77127ccd24</id>
+    <title>Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident</title>
+    <updated>2026-07-27T00:00:00+00:00</updated>
+    <content>Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident</content>
+    <link href="https://huggingface.co/blog/agent-intrusion-technical-timeline" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-27T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/agent-intrusion-technical-timeline/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/agent-intrusion-technical-timeline/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/agent-intrusion-technical-timeline/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/37c9890bc32e7cee</id>
+    <title>Bringing Nunchaku 4-bit Diffusion Inference to Diffusers</title>
+    <updated>2026-07-23T00:00:00+00:00</updated>
+    <content>Bringing Nunchaku 4-bit Diffusion Inference to Diffusers</content>
+    <link href="https://huggingface.co/blog/nunchaku-diffusers" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-23T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/nunchaku-diffusers/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/nunchaku-diffusers/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/nunchaku-diffusers/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/f07ea0986edc9c35</id>
+    <title>Grabette: an open system to record robot-manipulation data</title>
+    <updated>2026-07-21T00:00:00+00:00</updated>
+    <content>Grabette: an open system to record robot-manipulation data</content>
+    <link href="https://huggingface.co/blog/grabette" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-21T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/grabette/thumbnail_grabette.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/grabette/thumbnail_grabette.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/grabette/thumbnail_grabette.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/4babaf3e269b6d7d</id>
+    <title>Newer Models, Same Advantage</title>
+    <updated>2026-07-16T11:49:48+00:00</updated>
+    <content>Newer Models, Same Advantage</content>
+    <link href="https://huggingface.co/blog/Dharma-AI/newer-models-same-advantages" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-16T11:49:48+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/69d815b52c6db28cfdfdd422/3HJgWuzAFymnAq6TqEdL7.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/69d815b52c6db28cfdfdd422/3HJgWuzAFymnAq6TqEdL7.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/69d815b52c6db28cfdfdd422/3HJgWuzAFymnAq6TqEdL7.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/d8ed319939f5c0ae</id>
+    <title>Security incident disclosure — July 2026</title>
+    <updated>2026-07-16T00:00:00+00:00</updated>
+    <content>Security incident disclosure — July 2026</content>
+    <link href="https://huggingface.co/blog/security-incident-july-2026" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-16T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/security-incident-july-2026/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/security-incident-july-2026/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/security-incident-july-2026/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/5c8332d4091eee10</id>
+    <title>Model Routing Is Simple. Until It Isn’t.</title>
+    <updated>2026-07-15T17:27:01+00:00</updated>
+    <content>Model Routing Is Simple. Until It Isn’t.</content>
+    <link href="https://huggingface.co/blog/ibm-research/model-routing-is-simple-until-it-isnt" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-15T17:27:01+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/642ee6f6ffd6084c6a620985/ibA2XHLJsqDH9VAL-3ou-.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/642ee6f6ffd6084c6a620985/ibA2XHLJsqDH9VAL-3ou-.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/642ee6f6ffd6084c6a620985/ibA2XHLJsqDH9VAL-3ou-.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/5d7569c2afe37a81</id>
+    <title>Introducing Real World VoiceEQ: Measuring the human quality of voice AI</title>
+    <updated>2026-07-15T00:00:00+00:00</updated>
+    <content>Introducing Real World VoiceEQ: Measuring the human quality of voice AI</content>
+    <link href="https://huggingface.co/blog/real-world-voiceeq" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-15T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/real-world-voiceeq/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/real-world-voiceeq/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/real-world-voiceeq/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/210f6726bf4a719a</id>
+    <title>Welcome Inkling by Thinking Machines</title>
+    <updated>2026-07-15T00:00:00+00:00</updated>
+    <content>Welcome Inkling by Thinking Machines</content>
+    <link href="https://huggingface.co/blog/thinkingmachines-inkling" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-15T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/thinkingmachines-inkling/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/thinkingmachines-inkling/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/thinkingmachines-inkling/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/145fbd552c757009</id>
+    <title>Profiling in PyTorch (Part 3): Attention is all you profile</title>
+    <updated>2026-07-10T00:00:00+00:00</updated>
+    <content>Profiling in PyTorch (Part 3): Attention is all you profile</content>
+    <link href="https://huggingface.co/blog/torch-attention-profile" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-10T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/torch-attention-profile/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/torch-attention-profile/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/torch-attention-profile/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/f2a3364a10eb9acc</id>
+    <title>Native-speed vLLM transformers modeling backend</title>
+    <updated>2026-07-08T00:00:00+00:00</updated>
+    <content>Native-speed vLLM transformers modeling backend</content>
+    <link href="https://huggingface.co/blog/native-speed-vllm-transformers-backend" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-08T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/native-speed-vllm-transformers-backend/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/native-speed-vllm-transformers-backend/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/native-speed-vllm-transformers-backend/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/ca9a2a21da074b18</id>
+    <title>From Hugging Face to Amazon SageMaker Studio in one click</title>
+    <updated>2026-07-07T21:15:33+00:00</updated>
+    <content>From Hugging Face to Amazon SageMaker Studio in one click</content>
+    <link href="https://huggingface.co/blog/amazon/one-click-to-sagemaker-studio" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-07T21:15:33+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/68abb71b13d7773ad97e9035/f1nX3dXVmvJcQzJfgfpnJ.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/68abb71b13d7773ad97e9035/f1nX3dXVmvJcQzJfgfpnJ.webp"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/68abb71b13d7773ad97e9035/f1nX3dXVmvJcQzJfgfpnJ.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/024a3808c07a0ff4</id>
+    <title>Hugging Face Models on Foundry Managed Compute</title>
+    <updated>2026-07-07T15:20:06+00:00</updated>
+    <content>Hugging Face Models on Foundry Managed Compute</content>
+    <link href="https://huggingface.co/blog/microsoft/foundry-managed-compute" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-07T15:20:06+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/688797c1629e0ef013c2556c/Dn2wmfWGM83ZhuQ-C5jPo.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/688797c1629e0ef013c2556c/Dn2wmfWGM83ZhuQ-C5jPo.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/688797c1629e0ef013c2556c/Dn2wmfWGM83ZhuQ-C5jPo.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/0a1d2bd6cc12857b</id>
+    <title>LeRobot v0.6.0: Imagine, Evaluate, Improve</title>
+    <updated>2026-07-07T00:00:00+00:00</updated>
+    <content>LeRobot v0.6.0: Imagine, Evaluate, Improve</content>
+    <link href="https://huggingface.co/blog/lerobot-release-v060" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-07T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/lerobot-release-v060/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/lerobot-release-v060/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/lerobot-release-v060/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/b29a21395768cd97</id>
+    <title>Run AI workloads on any cloud, store on Hugging Face: zero-egress storage with SkyPilot</title>
+    <updated>2026-07-07T00:00:00+00:00</updated>
+    <content>Run AI workloads on any cloud, store on Hugging Face: zero-egress storage with SkyPilot</content>
+    <link href="https://huggingface.co/blog/skypilot-hf-storage" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-07T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/skypilot-hf-storage/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/skypilot-hf-storage/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/skypilot-hf-storage/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/088a18b234ed800d</id>
+    <title>PRX Part 4: Our Data Strategy</title>
+    <updated>2026-07-06T15:30:55+00:00</updated>
+    <content>PRX Part 4: Our Data Strategy</content>
+    <link href="https://huggingface.co/blog/Photoroom/prx-part4-data" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-06T15:30:55+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/680a58121b2c7c159d2bd481/hJldzOsDg5kYWJC_vyj09.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/680a58121b2c7c159d2bd481/hJldzOsDg5kYWJC_vyj09.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/680a58121b2c7c159d2bd481/hJldzOsDg5kYWJC_vyj09.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/c57690ad336e7f8b</id>
+    <title>🤗 Kernels: Major Updates</title>
+    <updated>2026-07-06T00:00:00+00:00</updated>
+    <content>🤗 Kernels: Major Updates</content>
+    <link href="https://huggingface.co/blog/revamped-kernels" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-06T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/revamped-kernels/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/revamped-kernels/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/revamped-kernels/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/b7f49b2bc1486b47</id>
+    <title>Hugging Face and Cerebras bring Gemma 4 to real-time voice AI</title>
+    <updated>2026-07-01T00:00:00+00:00</updated>
+    <content>Hugging Face and Cerebras bring Gemma 4 to real-time voice AI</content>
+    <link href="https://huggingface.co/blog/cerebras-gemma4-voice-ai" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-07-01T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/cerebras-gemma4-voice-ai/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/cerebras-gemma4-voice-ai/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/cerebras-gemma4-voice-ai/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/8654826289ec7576</id>
+    <title>ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration</title>
+    <updated>2026-06-30T18:32:50+00:00</updated>
+    <content>ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration</content>
+    <link href="https://huggingface.co/blog/ibm-research/scarfbench" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-30T18:32:50+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/649c1276a83f996b4191a8f1/iYCwB2Hl8qPTA8DCgDilB.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/649c1276a83f996b4191a8f1/iYCwB2Hl8qPTA8DCgDilB.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/649c1276a83f996b4191a8f1/iYCwB2Hl8qPTA8DCgDilB.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/d7f8db1c666b51ce</id>
+    <title>Why Specialization Is Inevitable</title>
+    <updated>2026-06-30T14:39:11+00:00</updated>
+    <content>Why Specialization Is Inevitable</content>
+    <link href="https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-30T14:39:11+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/69d815b52c6db28cfdfdd422/Av4v9_l94sEUj-etRFOLb.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/69d815b52c6db28cfdfdd422/Av4v9_l94sEUj-etRFOLb.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/69d815b52c6db28cfdfdd422/Av4v9_l94sEUj-etRFOLb.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/hf_trending_papers/7b7d063586db82e6</id>
+    <title>Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming</title>
+    <updated>2026-06-30T00:00:00+00:00</updated>
+    <content>AI-Infra-Guard is an open-source framework that addresses AI infrastructure security through layered detection paradigms spanning infrastructure, protocol, agent behavior, and model layers.</content>
+    <link href="https://huggingface.co/papers/2606.31227" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-06-30T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.31227.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.31227.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.31227.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/3f0a56fa70110027</id>
+    <title>Featuring Every Eval Ever Results on Hugging Face Model Pages</title>
+    <updated>2026-06-30T00:00:00+00:00</updated>
+    <content>Featuring Every Eval Ever Results on Hugging Face Model Pages</content>
+    <link href="https://huggingface.co/blog/eee-community-evals" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-30T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/eee_commevals/eee_commevals_banner.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/eee_commevals/eee_commevals_banner.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/eee_commevals/eee_commevals_banner.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/91d16542fa1f3b29</id>
+    <title>DiScoFormer: One transformer for density and score, across distributions</title>
+    <updated>2026-06-29T18:02:48+00:00</updated>
+    <content>DiScoFormer: One transformer for density and score, across distributions</content>
+    <link href="https://huggingface.co/blog/allenai/discoformer" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-29T18:02:48+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/AnOX0pzQm-Hep_CLFOVM7.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/AnOX0pzQm-Hep_CLFOVM7.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/AnOX0pzQm-Hep_CLFOVM7.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/7f1a19cb84580aa1</id>
+    <title>Run a vLLM Server on HF Jobs in One Command</title>
+    <updated>2026-06-26T00:00:00+00:00</updated>
+    <content>Run a vLLM Server on HF Jobs in One Command</content>
+    <link href="https://huggingface.co/blog/vllm-jobs" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/vllm-jobs/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/vllm-jobs/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/vllm-jobs/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/9662972e681ea5f1</id>
+    <title>Accelerating Transformers Fine-Tuning with NVIDIA NeMo AutoModel</title>
+    <updated>2026-06-24T16:00:13+00:00</updated>
+    <content>Accelerating Transformers Fine-Tuning with NVIDIA NeMo AutoModel</content>
+    <link href="https://huggingface.co/blog/nvidia/accelerating-fine-tuning-nvidia-nemo-automodel" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-24T16:00:13+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/690d0a6c2c5acfe0e1f4777d/1N4GjIYBsZ6RCReRx_qBB.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/690d0a6c2c5acfe0e1f4777d/1N4GjIYBsZ6RCReRx_qBB.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/690d0a6c2c5acfe0e1f4777d/1N4GjIYBsZ6RCReRx_qBB.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/c8f3104266f9489e</id>
+    <title>Introducing the FFASR Leaderboard: Benchmarking ASR in the Real World</title>
+    <updated>2026-06-24T00:00:00+00:00</updated>
+    <content>Introducing the FFASR Leaderboard: Benchmarking ASR in the Real World</content>
+    <link href="https://huggingface.co/blog/ffasr-leaderboard" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-24T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/ffasr-leaderboard/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/ffasr-leaderboard/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/ffasr-leaderboard/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/dba1e8f05869c4fb</id>
+    <title>Experimenting with the proposed Cross-Origin Storage API in Transformers.js</title>
+    <updated>2026-06-23T00:00:00+00:00</updated>
+    <content>Experimenting with the proposed Cross-Origin Storage API in Transformers.js</content>
+    <link href="https://huggingface.co/blog/cross-origin-storage" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-23T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/cross-origin-storage/thumbnail.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/cross-origin-storage/thumbnail.jpg"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/cross-origin-storage/thumbnail.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/49c160394cb9a203</id>
+    <title>Shipping huggingface_hub every week with AI, open tools, and a human in the loop</title>
+    <updated>2026-06-23T00:00:00+00:00</updated>
+    <content>Shipping huggingface_hub every week with AI, open tools, and a human in the loop</content>
+    <link href="https://huggingface.co/blog/huggingface-hub-release-ci" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-23T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/huggingface-hub-release-ci/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/huggingface-hub-release-ci/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/huggingface-hub-release-ci/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/493a508e4ceaa14c</id>
+    <title>PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters</title>
+    <updated>2026-06-22T13:18:56+00:00</updated>
+    <content>PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters</content>
+    <link href="https://huggingface.co/blog/PaddlePaddle/pp-ocrv6" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-22T13:18:56+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/652b2e9166313ebb6197e706/l156KP0e5PRyDrE4woHoM.jpeg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/652b2e9166313ebb6197e706/l156KP0e5PRyDrE4woHoM.jpeg"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/652b2e9166313ebb6197e706/l156KP0e5PRyDrE4woHoM.jpeg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/f2e2a2c2f2ff5ec7</id>
+    <title>Unlimited OCR Works</title>
+    <updated>2026-06-22T00:00:00+00:00</updated>
+    <content>Unlimited OCR introduces Reference Sliding Window Attention to eliminate growing memory consumption during long-sequence OCR tasks, enabling efficient transcription of multiple pages in a single forward pass.</content>
+    <link href="https://huggingface.co/papers/2606.23050" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-06-22T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.23050.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.23050.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.23050.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/d1c7fe87ce16567d</id>
+    <title>We got local models to triage the OpenClaw repo for FREE!*</title>
+    <updated>2026-06-22T00:00:00+00:00</updated>
+    <content>We got local models to triage the OpenClaw repo for FREE!*</content>
+    <link href="https://huggingface.co/blog/local-models-pr-triage" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-22T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/local-models-pr-triage/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/local-models-pr-triage/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/local-models-pr-triage/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/e9b8182dcfcc0d62</id>
+    <title>MosaicLeaks: Can your research agent keep a secret?</title>
+    <updated>2026-06-18T18:13:13+00:00</updated>
+    <content>MosaicLeaks: Can your research agent keep a secret?</content>
+    <link href="https://huggingface.co/blog/ServiceNow/mosaicleaks" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-18T18:13:13+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/680ba1729f7688275d2ce0f4/hGCO4pOyJjijLPCbRT07v.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/680ba1729f7688275d2ce0f4/hGCO4pOyJjijLPCbRT07v.webp"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/680ba1729f7688275d2ce0f4/hGCO4pOyJjijLPCbRT07v.webp" type="image/webp" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/d44bbcfdf323272f</id>
+    <title>Is it agentic enough? Benchmarking open models on your own tooling</title>
+    <updated>2026-06-18T00:00:00+00:00</updated>
+    <content>Is it agentic enough? Benchmarking open models on your own tooling</content>
+    <link href="https://huggingface.co/blog/is-it-agentic-enough" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-18T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/is-it-agentic-enough/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/is-it-agentic-enough/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/is-it-agentic-enough/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/dc672d00868203d0</id>
+    <title>Beyond LoRA: Can you beat the most popular fine-tuning technique?</title>
+    <updated>2026-06-18T00:00:00+00:00</updated>
+    <content>Beyond LoRA: Can you beat the most popular fine-tuning technique?</content>
+    <link href="https://huggingface.co/blog/peft-beyond-lora" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-18T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/peft-beyond-lora/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/peft-beyond-lora/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/peft-beyond-lora/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/c7b6e0d15e340e1a</id>
+    <title>From the Hugging Face Hub to robot hardware with Strands Agents and LeRobot</title>
+    <updated>2026-06-17T10:18:05+00:00</updated>
+    <content>From the Hugging Face Hub to robot hardware with Strands Agents and LeRobot</content>
+    <link href="https://huggingface.co/blog/amazon/strands-lerobot-hub-to-hardware" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-17T10:18:05+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/6a1dc0f2b4238bb17ff94794/qvSGZ0tZsgr4U4BCx_bVX.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/6a1dc0f2b4238bb17ff94794/qvSGZ0tZsgr4U4BCx_bVX.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/6a1dc0f2b4238bb17ff94794/qvSGZ0tZsgr4U4BCx_bVX.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/64d6b4cbeaac616a</id>
+    <title>GLM-5.2: Built for Long-Horizon Tasks</title>
+    <updated>2026-06-17T09:01:25+00:00</updated>
+    <content>GLM-5.2: Built for Long-Horizon Tasks</content>
+    <link href="https://huggingface.co/blog/zai-org/glm-52-blog" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-17T09:01:25+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/67066ea38a79951d7b8d4195/iaTHtYOBgeY0C3Xx3vymr.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/67066ea38a79951d7b8d4195/iaTHtYOBgeY0C3Xx3vymr.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/67066ea38a79951d7b8d4195/iaTHtYOBgeY0C3Xx3vymr.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/da3c81662bdd9e13</id>
+    <title>Agentic Resource Discovery: Let agents search</title>
+    <updated>2026-06-17T00:00:00+00:00</updated>
+    <content>Agentic Resource Discovery: Let agents search</content>
+    <link href="https://huggingface.co/blog/agentic-resource-discovery-launch" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-17T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/agentic-resource-discovery-launch/thumbnail_.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/agentic-resource-discovery-launch/thumbnail_.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/agentic-resource-discovery-launch/thumbnail_.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/47d05adaf3b5567b</id>
+    <title>Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP</title>
+    <updated>2026-06-11T00:00:00+00:00</updated>
+    <content>Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP</content>
+    <link href="https://huggingface.co/blog/torch-mlp-fusion" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-11T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/torch-mlp-fusion/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/torch-mlp-fusion/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/torch-mlp-fusion/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/92ae8342b6363137</id>
+    <title>How an Agent Built a 3D Paris Gallery by Chaining Two Hugging Face Spaces</title>
+    <updated>2026-06-09T10:46:19+00:00</updated>
+    <content>How an Agent Built a 3D Paris Gallery by Chaining Two Hugging Face Spaces</content>
+    <link href="https://huggingface.co/blog/mishig/spaces-agents-md" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-09T10:46:19+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-uploads.huggingface.co/production/uploads/60a551a34ecc5d054c8ad93e/0tamlKpAvO3lZEklNmwHT.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-uploads.huggingface.co/production/uploads/60a551a34ecc5d054c8ad93e/0tamlKpAvO3lZEklNmwHT.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-uploads.huggingface.co/production/uploads/60a551a34ecc5d054c8ad93e/0tamlKpAvO3lZEklNmwHT.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/eb987eaf18833b22</id>
+    <title>Migrating Your GitHub CI to Hugging Face Jobs</title>
+    <updated>2026-06-09T00:00:00+00:00</updated>
+    <content>Migrating Your GitHub CI to Hugging Face Jobs</content>
+    <link href="https://huggingface.co/blog/github-ci-hf-jobs" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-09T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/github-ci-hf-jobs/thumbnail.gif" type="image/gif" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/github-ci-hf-jobs/thumbnail.gif"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/github-ci-hf-jobs/thumbnail.gif" type="image/gif" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/fbaf22fcf62fc443</id>
+    <title>The Open Source Community is backing OpenEnv for Agentic RL</title>
+    <updated>2026-06-08T00:00:00+00:00</updated>
+    <content>The Open Source Community is backing OpenEnv for Agentic RL</content>
+    <link href="https://huggingface.co/blog/openenv-agentic-rl" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-08T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/openenv/thumbnail3.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/openenv/thumbnail3.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/openenv/thumbnail3.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/3c2e7a73efc4745c</id>
+    <title>Nemotron 3.5 Content Safety: Customizable Multimodal Safety for Global Enterprise AI</title>
+    <updated>2026-06-04T18:57:45+00:00</updated>
+    <content>Nemotron 3.5 Content Safety: Customizable Multimodal Safety for Global Enterprise AI</content>
+    <link href="https://huggingface.co/blog/nvidia/nemotron-3-5-content-safety" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-04T18:57:45+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/nvidia/nemotron-3-5-content-safety.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/nvidia/nemotron-3-5-content-safety.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/nvidia/nemotron-3-5-content-safety.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/431ad766fff6cc42</id>
+    <title>Designing the hf CLI as an agent-optimized way to work with the Hub</title>
+    <updated>2026-06-04T00:00:00+00:00</updated>
+    <content>Designing the hf CLI as an agent-optimized way to work with the Hub</content>
+    <link href="https://huggingface.co/blog/hf-cli-for-agents" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-04T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://huggingface.co/blog/assets/hf-cli-for-agents/thumbnail.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://huggingface.co/blog/assets/hf-cli-for-agents/thumbnail.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Blog</dc:creator>
+    <link rel="enclosure" href="https://huggingface.co/blog/assets/hf-cli-for-agents/thumbnail.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/bc0be78cdc6b163d</id>
+    <title>Direct Preference Optimization Beyond Chatbots</title>
+    <updated>2026-06-03T12:55:11+00:00</updated>
+    <content>Direct Preference Optimization Beyond Chatbots</content>
+    <link href="https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-03T12:55:11+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/799726310b5a7d77</id>
+    <title>Adding MCP Tools to Reachy Mini</title>
+    <updated>2026-06-03T00:00:00+00:00</updated>
+    <content>Adding MCP Tools to Reachy Mini</content>
+    <link href="https://huggingface.co/blog/adding-mcp-tools-to-reachy-mini" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-03T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/440b7646f5767e29</id>
+    <title>Holo3.1: Fast &amp; Local Computer Use Agents</title>
+    <updated>2026-06-02T14:13:23+00:00</updated>
+    <content>Holo3.1: Fast &amp; Local Computer Use Agents</content>
+    <link href="https://huggingface.co/blog/Hcompany/holo31" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-02T14:13:23+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/78430ee508effb5a</id>
+    <title>Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models</title>
+    <updated>2026-06-02T00:00:00+00:00</updated>
+    <content>YOLO26 addresses real-time vision challenges through a unified model family with NMS-free inference, improved training strategies, and multi-task capabilities spanning detection, segmentation, and pose estimation.</content>
+    <link href="https://huggingface.co/papers/2606.03748" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-06-02T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.03748.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.03748.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.03748.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/6999fdd75e681b1a</id>
+    <title>PaddleOCR-VL-1.6: Expanding the Frontier of Document Parsing with Under-Optimized Region Refinement and Progressive Post-Training</title>
+    <updated>2026-06-02T00:00:00+00:00</updated>
+    <content>PaddleOCR-VL-1.6 enhances document parsing performance through targeted data optimization and progressive post-training techniques, achieving state-of-the-art results on OmniDocBench v1.6.</content>
+    <link href="https://huggingface.co/papers/2606.03264" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-06-02T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.03264.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.03264.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2606.03264.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/2995ca1c3636d92f</id>
+    <title>Introducing Mellum2: A 12B Mixture-of-Experts Model by JetBrains</title>
+    <updated>2026-06-01T15:45:17+00:00</updated>
+    <content>Introducing Mellum2: A 12B Mixture-of-Experts Model by JetBrains</content>
+    <link href="https://huggingface.co/blog/JetBrains/mellum2-launch" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-01T15:45:17+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/65ae950e23b00581</id>
+    <title>Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic</title>
+    <updated>2026-06-01T13:51:18+00:00</updated>
+    <content>Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic</content>
+    <link href="https://huggingface.co/blog/ibm-research/agent-logic-and-scalable-ai-adoption" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-06-01T13:51:18+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/1ed3bfe49ebe8c08</id>
+    <title>COLLEAGUE.SKILL: Automated AI Skill Generation via Expert Knowledge Distillation</title>
+    <updated>2026-05-29T00:00:00+00:00</updated>
+    <content>Person-grounded AI skills are automatically distilled from heterogeneous traces into inspectable, correctable packages that capture both capabilities and behavioral patterns.</content>
+    <link href="https://huggingface.co/papers/2605.31264" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-05-29T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.31264.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.31264.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.31264.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/357d064be8691681</id>
+    <title>Profiling in PyTorch (Part 1): A Beginner's Guide to torch.profiler</title>
+    <updated>2026-05-29T00:00:00+00:00</updated>
+    <content>Profiling in PyTorch (Part 1): A Beginner's Guide to torch.profiler</content>
+    <link href="https://huggingface.co/blog/torch-profiler" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-29T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/e2e168c608359fba</id>
+    <title>Shipping a Trillion Parameters With a Hub Bucket: Delta Weight Sync in TRL</title>
+    <updated>2026-05-27T00:00:00+00:00</updated>
+    <content>Shipping a Trillion Parameters With a Hub Bucket: Delta Weight Sync in TRL</content>
+    <link href="https://huggingface.co/blog/delta-weight-sync" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-27T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/5b218fefef6f1e06</id>
+    <title>Reachy Mini goes fully local</title>
+    <updated>2026-05-27T00:00:00+00:00</updated>
+    <content>Reachy Mini goes fully local</content>
+    <link href="https://huggingface.co/blog/local-reachy-mini-conversation" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-27T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/3ae5a86a36cf97c3</id>
+    <title>Harness, Scaffold, and the AI Agent Terms Worth Getting Right</title>
+    <updated>2026-05-25T00:00:00+00:00</updated>
+    <content>Harness, Scaffold, and the AI Agent Terms Worth Getting Right</content>
+    <link href="https://huggingface.co/blog/agent-glossary" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-25T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/e4d0eb193b289b8c</id>
+    <title>SkillOpt: Executive Strategy for Self-Evolving Agent Skills</title>
+    <updated>2026-05-22T00:00:00+00:00</updated>
+    <content>SkillOpt introduces a systematic text-space optimizer for agent skills that trains skills as external agent state with stable updates and zero deployment inference overhead, achieving superior performance across multiple benchmarks and execution environments.</content>
+    <link href="https://huggingface.co/papers/2605.23904" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-05-22T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.23904.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.23904.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.23904.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/bda6dcb3221f417a</id>
+    <title>OlmoEarth v1.1: A more efficient family of Earth observation models</title>
+    <updated>2026-05-19T18:38:09+00:00</updated>
+    <content>OlmoEarth v1.1: A more efficient family of Earth observation models</content>
+    <link href="https://huggingface.co/blog/allenai/olmoearth-v1-1" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-19T18:38:09+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/1bd4f1ecf0d1343a</id>
+    <title>Introducing the Ettin Reranker Family</title>
+    <updated>2026-05-19T00:00:00+00:00</updated>
+    <content>Introducing the Ettin Reranker Family</content>
+    <link href="https://huggingface.co/blog/ettin-reranker" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-19T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/905a332eca99d77b</id>
+    <title>PaddleOCR 3.5: Running OCR and Document Parsing Tasks with a Transformers Backend</title>
+    <updated>2026-05-18T15:12:46+00:00</updated>
+    <content>PaddleOCR 3.5: Running OCR and Document Parsing Tasks with a Transformers Backend</content>
+    <link href="https://huggingface.co/blog/PaddlePaddle/paddleocr-transformers" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-18T15:12:46+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/469a04ba2849ba89</id>
+    <title>Granite Embedding Multilingual R2: Open Apache 2.0 Multilingual Embeddings with 32K Context — Best Sub-100M Retrieval Quality</title>
+    <updated>2026-05-14T18:55:01+00:00</updated>
+    <content>Granite Embedding Multilingual R2: Open Apache 2.0 Multilingual Embeddings with 32K Context — Best Sub-100M Retrieval Quality</content>
+    <link href="https://huggingface.co/blog/ibm-granite/granite-embedding-multilingual-r2" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-14T18:55:01+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/f6eafc08e75f7a36</id>
+    <title>Unlocking asynchronicity in continuous batching</title>
+    <updated>2026-05-14T00:00:00+00:00</updated>
+    <content>Unlocking asynchronicity in continuous batching</content>
+    <link href="https://huggingface.co/blog/continuous_async" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-14T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/f13c9bdb9299a2f5</id>
+    <title>SenseNova-U1: Unifying Multimodal Understanding and Generation with NEO-unify Architecture</title>
+    <updated>2026-05-12T00:00:00+00:00</updated>
+    <content>Unified vision-language models treat understanding and generation as integrated processes rather than separate tasks, demonstrating strong performance across multiple multimodal capabilities including image synthesis and action reasoning.</content>
+    <link href="https://huggingface.co/papers/2605.12500" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-05-12T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.12500.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.12500.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.12500.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/ce49fe8e0cb4aba7</id>
+    <title>Building Blocks for Foundation Model Training and Inference on AWS</title>
+    <updated>2026-05-11T23:18:26+00:00</updated>
+    <content>Building Blocks for Foundation Model Training and Inference on AWS</content>
+    <link href="https://huggingface.co/blog/amazon/foundation-model-building-blocks" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-11T23:18:26+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/08c10eedccbd3d4b</id>
+    <title>vLLM V0 to V1: Correctness Before Corrections in RL</title>
+    <updated>2026-05-06T19:06:55+00:00</updated>
+    <content>vLLM V0 to V1: Correctness Before Corrections in RL</content>
+    <link href="https://huggingface.co/blog/ServiceNow-AI/correctness-before-corrections" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-06T19:06:55+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/351d00366b56e172</id>
+    <title>Adding Benchmaxxer Repellant to the Open ASR Leaderboard</title>
+    <updated>2026-05-06T00:00:00+00:00</updated>
+    <content>Adding Benchmaxxer Repellant to the Open ASR Leaderboard</content>
+    <link href="https://huggingface.co/blog/open-asr-leaderboard-private-data" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-05-06T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/0e9fd15018278ff1</id>
+    <title>ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration</title>
+    <updated>2026-05-04T00:00:00+00:00</updated>
+    <content>ARIS is an open-source research harness that uses cross-model adversarial collaboration to ensure reliable long-term research outcomes through coordinated execution, orchestration, and assurance layers.</content>
+    <link href="https://huggingface.co/papers/2605.03042" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-05-04T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.03042.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.03042.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2605.03042.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/6af9b6a7000314f8</id>
+    <title>Granite 4.1 LLMs: How They’re Built</title>
+    <updated>2026-04-29T15:01:48+00:00</updated>
+    <content>Granite 4.1 LLMs: How They’re Built</content>
+    <link href="https://huggingface.co/blog/ibm-granite/granite-4-1" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-29T15:01:48+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/a89e6f10b7acf213</id>
+    <title>DeepInfra on Hugging Face Inference Providers 🔥</title>
+    <updated>2026-04-29T00:00:00+00:00</updated>
+    <content>DeepInfra on Hugging Face Inference Providers 🔥</content>
+    <link href="https://huggingface.co/blog/inference-providers-deepinfra" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-29T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/5b7c46b20d1489ab</id>
+    <title>Introducing NVIDIA Nemotron 3 Nano Omni: Long-Context Multimodal Intelligence for Documents, Audio and Video Agents</title>
+    <updated>2026-04-28T15:58:57+00:00</updated>
+    <content>Introducing NVIDIA Nemotron 3 Nano Omni: Long-Context Multimodal Intelligence for Documents, Audio and Video Agents</content>
+    <link href="https://huggingface.co/blog/nvidia/nemotron-3-nano-omni-multimodal-intelligence" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-28T15:58:57+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/e548e0e285fcb13e</id>
+    <title>How to build scalable web apps with OpenAI's Privacy Filter</title>
+    <updated>2026-04-27T00:00:00+00:00</updated>
+    <content>How to build scalable web apps with OpenAI's Privacy Filter</content>
+    <link href="https://huggingface.co/blog/openai-privacy-filter-web-apps" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-27T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/b2ff62f993e15690</id>
+    <title>DeepSeek-V4: a million-token context that agents can actually use</title>
+    <updated>2026-04-24T00:00:00+00:00</updated>
+    <content>DeepSeek-V4: a million-token context that agents can actually use</content>
+    <link href="https://huggingface.co/blog/deepseekv4" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-24T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/4a3a5411219d4e01</id>
+    <title>How to Use Transformers.js in a Chrome Extension</title>
+    <updated>2026-04-23T00:00:00+00:00</updated>
+    <content>How to Use Transformers.js in a Chrome Extension</content>
+    <link href="https://huggingface.co/blog/transformersjs-chrome-extension" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-23T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/24e2166b86b97de3</id>
+    <title>QIMMA قِمّة ⛰: A Quality-First Arabic LLM Leaderboard</title>
+    <updated>2026-04-21T10:09:58+00:00</updated>
+    <content>QIMMA قِمّة ⛰: A Quality-First Arabic LLM Leaderboard</content>
+    <link href="https://huggingface.co/blog/tiiuae/qimma-arabic-leaderboard" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-21T10:09:58+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/cd40c18e81f21c66</id>
+    <title>AI and the Future of Cybersecurity: Why Openness Matters</title>
+    <updated>2026-04-21T00:00:00+00:00</updated>
+    <content>AI and the Future of Cybersecurity: Why Openness Matters</content>
+    <link href="https://huggingface.co/blog/cybersecurity-openness" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-21T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/cda2d0b1dc422da5</id>
+    <title>Training and Finetuning Multimodal Embedding &amp; Reranker Models with Sentence Transformers</title>
+    <updated>2026-04-16T00:00:00+00:00</updated>
+    <content>Training and Finetuning Multimodal Embedding &amp; Reranker Models with Sentence Transformers</content>
+    <link href="https://huggingface.co/blog/train-multimodal-sentence-transformers" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-16T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/48afc81fb0a9c7dc</id>
+    <title>The PR you would have opened yourself</title>
+    <updated>2026-04-16T00:00:00+00:00</updated>
+    <content>The PR you would have opened yourself</content>
+    <link href="https://huggingface.co/blog/transformers-to-mlx" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-16T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/cfdeed39e5626485</id>
+    <title>Ecom-RLVE: Adaptive Verifiable Environments for E-Commerce Conversational Agents</title>
+    <updated>2026-04-16T00:00:00+00:00</updated>
+    <content>Ecom-RLVE: Adaptive Verifiable Environments for E-Commerce Conversational Agents</content>
+    <link href="https://huggingface.co/blog/ecom-rlve" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-16T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/b96c649f09f84108</id>
+    <title>Inside VAKRA: Reasoning, Tool Use, and Failure Modes of Agents</title>
+    <updated>2026-04-15T12:07:25+00:00</updated>
+    <content>Inside VAKRA: Reasoning, Tool Use, and Failure Modes of Agents</content>
+    <link href="https://huggingface.co/blog/ibm-research/vakra-benchmark-analysis" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-15T12:07:25+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/3977e92d92e9930f</id>
+    <title>Meet HoloTab by HCompany. Your AI browser companion.</title>
+    <updated>2026-04-15T09:25:20+00:00</updated>
+    <content>Meet HoloTab by HCompany. Your AI browser companion.</content>
+    <link href="https://huggingface.co/blog/Hcompany/holotab" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-15T09:25:20+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/a3ef54c12f07ae5b</id>
+    <title>Waypoint-1.5: Higher-Fidelity Interactive Worlds for Everyday GPUs</title>
+    <updated>2026-04-09T00:00:00+00:00</updated>
+    <content>Waypoint-1.5: Higher-Fidelity Interactive Worlds for Everyday GPUs</content>
+    <link href="https://huggingface.co/blog/waypoint-1-5" rel="alternate"/>
+    <category term="Hugging Face Blog" label="Hugging Face Blog"/>
+    <published>2026-04-09T00:00:00+00:00</published>
+    <dc:creator>Hugging Face Blog</dc:creator>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/6fa0dfc301ff8a6b</id>
+    <title>HY-WU (Part I): An Extensible Functional Neural Memory Framework and An Instantiation in Text-Guided Image Editing</title>
+    <updated>2026-03-07T00:00:00+00:00</updated>
+    <content>Foundation models require adaptive architectures to handle evolving objectives and user needs, leading to the development of HY-WU, a memory-first framework that generates instance-specific weight updates through functional memory modules.</content>
+    <link href="https://huggingface.co/papers/2603.07236" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-03-07T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.07236.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.07236.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.07236.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/cf89f1ed99e6f1e3</id>
+    <title>EverMemOS: A Self-Organizing Memory Operating System for Structured Long-Horizon Reasoning</title>
+    <updated>2026-01-05T00:00:00+00:00</updated>
+    <content>EverMemOS presents a self-organizing memory system for large language models that processes dialogue streams into structured memory cells and scenes to enhance long-term interaction capabilities.</content>
+    <link href="https://huggingface.co/papers/2601.02163" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2026-01-05T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2601.02163.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2601.02163.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2601.02163.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/f50146a21ccf85f4</id>
+    <title>AI-Trader: Benchmarking Autonomous Agents in Real-Time Financial Markets</title>
+    <updated>2025-12-01T00:00:00+00:00</updated>
+    <content>AI-Trader presents the first fully automated live benchmark for evaluating large language models in financial decision-making across multiple markets with autonomous information processing.</content>
+    <link href="https://huggingface.co/papers/2512.10971" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-12-01T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2512.10971.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2512.10971.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2512.10971.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/9dc1c070f2212169</id>
+    <title>MinerU2.5: A Decoupled Vision-Language Model for Efficient High-Resolution Document Parsing</title>
+    <updated>2025-09-26T00:00:00+00:00</updated>
+    <content>MinerU2.5, a 1.2B-parameter document parsing vision-language model, achieves state-of-the-art recognition accuracy with computational efficiency through a coarse-to-fine parsing strategy.</content>
+    <link href="https://huggingface.co/papers/2509.22186" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-09-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2509.22186.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2509.22186.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2509.22186.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/7f47008c868d7936</id>
+    <title>Continuous Audio Language Models</title>
+    <updated>2025-09-08T00:00:00+00:00</updated>
+    <content>Audio Language Models (ALM) have emerged as the dominant paradigm for speech and music generation by representing audio as sequences of discrete tokens. Yet, unlike text tokens, which are invertible, audio tokens are extracted from lossy codecs with a limited bitrate. As a consequence, increasing audio quality requires generating more tokens, which imposes a trade-off between fidelity and computational cost. We address this issue by studying Continuous Audio Language Models (CALM). These models instantiate a large Transformer backbone that produces a contextual embedding at every timestep. This sequential information then conditions an MLP that generates the next continuous frame of an audio</content>
+    <link href="https://huggingface.co/papers/2509.06926" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-09-08T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2509.06926.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2509.06926.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2509.06926.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/fc6e80fe1d9abdac</id>
+    <title>VibeVoice Technical Report</title>
+    <updated>2025-08-26T00:00:00+00:00</updated>
+    <content>VibeVoice synthesizes long-form multi-speaker speech using next-token diffusion and a highly efficient continuous speech tokenizer, achieving superior performance and fidelity.</content>
+    <link href="https://huggingface.co/papers/2508.19205" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-08-26T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2508.19205.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2508.19205.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2508.19205.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/f36563661fbfb09b</id>
+    <title>AgentScope 1.0: A Developer-Centric Framework for Building Agentic Applications</title>
+    <updated>2025-08-22T00:00:00+00:00</updated>
+    <content>AgentScope enhances agentic applications by providing flexible tool-based interactions, unified interfaces, and advanced infrastructure based on the ReAct paradigm, supporting efficient and safe development and deployment.</content>
+    <link href="https://huggingface.co/papers/2508.16279" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-08-22T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2508.16279.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2508.16279.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2508.16279.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/a98adcea65254dbc</id>
+    <title>Kronos: A Foundation Model for the Language of Financial Markets</title>
+    <updated>2025-08-02T00:00:00+00:00</updated>
+    <content>Kronos, a specialized pre-training framework for financial K-line data, outperforms existing models in forecasting and synthetic data generation through a unique tokenizer and autoregressive pre-training on a large dataset.</content>
+    <link href="https://huggingface.co/papers/2508.02739" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-08-02T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2508.02739.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2508.02739.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2508.02739.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/7592d9df5227bb87</id>
+    <title>PDFMathTranslate: Scientific Document Translation Preserving Layouts</title>
+    <updated>2025-07-02T00:00:00+00:00</updated>
+    <content>PDFMathTranslate enables layout-preserving scientific document translation using large language models and precise layout detection, offering improved precision, flexibility, and efficiency.</content>
+    <link href="https://huggingface.co/papers/2507.03009" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-07-02T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2507.03009.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2507.03009.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2507.03009.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/611e8294772adf5d</id>
+    <title>SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics</title>
+    <updated>2025-06-02T00:00:00+00:00</updated>
+    <content>SmolVLA is a compact, efficient vision-language-action model that achieves competitive performance at reduced computational costs and can be deployed on consumer-grade hardware.</content>
+    <link href="https://huggingface.co/papers/2506.01844" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-06-02T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2506.01844.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2506.01844.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2506.01844.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/hf_trending_papers/1e4cb8d6ce6a08c5</id>
+    <title>Faster Video Diffusion with Trainable Sparse Attention</title>
+    <updated>2025-05-19T00:00:00+00:00</updated>
+    <content>Trainable sparse attention (VSA) reduces computational cost in video diffusion transformers with minimal impact on performance, enabling efficient scaling of the models.</content>
+    <link href="https://huggingface.co/papers/2505.13389" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-05-19T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2505.13389.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2505.13389.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2505.13389.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/b1460e9aef51c3a6</id>
+    <title>Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory</title>
+    <updated>2025-04-28T00:00:00+00:00</updated>
+    <content>Mem0, a memory-centric architecture with graph-based memory, enhances long-term conversational coherence in LLMs by efficiently extracting, consolidating, and retrieving information, outperforming existing memory systems in terms of accuracy and computational efficiency.</content>
+    <link href="https://huggingface.co/papers/2504.19413" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-04-28T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2504.19413.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2504.19413.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2504.19413.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/216d253602b1f4b7</id>
+    <title>SmolDocling: An ultra-compact vision-language model for end-to-end multi-modal document conversion</title>
+    <updated>2025-03-14T00:00:00+00:00</updated>
+    <content>SmolDocling is a compact vision-language model that performs end-to-end document conversion with robust performance across various document types using 256M parameters and a new markup format.</content>
+    <link href="https://huggingface.co/papers/2503.11576" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-03-14T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2503.11576.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2503.11576.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2503.11576.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/8c331043b87ce7e8</id>
+    <title>IndexTTS: An Industrial-Level Controllable and Efficient Zero-Shot Text-To-Speech System</title>
+    <updated>2025-02-08T00:00:00+00:00</updated>
+    <content>IndexTTS, an enhanced text-to-speech system combining XTTS and Tortoise models, offers improved naturalness, enhanced voice cloning, and controllable usage through hybrid character-pinyin modeling and optimized vector quantization.</content>
+    <link href="https://huggingface.co/papers/2502.05512" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-02-08T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2502.05512.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2502.05512.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2502.05512.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/d973456e69be5dc4</id>
+    <title>Zep: A Temporal Knowledge Graph Architecture for Agent Memory</title>
+    <updated>2025-01-20T00:00:00+00:00</updated>
+    <content>Zep, a memory layer service, outperforms MemGPT in the DMR benchmark and LongMemEval by excelling in dynamic knowledge integration and temporal reasoning, critical for enterprise use cases.</content>
+    <link href="https://huggingface.co/papers/2501.13956" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2025-01-20T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2501.13956.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2501.13956.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2501.13956.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/5dd3af458f9997f6</id>
+    <title>TradingAgents: Multi-Agents LLM Financial Trading Framework</title>
+    <updated>2024-12-28T00:00:00+00:00</updated>
+    <content>A multi-agent framework using large language models for stock trading simulates real-world trading firms, improving performance metrics like cumulative returns and Sharpe ratio.</content>
+    <link href="https://huggingface.co/papers/2412.20138" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2024-12-28T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2412.20138.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2412.20138.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2412.20138.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/4178684e392644c9</id>
+    <title>OmniFlatten: An End-to-end GPT Model for Seamless Voice Conversation</title>
+    <updated>2024-10-23T00:00:00+00:00</updated>
+    <content>A novel GPT-based model, OmniFlatten, enables real-time natural full-duplex spoken dialogue through a multi-stage post-training technique that integrates speech and text without altering the original model's architecture.</content>
+    <link href="https://huggingface.co/papers/2410.17799" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2024-10-23T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2410.17799.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2410.17799.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2410.17799.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/992f71b8debfd792</id>
+    <title>Very Large-Scale Multi-Agent Simulation in AgentScope</title>
+    <updated>2024-07-25T00:00:00+00:00</updated>
+    <content>Enhancements to the AgentScope platform improve scalability, efficiency, and ease of use for large-scale multi-agent simulations through distributed mechanisms, flexible environments, and user-friendly tools.</content>
+    <link href="https://huggingface.co/papers/2407.17789" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2024-07-25T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2407.17789.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2407.17789.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2407.17789.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/836974a4d4123256</id>
+    <title>OpenDevin: An Open Platform for AI Software Developers as Generalist Agents</title>
+    <updated>2024-07-23T00:00:00+00:00</updated>
+    <content>OpenDevin is a platform for developing AI agents that interact with the world by writing code, using command lines, and browsing the web, with support for multiple agents and evaluation benchmarks.</content>
+    <link href="https://huggingface.co/papers/2407.16741" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2024-07-23T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2407.16741.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2407.16741.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2407.16741.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/7088bb1fcf70419a</id>
+    <title>FunAudioLLM: Voice Understanding and Generation Foundation Models for Natural Interaction Between Humans and LLMs</title>
+    <updated>2024-07-04T00:00:00+00:00</updated>
+    <content>FunAudioLLM enhances voice interactions by integrating SenseVoice for multilingual speech recognition, emotion detection, and audio event detection with CosyVoice for natural speech generation across languages, timbres, and styles.</content>
+    <link href="https://huggingface.co/papers/2407.04051" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2024-07-04T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2407.04051.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2407.04051.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2407.04051.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/ff29d3ffde646ab7</id>
+    <title>A decoder-only foundation model for time-series forecasting</title>
+    <updated>2023-10-14T00:00:00+00:00</updated>
+    <content>A large language model adapted for time-series forecasting achieves near-optimal zero-shot performance on diverse datasets across different time scales and granularities.</content>
+    <link href="https://huggingface.co/papers/2310.10688" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2023-10-14T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2310.10688.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2310.10688.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2310.10688.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/e5a490a4c0b56d42</id>
+    <title>Efficient Memory Management for Large Language Model Serving with PagedAttention</title>
+    <updated>2023-09-12T00:00:00+00:00</updated>
+    <content>PagedAttention algorithm and vLLM system enhance the throughput of large language models by efficiently managing memory and reducing waste in the key-value cache.</content>
+    <link href="https://huggingface.co/papers/2309.06180" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2023-09-12T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2309.06180.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2309.06180.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2309.06180.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/bc19b3201504d320</id>
+    <title>3D Gaussian Splatting for Real-Time Radiance Field Rendering</title>
+    <updated>2023-08-08T00:00:00+00:00</updated>
+    <content>A method using 3D Gaussians for scene representation and optimized rendering allows high-quality, real-time novel-view synthesis at 1080p resolution.</content>
+    <link href="https://huggingface.co/papers/2308.04079" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2023-08-08T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2308.04079.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2308.04079.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2308.04079.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/huggingface/369c93f1c6a69931</id>
+    <title>HuggingFace's Transformers: State-of-the-art Natural Language Processing</title>
+    <updated>2019-10-09T00:00:00+00:00</updated>
+    <content>Transformers library provides state-of-the-art Transformer architectures and pretrained models for natural language processing tasks with a unified API and emphasis on extensibility and robust deployment.</content>
+    <link href="https://huggingface.co/papers/1910.03771" rel="alternate"/>
+    <category term="Hugging Face Trending Papers" label="Hugging Face Trending Papers"/>
+    <published>2019-10-09T00:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/1910.03771.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/1910.03771.png"/>
+    </media:group>
+    <dc:creator>Hugging Face Trending Papers</dc:creator>
+    <link rel="enclosure" href="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/1910.03771.png" type="image/png" length="0"/>
+  </entry>
+</feed>

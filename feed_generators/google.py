@@ -65,7 +65,7 @@ import requests
 import yaml
 from bs4 import BeautifulSoup
 from feedgen.feed import FeedGenerator
-from google_ai_studio import AI_STUDIO_CHANGELOG_URL, collect_ai_studio_changelog
+from _google_ai_studio import AI_STUDIO_CHANGELOG_URL, collect_ai_studio_changelog
 
 from enrich import enrich_entries
 from utils import (

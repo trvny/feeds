@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-103 feedów · 794 źródła
+102 feedów · 794 źródła
 
 ## Spis grup
 
@@ -222,7 +222,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=docs.aihubmix.com&sz=16) AIHubMix Docs Blog (EN) — <https://docs.aihubmix.com/en/blogs>
 - ![](https://www.google.com/s2/favicons?domain=docs.aihubmix.com&sz=16) AIHubMix Changelog — <https://docs.aihubmix.com/en/update/News>
 - ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Desktop — <https://docs.devin.ai/desktop/changelog/rss.xml>
-- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face Blog — <https://huggingface.co/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.mindstudio.ai&sz=16) MindStudio — <https://www.mindstudio.ai/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.mintlify.com&sz=16) Mintlify Changelog — <https://www.mintlify.com/docs/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=www.mintlify.com&sz=16) Mintlify Blog — <https://www.mintlify.com/feed.xml>
@@ -332,10 +331,9 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) Press — <https://about.gitlab.com/press/>
 - ![](https://www.google.com/s2/favicons?domain=about.gitlab.com&sz=16) Whats new — <https://about.gitlab.com/whats-new/>
 
-### ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) GitHub
+### ![](https://www.google.com/s2/favicons?domain=beeware.org&sz=16) GitHub
 `github` · [feed_github.xml](../feeds/feed_github.xml)
 
-- ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Release Notes — <https://docs.devin.ai/release-notes/overview>
 - ![](https://www.google.com/s2/favicons?domain=beeware.org&sz=16) BeeWare News — <https://beeware.org/news/>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Changelog — <https://github.blog/changelog/feed/>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) GitHub Engineering — <https://github.blog/engineering/feed/>
@@ -348,7 +346,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=komistore.app&sz=16) Komi Store — <https://komistore.app/blog/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=github.blog&sz=16) The GitHub Blog — <https://github.blog/feed/>
 - ![](https://www.google.com/s2/favicons?domain=docs.mergify.com&sz=16) Mergify Changelog — <https://docs.mergify.com/changelog/rss.xml>
-- ![](https://www.google.com/s2/favicons?domain=docs.devin.ai&sz=16) Devin Desktop — <https://docs.devin.ai/desktop/changelog/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=blog.gitguardian.com&sz=16) GitGuardian — <https://blog.gitguardian.com/rss/>
 - ![](https://www.google.com/s2/favicons?domain=www.gitkraken.com&sz=16) GitKraken — <https://www.gitkraken.com/feed>
 - ![](https://www.google.com/s2/favicons?domain=feeds.git-tower.com&sz=16) Tower — <https://feeds.git-tower.com/tower-blog>
@@ -863,6 +860,13 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 ## 🗂️ Inne
 
+### ![](https://www.google.com/s2/favicons?domain=1337x.to&sz=16) 1337x
+`1337x` · [feed_1337x.xml](../feeds/feed_1337x.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=1337x.to&sz=16) 1337x.to (trending) — <https://1337x.to/trending>
+- ![](https://www.google.com/s2/favicons?domain=x1337x.cc&sz=16) x1337x.cc (trending) — <https://x1337x.cc/trending>
+- ![](https://www.google.com/s2/favicons?domain=feeds.trfny.com&sz=16) feeds.trfny.com — <https://feeds.trfny.com/?url=https%3A%2F%2F1337x.to%2Ftrending>
+
 ### ![](https://www.google.com/s2/favicons?domain=blog.arxiv.org&sz=16) arXiv
 `arxiv` · [feed_arxiv.xml](../feeds/feed_arxiv.xml)
 
@@ -923,26 +927,18 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) GOG News (PL) — <https://www.gog.com/pl/news/feed>
 - ![](https://www.google.com/s2/favicons?domain=www.gog.com&sz=16) GOG News (EN) — <https://www.gog.com/en/news/feed>
 
-### ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face — Blog
-`hf_blog` · [feed_hf_blog.xml](../feeds/feed_hf_blog.xml)
-
-- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face Blog — <https://huggingface.co/blog/feed.xml>
-
-### ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face — Posts
-`hf_posts` · [feed_hf_posts.xml](../feeds/feed_hf_posts.xml)
-
-- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Posts — <https://huggingface.co/posts>
-
-### ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face — Trending Papers
-`hf_trending_papers` · [feed_hf_trending_papers.xml](../feeds/feed_hf_trending_papers.xml)
-
-- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Trending papers — <https://huggingface.co/papers/trending>
-
 ### ![](https://www.google.com/s2/favicons?domain=support.hp.com&sz=16) HP Newsroom
 `hp` · [feed_hp.xml](../feeds/feed_hp.xml)
 
 - ![](https://www.google.com/s2/favicons?domain=support.hp.com&sz=16) HP Support — <https://support.hp.com/wcc-widget-services/us-en/rss-feed?category=all>
 - ![](https://www.google.com/s2/favicons?domain=www.hpe.com&sz=16) HPE Newsroom — <https://www.hpe.com/us/en/newsroom/rss.xml>
+
+### ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face
+`huggingface` · [feed_huggingface.xml](../feeds/feed_huggingface.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face Blog — <https://huggingface.co/blog/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face Posts — <https://huggingface.co/posts>
+- ![](https://www.google.com/s2/favicons?domain=huggingface.co&sz=16) Hugging Face Trending Papers — <https://huggingface.co/papers/trending>
 
 ### ![](https://www.google.com/s2/favicons?domain=nodejs.org&sz=16) JS | Node
 `js_node` · [feed_js_node.xml](../feeds/feed_js_node.xml)

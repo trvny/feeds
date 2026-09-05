@@ -1,4 +1,4 @@
-"""AIHubMix source adapters for the SkillsLLM aggregate."""
+"""Internal AIHubMix source adapters for the SkillsLLM aggregate."""
 
 from __future__ import annotations
 

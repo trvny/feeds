@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 
-import anthropic_with_alignment as alignment  # noqa: E402
+import anthropic as alignment  # noqa: E402
 
 
 class AnthropicAlignmentTests(unittest.TestCase):
@@ -123,7 +123,7 @@ class AnthropicAlignmentTests(unittest.TestCase):
             patch.object(alignment, "scrape_transformer_circuits", return_value=[]),
             patch.object(alignment, "save_cache") as save_cache,
             patch.object(alignment.anthropic_base, "generate_atom_feed", return_value=feed) as generate,
-            patch.object(alignment.anthropic_base, "save_atom_feed") as save_feed,
+            patch.object(alignment, "save_atom_feed") as save_feed,
         ):
             self.assertTrue(alignment.main())
 
@@ -141,3 +141,4 @@ class AnthropicAlignmentTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

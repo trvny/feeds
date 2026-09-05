@@ -1,20 +1,26 @@
-"""Shared Hugging Face HTML adapters for standalone Feedseek feeds."""
+"""One combined Hugging Face feed: Blog, community Posts, and Trending Papers."""
 
 from __future__ import annotations
 
+import argparse
 import re
+import sys
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
 
-from multi_rss import get_html, parse_date
-from utils import sanitize_xml, setup_logging
+from multi_rss import get_html, parse_date, run
+from utils import favicon_proxy, sanitize_xml, setup_logging
 
 logger = setup_logging()
 
+FEED_NAME = "huggingface"
 BASE_URL = "https://huggingface.co"
+BLOG_URL = f"{BASE_URL}/blog"
+BLOG_FEED_URL = f"{BLOG_URL}/feed.xml"
 POSTS_URL = f"{BASE_URL}/posts"
 TRENDING_PAPERS_URL = f"{BASE_URL}/papers/trending"
+BLOG_SOURCE = "Hugging Face Blog"
 POSTS_SOURCE = "Hugging Face Posts"
 TRENDING_SOURCE = "Hugging Face Trending Papers"
 DESC_LIMIT = 700
@@ -162,3 +168,33 @@ def collect_trending_papers(known_links) -> list[dict]:
     if not entries:
         logger.warning("[%s] no new paper cards matched", TRENDING_SOURCE)
     return entries
+
+
+def doc_sources():
+    """Expose all three Hugging Face surfaces to generated source docs."""
+    return [
+        (BLOG_SOURCE, BLOG_FEED_URL),
+        (POSTS_SOURCE, POSTS_URL),
+        (TRENDING_SOURCE, TRENDING_PAPERS_URL),
+    ]
+
+
+def main(full=False):
+    return run(
+        feed_name=FEED_NAME,
+        title="Hugging Face",
+        subtitle="Hugging Face Blog, community Posts, and Trending Papers in one feed.",
+        blog_url=BASE_URL,
+        author="Hugging Face",
+        sources=[(BLOG_SOURCE, BLOG_FEED_URL, 100)],
+        extra_scrapers=(collect_posts, collect_trending_papers),
+        max_entries=300,
+        icon=favicon_proxy("huggingface.co"),
+        full=full,
+    )
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Generate the combined Hugging Face feed")
+    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild")
+    sys.exit(0 if main(full=parser.parse_args().full) else 1)

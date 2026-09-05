@@ -1,4 +1,4 @@
-"""Google AI Studio release-notes scraper for the combined Google feed."""
+"""Internal Google AI Studio adapter for the combined Google feed."""
 
 from __future__ import annotations
 

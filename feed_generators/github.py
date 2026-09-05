@@ -11,7 +11,7 @@ All regular sources are native RSS:
   * Komi Store, an open-source app store that distributes GitHub Releases.
     Its feed is served from komistore.app but every link points at
     github-store.org, which is the same site under its older domain.
-  * The wider Git/GitHub tooling ecosystem: Mergify, Devin, GitGuardian,
+  * The wider Git/GitHub tooling ecosystem: Mergify, GitGuardian,
     GitKraken, Tower, Shields.io, git-annex, Jekyll, Travis CI and HelloGitHub.
   * The GitHubTrendingRSS streams. Daily, weekly and monthly list the same
     repositories over different windows, so they share one source label: the
@@ -21,8 +21,8 @@ All regular sources are native RSS:
   * Track Awesome List's full and weekly feeds. They share one source label so
     overlapping list updates are deduplicated and use one combined quota.
 
-Devin's general release notes and BeeWare News have no native feeds used here,
-so the generator folds them in with small HTML/MDX adapters.
+BeeWare News has no native feed used here, so the generator folds it in with
+a small HTML adapter.
 
 The changelog is the highest-volume channel by far, so it gets the largest
 quota. The global cap keeps the combined feed bounded while per-source quotas
@@ -35,11 +35,6 @@ import sys
 from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
-from cognition import (
-    DEVIN_DESKTOP_RSS_URL,
-    DEVIN_RELEASE_NOTES_URL,
-    collect_devin_release_notes,
-)
 from multi_rss import get_html, parse_date, run
 from utils import sanitize_xml, stable_fallback_date
 
@@ -65,7 +60,6 @@ SOURCES = [
     ("Komi Store", "https://komistore.app/blog/feed.xml", 20),
     ("The GitHub Blog", "https://github.blog/feed/", 40),
     ("Mergify Changelog", MERGIFY_CHANGELOG_RSS_URL, 30),
-    ("Devin Desktop", DEVIN_DESKTOP_RSS_URL, 30),
     ("GitGuardian", "https://blog.gitguardian.com/rss/", 20),
     ("GitKraken", "https://www.gitkraken.com/feed", 15),
     ("Tower", "https://feeds.git-tower.com/tower-blog", 20),
@@ -159,15 +153,19 @@ def scrape_beeware_news(known_links):
     return entries
 
 
-EXTRA_SCRAPERS = (collect_devin_release_notes, scrape_beeware_news)
+EXTRA_SCRAPERS = (scrape_beeware_news,)
 
 
 def doc_sources():
     """Expose non-RSS sources to generated docs."""
-    return [
-        ("Devin Release Notes", DEVIN_RELEASE_NOTES_URL),
-        (BEEWARE_LABEL, BEEWARE_NEWS_URL),
-    ]
+    return [(BEEWARE_LABEL, BEEWARE_NEWS_URL)]
+
+
+RETIRED_CACHE_SOURCES = {"Devin Desktop", "Devin Release Notes"}
+
+
+def _active_cache_entry(entry):
+    return entry.get("source") not in RETIRED_CACHE_SOURCES
 
 
 def main(full=False):
@@ -175,7 +173,7 @@ def main(full=False):
         feed_name=FEED_NAME,
         title="GitHub",
         subtitle="Combined GitHub feed: GitHub blogs and changelogs, GitHub "
-        "Status, Mergify and Devin updates, BeeWare News, Komi Store, the Git "
+        "Status, Mergify, BeeWare News, Komi Store, the Git "
         "tooling ecosystem, Track Awesome List and deduplicated GitHub trending "
         "streams.",
         blog_url="https://github.blog/",
@@ -184,6 +182,7 @@ def main(full=False):
         extra_scrapers=EXTRA_SCRAPERS,
         max_entries=400,
         per_source_cap=PER_SOURCE_QUOTA,
+        cache_filter=_active_cache_entry,
         full=full,
     )
 
