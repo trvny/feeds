@@ -52,7 +52,11 @@ def _category_for(table):
 
 def parse_trending(document, known_links=()):
     """Extract canonical torrent links and useful listing metadata."""
-    soup = document if isinstance(document, BeautifulSoup) else BeautifulSoup(document or "", "html.parser")
+    soup = (
+        document
+        if isinstance(document, BeautifulSoup)
+        else BeautifulSoup(document or "", "html.parser")
+    )
     seen = {normalize_link(link) for link in known_links}
     entries = []
 
@@ -126,6 +130,10 @@ def main(full=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate the 1337x trending Atom feed")
-    parser.add_argument("--full", action="store_true", help="Ignore cache and rebuild from scratch")
+    parser = argparse.ArgumentParser(
+        description="Generate the 1337x trending Atom feed"
+    )
+    parser.add_argument(
+        "--full", action="store_true", help="Ignore cache and rebuild from scratch"
+    )
     sys.exit(0 if main(full=parser.parse_args().full) else 1)
