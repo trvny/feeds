@@ -567,7 +567,7 @@ def build_index(feeds: list[dict], base: str) -> str:
     <footer class="site">
       <span>Last build: {now}</span>
       <span>Source &amp; how it works · <a href="https://github.com/trvny/feedseek">github.com/trvny/feedseek</a></span>
-      <span><a href="https://travny.pages.dev/">travny ↗</a></span>
+      <span><a href="https://trfny.com/">travny ↗</a></span>
     </footer>
   </main>
 

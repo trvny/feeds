@@ -82,10 +82,10 @@ GROUPS = [
 
 
 def load_yaml_feeds() -> dict:
-    """feed_key -> {'blog_url': ..., 'script': ...} straight from feeds.yaml.
+    """Enabled feed_key -> metadata straight from feeds.yaml.
 
-    feeds.yaml stays the canonical feed set, so the doc can never list a feed
-    that is not published.
+    feeds.yaml stays the canonical feed set; disabled entries have no published
+    artifact and therefore do not belong in the generated source directory.
     """
     data = yaml.safe_load(FEEDS_YAML.read_text(encoding="utf-8")) or {}
     return {
@@ -94,6 +94,7 @@ def load_yaml_feeds() -> dict:
             "script": (cfg or {}).get("script", ""),
         }
         for key, cfg in (data.get("feeds") or {}).items()
+        if (cfg or {}).get("enabled", True)
     }
 
 
