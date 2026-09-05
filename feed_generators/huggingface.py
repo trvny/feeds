@@ -21,7 +21,9 @@ DESC_LIMIT = 700
 
 _POST_LINK_RE = re.compile(r"^/posts/[^/]+/\d+(?:[/?#]|$)")
 _PAPER_LINK_RE = re.compile(r"^/papers/[^/?#]+(?:[/?#]|$)")
-_PAPER_DATE_RE = re.compile(r"\b([A-Z][a-z]{2} \d{1,2}, \d{4})\b")
+_PAPER_DATE_RE = re.compile(
+    r"\bPublished on\s+([A-Z][a-z]{2} \d{1,2}, \d{4})\b"
+)
 
 
 def _clean(text: str, limit: int = DESC_LIMIT) -> str:
@@ -41,12 +43,39 @@ def _canonical_link(href: object) -> str:
 def _structured_date(article) -> object | None:
     """Prefer machine-readable dates exposed by the source card."""
     time_el = article.find("time")
-    if time_el is not None:
-        raw = str(time_el.get("datetime") or time_el.get_text(" ", strip=True) or "")
-        parsed = parse_date(raw)
-        if parsed is not None:
-            return parsed
-    return None
+    if time_el is None:
+        return None
+    raw = str(time_el.get("datetime") or time_el.get_text(" ", strip=True) or "")
+    return parse_date(raw)
+
+
+def _post_entry(article) -> dict | None:
+    """Parse one post card into a normalized entry."""
+    link_el = article.find("a", href=_POST_LINK_RE)
+    if link_el is None:
+        return None
+    raw_href = str(link_el.get("href") or "")
+    link = _canonical_link(raw_href)
+    if not link:
+        return None
+
+    content = article.select_one("div.break-words")
+    parts = [_clean(part) for part in (content.stripped_strings if content else ())]
+    parts = [part for part in parts if part]
+    path_parts = urlsplit(raw_href).path.strip("/").split("/")
+    author = path_parts[1] if len(path_parts) > 1 else "Hugging Face user"
+    title = parts[0] if parts else f"Post by {author}"
+    image_el = article.find(
+        "img", src=re.compile(r"^https://cdn-uploads\.huggingface\.co/")
+    )
+    return {
+        "title": title,
+        "link": link,
+        "date": _structured_date(article),
+        "description": _clean(" ".join(parts)) or title,
+        "source": POSTS_SOURCE,
+        "image": str(image_el.get("src")) if image_el and image_el.get("src") else None,
+    }
 
 
 def parse_posts(html: str, known_links=()) -> list[dict]:
@@ -57,36 +86,13 @@ def parse_posts(html: str, known_links=()) -> list[dict]:
     seen = set()
 
     for article in soup.find_all("article", id=True):
-        link_el = article.find("a", href=_POST_LINK_RE)
-        if link_el is None:
+        entry = _post_entry(article)
+        if entry is None:
             continue
-        raw_href = str(link_el.get("href") or "")
-        link = _canonical_link(raw_href)
-        if not link or link in known or link in seen:
+        link = entry["link"]
+        if link in known or link in seen:
             continue
-
-        content = article.select_one("div.break-words")
-        parts = [_clean(part) for part in (content.stripped_strings if content else ())]
-        parts = [part for part in parts if part]
-        path_parts = urlsplit(raw_href).path.strip("/").split("/")
-        author = path_parts[1] if len(path_parts) > 1 else "Hugging Face user"
-        title = parts[0] if parts else f"Post by {author}"
-        description = _clean(" ".join(parts)) or title
-        published = _structured_date(article)
-
-        image_el = article.find(
-            "img", src=re.compile(r"^https://cdn-uploads\.huggingface\.co/")
-        )
-        entries.append(
-            {
-                "title": title,
-                "link": link,
-                "date": published,
-                "description": description,
-                "source": POSTS_SOURCE,
-                "image": str(image_el.get("src")) if image_el and image_el.get("src") else None,
-            }
-        )
+        entries.append(entry)
         seen.add(link)
 
     return entries
