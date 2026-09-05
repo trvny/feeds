@@ -39,11 +39,14 @@ class Thirteen37xTests(unittest.TestCase):
         self.assertEqual(thirteen37x.parse_trending(SAMPLE, known), [])
 
     def test_scraper_falls_back_between_fetch_urls(self):
-        with patch.object(
-            thirteen37x,
-            "get_html",
-            side_effect=[None, SAMPLE],
-        ) as fetch:
+        with (
+            patch.dict("os.environ", {"GITHUB_ACTIONS": "false"}),
+            patch.object(
+                thirteen37x,
+                "get_html",
+                side_effect=[None, SAMPLE],
+            ) as fetch,
+        ):
             entries = thirteen37x.scrape_1337x(set())
 
         self.assertEqual(len(entries), 1)
