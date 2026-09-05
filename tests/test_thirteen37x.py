@@ -48,8 +48,12 @@ class Thirteen37xTests(unittest.TestCase):
 
         self.assertEqual(len(entries), 1)
         self.assertEqual(fetch.call_count, 2)
-        self.assertEqual(fetch.call_args_list[0].args[0], thirteen37x.FETCH_URLS[0])
-        self.assertEqual(fetch.call_args_list[1].args[0], thirteen37x.FETCH_URLS[1])
+        self.assertEqual(fetch.call_args_list[0].args[0], thirteen37x.DIRECT_URLS[0])
+        self.assertEqual(fetch.call_args_list[1].args[0], thirteen37x.DIRECT_URLS[1])
+
+    def test_actions_prefers_host_locked_proxy(self):
+        with patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}):
+            self.assertEqual(thirteen37x._fetch_urls()[0], thirteen37x.PROXY_URL)
 
 
 if __name__ == "__main__":

@@ -1,8 +1,9 @@
 """Atom feed scraped from the 1337x trending page."""
 
 import argparse
+import os
 import sys
-from urllib.parse import urlencode, urljoin
+from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 from multi_rss import get_html, run
@@ -15,13 +16,17 @@ SITE_URL = "https://1337x.to/"
 BLOG_URL = urljoin(SITE_URL, "trending")
 MAX_ENTRIES = 200
 
-# 1337x is currently under aggressive anti-bot protection. Keep the canonical
-# URL first, then one official mirror and Feedseek's constrained fetch proxy.
-FETCH_URLS = (
-    BLOG_URL,
-    "https://x1337x.cc/trending",
-    f"https://feeds.trfny.com/?{urlencode({'url': BLOG_URL})}",
-)
+# 1337x blocks common datacenter fetches aggressively. GitHub Actions therefore
+# prefers Feedseek's host-locked browser-like proxy route; local runs still try
+# the origin first so residential access can bypass the extra hop.
+PROXY_URL = "https://feeds.trfny.com/1337x"
+DIRECT_URLS = (BLOG_URL, "https://x1337x.cc/trending")
+
+
+def _fetch_urls():
+    if os.getenv("GITHUB_ACTIONS") == "true":
+        return (PROXY_URL, *DIRECT_URLS)
+    return (*DIRECT_URLS, PROXY_URL)
 
 
 def _cell_text(row, selector):
@@ -100,7 +105,7 @@ def parse_trending(document, known_links=()):
 
 
 def scrape_1337x(known_links):
-    for url in FETCH_URLS:
+    for url in _fetch_urls():
         html = get_html(url, retry_delay=1)
         if not html:
             continue
