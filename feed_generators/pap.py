@@ -1,9 +1,11 @@
-"""PAP (Polska Agencja Prasowa) feed: combined Atom from PAP's native RSS
-services. pap.pl itself exposes no feed (Incapsula returns "Not found." for
-/rss.xml), so the combined feed covers the network's sub-services instead:
-Mediaroom, Nauka w Polsce, Zdrowie, Serwis Samorzadowy, Biznes, EuroPAP News,
-and Dzieje.pl. Note: samorzad.pap.pl serves valid RSS with a text/html
-content-type — harmless, the parser ignores it."""
+"""PAP (Polska Agencja Prasowa) network aggregate.
+
+Most sub-services expose native RSS. ``pap.pl`` itself has no usable feed, and
+Nauka w Polsce's advertised ``/all/rss.xml`` currently rejects both supported
+HTTP clients with host validation, so Nauka is covered through a site-scoped
+Google News RSS query. The remaining sources are Mediaroom, Zdrowie, Serwis
+Samorzadowy, Biznes, EuroPAP News and Dzieje.pl. ``samorzad.pap.pl`` serves
+valid RSS with a ``text/html`` content type, which the parser accepts."""
 
 import argparse
 import sys
@@ -15,7 +17,14 @@ FEED_NAME = "pap"
 
 SOURCES = [
     ("PAP Mediaroom", "https://pap-mediaroom.pl/rss.xml", 40),
-    ("Nauka w Polsce", "https://naukawpolsce.pl/all/rss.xml", 40),
+    (
+        "Nauka w Polsce",
+        (
+            "https://news.google.com/rss/search"
+            "?q=site:naukawpolsce.pl&hl=pl&gl=PL&ceid=PL:pl"
+        ),
+        40,
+    ),
     ("PAP Zdrowie", "https://zdrowie.pap.pl/rss.xml", 40),
     ("Serwis Samorzadowy", "https://samorzad.pap.pl/rss.xml", 40),
     ("PAP Biznes", "https://biznes.pap.pl/rss", 40),

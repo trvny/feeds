@@ -16,7 +16,7 @@ single Atom stream written to ``feeds/feed_saas.xml``:
                         + press room (scraped)
     - Exa               changelog (native RSS) + blog (sitemap + per-post fetch)
     - Home Assistant    blog (native Atom)
-    - Upstash           Workflow changelog (native RSS; blog lives in SkillsLLM)
+    - Upstash           Workflow SDK releases (native Atom; blog lives in SkillsLLM)
     - Xweather          blog (scraped index) + weather-api changelog (scraped)
                         + mcp-server changelog (scraped)
     - Cursor            changelog (native RSS) + blog (scraped dated anchors)
@@ -87,7 +87,7 @@ FEED_SUBTITLE = (
     "Vercel (blog + changelog + SDK docs), Apify, Zapier, Fastly, "
     "Postman (blog + app release notes + press), "
     "Exa (blog + changelog), Home Assistant, "
-    "Upstash Workflow changelog, "
+    "Upstash Workflow releases, "
     "Xweather (blog + API + MCP changelogs), "
     "Cursor (blog + changelog), NeuralTrust, "
     "Abnormal (blog + newsroom), Character.AI, "
@@ -178,7 +178,11 @@ NATIVE_FEEDS = [
     ("Postman", "https://blog.postman.com/feed/", 40),
     ("Exa Changelog", "https://exa.ai/docs/changelog/rss.xml", 40),
     ("Home Assistant", "https://www.home-assistant.io/atom.xml", 40),
-    ("Upstash Workflow Changelog", "https://upstash.com/docs/workflow/changelog/rss.xml", None),
+    (
+        "Upstash Workflow Releases",
+        "https://github.com/upstash/workflow-js/releases.atom",
+        40,
+    ),
     ("Cursor Changelog", "https://cursor.com/changelog/rss.xml", 40),
     ("CodeRabbit Blog", "https://www.coderabbit.ai/feed", 50),
     ("CodeRabbit Changelog", "https://docs.coderabbit.ai/changelog/rss.xml", 40),
@@ -189,7 +193,7 @@ NATIVE_FEEDS = [
 
 # Sources intentionally moved to another aggregate. Filter their old cache rows
 # so the migration takes effect on the first post-merge generation.
-RETIRED_CACHE_SOURCES = {"Upstash Blog"}
+RETIRED_CACHE_SOURCES = {"Upstash Blog", "Upstash Workflow Changelog"}
 
 
 def _active_cached_entries(entries: list[dict]) -> list[dict]:

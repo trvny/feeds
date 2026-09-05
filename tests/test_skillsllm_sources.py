@@ -75,7 +75,7 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
         )
 
     def test_upstash_and_lobehub_native_feeds_are_registered(self):
-        """Use Upstash RSS and LobeHub's locale-neutral feed endpoints."""
+        """Use current Upstash and LobeHub native feed endpoints."""
         feeds = {source[0]: source[1] for source in skillsllm.NATIVE_FEEDS}
         self.assertEqual(feeds["Upstash Blog"], "https://upstash.com/blog/feed.xml")
         self.assertEqual(feeds["LobeHub Blog"], "https://lobehub.com/blog/feed")
@@ -84,10 +84,17 @@ class SkillsLlmExtraSourcesTests(unittest.TestCase):
         )
         saas_urls = {source[1] for source in saas.NATIVE_FEEDS}
         self.assertNotIn("https://upstash.com/blog/feed.xml", saas_urls)
-        self.assertIn("https://upstash.com/docs/workflow/changelog/rss.xml", saas_urls)
+        self.assertIn(
+            "https://github.com/upstash/workflow-js/releases.atom",
+            saas_urls,
+        )
         kept = saas._active_cached_entries(
             [
                 {"source": "Upstash Blog", "link": "https://upstash.com/blog/old"},
+                {
+                    "source": "Upstash Workflow Changelog",
+                    "link": "https://upstash.com/docs/workflow/changelog/old",
+                },
                 {"source": "Cursor Changelog", "link": "https://cursor.com/changelog/x"},
             ]
         )

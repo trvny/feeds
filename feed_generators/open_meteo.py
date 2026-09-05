@@ -63,6 +63,7 @@ FORECAST_DAYS = int(os.getenv("OPEN_METEO_DAYS", "7"))
 
 PL_TZ = pytz.timezone("Europe/Warsaw")
 LOC_SLUG = f"{LAT},{LON}"
+SATELLITE_DOCS_URL = "https://open-meteo.com/en/docs/satellite-radiation-api"
 
 FORECAST_URL = (
     "https://api.open-meteo.com/v1/forecast"
@@ -89,7 +90,7 @@ AIR_QUALITY_URL = (
 # NOTE: the archive's *daily* radiation aggregates come back null for the
 # satellite models, but hourly values are populated — so we fetch hourly
 # radiation plus daily astro fields and aggregate per day ourselves.
-SATELLITE_URL_TMPL = (
+_SATELLITE_URL_TMPL = (
     "https://satellite-api.open-meteo.com/v1/archive"
     f"?latitude={LAT}&longitude={LON}"
     "&hourly=shortwave_radiation,sunshine_duration"
@@ -323,7 +324,7 @@ def current_conditions_entry(forecast: dict | None, air: dict | None) -> list[di
 def solar_entries() -> list[dict]:
     end = date.today()
     start = end - timedelta(days=6)
-    data = fetch_json(SATELLITE_URL_TMPL.format(start=start.isoformat(), end=end.isoformat()))
+    data = fetch_json(_SATELLITE_URL_TMPL.format(start=start.isoformat(), end=end.isoformat()))
     if not isinstance(data, dict):
         logger.warning("Satellite: no usable data")
         return []

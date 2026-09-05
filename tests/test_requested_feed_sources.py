@@ -7,12 +7,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "feed_generators"))
 import _google_ai_studio as google_ai_studio  # noqa: E402
 import anthropic  # noqa: E402
 import claude  # noqa: E402
+import europa  # noqa: E402
 import github  # noqa: E402
 import google  # noqa: E402
 import huggingface  # noqa: E402
 import microsoft  # noqa: E402
+import pap  # noqa: E402
 import python  # noqa: E402
 import rutracker  # noqa: E402
+import saas  # noqa: E402
 import skillsllm  # noqa: E402
 
 
@@ -71,6 +74,26 @@ class RequestedFeedSourcesTests(unittest.TestCase):
         self.assertEqual(
             claude._cache_for_merge([legacy, other], [native]),
             [other],
+        )
+
+    def test_refreshed_fallback_sources_are_registered(self):
+        europa_urls = {source[1] for source in europa.SOURCES}
+        pap_urls = {source[1] for source in pap.SOURCES}
+        saas_urls = {source[1] for source in saas.NATIVE_FEEDS}
+
+        self.assertIn(
+            "https://news.google.com/rss/search"
+            "?q=site:europeanlawblog.eu&hl=en&gl=US&ceid=US:en",
+            europa_urls,
+        )
+        self.assertIn(
+            "https://news.google.com/rss/search"
+            "?q=site:naukawpolsce.pl&hl=pl&gl=PL&ceid=PL:pl",
+            pap_urls,
+        )
+        self.assertIn(
+            "https://github.com/upstash/workflow-js/releases.atom",
+            saas_urls,
         )
 
     def test_microsoft_includes_requested_sources(self):

@@ -176,6 +176,33 @@ class RealGeneratorTests(unittest.TestCase):
             "https://transformer-circuits.pub/feed.xml",
         )
 
+    def test_internal_transport_endpoints_do_not_leak_into_source_docs(self):
+        openoffice = {url for _, url in ds.sources_by_import("openoffice.py")}
+        tvp = {url for _, url in ds.sources_by_import("tvp.py")}
+        open_meteo = {url for _, url in ds.sources_by_import("open_meteo.py")}
+
+        self.assertFalse(
+            any(
+                is_host(url, "onlyoffice.com")
+                and urlsplit(url).path.startswith("/blog/api/")
+                for url in openoffice
+            )
+        )
+        self.assertFalse(
+            any(
+                is_host(url, "tvp.pl")
+                and urlsplit(url).path.startswith("/api/")
+                for url in tvp
+            )
+        )
+        self.assertFalse(
+            any(is_host(url, "satellite-api.open-meteo.com") for url in open_meteo)
+        )
+        self.assertIn(
+            "https://open-meteo.com/en/docs/satellite-radiation-api",
+            open_meteo,
+        )
+
     def test_registered_source_urls_have_single_owner(self):
         """One upstream URL should feed one public aggregate, not several."""
         feeds = ds.load_yaml_feeds()
