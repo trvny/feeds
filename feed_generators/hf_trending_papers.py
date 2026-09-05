@@ -19,7 +19,6 @@ def main(full=False):
         author="Hugging Face",
         extra_scrapers=(collect_trending_papers,),
         max_entries=200,
-        dedupe_title_field=None,
         icon=favicon_proxy("huggingface.co"),
         full=full,
     )
