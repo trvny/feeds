@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-101 feedów · 788 źródeł
+102 feedów · 795 źródeł
 
 ## Spis grup
 
@@ -483,6 +483,9 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=abnormal.ai&sz=16) Abnormal Newsroom — <https://abnormal.ai/newsroom/press-releases>
 - ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel — <https://vercel.com/atom>
 - ![](https://www.google.com/s2/favicons?domain=vercel.com&sz=16) Vercel Changelog — <https://vercel.com/changelog/rss.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.netlify.com&sz=16) Netlify Blog — <https://www.netlify.com/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.netlify.com&sz=16) Netlify Changelog — <https://www.netlify.com/changelog/feed.xml>
+- ![](https://www.google.com/s2/favicons?domain=www.netlify.com&sz=16) Netlify Knowledge Base — <https://www.netlify.com/knowledge-base/feed.xml>
 - ![](https://www.google.com/s2/favicons?domain=chat-sdk.dev&sz=16) Chat SDK — <https://chat-sdk.dev/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=flags-sdk.dev&sz=16) Flags SDK — <https://flags-sdk.dev/rss.xml>
 - ![](https://www.google.com/s2/favicons?domain=workflow-sdk.dev&sz=16) Workflow SDK — <https://workflow-sdk.dev/rss.xml>
@@ -735,6 +738,14 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 - ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) RSS — <https://audio.com.pl/rss>
 - ![](https://www.google.com/s2/favicons?domain=audio.com.pl&sz=16) Testy — <https://audio.com.pl/testy>
+
+### ![](https://www.google.com/s2/favicons?domain=forum.audacityteam.org&sz=16) Audacity®
+`audacity` · [feed_audacity.xml](../feeds/feed_audacity.xml)
+
+- ![](https://www.google.com/s2/favicons?domain=forum.audacityteam.org&sz=16) Audacity Forum — <https://forum.audacityteam.org/latest.rss>
+- ![](https://www.google.com/s2/favicons?domain=blog.musehub.com&sz=16) MuseHub Blog — <https://blog.musehub.com/feed/>
+- ![](https://www.google.com/s2/favicons?domain=www.audacityteam.org&sz=16) Audacity blog — <https://www.audacityteam.org/blog/>
+- ![](https://www.google.com/s2/favicons?domain=www.musehub.com&sz=16) Musehub products — <https://www.musehub.com/pl-pl/new-products>
 
 ### ![](https://www.google.com/s2/favicons?domain=cms.tunein.com&sz=16) Radios
 `radios` · [feed_radios.xml](../feeds/feed_radios.xml)

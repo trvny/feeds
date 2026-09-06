@@ -96,6 +96,12 @@ class RequestedFeedSourcesTests(unittest.TestCase):
             saas_urls,
         )
 
+    def test_saas_includes_netlify_sources(self):
+        urls = {source[1] for source in saas.NATIVE_FEEDS}
+        self.assertIn("https://www.netlify.com/feed.xml", urls)
+        self.assertIn("https://www.netlify.com/changelog/feed.xml", urls)
+        self.assertIn("https://www.netlify.com/knowledge-base/feed.xml", urls)
+
     def test_microsoft_includes_requested_sources(self):
         urls = {source[1] for source in microsoft.SOURCES}
         self.assertIn("https://opensource.microsoft.com/blog/feed/", urls)
