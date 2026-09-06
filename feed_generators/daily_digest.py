@@ -390,7 +390,7 @@ def fetch_wikipedia_link(title):
         _, _, _, urls = json.loads(body)
         return urls[0] if urls else None
     except Exception as e:
-        logger.warning(f"Wikipedia lookup failed for {title!r}: {e}")
+        logger.warning("Wikipedia lookup failed for %r (%s)", title, type(e).__name__)
         return None
 
 
