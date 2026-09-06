@@ -2,7 +2,7 @@
 <feed xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2005/Atom" xml:lang="zh">
   <id>https://www.v2ex.com/</id>
   <title>V2EX</title>
-  <updated>2026-09-06T05:12:33.341325+00:00</updated>
+  <updated>2026-09-06T11:32:53.837145+00:00</updated>
   <author>
     <name>various</name>
   </author>
@@ -12,6 +12,224 @@
   <icon>https://www.v2ex.com/favicon.ico</icon>
   <logo>https://www.v2ex.com/favicon.ico</logo>
   <subtitle>Combined V2EX feed: sspai.com, the Creative and Play tabs, and the Claude / Android / Reddit node JSON feeds. (Hot tab excluded — the upstream feed is broken.)</subtitle>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/4af4a79c7e418660</id>
+    <title>现在运营商默认 DNS 是不是有 du？</title>
+    <updated>2026-09-06T10:33:19+00:00</updated>
+    <content>现在运营商在 DNS 会做什么高级一点手脚？有内部人士知道？</content>
+    <link href="https://www.v2ex.com/t/1239836#reply0" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-09-06T10:33:19+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/55dd132fb2854bffc4fbbe96b63a052d?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/55dd132fb2854bffc4fbbe96b63a052d?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/55dd132fb2854bffc4fbbe96b63a052d?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7b08ad420187fea9</id>
+    <title>桌面工具箱有 150+ 小工具了</title>
+    <updated>2026-09-06T09:32:31+00:00</updated>
+    <content>距离上次发 半年写了 100+ 个小工具 又过去差不多三个月了。这段时间插件还在继续加，算上官方、游戏插件，目前已经到了 150+。完整插件列表还是可以 点此查看 。 这几个月花较多精力的地方主要是让 TINKER 能被 AI 直接用起来。工具箱里有一百多个插件，人用快捷键搜一下打开就行，Agent 怎么才能用上这些功能？ CLI ：安装命令行后，可以用 tinker list / tinker open / tinker ps 打开和管理插件，应用没启动时也会自动拉起。 MCP ：带 MCP 能力的插件，可以通过 tinker tools / tinker call 直接调用，也可以用 tinker mcp 以 stdio 方式接到 Cursor 等客户端里。 Agent Skill ：应用自带 Skill ，Cursor 、Claude Code 这类客户端加载后，会按指引跑 tinker 命令，自动调用任意插件组合完成任务。 配合 AI 使用的说明在这里： https://tinker.liriliri.io/zh/guide/skills.html TINKER 是一个开源免费</content>
+    <link href="https://www.v2ex.com/t/1239829#reply5" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T09:32:31+00:00</published>
+    <media:group>
+      <media:content url="https://i.imgur.com/qddfnWV.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://i.imgur.com/qddfnWV.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.imgur.com/qddfnWV.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/40ec9cd47a7d5cb9</id>
+    <title>做了个 PDF 银行流水转 CSV 的站，重点是「哪里没读出来会告诉你」</title>
+    <updated>2026-09-06T09:10:27+00:00</updated>
+    <content>这是一个 bank statement converter ：把 PDF 银行对账单转成
+CSV / Excel / QIF / OFX / QBO 。这个品类工具不少，我做的时候盯的是两个一直没被解决的问题。 一、转出来的文件导不进会计软件 这跟提取质量无关，卡的是列名、日期格式、文件大小这些事。Intuit 自己的文档写得很明确：
+QuickBooks 收的 CSV 必须是英文、不超过 350 KB 、单次最多 1000 行、只能是三列
+（ Date, Description, Amount ）或者四列。一年的活期账单，后两条都会超。 所以我按 QuickBooks 和 Xero 各自文档要的形状分别出文件，而不是给一个通用 CSV 让你自己改。 二、漏读了，但没人告诉你 这个更要命。版面解析或者 OCR 漏掉一整块交易，输出看起来完全正常，你导进账里，
+几个月后对账才发现少了一截。 我这边的做法： 每份文件都跑余额校验。期初 + 所有交易 = 期末，对不上当场告诉你。 读不到的地方 按页点名报出来 ，而不是安静填个空值或者 0 混过去。
+纸上印着的字才允许写进结果，算出来的只许点</content>
+    <link href="https://www.v2ex.com/t/1239826#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T09:10:27+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/1ed0/13af/26370_large.png?m=1778686170" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/1ed0/13af/26370_large.png?m=1778686170"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/1ed0/13af/26370_large.png?m=1778686170" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/8fc8102b13deb70b</id>
+    <title>MockMock 增加平板和电脑设备渲染，帮你更好制作产品渲染宣传图，免费免登录，欢迎体验和建议</title>
+    <updated>2026-09-06T08:44:35+00:00</updated>
+    <content>地址 mockmock.app 最近进行了迭代优化 增加了新设备的展示 增加了提供的模板 优化了一些交互体验，修复了一些已知问题 截图展示 Phone Tablet Laptop 目前 Tablet 和 Laptop 设备提供的模板只有一个，后续迭代增加，目前完全免登录、免付费，欢迎大家使用，希望 MockMock 制作的宣传图能为大家的产品宣传工作提供到帮助！</content>
+    <link href="https://www.v2ex.com/t/1239821#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T08:44:35+00:00</published>
+    <media:group>
+      <media:content url="https://i.v2ex.co/yweB2q8m.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://i.v2ex.co/yweB2q8m.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.v2ex.co/yweB2q8m.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/e2fc98d70b833fdb</id>
+    <title>周末用 GPT-6 Astra 做了几款小游戏，尤其是大富翁，自己差点玩上瘾</title>
+    <updated>2026-09-06T08:39:27+00:00</updated>
+    <content>不得不说 GPT-6 Astra 在开发小游戏方面的能力很强。 周末用 GPT-6 Astra 做了坦克大战、大富翁、消消乐三款小时候玩的街机游戏。 还原性很高，尤其是大富翁这款小游戏，我真是玩了几局又想玩几局，太好玩了！ 感谢 GPT-6 Astra 让我实现了开发游戏的小梦想～ 部分效果图 体验地址 小游戏</content>
+    <link href="https://www.v2ex.com/t/1239819#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T08:39:27+00:00</published>
+    <media:group>
+      <media:content url="https://s1.locimg.com/2026/09/06/dfbc4a6c54209.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://s1.locimg.com/2026/09/06/dfbc4a6c54209.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://s1.locimg.com/2026/09/06/dfbc4a6c54209.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b7ebaae260b020b5</id>
+    <title>大家 vibe coding 做出来的产品都怎么收款？求支招</title>
+    <updated>2026-09-06T08:29:44+00:00</updated>
+    <content>最近做了个小产品，准备开始收费，结果卡在收款这一步了。 个人开发者，没公司、没个体户。用户国内国外都有，手续费高点无所谓，主要想找个靠谱、省心，能长期用的。 目前看了 Paddle 、Dodo Payments 、Lemon Squeezy ，但不知道大陆个人实际用起来怎么样。 大家现在都用哪个？开户、提现、风控有没有什么坑？ 求真实使用经验 🙏</content>
+    <link href="https://www.v2ex.com/t/1239817#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T08:29:44+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/fc98/5da9/826847_xlarge.png?m=1783257966" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/fc98/5da9/826847_xlarge.png?m=1783257966"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/fc98/5da9/826847_xlarge.png?m=1783257966" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/975c22b1f84937a2</id>
+    <title>我又做了一个 Launcher</title>
+    <updated>2026-09-06T08:17:20+00:00</updated>
+    <content>之前用 Kotlin + Compose Desktop 写过一个 Launcher ，但是后来停更了。 主要是没啥人用，还有就是 JVM 确实太占内存了，而且 APP 本身也有诸多不完善的地方，我自己用了一段时间又滚回去用 PowerToys 了。 为啥现在又要做一个 Launcher 呢？主要是因为我 mac 和 win 两套系统都在用，天天需要来回切换。Alfred 好用但只有 mac ，PowerToys Run 只有 Windows ，uTools 两边都有但是 Electron ，感觉有点过于重了。所以我这次也是用的更轻量级的 Tauri 来开发的。 用 Alt+Space 呼出面板，跟 PowerToys 和 Wox 一样。 面板现在支持的特性包括：搜应用、搜文件、搜书签、切窗口、算数、截图、录屏、翻剪贴板历史、锁屏静音这些系统命令、结束进程、看系统监控，也能直接问 AI 。 应用搜索支持拼音全拼和首字母，同音字和打错字也算。 gc 能出 Google Chrome ， chorme 也能出 Chrome 。 面板全程可以不用鼠标。上下键选择，回车执行，Tab 看详情，A</content>
+    <link href="https://www.v2ex.com/t/1239816#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T08:17:20+00:00</published>
+    <media:group>
+      <media:content url="https://yeero.ai/promo/launcher-processor.dark.cn.png" type="image/png" medium="image"/>
+      <media:thumbnail url="https://yeero.ai/promo/launcher-processor.dark.cn.png"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://yeero.ai/promo/launcher-processor.dark.cn.png" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/7685cea006e42ea9</id>
+    <title>[开源] 把 VibeUsage 看板搬到实体屏幕上：写了两个 ESP32 随身用量固件（Passport &amp; Note）</title>
+    <updated>2026-09-06T07:39:01+00:00</updated>
+    <content>高强度用 AI 编程之后，每天查 Token 消耗和 7 天用量成了习惯。但总觉得在 IDE 、浏览器和 CLI 之间来回切去看数据太占桌面焦点，不如把看板扔到桌边一个完全独立的微型硬件上。 抽空用搓了这个开源项目：vibe-usage-esp32 。 这次适配了两款形态完全不同的现成小设备： Vibe Passport：运行在 FoloToy AI Passport （ ESP32-C3 ）上，基于 LVGL 的彩色小屏，带自动背光调节。 Vibe Note：运行在 ZECTRIX NOTE4 （ ESP32-S3 ）黑白墨水屏上，做了定制的局部刷新算法与长按关机逻辑。 GitHub 仓库： https://github.com/talisk/vibe-usage-esp32</content>
+    <link href="https://www.v2ex.com/t/1239813#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T07:39:01+00:00</published>
+    <media:group>
+      <media:content url="https://static.innosentric.com/vibe-note-zh.jpg" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://static.innosentric.com/vibe-note-zh.jpg"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://static.innosentric.com/vibe-note-zh.jpg" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/0f0622c91c62cc9f</id>
+    <title>让 Apple Watch 记录的每一趟游泳数据更有意义：即刻游</title>
+    <updated>2026-09-06T07:00:00+00:00</updated>
+    <content>对于使用AppleWatch游泳的人来说，记录一次游泳并不困难。在手表上打开体能训练App，选择开始游泳，结束后就能在Apple健身中看到完整的游泳表现，包括时间、距离、卡路里、配速、心率等数据。但真 ... 查看全文</content>
+    <link href="https://sspai.com/post/114076" rel="alternate"/>
+    <category term="sspai.com" label="sspai.com"/>
+    <published>2026-09-06T07:00:00+00:00</published>
+    <media:group>
+      <media:content url="https://rssfile.sspai.com/2026/9/6/article/deaad783-d8f5-471d-072f-fa9632bbff8a.png?imageMogr2/auto-orient/ignore-error/1" type="image/png" medium="image"/>
+      <media:thumbnail url="https://rssfile.sspai.com/2026/9/6/article/deaad783-d8f5-471d-072f-fa9632bbff8a.png?imageMogr2/auto-orient/ignore-error/1"/>
+    </media:group>
+    <dc:creator>sspai.com</dc:creator>
+    <link rel="enclosure" href="https://rssfile.sspai.com/2026/9/6/article/deaad783-d8f5-471d-072f-fa9632bbff8a.png?imageMogr2/auto-orient/ignore-error/1" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/54b10493cb359c74</id>
+    <title>给小鸡 G7 pro 手柄做了个宏按键能力软件</title>
+    <updated>2026-09-06T06:56:26+00:00</updated>
+    <content>受到抖音的蛊惑，激情下单了小鸡 G7 pro 手柄，第一次拥有背键的手柄，想着折腾下宏按键。 结果发现 XBox 授权的手柄是不允许设置宏按键的（ XBox 认为宏是作弊），官方软件不提供。此刻只想给那些推销的博主大嘴巴子，拿 XBox 授权当卖点疯狂鼓吹，缺点闭口不谈。据说还有同款非 XBox 授权的手柄，官方软件就能设置宏。 网上查了一些方案，比较出名是 reWASD ，收费软件，不能直接支持特殊按键（背键），只能通过一些别的办法，方法缺点是至少需要按两个按键，且其中一个按键必须是普通物理按键，用来切换 layer 。遂弃用。 然后不信邪开始曲线救国，花了两星期整出来了一个拼好软方案，一共要用到 5 个软件： 官方软件 GameSir Nexus （配置背键输出 F9-F12 ）
+  → AutoHotkey （接收手柄普通输出 + 背键输出的 F9-F12 ，合并实体输入与背键动作，转发给 vJoy ）
+  → vJoy Device 1 （合并后的虚拟设备，XOutput 无法直接接收物理手柄的 F9-F12 ）
+  → XOutput （转换为可以被 Steam 直接识别的手</content>
+    <link href="https://www.v2ex.com/t/1239808#reply2" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-09-06T06:56:26+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/ca735d94f1dbef0c0242df255d94fb10?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/ca735d94f1dbef0c0242df255d94fb10?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/ca735d94f1dbef0c0242df255d94fb10?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/8818b1787fc4af9d</id>
+    <title>做了个防沉迷工具： iPhone 打开小红书之前，先强制呼吸十秒</title>
+    <updated>2026-09-06T06:46:47+00:00</updated>
+    <content>起因是我发现自己一天要点开小红书几十次，有时候是为了查个东西，查完就开始刷短视频；有时就是手指的惯性：锁屏、解锁、手指自己走到那个图标上去了。 One Sec 那个 App 我用过，思路很对：不封锁，只是在你打开 App 之前塞进去十秒钟的呼吸。这十秒不是惩罚，是让你有机会意识到：我刚才为什么要点这个。有效，但它还需要下载 App ，并且只能控制一个 App 。想要多配置 App 就需要订阅。他的原理也是利用 iphone 自己的快捷方式来实现跳转，那既然原理了解了，我完全可以利用 iphone 自有的机制来实现同样的功能，甚至可以灵活自定义。 利用闲余时间 vibe coding 了一下，并且部署到了 Cloudflare 可以提供给大家免费使用： 在线用（公开实例，免费，什么都不用部署）： https://yixi-app.pages.dev 仓库（ MIT ，中英双 README ）： https://github.com/Defiabell/yixi ====== 怎么做到不用装 App 的 ====== 靠 iOS 自带的「快捷指令」。系统里有个「打开 App 时」的自动化触</content>
+    <link href="https://www.v2ex.com/t/1239805#reply7" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T06:46:47+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/3e98/e416/671650_xlarge.png?m=1786012993" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/3e98/e416/671650_xlarge.png?m=1786012993"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/3e98/e416/671650_xlarge.png?m=1786012993" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/a5b31c40586f17b7</id>
+    <title>做了个开源 AI 项目雷达：先按任务找候选，再看依据和未知条件</title>
+    <updated>2026-09-06T06:16:40+00:00</updated>
+    <content>我是 AI 工作站的开发者，最近在完善其中的 AI 开源项目雷达。想请有开源选型需求的朋友试一下网页版，尤其想知道：从“看到一个项目”到“决定是否值得试”，还缺哪一步。 入口： https://aiworkstation.cn/githubai/?utm_source=v2ex&amp;utm_medium=community&amp;utm_campaign=radar_validation_202609&amp;utm_content=open_source_web 这个页面不用先安装 Skill 。可以看日、周、月趋势，也可以按用途进入合集，再打开项目详情和原始 GitHub 仓库。排名用于发现，不是适用性评分，更不是生产可用认证。 我刚实际走了一遍“合集→办公效率与文档处理→项目详情”：合集把候选放在一起，详情再展开使用与运行条件、上手说明、限制和采用前检查。相比从一个 Star 数字开始，我更希望用户带着自己的任务来读这些信息。 一个可试的办法：先写下你必须满足的两个条件，再选一个候选，检查原始资料能否支持这两个条件；没有证据就留作“未确认”。不需要为了试网站安装陌生代码，也请不要提交公司文档或密钥</content>
+    <link href="https://www.v2ex.com/t/1239801#reply1" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T06:16:40+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/09d552f8d7a0b3e49ccd58a923588eab?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/09d552f8d7a0b3e49ccd58a923588eab?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/09d552f8d7a0b3e49ccd58a923588eab?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/11d749d85b7126ca</id>
+    <title>微信 Linux 4.1.13 版本发布，新增了发送语音，语音转文字，滚动截图等重磅功能</title>
+    <updated>2026-09-06T05:39:02+00:00</updated>
+    <content>太好了，我上次写的 linux 语音输入软件都可以弃用了…… 这次的功能更新是解决痛点的，能发语音，能语音转文字，非常不错。 下载地址： https://linux.weixin.qq.com/ 🎉</content>
+    <link href="https://www.v2ex.com/t/1239797#reply6" rel="alternate"/>
+    <category term="V2EX Play" label="V2EX Play"/>
+    <published>2026-09-06T05:39:02+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/avatar/85c3/656c/599998_xlarge.png?m=1747099205" type="image/png" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/avatar/85c3/656c/599998_xlarge.png?m=1747099205"/>
+    </media:group>
+    <dc:creator>V2EX Play</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/85c3/656c/599998_xlarge.png?m=1747099205" type="image/png" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/3442631417da5e42</id>
+    <title>开源：代替 Logi Options+ 的辅助软件，给你的鼠标更流畅多样的使用体验</title>
+    <updated>2026-09-06T05:24:03+00:00</updated>
+    <content>两大功能： 平滑滚动：把带阻尼段的滚轮那种一格一格的跳动，变成连续、跟手的像素级滚动。 按键映射：把中键和各种侧键变成系统动作或应用动作，支持单击、双击、长按、拖动和按住滚动等手势。 主单原生轻量级 GitHub 地址： https://github.com/shawnuan/TrackMouse</content>
+    <link href="https://www.v2ex.com/t/1239796#reply0" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T05:24:03+00:00</published>
+    <media:group>
+      <media:content url="https://cdn.v2ex.com/gravatar/f6de71759e1bacf973d4ac9983a805eb?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
+      <media:thumbnail url="https://cdn.v2ex.com/gravatar/f6de71759e1bacf973d4ac9983a805eb?s=73&amp;d=retro"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/f6de71759e1bacf973d4ac9983a805eb?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/dc1e6dc4693bf5d5</id>
     <title>昨天，用了六年多的 VMESS+WS+TLS+CDN 的配置终于被墙了</title>
@@ -41,6 +259,21 @@
     </media:group>
     <dc:creator>V2EX Creative</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/8335f8340fe284891b08b7c8c9dc4f08?s=73&amp;d=retro" type="image/jpeg" length="0"/>
+  </entry>
+  <entry>
+    <id>tag:trvny.github.io,2024:feedseek/v2ex/b2bf699a800647c4</id>
+    <title>AndroMeld：最好的 Android 与 Mac 连续互通方案，新增远程连接 [送码]</title>
+    <updated>2026-09-06T03:32:24+00:00</updated>
+    <content>（本文全人工撰写，AI 含量 0% 请放心阅读） AndroMeld 是一款的 Android 和 Mac 连续互通工具。 仅需 ADB 无线调试，无需 Root 。我们以简驭繁，将及其复杂的技术细节融入了极简的 UI 中。 官方网址 | Mac App Store： 国区 ｜ 美区 招牌功能：融合模式（ Meld Mode ） 把手机手机上的 App 变成 Mac 端「原生应用」，每个 App 独立成窗，随意缩放。 它并非类似 scrcpy 的简单投屏： 每个 App 拥有独立的 Dock 图标、独立的 Mac 菜单集成。 与 Mac 红绿灯区域无缝融合的沉浸外观，深浅色跟随 Mac 系统设置而非 Android 系统设置 支持和 Mac 互相拖拽文件 中文输入法、摄像头、麦克风、触摸板也会调用 Mac 硬件而非 Android 硬件 。 AndroMeld 可以做什么 传文件？打开 Finder 就可以看到你的 Android 手机存储。 搜照片？在电脑上直接打开你的手机相册 App ，拖动照片到 Mac 。 收短信，发微信？直接在 Mac 打开手机短信、手机微信。在 Androi</content>
+    <link href="https://www.v2ex.com/t/1239786#reply34" rel="alternate"/>
+    <category term="V2EX Creative" label="V2EX Creative"/>
+    <published>2026-09-06T03:32:24+00:00</published>
+    <media:group>
+      <media:content url="https://i.v2ex.co/7xvE2b3U.webp" type="image/webp" medium="image"/>
+      <media:thumbnail url="https://i.v2ex.co/7xvE2b3U.webp"/>
+    </media:group>
+    <dc:creator>V2EX Creative</dc:creator>
+    <link rel="enclosure" href="https://i.v2ex.co/7xvE2b3U.webp" type="image/webp" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/7510f0b0e1ac7976</id>
@@ -118,21 +351,6 @@
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/265eb276afce0dcbae78958dde94af10?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/6864d36d6e1f7e5a</id>
-    <title>每日搜索关键字雷达</title>
-    <updated>2026-09-05T23:42:17+00:00</updated>
-    <content>简介：google trend 的接口，每天更新一次，支持台湾，美国，日本 雷达地址： https://daily-search-trend-radar.pages.dev/</content>
-    <link href="https://www.v2ex.com/t/1239763#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T23:42:17+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787934204" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787934204"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787934204" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/47815884ac49de0d</id>
     <title>Ccmax 被封</title>
     <updated>2026-09-05T23:32:52+00:00</updated>
@@ -147,66 +365,6 @@
     </media:group>
     <dc:creator>V2EX Claude (312004848zhg)</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/6a6e/59df/839977_xlarge.png?m=1787058259" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/83f625500428f68a</id>
-    <title>猫猫电视台</title>
-    <updated>2026-09-05T21:56:45+00:00</updated>
-    <content>简介：最近作为一名新手铲屎官，发现自家的猫猫很喜欢看 B 站的猫猫动画片，所以自己做了一个网站方便观看，欢迎大家使用鸭，哈哈哈 猫猫电视台地址： https://2828dc7b.pinme.dev/</content>
-    <link href="https://www.v2ex.com/t/1239757#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T21:56:45+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787934204" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787934204"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/1f5f/a780/673712_xlarge.png?m=1787934204" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/542f324dd30a24a5</id>
-    <title>[开源] 密码放在 1password，最后被 ds 写进了 github……</title>
-    <updated>2026-09-05T21:38:28+00:00</updated>
-    <content>朋友和我说从 codex 迁到大肥鱼 harness 试一波，结果吃了个工单，好几个服务一个一个换 key 我问咋回事，他说让 LLM 帮忙干活，结果它从 1Password 里把密码读出来😂，顺手写进项目文件了。后来项目开源，也没注意到里面还有密码，就一起推上去了…… 骂了他一嘴，但是想了一下自己其实也没完全隔离清楚，我一般.env 会给他放一些 key ，它拿到以后会不会写文件、打日志，我也没法每一步都盯着，万一。。供应商漏了也是个问题，如果它直接读到了 所以我写了个开源项目叫 Plankton ，这是一个专门给 coding agent 用密码和 API Key 的密码管理器，大概思路是 agent 用 plankton 读密码的时候 plankton 会读调用链分析行为，和用户声明的暴露面完全一致了才放行，大伙来给点建议</content>
-    <link href="https://www.v2ex.com/t/1239756#reply4" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T21:38:28+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/399c417c5ceb27df0269c08a6d697315?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/399c417c5ceb27df0269c08a6d697315?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/399c417c5ceb27df0269c08a6d697315?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/727ba1e3fd45c961</id>
-    <title>做了一个会把微积分解题过程“动起来”的计算器，想听听大家的意见</title>
-    <updated>2026-09-05T17:11:12+00:00</updated>
-    <content>最近做了一个微积分学习工具 CalculusMate 。 起因是我发现很多计算器只给最终答案，即使列出步骤，也很难看出表达式究竟是怎样一步步变化的。所以我尝试把求导、积分和极限的计算过程做成可以逐步播放的形式。 目前支持： 导数、积分和极限计算 展示每一步使用的规则 动画演示表达式的变化 支持常见数学符号键盘 中英文界面 基础计算无需注册 可以从这个页面体验： https://calculusmate.com/step-by-step 免费版本： https://calculusmate.com/free 目前还处于早期阶段，我比较想知道： 解题步骤是否足够容易理解？ 动画是帮助理解，还是会让页面显得太复杂？ 还希望优先支持哪些题型？ 欢迎直接指出问题，尤其是计算结果、移动端体验和表达不清楚的地方。</content>
-    <link href="https://www.v2ex.com/t/1239752#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T17:11:12+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/3b5e23fc8cab10679187226482801ac2?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/f4ff694c472fb038</id>
-    <title>我也做了个插件（支持 chrome 和 edge)，为了能直接同时向多个 AI 问同一个问题。免登录，无需 TOKEN。</title>
-    <updated>2026-09-05T16:16:02+00:00</updated>
-    <content>我也做了个插件（支持 chrome 和 edge)，为了能直接同时向多个 AI 问同一个问题。免登录，无需 TOKEN 。 这是站点： www.duodaai.com 。 多答 AI ，一问多答。 当然 V 站伙伴们，肯定会送码，留个邮箱就行。 如果能方便大家使用的，后续需要其他功能，咱也能添加。 第一次接合 AI 开发，有什么不足之处，还希望大家多多见谅，同时也欢迎大家多提建议，谢谢。</content>
-    <link href="https://www.v2ex.com/t/1239749#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T16:16:02+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/5aa4babab8504c0292674941c3bcadb7?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/5aa4babab8504c0292674941c3bcadb7?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/5aa4babab8504c0292674941c3bcadb7?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/387feed2324e550c</id>
@@ -247,51 +405,6 @@ Please Choose the IP You Want To TraceRoute
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/265eb276afce0dcbae78958dde94af10?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b29919b5696d3518</id>
-    <title>如果有一个 App，能看到我没有走的那条路有多堵，我愿意付钱</title>
-    <updated>2026-09-05T14:05:33+00:00</updated>
-    <content>开车遇到堵车的时候，心情会非常差。有时候在一个关键路口，发现地图 app 给出了另外一个路线，说『红绿灯多 x 个，不堵』。果断走另外一条路，结果另外一条路也很堵。 这个时候，如果有一个新的 app ，能让我看到，假如我当时没有换路线，还是按原来的路线走，现在到哪里了。最好还能让我看到我当前比老路领先了多少分钟到家，那就很爽了。</content>
-    <link href="https://www.v2ex.com/t/1239734#reply1" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T14:05:33+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/5469/969b/324508_large.png?m=1532149726" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/5469/969b/324508_large.png?m=1532149726"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/5469/969b/324508_large.png?m=1532149726" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/daa9a8189d217477</id>
-    <title>开发了个小软件，解决了大难题，抱着电脑开会的同学们有福了</title>
-    <updated>2026-09-05T14:00:02+00:00</updated>
-    <content>MicRecorder 会议录音 macOS 菜单栏常驻 · 边录边出文字 · AI 帮你写纪要 软件官方地址 ： https://smartf5.com 经常遇到这样的场景： 你需要要抱着电脑去参会，一场稀里哗啦讨论下来，没有人负责发会议纪要，没有落实谁谁谁负责什么模块，你好像大概知道了要做个什么东西，具体做什么，谁来做哪一块，不清晰不明了。 因为实际工作中遇到这些问题，我决定开发这样的快速录音并转文字的状态栏小软件，经过彻夜不眠地调试，多个版本的迭代，现在，可以使用这个状态栏小软件来搞定这些事情了。 会开完了，纪要也已经写好了。 开会时点一下菜单栏麦克风图标就开始录音，语音实时转成带时间戳的全文；散会前，AI 已把整场浓缩成发言要点、结论和待办，直接拿去发。全程无需打开笨重窗口、不用再熬夜誊写录音。 它解决什么 开会要录音 ——不再找 App 、不再手忙脚乱，菜单栏一点即录，图标随状态变色。 录音没人转 ——边录边出文字，说完的话几秒就落到稿子里，回听有逐句时间戳定位。 纪要没人写 ——AI 一键把全场会议变成「要点 + 结论 + 待办」，开完会即可分发。 隐私没保障 ——录音与文</content>
-    <link href="https://www.v2ex.com/t/1239732#reply5" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T14:00:02+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/3653/7f9b/52169_large.png?m=1788616093" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/3653/7f9b/52169_large.png?m=1788616093"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/3653/7f9b/52169_large.png?m=1788616093" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/7d664504cc489098</id>
-    <title>朋友竟然用 Codex 做了一个游戏类型的个人主页</title>
-    <updated>2026-09-05T13:21:09+00:00</updated>
-    <content>盆友今天给我看了他半小时用 AI 做出来的个人主页。这个主页不是传统意义上的静态页面，一看似乎是一个游戏，太牛了。 https://ibrothergang.com/</content>
-    <link href="https://www.v2ex.com/t/1239728#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T13:21:09+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/4a44d13cee969e91fee6788a4c3c7288?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/4a44d13cee969e91fee6788a4c3c7288?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/4a44d13cee969e91fee6788a4c3c7288?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/bdac61eba40211ad</id>
     <title>$10/月的 Google One Pro 中 [AI 积分羊毛] 领取位置</title>
     <updated>2026-09-05T13:19:00+00:00</updated>
@@ -307,37 +420,6 @@ Please Choose the IP You Want To TraceRoute
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/43d0/d81c/545067_xlarge.png?m=1784648001" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b07cee1973da4644</id>
-    <title>OKVideoMac 0.4.0 发布：一个月后，我把这个 macOS 版 TVBox / 猫影视客户端几乎重做了一遍</title>
-    <updated>2026-09-05T12:54:22+00:00</updated>
-    <content>大家好，之前开源了一个自己做的 macOS 视频客户端 OKVideoMac 。 第一版出来的时候，其实基本功能已经能用了： TVBox / CatVod 一类配置 CatPawOpen / MiraPlay 一类 Node 源 直播 搜索 详情 收藏 / 历史 libmpv 播放 但自己连续当主力软件用了一个月以后，越来越觉得： “能跑”和“真正好用”之间，还有很长一段距离。 所以过去这一个月，我基本没有继续堆新功能，而是把大量时间花在重新整理 UI 、交互、播放链路、源兼容和底层生命周期上。 现在正式发布 OKVideoMac 0.4.0 （ Build 94 ） 。 先简单介绍一下项目 OKVideoMac 是一个用 Swift / SwiftUI 开发的原生 macOS 视频与直播客户端。 播放器使用 libmpv 。 它不是 Android App 移植，也不是把 TVBox 界面直接搬到 Mac 上。 我的目标一直是： 保留 TVBox / CatVod / CatPawOpen 这类生态比较开放的“壳与源分离”能力，但把客户端真正按照 macOS 软件重新做一遍。 目前支</content>
-    <link href="https://www.v2ex.com/t/1239723#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T12:54:22+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/90f2d213325347a715940c44427c9a5f?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/90f2d213325347a715940c44427c9a5f?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/90f2d213325347a715940c44427c9a5f?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/b4d525b1ca0541b3</id>
-    <title>做了个帮你发现搜索趋势和热点选题的工具，想请 V 友体验</title>
-    <updated>2026-09-05T12:08:05+00:00</updated>
-    <content>上次在 V2EX 分享 WhatToBuild 后，收到了一些很有价值的反馈。这段时间没有闲着，陆续把产品体验、性能和一些细节重新打磨了一遍。 这次最主要的新功能是 Google Trends 监控页面： https://whattobuild.today/zh/google-trends 目前监控了 100 多个词根，可以用它快速查看关键词的搜索热度趋势，并做一些选题、内容和需求验证的前期判断。 这轮还做了不少体验优化，包括： 订单雷达增加了 DR 以及一些主题维度的标签； 优化筛选功能； 性能优化； 还是非常希望听到真实反馈：
-这个 Google Trends 页面对你有没有用？还缺什么功能，或者哪些地方用起来不顺？ 给 V 友继续留了一批 0.1 折优惠券：VXQVBHFFNN9X 如果你用过上次的版本，也很想知道这次的改动有没有解决你当时的痛点。感谢。</content>
-    <link href="https://www.v2ex.com/t/1239719#reply2" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T12:08:05+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/c064/6d2f/403171_xlarge.png?m=1787560342" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/c064/6d2f/403171_xlarge.png?m=1787560342"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/c064/6d2f/403171_xlarge.png?m=1787560342" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/1c1b6e87863beeca</id>
     <title>求推荐二手国产安卓手机，可较为无痛刷入国际版系统，并保留 BL 锁</title>
     <updated>2026-09-05T11:40:03+00:00</updated>
@@ -351,21 +433,6 @@ Please Choose the IP You Want To TraceRoute
     </media:group>
     <dc:creator>V2EX Play</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/08a3aaa77cdb9355f646807bc8f4256c?s=73&amp;d=retro" type="image/jpeg" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/13ce2985c3ee6ba1</id>
-    <title>做了两个给 AI Agent 用的基础设施项目： gVisor 沙箱 + 可验证的网站部署，求挑刺</title>
-    <updated>2026-09-05T10:43:46+00:00</updated>
-    <content>最近在补 AI Agent 最容易被一句“工具调用成功”带过的两块基础设施： 执行边界 ：Agent 能跑 shell ，不代表应该碰到宿主机。 交付证据 ：控制器返回成功，不代表用户真的能访问网站。 于是拆成了两个 MIT 开源项目： Sandbox ：每个 Runtime 都是 Kubernetes 上的 gVisor Pod ，默认 non-root 、只读根文件系统、无 ServiceAccount token 、default-deny NetworkPolicy 。Control Plane 或 Runtime 不可用时直接失败，不会偷偷降级到宿主机执行。 Site ：Agent 通过 HTTP / CLI / MCP 提交部署，Operator 等工作负载 Ready 后，会自己请求真实地址，把 HTTP 状态码和响应体 SHA-256 写入 status.verification 。也就是把 “deployed” 从一句话变成可检查的测量结果。 Sandbox 在本地参考环境里的实测：冷启动 p50 2.497s / p95 2.789s ，热执行 p50 35.72m</content>
-    <link href="https://www.v2ex.com/t/1239711#reply0" rel="alternate"/>
-    <category term="V2EX Creative" label="V2EX Creative"/>
-    <published>2026-09-05T10:43:46+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/7a11/716a/235508_xlarge.png?m=1788604201" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/7a11/716a/235508_xlarge.png?m=1788604201"/>
-    </media:group>
-    <dc:creator>V2EX Creative</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/7a11/716a/235508_xlarge.png?m=1788604201" type="image/png" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/fd8146dfc1025b69</id>
@@ -470,24 +537,6 @@ com.audiocn</content>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/2b48/30a2/18392_xlarge.png?m=1755746557" type="image/png" length="0"/>
   </entry>
   <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/53d718e7cf2ea127</id>
-    <title>真的看懂光头强还得 200 年</title>
-    <updated>2026-09-05T03:14:20+00:00</updated>
-    <content>要说苦难，大伙总聊起彼得・帕克不容易。
-少年扛起守护城市的担子，藏着秘密负重前行，这份苦楚，很多人都看在眼里。 但咱们好好琢磨琢磨，光头强，他就不辛苦吗？
-拿内德来对照就明白了，内德就是个普通学生，卷入超级英雄的风波里，整日提心吊胆。 再看光头强，一个人背井离乡，在深山里讨生活，风吹日晒。天天起早忙活，可不管怎么努力，钱总攒不下来，事事不顺。很多人只当他是搞笑角色，一笑而过。
-说句实在话，大家想要看懂光头强，还得 200 年。 彼得的煎熬值得敬重，可咱们得公道一句：光头强，他就不辛苦吗？</content>
-    <link href="https://www.v2ex.com/t/1239652#reply2" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-09-05T03:14:20+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/avatar/7eae/2e5c/412901_xlarge.png?m=1788484471" type="image/png" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/avatar/7eae/2e5c/412901_xlarge.png?m=1788484471"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/avatar/7eae/2e5c/412901_xlarge.png?m=1788484471" type="image/png" length="0"/>
-  </entry>
-  <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/9cbe565dca46ef26</id>
     <title>有用 claude 进行创意类/设计类工作的吗？体验如何</title>
     <updated>2026-09-05T02:16:04+00:00</updated>
@@ -532,39 +581,6 @@ com.audiocn</content>
     </media:group>
     <dc:creator>V2EX Claude (v2dev)</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/e39e/8b39/336199_xlarge.png?m=1745369960" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/67e646d9b99ffa66</id>
-    <title>用 5.6 Sol 帮忙设计了一个有点奇怪的测试 Astra 的实验</title>
-    <updated>2026-09-04T23:43:38+00:00</updated>
-    <content>发现能用 Astra 后就想做点啥来试试这个新玩具能做啥有趣的事情，但一想到自己那一坨不可名状的奇怪 repo 就畏惧了，然后就索性问 GPT （还是 5.6 Sol high ，习惯了）有啥能适合一晚上跑的项目，然后他照常推荐了个造编程语言之类的项目，总感觉有点刻板印象了，想了想索性做个太阳仪好了，然后找 GPT 开了个 prompt ，我再把我自己的项目偏好写了进去： 请注意在该项目中遵循以下的基本规则：
-- git discipline：每一个 commit 都必须是最小、不可拆分的功能表达闭包，每一个 commit 都必须即时 commit ，不允许一次 commit 一个巨大的变更，也不允许先把变更一次性攒完 commit 。
-- 测试 discipline：不要做全门禁，并且思考为什么{a,b,c} * {d} * {e,f} * {g,h}我只需要 adeg, bdfh, cdfg 或者最多再加一条就可以覆盖全链路，为什么 12 个单元测试反而是架构崩溃。
-- Plan 制定的时候，不预先封死后面的 commit 的时候的自由度，如果有些架构和技术问题必须在 commit</content>
-    <link href="https://www.v2ex.com/t/1239615#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-09-04T23:43:38+00:00</published>
-    <media:group>
-      <media:content url="https://i.v2ex.co/b7Nz06e1.png" type="image/png" medium="image"/>
-      <media:thumbnail url="https://i.v2ex.co/b7Nz06e1.png"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://i.v2ex.co/b7Nz06e1.png" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/e7cdddac600239cb</id>
-    <title>[分享创造] 业余时间做了一款 Windows + Android 跨平台影视媒体中心 MIYO，求体验与建议</title>
-    <updated>2026-09-04T19:39:12+00:00</updated>
-    <content>各位朋友好， 作为一个长期受够了网页播放器各种压缩画质、格式不兼容（特别是 HEVC/DTS ），以及传统下载软件必须等待 100% 才能看的观影爱好者，我开发了 MIYO 。 MIYO 想解决的核心问题是： 把“资料浏览 → 选源比较 → 边下边播 → 字幕校准 → 原生硬件硬解”完整收纳进一个轻量客户端中 。 核心特性一览： Windows 桌面端 ：基于 Electron 42 + 原生独立 mpv 进程 + libtorrent 2.1 引擎。支持 4K HDR10 、杜比视界色彩映射、DTS-HD 与多音轨切换。 Android 移动端 ：纯原生 Kotlin + Jetpack Compose 打造，内嵌 libmpv 与 MediaCodec 硬解。支持前台/后台断点续传离线下载，自适应平板与车载大屏。 边下边播机制 ：自定义调度算法，优先获取视频头部索引（ moov atom / MKV cues ）和当前播放分块，实现点击后数秒内即时起播。 智能字幕生态 ：接入 OpenSubtitles / Subdl 双源，支持字幕时间轴毫秒级微调，内置字幕创作者中心。 官网与下</content>
-    <link href="https://www.v2ex.com/t/1239607#reply0" rel="alternate"/>
-    <category term="V2EX Play" label="V2EX Play"/>
-    <published>2026-09-04T19:39:12+00:00</published>
-    <media:group>
-      <media:content url="https://cdn.v2ex.com/gravatar/1b23d465327cd3066aec9a56b3252cc1?s=73&amp;d=retro" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://cdn.v2ex.com/gravatar/1b23d465327cd3066aec9a56b3252cc1?s=73&amp;d=retro"/>
-    </media:group>
-    <dc:creator>V2EX Play</dc:creator>
-    <link rel="enclosure" href="https://cdn.v2ex.com/gravatar/1b23d465327cd3066aec9a56b3252cc1?s=73&amp;d=retro" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/10d0710124c0380e</id>
@@ -942,21 +958,6 @@ Try running "claude doctor" for diagnostics
     </media:group>
     <dc:creator>V2EX Claude (Freeego)</dc:creator>
     <link rel="enclosure" href="https://cdn.v2ex.com/avatar/cdee/7f63/415057_large.png?m=1787812239" type="image/png" length="0"/>
-  </entry>
-  <entry>
-    <id>tag:trvny.github.io,2024:feedseek/v2ex/8364b8112f99a829</id>
-    <title>派早报：英伟达正式发布 DLSS 5、戴森发布智能电动牙刷 CameraJet 等</title>
-    <updated>2026-09-01T23:58:40+00:00</updated>
-    <content>索尼发布三款 ULT Tower 派对音箱，Starman Optical 收购 GoPro 等。 查看全文</content>
-    <link href="https://sspai.com/post/114093" rel="alternate"/>
-    <category term="sspai.com" label="sspai.com"/>
-    <published>2026-09-01T23:58:40+00:00</published>
-    <media:group>
-      <media:content url="https://rssfile.sspai.com/2026/9/2/article/8ff188de-e12c-f89b-55b1-2304b8c67222.jpeg?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/jpeg" medium="image"/>
-      <media:thumbnail url="https://rssfile.sspai.com/2026/9/2/article/8ff188de-e12c-f89b-55b1-2304b8c67222.jpeg?imageMogr2/auto-orient/format/webp/ignore-error/1"/>
-    </media:group>
-    <dc:creator>sspai.com</dc:creator>
-    <link rel="enclosure" href="https://rssfile.sspai.com/2026/9/2/article/8ff188de-e12c-f89b-55b1-2304b8c67222.jpeg?imageMogr2/auto-orient/format/webp/ignore-error/1" type="image/jpeg" length="0"/>
   </entry>
   <entry>
     <id>tag:trvny.github.io,2024:feedseek/v2ex/b938b5c598fa4300</id>
