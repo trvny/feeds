@@ -4,7 +4,7 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 
 > Plik generowany: `uv run --locked feed_generators/docs_sources.py`. Nie edytuj ręcznie — zmień źródła w generatorze.
 
-102 feedów · 791 źródeł
+101 feedów · 788 źródeł
 
 ## Spis grup
 
@@ -857,13 +857,6 @@ Konkretne linki źródłowe wchodzące w skład każdego generowanego feeda. Lis
 - ![](https://www.google.com/s2/favicons?domain=www.officeholidays.com&sz=16) Upcoming — <https://www.officeholidays.com/rss/all_holidays>
 
 ## 🗂️ Inne
-
-### ![](https://www.google.com/s2/favicons?domain=1337x.to&sz=16) 1337x
-`1337x` · [feed_1337x.xml](../feeds/feed_1337x.xml)
-
-- ![](https://www.google.com/s2/favicons?domain=1337x.to&sz=16) 1337x.to (trending) — <https://1337x.to/trending>
-- ![](https://www.google.com/s2/favicons?domain=x1337x.cc&sz=16) x1337x.cc (trending) — <https://x1337x.cc/trending>
-- ![](https://www.google.com/s2/favicons?domain=feeds.trfny.com&sz=16) Proxy — <https://feeds.trfny.com/1337x>
 
 ### ![](https://www.google.com/s2/favicons?domain=blog.arxiv.org&sz=16) arXiv
 `arxiv` · [feed_arxiv.xml](../feeds/feed_arxiv.xml)
