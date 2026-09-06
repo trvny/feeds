@@ -19,7 +19,7 @@ the repository pins, and the deploy job uses the same command.
 
 The site base URL is taken from ``$SITE_URL`` (set by actions/configure-pages),
 falling back to ``$GITHUB_REPOSITORY`` (``owner/repo`` -> Pages URL), and
-finally to the trvny/feeds default for local runs.
+finally to the trvny/feedseek default for local runs.
 """
 
 from __future__ import annotations
