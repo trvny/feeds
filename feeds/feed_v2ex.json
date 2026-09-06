@@ -8,6 +8,52 @@
   "icon": "https://www.v2ex.com/favicon.ico",
   "items": [
     {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/dc1e6dc4693bf5d5",
+      "url": "https://www.v2ex.com/t/1239792#reply6",
+      "title": "昨天，用了六年多的 VMESS+WS+TLS+CDN 的配置终于被墙了",
+      "content_text": "CDN 用的 cloudflare ，没用优选 IP ，一直觉得两个域名实在太麻烦了。而且俺网络学得不好，很多概念没搞清楚。 IP 和协议应该同时被墙。首先 IPv4 的地址 ping 不通了，IPv6 还能 ping 通。遂让本地 v2ray 客户端改成 IPv6 ，但仍然连不上。 现在暂时用着其它协议，这几年出了很多新协议，VMESS 好像确实有点过时了。另外不知道 V 友有什么 CDN 推荐没有，没有信用卡，付费或者限时免费的就算了。",
+      "date_published": "2026-09-06T04:42:47Z",
+      "date_modified": "2026-09-06T04:42:47Z",
+      "authors": [
+        {
+          "name": "V2EX Play"
+        }
+      ],
+      "image": "https://www.v2ex.com/static/icon-192.png",
+      "tags": [
+        "V2EX Play"
+      ],
+      "attachments": [
+        {
+          "url": "https://www.v2ex.com/static/icon-192.png",
+          "mime_type": "image/png"
+        }
+      ]
+    },
+    {
+      "id": "tag:trvny.github.io,2024:feedseek/v2ex/fdb7b73211dca3c1",
+      "url": "https://www.v2ex.com/t/1239791#reply1",
+      "title": "Riqor 开源，把测试 Agent 从会写带到可交付",
+      "content_text": "把做了一段时间的测试 Agent 工作台开源了，名字叫 Riqor 。 它把力气花在测试工作里容易被忽略的地方。已有资产能不能复用，需求一变哪些产物过期，一条风险结论有没有证据撑着，用例不合格时流程会不会真的停下来。 可以从 PRD 、Bug 、代码变更、发布基线或已有用例的任意一处开始，告诉它最终想得到什么。Agent 负责分析，agent-next CLI 负责盘点依赖、记录 Run State 、维护产物关系、执行 Stage Gate 。 仓库自带三条流程，新功能测试、Bug 回归、发布验收。项目自己的仓库、Track 、知识和环境策略都走 Project Profile 配置，不用动 Core ；远程写入、共享环境执行和数据修改，仍保留人工确认的边界。 欢迎试用，也欢迎提 Issue 。 github.com/phoenine/Riqor #软件测试 #AIAgent #开源项目 #测试工程",
+      "date_published": "2026-09-06T04:22:24Z",
+      "date_modified": "2026-09-06T04:22:24Z",
+      "authors": [
+        {
+          "name": "V2EX Creative"
+        }
+      ],
+      "image": "https://cdn.v2ex.com/gravatar/8335f8340fe284891b08b7c8c9dc4f08?s=73&d=retro",
+      "tags": [
+        "V2EX Creative"
+      ],
+      "attachments": [
+        {
+          "url": "https://cdn.v2ex.com/gravatar/8335f8340fe284891b08b7c8c9dc4f08?s=73&d=retro",
+          "mime_type": "image/jpeg"
+        }
+      ]
+    },
+    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/7510f0b0e1ac7976",
       "url": "https://www.v2ex.com/t/1239784#reply0",
       "title": "Davflare 扩展：书签库上主线了（存自己的 WebDAV）",
@@ -491,29 +537,6 @@
       ]
     },
     {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/c8dcefa810ebe006",
-      "url": "https://www.v2ex.com/t/1239708#reply1",
-      "title": "因为自己爱炒股，我做了一个跨市场跟单工具，支持 Web 和 APP",
-      "content_text": "大家好，我自己平时很喜欢炒股和研究交易，也会关注加密货币、美股、黄金、原油这些市场。 平时使用各大交易所的跟单功能时，我发现热门交易员经常有跟单名额限制，平台展示的数据也不够完整，很难真正看清交易员的长期表现、持仓风格和风险；跟单产生收益后，通常还需要给带单员分润。 这些限制让我一直觉得不够自由，也是我后来决定开发 HyperCopy 的主要原因。 所以我开发了 HyperCopy ，希望把“发现交易员—分析表现—监控动态—执行跟单”放进一个产品里。 主要功能有： 发现和筛选交易员 可以根据盈亏、收益率、胜率、最大回撤、夏普比率、持仓方向、杠杆和交易频率等指标筛选交易员，尽量避免只看短期收益排行榜就盲目跟单。 查看交易员历史表现 支持查看当前持仓、最近成交、历史交易、盈亏曲线、仓位分布和风险指标，先了解交易风格，再决定是否跟单。 自动跟单和立即跟单 可以指定交易员自动跟单，也可以看到实时持仓后手动选择立即跟单。开仓后还能根据设置继续跟随加仓、减仓和平仓。 仓位与风险控制 支持按资产比例、仓位比例或固定金额跟单，并可设置止盈止损、最大仓位、滑点保护和保证金保护等参数。不同市场的具体选项会",
-      "date_published": "2026-09-05T09:29:05Z",
-      "date_modified": "2026-09-05T09:29:05Z",
-      "authors": [
-        {
-          "name": "V2EX Creative"
-        }
-      ],
-      "image": "https://cdn.v2ex.com/avatar/9456/7c83/314191_xlarge.png?m=1788600031",
-      "tags": [
-        "V2EX Creative"
-      ],
-      "attachments": [
-        {
-          "url": "https://cdn.v2ex.com/avatar/9456/7c83/314191_xlarge.png?m=1788600031",
-          "mime_type": "image/png"
-        }
-      ]
-    },
-    {
       "id": "tag:trvny.github.io,2024:feedseek/v2ex/fd8146dfc1025b69",
       "url": "https://www.v2ex.com/t/1239695#reply0",
       "title": "有没有用成都广电宽带的，说说感受",
@@ -786,29 +809,6 @@
         {
           "url": "https://cdn.v2ex.com/gravatar/1b23d465327cd3066aec9a56b3252cc1?s=73&d=retro",
           "mime_type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "id": "tag:trvny.github.io,2024:feedseek/v2ex/78e73dcb870cdca0",
-      "url": "https://www.v2ex.com/t/1239599#reply0",
-      "title": "GPT 生产图片提示额度已经消耗完",
-      "content_text": "ChatGPT 网页端图片生成是不是有 bug ？ 我手机端可以正常生成图片，但网页端一直提示“稍后创建此图像，或升级套餐立即创建”，就是生成不了。 而且我最近基本没怎么用图片生成功能，感觉也不像是额度用完了。 有人遇到一样的问题吗？",
-      "date_published": "2026-09-04T15:42:44Z",
-      "date_modified": "2026-09-04T15:42:44Z",
-      "authors": [
-        {
-          "name": "V2EX Play"
-        }
-      ],
-      "image": "https://i.imgur.com/phhty7o.png",
-      "tags": [
-        "V2EX Play"
-      ],
-      "attachments": [
-        {
-          "url": "https://i.imgur.com/phhty7o.png",
-          "mime_type": "image/png"
         }
       ]
     },
