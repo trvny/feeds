@@ -26,6 +26,7 @@ single Atom stream written to ``feeds/feed_saas.xml``:
     - Astral Codex Ten  Substack (native RSS)
     - Behance           blog (FeedBurner RSS)
     - CodeRabbit        blog + changelog (native RSS) + newsroom (scraped)
+    - Netlify           blog + changelog + knowledge base (native RSS)
 
 Note: exa.ai/research is a client-rendered listing with no sitemap entries and
 no server-rendered post list, so it isn't aggregated here (would need a
@@ -64,6 +65,7 @@ import multi_rss
 from enrich import enrich_entries
 from utils import (
     add_entry_media,
+    allocate_fair_share,
     deserialize_entries,
     load_cache,
     merge_entries,
@@ -91,7 +93,8 @@ FEED_SUBTITLE = (
     "Xweather (blog + API + MCP changelogs), "
     "Cursor (blog + changelog), NeuralTrust, "
     "Abnormal (blog + newsroom), Character.AI, "
-    "Astral Codex Ten, Behance (blog), and CodeRabbit (blog + changelog + newsroom)."
+    "Astral Codex Ten, Behance (blog), CodeRabbit (blog + changelog + newsroom), "
+    "and Netlify (blog + changelog + knowledge base)."
 )
 BLOG_URL = "https://www.hashicorp.com/blog"
 MAX_ENTRIES = 600  # all vendors share one archive
@@ -168,6 +171,9 @@ def collect_bitly(known_links: set[str]) -> list[dict]:
 NATIVE_FEEDS = [
     ("Vercel", "https://vercel.com/atom", 40),
     ("Vercel Changelog", "https://vercel.com/changelog/rss.xml", 40),
+    ("Netlify Blog", "https://www.netlify.com/feed.xml", 40),
+    ("Netlify Changelog", "https://www.netlify.com/changelog/feed.xml", 40),
+    ("Netlify Knowledge Base", "https://www.netlify.com/knowledge-base/feed.xml", 40),
     ("Chat SDK", "https://chat-sdk.dev/rss.xml", 40),
     ("Flags SDK", "https://flags-sdk.dev/rss.xml", 40),
     ("Workflow SDK", "https://workflow-sdk.dev/rss.xml", 40),
@@ -781,24 +787,6 @@ def generate_atom_feed(entries: list[dict]) -> FeedGenerator:
     return fg
 
 
-def _cap_per_source(entries: list[dict], per_source: int) -> list[dict]:
-    """Keep only the newest ``per_source`` entries per source label. ``entries``
-    is ascending (oldest first), so walk it in reverse and keep the first
-    ``per_source`` seen for each source, then restore ascending order. Prevents
-    a high-churn source (Vercel SDK docs, Behance, NeuralTrust) from crowding
-    low-volume vendors out of the shared archive."""
-    counts: dict[str, int] = {}
-    kept: list[dict] = []
-    for e in reversed(entries):
-        s = e.get("source") or ""
-        if counts.get(s, 0) >= per_source:
-            continue
-        counts[s] = counts.get(s, 0) + 1
-        kept.append(e)
-    kept.reverse()
-    return kept
-
-
 def main(full: bool = False) -> bool:
     raw_cached = (
         []
@@ -837,9 +825,9 @@ def main(full: bool = False) -> bool:
 
     merged = merge_entries(new_entries, cached, id_field="id", date_field="date")
     merged = sort_posts_for_feed(merged, date_field="date")
-    merged = _cap_per_source(merged, PER_SOURCE_CAP)
-    if len(merged) > MAX_ENTRIES:
-        merged = merged[-MAX_ENTRIES:]  # ascending, so the tail is newest
+    merged = allocate_fair_share(
+        merged, MAX_ENTRIES, per_source_cap={"": PER_SOURCE_CAP}
+    )
 
     enrich_entries(merged)
 

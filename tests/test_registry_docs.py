@@ -40,6 +40,7 @@ class RegistryDocsTests(unittest.TestCase):
         expected = len(load_registry())
         english = (FEEDSEEK / "README.md").read_text(encoding="utf-8")
         polish = (FEEDSEEK / "README_pl.md").read_text(encoding="utf-8")
+        chinese = (FEEDSEEK / "README_zh.md").read_text(encoding="utf-8")
 
         def count(pattern: str, text: str, label: str) -> int:
             match = re.search(pattern, text)
@@ -49,6 +50,7 @@ class RegistryDocsTests(unittest.TestCase):
         counts = [
             count(r"feeds-(\d+)-d6541a", english, "English badge"),
             count(r"feeds-(\d+)-d6541a", polish, "Polish badge"),
+            count(r"feeds-(\d+)-d6541a", chinese, "Chinese badge"),
             count(r"feeds\.yaml \((\d+) źródeł\)", polish, "Polish registry marker"),
         ]
         self.assertEqual(counts, [expected] * len(counts))
