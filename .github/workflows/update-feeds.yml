@@ -51,20 +51,12 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 24
+          cache: npm
+          cache-dependency-path: feeds-proxy/package-lock.json
 
-      - name: Resolve latest stable Wrangler 4
-        id: wrangler
-        run: |
-          version="$(npm view 'wrangler@>=4 <5' version --json | uv run --no-project python -c \
-            'import json, sys; value=json.load(sys.stdin); print(value[-1] if isinstance(value, list) else value)')"
-          echo "version=$version" >> "$GITHUB_OUTPUT"
-          echo "WRANGLER_VERSION=$version" >> "$GITHUB_ENV"
-
-      - name: Cache npm downloads
-        uses: actions/cache@v6
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-wrangler-${{ steps.wrangler.outputs.version }}
+      - name: Install locked Wrangler
+        working-directory: feeds-proxy
+        run: npm ci
 
       - name: Prepare R2 cache bucket
         id: r2
@@ -132,7 +124,7 @@ jobs:
           restore_dir="$(mktemp -d)"
           trap 'rm -rf "$restore_dir"' EXIT
 
-          if npx --yes "wrangler@$WRANGLER_VERSION" r2 object get \
+          if feeds-proxy/node_modules/.bin/wrangler r2 object get \
             "$FEEDSEEK_CACHE_BUCKET/$FEEDSEEK_CACHE_KEY" \
             --file "$archive" \
             --remote && \
@@ -196,7 +188,7 @@ jobs:
             --numeric-owner \
             -czf "$archive" \
             -C . cache
-          npx --yes "wrangler@$WRANGLER_VERSION" r2 object put \
+          feeds-proxy/node_modules/.bin/wrangler r2 object put \
             "$FEEDSEEK_CACHE_BUCKET/$FEEDSEEK_CACHE_KEY" \
             --file "$archive" \
             --content-type application/gzip \
